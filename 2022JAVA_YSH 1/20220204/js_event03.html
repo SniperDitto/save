@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+    <title>JS Key&Form Event</title>
+  <style>
+	input{
+		font-size:20px;
+	}
+  </style>
+  <script>
+	//Event Handler
+
+	//onchange - 특정 객체의 value가 변하면 발생(text, password, select)
+	//커서를 밖으로 빼거나 클릭, 엔터 등으로 'value가 변하면' 발생
+	//select의 경우 value=""로 속성을 같게 해도 다른 항목을 선택하면 발생
+	function changeFunc(){
+		document.getElementById("msg").innerHTML = "change 이벤트 발생";
+		document.getElementById("msg").innerHTML += "<br>"+document.getElementById("v3").value;
+	}
+
+  </script>
+ </head>
+ <body>
+ 	<div>
+		<input type="text" id="v1" onchange="changeFunc()"/>
+		<input type="password" id="v2" onchange="changeFunc()"/>
+
+		<select id="v3" onchange="changeFunc()">
+			<!-- value 속성 안주면 안에 있는 텍스트 값이 value로 취급됨 -->
+			<option value="">선택하세요</option>
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+		</select>
+	</div>
+	<div id="msg"></div>
+ </body>
+</html>

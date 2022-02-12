@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='UTF-8'>
+<title></title>
+<style>
+    input{
+        font-size: 20px;
+    }
+</style>
+<script>
+    let testFunc = function(obj){
+        //해당 객체 클릭 시 발생(input 커서 관계없음)
+        alert(obj.value);
+    }
+    
+</script>
+</head>
+<body>
+    <div>
+        <input type="text" id="name" onclick="testFunc(this)" placeholder="click"/>
+        <input type="text" id="name2" onfocus="testFunc(this)" placeholder="focus"/>
+        <input type="text" id="name3" onkeyup="testFunc(this)" onkeydown="" onkeypress="" placeholder="keyup"/>
+        <input type="text" id="name4" onblur="testFunc(this)" placeholder="blur"/>
+        <input type="text" id="name5" onchange="testFunc(this)" placeholder="change"/>
+    </div>
+    <div>
+        <textarea onchange="testFunc(this)" placeholder="change"></textarea>
+    </div>
+    <div>
+        <input type="checkbox" value="kor" name="" onclick="testFunc(this)" />국어
+        <input type="checkbox" value="eng" name="" onclick="testFunc(this)" />영어
+        <input type="checkbox" value="math" name="" onclick="testFunc(this)" />수학
+    </div>
+    <div>
+        <input type="radio" value="kor" name="subject" onclick="testFunc(this)" />국어
+        <input type="radio" value="eng" name="subject" onclick="testFunc(this)" />영어
+        <input type="radio" value="math" name="subject" onclick="testFunc(this)" />수학
+    </div>
+    <div>
+        <select onchange="testFunc(this)" id="numSelect">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+        </select>
+    </div>
+<script></script>
+</body>
+</html>

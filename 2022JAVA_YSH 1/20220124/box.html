@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+ <head>
+  <meta charset="UTF-8">
+  <title>boxmodel</title>
+  <style>
+	/*box model*/
+	.row{
+		border : 0px solid black;
+		font-size : 20px;
+		width : 500px;
+		height : 50px;
+		display : inline;
+		padding : 30px 10px 50px 100px;
+		margin : 10px;
+	}
+	.row2{
+		display : block;
+		width : 500px;
+		border : 1px solid red;
+		clear : both;
+	}
+	.col{
+		display : block;
+		width : 100px;
+		border : 1px solid blue;
+		float : left;
+		text-align : center;
+		padding : 10px 0px 10px 0px;
+		font-size : 1.5em;
+	}
+  </style>
+ </head>
+ <body>
+	<!--
+	<div>
+		<table border="1px" width="500px"
+		cellpadding="0px" cellspacing="0px" align="center">
+			<tr>
+				<td width="50px" height="40px" align="center">
+					<input type="checkbox"/>
+				</td>
+				<td width="100px" height="40px" align="center">
+					홍길동
+				</td>
+				<td width="150px" height="40px" align="center">
+					남자
+				</td>
+				<td width="150px" height="40px" align="center">
+					01011112222
+				</td>
+			</tr>
+			<tr>
+				<td width="50px" height="40px" align="center">
+					<input type="checkbox"/>
+				</td>
+				<td width="100px" height="40px" align="center">
+					홍길순
+				</td>
+				<td width="150px" height="40px" align="center">
+					여자
+				</td>
+				<td width="150px" height="40px" align="center">
+					01022223333
+				</td>
+			</tr>
+		</table>
+	</div>
+	-->
+	<div>
+		<!--
+		<div class="row">
+			<span>안녕하세요</span>
+		</div>
+		-->
+		<div class="row2">
+			<span class="col"><input type="checkbox"/></span>
+			<span class="col">홍길동</span>
+			<span class="col">남자</span>
+			<span class="col" style="width:150px">01011112222</span>
+		</div>
+		<div class="row2">
+			<span class="col"><input type="checkbox"/></span>
+			<span class="col">홍길순</span>
+			<span class="col">여자</span>
+			<span class="col" style="width:150px">01022223333</span>
+		</div>
+	</div>
+
+ </body> 
+</html>

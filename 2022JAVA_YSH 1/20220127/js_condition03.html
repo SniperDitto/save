@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>JS 조건문3</title>
+ </head>
+ <body>
+  <div>
+
+	</div>
+
+	<script>
+/*
+	2의 배수이면 "2의 배수입니다."
+	3의 배수이면 "3의 배수입니다."
+	둘 다 아니면 "불만족"
+	2의 배수이면서 3의 배수이면 "2의 배수입니다", "3의 배수입니다" 둘다출력
+	-> % 이용해 나머지를 구하고 ==를 이용해 조건 만들기
+*/
+//----------------------------------------------
+	/*
+	var data = 6;
+	
+	if(data % 2 == 0 && data % 3 == 0){
+		document.write("data : " + data);
+		document.write("<br>");
+		document.write("2의 배수입니다");
+		document.write("<br>");
+		document.write("3의 배수입니다");
+		document.write("<br>");
+	}
+	else if(data % 2 == 0){
+		document.write("data : " + data);
+		document.write("<br>");
+		document.write("2의 배수입니다");
+		document.write("<br>");
+	}
+	else if(data % 3 == 0){
+		document.write("data : " + data);
+		document.write("<br>");
+		document.write("3의 배수입니다");
+		document.write("<br>");
+	}
+	else{
+		document.write("<br>");
+		document.write("불만족");
+		document.write("<br>");
+	}
+	*/
+	
+	var data2 = 10;
+
+	if(data2 % 2 == 0){
+		document.write("data : " + data);
+		document.write("<br>");
+		document.write("2의 배수입니다");
+		document.write("<br>");
+	}
+	if(data2 % 3 == 0){
+		document.write("data : " + data);
+		document.write("<br>");
+		document.write("3의 배수입니다");
+		document.write("<br>");
+	}
+	if(data2 % 2 != 0 && (data2 % 3 != 0){
+		document.write("data : " + data);
+		document.write("<br>");
+		document.write("불만족");
+		document.write("<br>");
+
+	}
+
+	
+
+	</script>
+ </body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+
+	<script>
+		//1. 1 + 5 + 9 + 13 + 17 + 21 + 25 + 29 = ???     ---   10점
+
+		// 아래의 div 태그에 위의 계산값 결과를 출력하세요
+        // 반드시 for 문을 사용해 주세요
+		// jquery 사용금지
+
+		//1. 반복문 - 누적합
+		//누적되는 것에 대한 이해
+
+		//2. 수열을 보고 식을 만들 수 있는가
+
+		//3. 조건문
+
+		
+	</script>
+
+  <title>프론트앤드 question 1</title>
+ </head>
+ <body>
+	<div id="msg"></div> 
+	<div id="result">
+
+	</div>
+	<script>
+		/* let str = "1 + 5 + 9 + 13 + 17 + 21 + 25 + 29";
+		document.getElementById("result").innerHTML = eval(str); */
+		const num = 8;
+		let sum = 0;
+		let strHTML = "";
+		for(let i=1;i<=num;i++){
+			sum += 4*i-3;
+			strHTML += 4*i-3;
+			if(i != num){
+				strHTML += " + ";
+			}
+			else{
+				strHTML += " = "
+			}
+		}
+		
+		document.getElementById("result").innerHTML = strHTML + sum;
+	</script>
+ </body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>전역 변수와 지역 변수</title>
+  <script>
+	
+  </script>
+  <style></style>
+ </head>
+ <body>
+	<div></div>
+
+	<script>
+	
+	var resultGlobal = 0;//전역 변수
+	function plus(num1, num2){
+		var resultLocal = num1 + num2;//지역변수
+
+		return resultLocal;
+	}
+	
+	var result = plus(6, 13);
+	alert(result);
+
+
+
+	
+	</script>
+  
+ </body>
+</html>

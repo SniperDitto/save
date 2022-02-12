@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>0124form</title>
+  <style>
+  	body{
+		margin : 0px;
+	}
+	.wrap{
+		width : 700px;
+		height : 800px;
+		border : 1px solid black;
+		background-color : #ffffcc;
+	}
+	.title{
+		border : 1px solid black;
+		text-align : center;
+		margin : 3px 4px 5px 4px;
+		padding : 15px 0px 15px 0px;
+	}
+	.title a{text-decoration : none;}
+	.titletext{
+		font-size : 25px;
+		font-weight : bolder;
+		border : 0px solid black;
+	}
+	.menu{
+		border : 1px solid black;
+		margin : 0px 4px 5px 4px;
+		padding : 5px 0px 5px 150px;
+	}
+	.menu a{text-decoration : none;}
+	.menutext{
+		border : 0px solid red;
+		margin : 0px 10px 0px 10px;
+	}
+	.content{
+		border : 0px solid black;
+		margin : 3px 4px 5px 4px;
+	}
+	.text1{
+		font-size : 20px;
+		font-weight : bolder;
+		border : 0px solid black;
+	}
+	.text2{
+		border : 0px solid red;
+		margin : 0px 0px 0px 0px;
+		font-size : 12px;
+	}
+	.box1{
+		width : 450px;
+		margin-left : 100px;
+		border : 5px dotted black;
+		padding : 10px 10px 15px 10px; 
+	}
+	.box2{
+		border : 0px dotted green;
+		margin : 15px 0px 0px 5px;
+	}
+	.texttitle{
+		font-weight: bolder;
+	}
+
+  </style>
+ </head>
+ <body>
+  <div class="wrap">
+  	<div class="title">
+		<a href="../0124.html">
+			<span class="titletext">20220124</span>
+		</a>
+	</div>
+	
+	<div class="menu">
+		<span class="menutext">
+			<a href="../announcement/0124announcement.html">공지사항</a>
+		</span>
+        <span class="menutext">
+			<a href="../styletag/0124style.html">style</a>
+		</span>
+		<span class="menutext">
+            <a href="../box/0124box.html">box model</a>
+        </span>
+		<span class="menutext">
+            <a href="../fontsize/0124fontsize.html">font 크기</a>
+        </span>
+        <span class="menutext">
+			<a href="./0124form.html">form</a>
+		</span>
+	</div>
+	<div class="content">
+		<div class="box1">
+			<span class="text1">Form 태그</span><br>
+			<div class="box2">
+				<span class="texttitle">input 태그</span><br>
+				<span class="textcontent">
+                    - 싱글 태그(닫는 태그 없음)
+				</span>
+			</div>
+			<div class="box2">
+				<span class="texttitle">input의 type 속성 종류</span><br>
+				<span class="textcontent">
+                    - text : 글 입력<br>
+                    - password : 비밀번호(****로 표시됨), 영문&숫자만 가능<br>
+                    - radio : 옵션 선택 버튼(하나만 선택)<br>
+                    - checkbox : 여러 옵션 동시 선택 가능, 선택 해제 가능<br>
+                    - button : &lt;button&gt;태그와 기능 약간 다름(주의)<br>
+                    - number : 숫자 카운트, 익스플로러에서 안됨<br>
+				</span>
+			</div>
+            <div class="box2">
+				<span class="texttitle">다른 속성들</span><br>
+				<span class="textcontent">
+                    - name : 입력하는 내용이 무엇의 내용인지(id, pw 등)<br>
+                    - maxlength : 최대 입력 글자 수(byte 수 아님)<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    (영문, 숫자는 글자당 1byte, 한글은 2byte)<br>
+                    - size(잘 사용x) : maxlength와 같은 역할<br>
+                    - placeholder : 미리 보이는 글자<br>
+                    - checked : 선택 옵션 사용 시 기본값<br>
+                    - value : 입력받는 값, 서버로 전송되는 값<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    미리 설정 시 아무것도 입력되지 않았을 때 해당 값이 입력된 것으로 처리<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    button에서는 버튼에 표시되는 내용<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &lt;label&gt;로 둘러싸면 옵션 선택 시 클릭하는 영역 조절 가능
+				</span>
+			</div>
+            <div class="box2">
+				<span class="texttitle">&lt;select&gt;와 &lt;option&gt;</span><br>
+				<span class="textcontent">
+                    - 드롭다운 메뉴(옵션 선택)
+				</span>
+			</div>
+		</div>
+	</div>
+  </div>
+ </body>
+</html>

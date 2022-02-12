@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>JS Event</title>
+  <style>
+	div{
+		width:200px;
+		height:50px;
+		border:1px solid blue;
+		background-color:yellow;
+	}
+  </style>
+  <script>
+	//Event Handler
+	
+	//click : 마우스 왼쪽 버튼으로 클릭
+	function clickFunction(){
+		document.getElementById("clickMsg").innerHTML = "클릭 이벤트 발생";
+	}
+
+	//dblclick : 마우스 왼쪽 버튼으로 더블클릭
+	function dblClickFunction(){
+		document.getElementById("dblClickMsg").innerHTML = "더블클릭 이벤트 발생";
+	}
+
+	//mouseover/mouseout : 마우스 커서 들어왔다 나왔다
+	function mouseIn(){
+		document.getElementById("mouseIOMsg").innerHTML = "마우스 오버 이벤트 발생";
+		document.getElementById("mouseIOMsg").style.backgroundColor="blue";
+	}
+	function mouseOut(){
+		document.getElementById("mouseIOMsg").innerHTML = "마우스 아웃 이벤트 발생";
+		document.getElementById("mouseIOMsg").style.backgroundColor="red";
+	}
+	
+	//mousedown : 좌/우 마우스 커서 누름
+	function mouseDown(){
+		document.getElementById("mouseMsg").innerHTML = "마우스 다운 이벤트 발생";
+		document.getElementById("mouseMsg").style.backgroundColor="red";
+	}
+
+	//mouseup : 좌/우 마우스 커서 누른 상태에서 뗌
+	function mouseUp(){
+		document.getElementById("mouseMsg").innerHTML = "마우스 업 이벤트 발생";
+		document.getElementById("mouseMsg").style.backgroundColor="blue";
+	}
+
+	//mousemove : 마우스 커서 움직임
+	function mouseMove(){
+		document.getElementById("mouseMsg").innerHTML = "마우스 무브 이벤트 발생";
+		document.getElementById("mouseMsg").style.backgroundColor="yellow";
+	}
+
+  </script>
+ </head>
+ <body>
+	<div onclick="clickFunction()" id="clickMsg">
+		클릭
+	</div>
+	<div ondblclick="dblClickFunction()" id="dblClickMsg">
+		더블클릭
+	</div>
+	<div onmouseover="mouseIn()" onmouseout="mouseOut()" id="mouseIOMsg">
+		마우스오버&아웃
+	</div>
+	<div onmousedown="mouseDown()" onmouseup="mouseUp()" onmousemove="mouseMove()" id="mouseMsg">
+		마우스다운&업&무브
+	</div>
+
+
+ </body>
+</html>

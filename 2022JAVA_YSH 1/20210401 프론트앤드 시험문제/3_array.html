@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+
+  <title>프론트앤드 question 3</title>
+
+	<script>
+		
+		/*
+			(1, "홍길동")
+			(2, "전우치")
+			(3, "김동일")
+			(4, "도석진")
+			(5, "김도율")
+			(6, "이경직")
+		*/
+
+		//위 데이터를 활용하여 페이지가 로딩되면 홀수번호를 가진 학생의 결과를 아래의 select 에 추가해주세요 -15점
+
+		//jquery 사용금지
+
+		var dataArray = [];
+		for(var i=0;i<6;i++){
+			dataArray[i] = [];
+		}
+		dataArray[0]=[1,"홍길동"];
+		dataArray[1]=[2,"전우치"];
+		dataArray[2]=[3,"김동일"];
+		dataArray[3]=[4,"도석진"];
+		dataArray[4]=[5,"김도율"];
+		dataArray[5]=[6,"이경직"];
+
+		function addStudent(){
+			var strHTML = "";
+			for(var i=0;i<dataArray.length;i++){
+				if(dataArray[i][0] % 2 == 1){
+					strHTML += "<option>";
+					strHTML += dataArray[i];
+					strHTML += "</option>";
+				}
+			}
+			document.getElementById("student").innerHTML = strHTML;
+		}
+
+	</script>
+ </head>
+ <body onload="addStudent()">
+	<div>
+		<select id="student">
+
+		</select>
+	</div>
+
+ </body>
+</html>

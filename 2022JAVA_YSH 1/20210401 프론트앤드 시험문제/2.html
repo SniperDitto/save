@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+
+  <title>프론트앤드 question 2</title>
+
+  <script>
+		//2. select에서 선택한 지역값이 아래의 textbox에 나타나도록 해주세요  -- 10점
+		//만약 선택해주세요를 선택했다면 '값을 선택하지 않았습니다.'라는 메세지가 경고창으로 표시되도록 해주세요
+		//jquery 사용금지
+		
+		//1. select 태그에 대한 이해
+		//2. select 속성 중 value에 대한 이해
+		//3. onchange 이벤트에 대한 이해
+		//4. input의 속성 중 value에 대한 이해
+		
+  </script>
+ </head>
+ <body>
+	<div>
+		<select id="selectBox" onchange="getSelected()">
+			<option>선택해주세요</option>
+			<option>서울</option>
+			<option>부산</option>
+			<option>대구</option>
+		</select>
+	</div>
+	<div>
+		<input type="text" id="result" />
+	</div>
+
+	<script>
+
+		function getSelected(){
+			var selectedVal = document.getElementsByTagName("select")[0].value;
+			document.getElementById("result").value = "";
+			if(selectedVal == "선택해주세요"){
+				alert("값을 선택하지 않았습니다");
+			}
+			else{
+				document.getElementById("result").value = selectedVal;
+			}
+			
+		}
+
+		
+	</script>
+ </body>
+</html>

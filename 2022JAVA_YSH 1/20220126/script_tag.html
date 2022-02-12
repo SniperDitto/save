@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title></title>
+   <style>
+   		span{
+			display : block;
+			width : 100px;
+			height : 50px;
+			font-size : 20px;
+			border : 1px solid black;
+			float : left;
+		}
+  </style>
+  <script>
+	
+//스크립트와 태그
+	// "" -> 문자열(데이터베이스에서는 '')
+	// '' -> 글자(한 문자)
+	//javascript는 두 가지 모두 문자열로 사용 가능
+	//var strHTML = "<a href='https://www.naver.com/'>naver</a>";
+	//document.write(strHTML);
+
+	function htmlWrite(){
+
+		//var strHTML = "<a href='https://www.naver.com/'>naver</a>";
+		var strHTML = "<div>";
+		strHTML += "<span>1</span>";
+		strHTML += "<span>2</span>";
+		strHTML += "<span>3</span>";
+		strHTML += "</div>";
+
+		document.getElementById("msg").innerHTML += strHTML;
+		
+	}
+
+  </script>
+ </head>
+ <body>
+	<div>
+		<span>1</span>
+		<span>2</span>
+		<span>3</span>
+	</div>
+	<div id="msg">
+	
+	</div>
+	<div>
+		<input type="button" value="확인" style="width:100px;height:50px" onclick="htmlWrite();"/>
+	</div>
+	
+ </body>
+</html>

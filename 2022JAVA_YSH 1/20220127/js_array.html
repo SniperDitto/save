@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>JS 배열</title>
+  <style>
+	div{
+		float:left;
+		text-align:center;
+		border:1px solid black;
+	}
+	#wrap{
+		border:0px solid black;
+	}
+  </style>
+ </head>
+ <body>
+	<div id="wrap">
+		<div id="msg"></div>
+	</div>
+	<script>
+		
+//이름 자리에 홍길동, 전우치, 홍길순, 이순신, 강감찬을 돌아가면서 넣고 싶다면
+//		String arrName1 = new String[5];
+		var arrName = [];
+		arrName[0] = "홍길동";
+		arrName[1] = "전우치";
+		arrName[2] = "홍길순";
+		arrName[3] = "이순신";
+		arrName[4] = "강감찬";
+
+		var strResult = "";
+
+		for (var i=0; i<5; i++){
+			strResult += "<div style='clear:both'>" + arrName[i] + "은(는) 인사를 한다</div>";
+		}
+
+		document.getElementById("msg").innerHTML += strResult;
+
+	</script>
+ </body>
+</html>
+

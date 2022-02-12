@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='UTF-8'>
+<title></title>
+<style></style>
+<script>
+
+    //입력값을 검사해 문자 입력한 것을 모두 삭제
+    var checkNumber = function(strAllow,checkID){
+        let resultStr = "";//문자가 삭제되고 출력할 값
+        //허용할 글자들
+        let nowValue = document.getElementById(checkID).value;//현재 입력창의 값
+
+        //현재 입력값을 한글자마다 문자인지 숫자인지 체크
+        let eachValue="";
+        for(let i=0;i<nowValue.length;i++){
+            eachValue = nowValue.substr(i,1);//i번째글자부터 1개
+            
+            //글자가 숫자인 경우
+            if(strAllow.indexOf(eachValue)!=-1){
+                resultStr += eachValue;
+            }
+            document.getElementById(checkID).value = resultStr;
+        }
+
+    }
+
+
+</script>
+</head>
+<body>
+<div>
+    <span>숫자만 입력 : </span>
+    <input type="text" id="birth" onkeydown="checkNumber('0123456789','birth')"/>
+</div>
+<script></script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>객체의 method</title>
+    <script>
+        //숫자를 더하는 경우
+
+        //1번
+        var num1 = 12;
+        var num2 = 22;
+        var num3 = 33;
+        var num1 = num1 + num2 + num3;
+        document.write(result);
+
+        //2번 - 데이터의 수가 변해도 됨
+        var nums = [];
+        nums[0] = 12;
+        nums[1] = 22;
+        nums[2] = 33;
+        var result = 0;
+        for(var i=0; i<nums.length;i++){
+            result += nums[i];
+        }
+        document.write(result);
+
+        //3 문제를 객체로 생각
+        var question = Object();
+        question.n1 = 13;
+        question.n2 = 14;
+        question.n3 = 22;
+        question.numSum = function(){
+            var result = question.n1 + question.n2 + question.n3;
+            return result;
+        }
+
+
+        //함수 - 더해서 결과를 도출하는 '기능'에 집중
+        //메서드 - 문제 하나를 객체로 생각(더하는 숫자를 하나의 속성으로 보고 속성값의 합을 구하는 메서드를 작성)
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

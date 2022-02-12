@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>여러 페이지 만들기</title>
+  <style></style>
+
+ </head>
+ <body>
+	<div id="box"></div>
+	<div>
+		<input type="button" value="이전"/>
+		<span id="page"></span>
+		<input type="button" value="다음"/>
+	</div>
+	
+
+
+	<script>
+	//한 페이지 당 데이터 3개 표시
+		var imgs = [];
+		var titles = [];
+		var subTitles = [];
+		//데이터 만들기
+		function makeData(num){
+			for(var i=0; i<num; i++){
+				imgs[i] = "./img/" + i + ".png";
+				titles[i] = "제목" + i;
+				subTitles[i] = "소제목" + i;
+			}
+		}
+		
+		//태그 내용 작성
+		function makeHTML(num){
+			var strHTML = '';
+
+			for(var i=0; i<num; i++){
+				strHTML += '<div>';
+				strHTML += '	<div>';
+				strHTML += '		<img src="'+imgs[i]+'" />';
+				strHTML += '	</div>';
+				strHTML += '	<div>'+titles[i]+'</div>';
+				strHTML += '	<div>'+subTitles[i]+'</div>';
+				strHTML += '</div>';
+			}
+
+			document.getElementById("box").innerHTML = strHTML;
+		}
+
+		//페이지별로 나누기-----------------------------
+
+
+	</script>
+
+ </body>
+</html>

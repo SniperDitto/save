@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>강아지 뉴스</title>
+  <script>
+	function selectNews(obj){
+
+		var selectedVal = obj.value;
+
+		if(selectedVal == 1){
+			showResult(0);
+		}
+		else if(selectedVal == 2){
+			showResult(1);
+		}
+		else{
+			showResult("all");
+		}
+	}
+  </script>
+ </head>
+ <body>
+ 	<div>
+		<label>
+			<input type="radio" name="num" value="1" onclick="selectNews(this)"/>
+			<span>홀수</span>
+		</label>
+		<label>
+			<input type="radio" name="num" value="2" onclick="selectNews(this)"/>
+			<span>짝수</span>
+		</label>
+		<label>
+			<input type="radio" name="num" value="3" onclick="selectNews(this)"/>
+			<span>전체</span>
+		</label>
+	</div>
+  <table width="600px" align="center"
+	cellpadding="0px" cellspacing="0px" border="1px" id="tblList">
+	
+  </table>
+
+  <script>
+	var imgs = [];
+	var subjects = [];
+	var titles = [];
+	var contents = [];
+
+	imgs[0] = "1.jpg";
+	imgs[1] = "2.png";
+	imgs[2] = "3.jpg";
+	imgs[3] = "4.png";
+	imgs[4] = "5.jpg";
+	imgs[5] = "6.jpg";
+
+	for(var i=0;i<6;i++){
+		subjects[i] = "주제"+i;
+		titles[i] = "제목"+i;
+		contents[i] = "내용"+i;
+	}
+
+	function makeNews(num){
+		var strHTML="";
+		
+		strHTML+='<tr>';
+		strHTML+='	<td width="600px" height="100px" align="center">';
+		strHTML+='		<!-- 내용 시작 -->';
+		strHTML+='		<table width="600px" align="center" border="1px"';
+		strHTML+='			cellpadding="0px" cellspacing="0px">';
+		strHTML+='			<tr>';
+		strHTML+='				<td width="150px" height="150px" align="center" rowspan="3">';
+		strHTML+='					<img width="150px" height="150px"src="./img/'+ imgs[num] +'"/>';
+		strHTML+='				</td>';
+		strHTML+='				<td width="450px" height="30px">';
+		strHTML+='					1 '+ subjects[num];
+		strHTML+='				</td>';
+		strHTML+='			</tr>';
+		strHTML+='			<tr>';
+		strHTML+='				<td width="450px" height="30px">';
+		strHTML+='					2 '+ titles[num];
+		strHTML+='				</td>';
+		strHTML+='			</tr>';
+		strHTML+='			<tr>';
+		strHTML+='				<td width="450px" height="90px">';
+		strHTML+='					3 '+ contents[num];
+		strHTML+='				</td>';
+		strHTML+='			</tr>';
+		strHTML+='		</table>';
+		strHTML+='		<!-- 내용 끝 -->';
+		strHTML+='	</td>';
+		strHTML+='</tr>';
+
+		return strHTML;
+	}
+
+
+	function showResult(val){
+		document.getElementById("tblList").innerHTML="";
+		var strHTML = "";
+		if(val=="all"){
+			for(var i=0;i<6;i++){
+				strHTML += makeNews(i);
+			}
+		}
+		else{
+			for(var i=0;i<6;i++){
+				if((i+1) % 2 == val){
+					strHTML += makeNews(i);
+				}
+			}
+		}
+
+		document.getElementById("tblList").innerHTML = strHTML;
+	}
+
+	
+
+  </script>
+ </body>
+</html>

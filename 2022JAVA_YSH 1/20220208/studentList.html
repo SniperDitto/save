@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='UTF-8'>
+<title></title>
+<style>
+    .row{
+        clear: both;
+    }
+    .col{
+        width: 150px;
+        font-size: 20px;
+        border: 1px solid black;
+        padding: 10px 0px 10px 0px;
+        display: block;
+        float: left;
+        text-align: center;
+    }
+</style>
+<script>
+    let students = [
+			{number:1, name:"홍길동", tel:"0100001111", addr:"부산"},
+			{number:2, name:"전우치", tel:"0100002222", addr:"경주"},
+			{number:3, name:"박상일", tel:"0100003333", addr:"울산"},
+			{number:4, name:"조중동", tel:"0100004444", addr:"서울"},
+			{number:5, name:"한겨례", tel:"0100005555", addr:"대구"},
+			{number:6, name:"도욱수", tel:"0100006666", addr:"대전"},
+			{number:7, name:"이경직", tel:"0100007777", addr:"광주"},
+			{number:8, name:"차기수", tel:"0100008888", addr:"제주"}
+		];
+
+
+
+</script>
+</head>
+<body>
+    <div>
+        <input type="button" value="불러오기" id="btnList" style="font-size:20px;"/>
+    </div>
+    <div id="studentList">
+        <div class="row">
+            <span class="col">번호</span>
+            <span class="col">이름</span>
+            <span class="col">연락처</span>
+            <span class="col">주소</span>
+        </div>
+    </div>
+    <script>
+        //event 선언
+        document.getElementById("btnList").onclick = function(){
+            let studHTML = "";
+
+            for(let i=0;i<students.length;i++){
+                studHTML += '<div class="row">';
+                studHTML += '<span class="col">'+students[i].number+'</span>';
+                studHTML += '<span class="col">'+students[i].name+'</span>';
+                studHTML += '<span class="col">'+students[i].tel+'</span>';
+                studHTML += '<span class="col">'+students[i].addr+'</span>';
+                studHTML += '</div>';
+            }
+
+            document.getElementById("studentList").innerHTML += studHTML;
+
+        }
+    </script>
+</body>
+</html>

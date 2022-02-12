@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>문자열 유무 확인</title>
+    <style></style>
+    <script>
+        let checkMail = function () {
+            //텍스트박스에 입력된 값 받아오기
+            let inputVal = document.getElementById("userEmail").value;
+
+            //"@", ","를 포함하는지 확인
+            let checkAt = inputVal.indexOf("@");
+            let chectCom = inputVal.indexOf(",");
+            //if에 참이 되는 조건을 넣고 else에만 코드 작성해야 하는 경우
+            //조건의 대우를 이용해 if에만 코드를 작성하면 좋다
+            if (checkAt == -1 || checkMail == -1) {
+                document.getElementById("msg").innerHTML = "asdf";
+            }
+            else {
+                document.getElementById("msg").innerHTML = "";
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div>
+        <span>이메일 : </span>
+        <input type="text" id="userEmail" />
+    </div>
+    <div id="msg"></div>
+    <script>
+        document.getElementById("userEmail").onblur = checkMail;
+    </script>
+</body>
+
+</html>

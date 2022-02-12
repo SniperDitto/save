@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>JS 구구단</title>
+  <style>
+	div{
+		float:left;
+		text-align:center;
+		border:1px solid black;
+	}
+	#wrap{
+		border:0px solid black;
+	}
+  </style>
+ </head>
+ <body>
+	<div id="wrap">
+		<div id="msg"></div>
+	</div>
+	<script>
+		//반복문 중첩시키기
+		var str = "";
+
+		for(var i=1; i<=9; i++){
+
+			str += "<div style='border:1px solid  red;padding:5px;margin:3px;text-align:center;'>";
+			str += "<div style='border:1px solid blue;margin-left:25px'>"+ i + "단</div>";
+			
+			str+="<div style='border:1px solid green;clear:both;'>";
+			
+			for(var j=1; j<=9; j++){
+
+				str += i + " x " + j + " = " + (i*j) + "<br>";
+				
+			}
+			str += "</div>";
+			str += "</div>";
+
+			document.getElementById("msg").innerHTML += str;
+
+			str = "";
+
+		}
+
+	</script>
+ </body>
+</html>

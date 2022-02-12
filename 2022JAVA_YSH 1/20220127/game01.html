@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>JS 숫자맞추기게임</title>
+  <style></style>
+ </head>
+ <body>
+	<div>
+		1에서 100까지의 수 중 하나 맞추기
+	</div>
+	<div>
+		<input type="text" id="inVal"/>
+		<input type="button" id="" value="결과 확인" onclick="checkValue()"/>
+	</div>
+	<div id="msg">
+		
+	</div>
+
+	<script>
+
+		var rndNumber =  Math.random();
+		rndNumber = rndNumber * 100;
+		rndNumber = parseInt(rndNumber) + 1;
+		document.write("<font style='font-size:20px'> 정답 : " + rndNumber + "</font>");
+
+		function checkValue(){
+			var inValue = document.getElementById("inVal").value;
+			var obj = document.getElementById("msg");
+			
+			if(inValue == rndNumber){
+				obj.innerHTML = "<font color='blue'>정답</font>";
+			}
+			else if(inValue > rndNumber){
+				document.getElementById("msg").innerHTML = "<font color='red'>더 큰 숫자를 입력했습니다</font>";
+			}
+			else if(inValue < rndNumber){
+				document.getElementById("msg").innerHTML = "<font color='red'>더 작은 숫자를 입력했습니다</font>";
+			}
+		}
+
+	</script>
+ </body>
+</html>

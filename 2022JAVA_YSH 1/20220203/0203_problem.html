@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>문제풀기</title>
+  <style>
+	
+  </style>
+  <script></script>
+ </head>
+ <body>
+  
+  <div>
+	<div>
+		<span>문제 수를 입력하세요 : </span>
+		<input type="text" id="qty"/>
+		<input type="button" value="문제 만들기" onclick="testStart()"/>
+	</div>
+	<div id="problem"></div>
+  </div>
+  <div>
+	<input type="button" value="정답 확인" onclick="getPoint()"/>
+  </div>
+  <div id="point"></div>
+  <div id="ans"></div>
+
+
+
+
+  <script>
+	
+	/*
+		1. 숫자 뽑기
+		2. 연산 선택
+		3. 뺄셈일 경우 큰 수가 앞으로(크기비교)
+		4. 입력된 수만큼 문제 생성
+		5. 입력값으로 채점
+	*/
+
+	//숫자 뽑기
+	function getNumber(){
+		var randNum = parseInt(Math.random()*10 + 1);
+		return randNum;
+	}
+
+	//연산 선택 (1,2뽑기)
+	function getSign(){
+		//1이면 +, 2면 -
+		var randSign = parseInt(Math.random()*2 + 1);
+		return randSign;
+	}
+
+	//크기비교 앞의숫자가 같거나 크면 1, 작으면 2,
+	function judgeNum(num1, num2){
+		var returnNum = 0;
+		if(num1 >= num2){
+			returnNum = 1;
+		}
+		else{
+			returnNum = 2;
+		}
+		return returnNum;
+	}
+	
+
+	//한 문제 생성
+	function makeProblem(num1, num2, sign){
+		var strHTML = "";
+		if(sign == 1){
+			//+
+			strHTML = num1 + " + " + num2 + " = ";
+		}
+		else{
+			//-
+			if(judgeNum(num1,num2) == 1){
+				//앞의숫자가 같거나 크니까 그대로
+				strHTML = num1 + " - " + num2 + " = ";
+			}
+			else{
+				//뒤의숫자가 크니까 자리바꾸기
+				strHTML = num2 + " - " + num1 + " = ";
+			}
+		}
+		return strHTML;
+	}
+
+	//문제 수만큼 내기
+	var arrAns = [];
+	function makeTest(num){
+		var probHTML = "";
+
+		for(var i=0;i<num;i++){
+			var num1 = getNumber();
+			var num2 = getNumber();
+			var sign = getSign();
+			arrAns[i] = getAns(num1, num2, sign);
+			probHTML += (i+1) + "번 : ";
+			probHTML += makeProblem(num1, num2, sign);
+			probHTML += "<input type='text' id='p" + i + "'/>";
+			probHTML += "<br>";
+			
+		}
+		document.getElementById("problem").innerHTML = probHTML;
+		
+	}
+	
+
+	//답 구하기
+	function getAns(num1, num2, sign){
+		var answer = 0;
+		if(sign == 1){
+			//+
+			answer = num1 + num2;
+		}
+		else{
+			//-
+			if(judgeNum(num1,num2) == 1){
+				//앞의숫자가 같거나 크니까 그대로
+				answer = num1 - num2;
+			}
+			else{
+				//뒤의숫자가 크니까 자리바꾸기
+				answer = num2 - num1;
+			}
+		}
+		return answer;
+	}
+
+	//버튼 누르면 실행(문제만들기)
+	function testStart(){
+		//문제 수 입력
+		var numProblem = document.getElementById("qty").value;
+		//문제수만큼생성
+		makeTest(numProblem);
+	}
+
+	//입력값배열 만들기
+	function getInput(num){
+		var arrInput=[];
+		for(var i=0; i<num; i++){
+			var tempId = "p" + i;
+			arrInput[i] = document.getElementById(tempId).value;
+		}
+		return arrInput;
+	}
+
+	//버튼 누르면 실행(채점하기)
+	function getPoint(){
+		var ansHTML = "";
+		var arrInput = getInput(arrAns.length);
+		var point = 0;
+		var correct = 0;
+
+		for(var i=0;i<arrAns.length;i++){
+			ansHTML += (i+1) + "번 문제 : ";
+			//정답배열과 입력값배열 비교
+			if(arrInput[i] == arrAns[i]){
+				ansHTML += "<font color='blue'>정답</font><br>";
+				correct++;
+			}
+			else{
+				ansHTML += "<font color='red'>오답</font><br>";
+			}
+		}
+
+		point = (correct/arrAns.length) * 100;
+
+		document.getElementById("ans").innerHTML = ansHTML;
+		document.getElementById("point").innerHTML = point + "점 입니다."
+	}
+  </script>
+ </body>
+</html>

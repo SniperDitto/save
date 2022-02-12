@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='UTF-8'>
+<title></title>
+<style></style>
+<script>
+    //문자열 대치
+    let str = "12@3123@2123";
+    let result = "";
+
+    /*
+    for(let i=0;i<str.length;i++){
+        str = str.replace("@","-");
+    }
+    result = str;
+    */
+
+    //replaceAll : IE 사용 불가
+    result = str.replaceAll("@","-");
+
+</script>
+</head>
+<body>
+<div id="msg"></div>
+<script>
+    document.getElementById("msg").innerHTML = result;
+</script>
+</body>
+</html>

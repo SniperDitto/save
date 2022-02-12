@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>naver회원가입</title>
+  <link rel="stylesheet" href="./css/joinform.css"></link>
+ </head>
+ <body>
+  <div id="wrap">
+	<!-- 회원가입form시작 -->
+	<div id="joinForm">
+		<div class="naver">
+			<span>NAVER</span>
+		</div>
+		<div>
+			<span class="txt">아이디</span>
+		</div>
+		<div class="box">
+			<span>
+				<span>
+					<input type="text" class="inputTxt" maxlength="20">
+				</span>
+				<span class="txt2">@naver.com</span>
+			</span>
+		</div>
+		<div class="msg">
+			<span>이미 사용중인 아이디입니다.</span>
+		</div>
+
+		<div>
+			<span class="txt">비밀번호</span>
+		</div>
+		<div class="box">
+			<span>
+				<span>
+					<input type="password" class="inputTxt" maxlength="20" style="width:550px">
+				</span>
+				<span class="txt2">
+					<img src="./pw.png" class="img1">
+				</span>
+			</span>
+		</div>
+		<div class="msg">
+			<span>필수 정보입니다</span>
+		</div>
+		
+		<div>
+			<span class="txt">비밀번호 재확인</span>
+		</div>
+		<div class="box">
+			<span>
+				<span>
+					<input type="password" class="inputTxt" maxlength="20" style="width:550px">
+				</span>
+				<span class="txt2">
+					<img src="./pw.png" class="img1">
+				</span>
+			</span>
+		</div>
+		<div class="msg">
+			<span>일치하지 않습니다</span>
+		</div>
+		
+		<!-- 이름시작 -->
+		<div>
+			<span class="txt">이름</span>
+		</div>
+		<div class="box">
+			<span>
+				<span>
+					<input type="text" class="inputTxt" maxlength="10">
+				</span>
+				<span class="txt2"></span>
+			</span>
+		</div>
+		<div class="msg">
+			<span>필수 정보입니다</span>
+		</div>
+		<!-- 이름끝 -->
+
+		<div>
+			<span class="txt">생년월일</span>
+		</div>
+		<div class="">
+			<span class="box2">
+				<input type="text" class="inputTxt2" maxlength="4" placeholder="년(4자)">
+			</span>
+			<span class="empty"></span>
+			<span class="box2">
+				<select class="inputTxt2">
+					<option value="">월 선택</option>
+					<option value="1">1월</option>
+					<option value="2">2월</option>
+					<option value="3">3월</option>
+					<option value="4">4월</option>
+					<option value="5">5월</option>
+					<option value="6">6월</option>
+					<option value="7">7월</option>
+					<option value="8">8월</option>
+					<option value="9">9월</option>
+					<option value="10">10월</option>
+					<option value="11">11월</option>
+					<option value="12">12월</option>
+				</select>
+			</span>
+			<span class="empty"></span>
+			<span class="box2">
+				<input type="text" class="inputTxt2" maxlength="10" placeholder="일">
+			</span>
+			<div class="clear"></div>
+			<div class="msg">
+				<span>필수 정보입니다</span>
+			</div>
+		</div>
+		<!-- 메일시작 -->
+		<div>
+			<span class="txt">
+				본인 확인 이메일
+				<font color="#8e8e8e">(선택)</font>
+			</span>
+		</div>
+		<div class="box">
+			<span>
+				<span>
+					<input type="text" class="inputTxt" maxlength="10" style="width:385px">
+				</span>
+				
+				<span class="txt2">
+					<select class="inputTxt2">
+						<option value="">직접입력</option>
+						<option value="@naver.com">@naver.com</option>
+						<option value="@gmail.com">@gmail.com</option>
+					</select>
+				</span>
+			</span>
+		</div>
+		<div class="msg">
+			<span>이메일을 다시 확인해주세요</span>
+		</div>
+		<!-- 메일끝 -->
+		<div style="height:15px;width:1px"></div>
+		<!-- 휴대전화시작 -->
+		<div>
+			<span class="txt">휴대전화</span>
+		</div>
+		<div class="box">
+			<span class="">
+				<select class="inputTxt2" style="width:595px">
+					<option value="82">대한민국 +82</option>
+					<option value="82">대한민국 +82</option>
+					<option value="82">대한민국 +82</option>
+					<option value="82">대한민국 +82</option>
+					<option value="82">대한민국 +82</option>
+				</select>
+			</span>
+		</div>
+		<div>
+			<span class="box2" style="width:475px">
+				<input type="text" class="inputTxt2" maxlength="8" placeholder="전화번호 입력" style="width:450px">
+			</span>
+			<span class="empty" style="width:5px"></span>
+			<span class="btn">인증번호 받기</span>
+		</div>
+		<div class="clear"></div>
+		<div class="">
+			<span class="">
+				<input type="text" class="box" maxlength="4" placeholder="인증번호 입력" style="padding : 10px 0px 10px 0px; text-align:center" disabled>
+			</span>
+		</div>
+		<!-- 휴대전화끝 -->
+		
+		<div>
+			<input type="button" value="가입하기" class="btn" style="width:600px;margin-top:20px">
+		</div>
+	</div>
+	<!-- 회원가입form끝 -->
+  </div>
+ </body>
+</html>

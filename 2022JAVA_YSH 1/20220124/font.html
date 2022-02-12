@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>font 단위</title>
+  <style>
+	body{
+		font-size : 14px;
+		color : #444444;
+		margin : 0px;
+	}
+  </style>
+ </head>
+ <body>
+ <div>
+	<!-- 브라우저의 font 크기 기본값은 16px -->
+	<div>
+ 		<font>안녕하세요(body 14px)</font>
+		<font style="font-size:16px">안녕하세요(16px)</font>
+	</div>
+
+	<!-- em -->
+	<div>
+		<font style="font-size:30px">안녕하세요(30px)</font>
+		<font style="font-size:1em">안녕하세요(1em)</font>
+		<font style="font-size:1.5em">안녕하세요(1.5em)</font>
+	</div>
+
+	<div>
+		<font>xxxxx(기본값)</font>
+		<font style="font-size:2ex">xxxxx(2ex)</font>
+	</div>
+
+	<!-- rem -->
+	<div style="font-size:40px">
+		<span>어서오세요</span>
+		<span style="font-size:1.5em">어서오세요(1.5em)</span> <!-- 60px -->
+		<span style="font-size:1.5rem">어서오세요(1.5rem)</span><!-- 14 * 1.5 = 21px -->
+	</div>
+
+	<div style="font-size:40px">
+		<font>마무리</font>
+		<font style="font-size:16px">마무리(16px)</font>
+		<font style="font-size:100%">마무리(100%)</font>
+		<font style="font-size:120%">마무리(120%)</font>
+	</div>
+ </div>
+ </body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>보너스</title>
+  <style>
+	div{
+		
+	}
+	.msg{
+		border : 0px;
+	}
+
+	.text{
+		clear : both;
+		border : 0px solid black;
+	}
+	span{
+		border : 1px solid black;
+		display : block;
+	}
+	.headtext{
+		width : 100px;
+		float : left;
+		background-color : #ddd;
+	}
+	.header{
+		width : auto;
+		height : auto;
+		float : left;
+		border : 0px solid black;
+		text-align : center;
+		padding : 5px 5px 0px 5px;
+	}
+	.content{
+		width : auto;
+		height : auto;
+		float : left;
+		border : 0px solid black;
+		text-align : center;
+		padding : 0px 5px 5px 5px;
+	}
+	.row{
+		clear : both;
+	}
+	.name, .work, .pay, .bonus{
+		width : 100px;
+		height : 25px;
+		float : left;
+	}
+  </style>
+ </head>
+ <body>
+ 	<div id="msg"></div>
+
+
+  	<script>
+		/*
+			이름		구분		연봉		보너스
+			홍길동	계약직	1000	0%
+			홍길순	정규직	1000	10%
+			전우치	정규직	1000	10%
+			김강인	정규직	1000	10%
+			김성구	계약직	1000	0%
+			도조일	계약직	1000	0%
+
+			-> 위 사원들 중 보너스를 받지 못하는 사람 출력하기
+			-> 계약직:핑크 정규직:노랑 기타:빨간배경으로 해서 표 만들기
+		*/
+		var strHTML = "";
+		var arrName = ["홍길동","홍길순","전우치","김강인","김성구","도조일","asdf"];
+		var arrWork = ["계약직","정규직","정규직","정규직","계약직","계약직",""];
+		var arrPay = [1000, 1000, 1000, 1000, 1000, 1000,0];
+		var arrBonus = [0, 10, 10, 10, 0, 0,0];
+		
+		strHTML += "<div class='header'>";
+		strHTML += "<span class='headtext'>이름</span>";
+		strHTML += "<span class='headtext'>구분</span>";
+		strHTML += "<span class='headtext'>연봉</span>";
+		strHTML += "<span class='headtext'>보너스</span>";
+		strHTML += "</div>";
+		
+		strHTML += "<div class='content'>";
+		for(var i=0; i<arrName.length; i++){
+			strHTML += "<div class='row'>";
+
+			//이름추가
+			strHTML += "<span class='name'>" + arrName[i] + "</span>";
+			
+			//구분추가(색깔 구분)
+			if(arrWork[i] == "계약직"){
+				strHTML += "<span class='work' style='background-color:pink'>" + arrWork[i] + "</span>";
+			}
+			else if(arrWork[i] == "정규직"){
+				strHTML += "<span class='work' style='background-color:yellow'>" + arrWork[i] + "</span>";
+			}
+			else{
+				strHTML += "<span class='work' style='background-color:red'>" + arrWork[i] + "</span>";
+			}
+			//월급추가
+			strHTML += "<span class='pay'>" + arrPay[i] + "</span>";
+			//보너스추가
+			strHTML += "<span class='bonus'>" + arrBonus[i] + "</span>";
+
+			strHTML += "</div>";
+		}
+		strHTML += "</div>";
+
+
+
+		strHTML += "<div class='text'>&lt;보너스를 받지 못하는 사람&gt;</div>";
+
+		for(var i=0; i<arrName.length; i++){
+			
+			if(arrBonus[i] == 0){
+				strHTML += "<div class='text'>";
+				strHTML += arrName[i];
+				strHTML += "</div>";
+			}
+
+		}
+
+		document.getElementById("msg").innerHTML += strHTML;
+
+	</script>
+ </body>
+</html>

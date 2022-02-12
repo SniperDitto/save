@@ -1,0 +1,33 @@
+
+let
+var
+const - 변하지 않는 값
+
+
+Object 만드는 3가지 방법
+1. new Object() 이용
+2. function 이용
+3. prototype 이용(json)
+
+
+
+event 선언하기
+document.getElement~ .onclick = function(){
+	원하는 내용
+}
+
+
+
+string = `안녕 ${asdf}`;
+ -> 안녕 asdf
+
+
+생성자
+클래스가 인스턴스화 될 때 자동으로 호출되는 메서드
+
+
+js 배열의 내장함수
+join() - 배열의 내용들을 모아 문자열로
+splice(a,b) - a부터 b개의 항목 범위로 잘라내기
+slice(a,b) - 범위 잘라내기(원래 데이터 보존)
+

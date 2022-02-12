@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+
+  <title>프론트앤드 question 5</title>
+
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+
+	<script>
+		/*
+			아래의 checkbox를 체크하면 하나만 체크 되도록 코딩하세요 -15점
+
+			과목선택은 javascript를 사용해서 함수를 만들고
+			아래의 정답 선택은 jquery를 사용해서 함수를 만들어주세요
+		*/
+
+		//javascript이용
+		//하나 체크하면 나머지 checked를 false로
+		function checkOne(obj){
+			let subjects = document.getElementsByName("subject")
+			let checkedIndex = 0;
+
+			//체크된 박스가 몇번째박스인지 구하기
+			for (let i = 0; i < subjects.length; i++) {
+				if (subjects[i] == obj) {
+					checkedIndex = i;
+				}
+			}
+
+			//나머지 체크박스들 체크 해제하기
+			for(let i=0;i<subjects.length; i++){
+				if(i != checkedIndex){
+					subjects[i].checked=false;
+				}
+			}
+
+		}
+
+		//풀이
+		let checkValue = function(obj){
+			//1. 모든 체크박스의 체크 해제
+			let checkSubjects = document.getElementsByName("subject");
+			for(let i=0;i<checkSubjects;i++){
+				checkSubjects[i].checked = false;
+			}
+			//2. 선택한 체크박스만 체크
+			obj.checked = true;
+		}
+		
+
+		//jquery이용
+
+	</script>
+  
+ </head>
+ <body>
+	<div>
+		<label><input type="checkbox" name="subject" onclick="checkOne(this)"/>국어</label>
+		<label><input type="checkbox" name="subject" onclick="checkOne(this)"/>영어</label>
+		<label><input type="checkbox" name="subject" onclick="checkOne(this)"/>수학</label>
+		<label><input type="checkbox" name="subject" onclick="checkOne(this)"/>과학</label>
+	</div>
+
+	<div>
+		<label><input type="checkbox" name="answer" />1번</label>
+		<label><input type="checkbox" name="answer" />2번</label>
+		<label><input type="checkbox" name="answer" />3번</label>
+		<label><input type="checkbox" name="answer" />4번</label>
+	</div>
+ </body>
+</html>

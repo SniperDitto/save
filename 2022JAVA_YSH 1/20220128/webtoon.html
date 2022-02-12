@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>웹툰 순위</title>
+  <style>
+	#msg{
+		width : 1000px;
+		margin : 0px;
+		clear : both;
+	}
+	.box{
+		clear : both;
+		width : 410px;
+	}
+	.box2{
+		float : left;
+		width : 420px;
+	}
+	.empty{
+		width : 400px;
+		height : 10px;
+
+	}
+	.line{
+		width : 410px;
+		height : 2px;
+		background-color : #ddd;
+	}
+
+	.content{
+		clear : both;
+		width : 420px;
+		height : 30px;
+	}
+	.col1{
+		display : block;
+		width : 30px;
+		height : 30px;
+		float : left;
+	}
+	.col11{
+		display : block;
+		width : 30px;
+		height : 15px;
+		border : 0px solid red;
+		text-align : center;
+		font-size : 12px;
+	}
+	.col2{
+		display : block;
+		width : 30px;
+		height : 30px;
+		border : 0px solid green;
+		float : left;
+		margin : 2px 5px 3px 5px;
+	}
+	.col3{
+		display : block;
+		width : 350px;
+		height : 30px;
+		border : 0px solid green;
+		float : left;
+
+	}
+	.col31{
+		display : block;
+		width : 350px;
+		height : 15px;
+		border : 0px solid red;
+		font-size : 12px;
+	}
+  </style>
+ </head>
+ <body>
+	<div id="msg"></div>
+	
+	<!--
+ 	<table width="100%" height="100%"
+	cellpadding="0px" cellspacing="0px"
+	border="0px" align="center">
+	<tr>
+		<td width="100%" height="100%" align="center">
+			<div id="msg"></div>
+		</td>
+	</tr>
+	</table>
+	-->
+	
+	<!--
+	<div class="box">
+		<div class="empty"></div>
+		<div class="content">
+			<span class="col1">
+				<span class="col11">1</span>
+				<span class="col11">-</span>
+			</span>
+			<span class="col2">
+				<img src="./img/1.png" style="width:30px;height:30px"/>
+			</span>
+			<span class="col3">
+				<span class="col31">제목</span>
+				<span class="col31">작가 회차</span>
+			</span>
+		</div>
+		<div class="empty"></div>
+
+		<div class="line">
+			
+		</div>
+	</div>
+	-->
+
+	<script>
+		
+		//데이터 만들기
+		var arrIndex = [1,2,3,4,5,6,7,8,9,10];
+		var arrImg = [
+			"./img/1.png","./img/2.png","./img/3.png",
+			"./img/4.png", "./img/5.png","./img/6.png",
+			"./img/7.png", "./img/8.png", "./img/9.png",
+			"./img/10.png"
+		];
+		var arrTitle = [
+			"외모지상주의", "나 혼자 만렙 뉴비", "재혼 황후", 
+			"죽지 않으려면", "갓 오브 하이스쿨", "1초",
+			"광마회귀", "개를 낳았다", "내과 박원장",
+			"서울역 드루이드"
+		];
+		var arrAuthor = [
+			"박태준", "WAN.Z, 스윙뱃", "히어리, 숨풀",
+			"파래, 임진국", "박용제", "시니, 광운", 
+			"JP, 이히", "이선", "장봉수", 
+			"문성호, 활성곰"
+		];
+		var arrSubTitle = [
+			"376화 일해회(2계열사) [05]", "27화. 고인물이 성장...", "98화", 
+			"37화", "530화", "150화 구조대 본시험 1주...", 
+			"28화", "시즌2 81화", "17화. 운수 좋은 날",
+			"34화"
+		];
+
+		var strHTML ="";
+		for(var i=0; i<arrIndex.length;i++){
+
+			if(i%5==0){
+				//0, 5에서 묶는 태그 시작
+				strHTML +="<div class='box2'>";
+			}
+
+			strHTML +="<div class='box'>";
+			strHTML +="	<div class='empty'></div>";
+			strHTML +="	<div class='content'>";
+			strHTML +="		<span class='col1'>";
+			strHTML +="			<span class='col11'>"+arrIndex[i]+"</span>";
+			strHTML +="			<span class='col11'>-</span>";
+			strHTML +="		</span>";
+			strHTML +="		<span class='col2'>";
+			strHTML +="			<img src='"+arrImg[i]+"' style='width:30px;height:30px'/>";
+			strHTML +="		</span>";
+			strHTML +="		<span class='col3'>";
+			strHTML +="			<span class='col31'>"+arrTitle[i]+"</span>";
+			strHTML +="			<span class='col31'>"+arrAuthor[i]+"&nbsp;/&nbsp; "+arrSubTitle[i]+"</span>";
+			strHTML +="		</span>";
+			strHTML +="	</div>";
+
+			strHTML +="	<div class='empty'></div>";
+			strHTML +="	<div class='line'></div>";
+			strHTML +="</div>";
+			
+			if(i%5==4){
+				//4, 9에서 묶는 태그 끝
+				strHTML +="</div>";
+			}
+		}//for끝
+
+		document.getElementById("msg").innerHTML += strHTML;
+
+	</script>
+ </body>
+</html>

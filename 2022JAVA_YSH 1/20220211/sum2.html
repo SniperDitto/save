@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='UTF-8'>
+<title></title>
+<style></style>
+<script>
+    let numbers = [1,2,3,4,5];
+    
+    //합구하기
+    function getAnswer(){
+        let numObjs = document.getElementsByName("num");
+        let sum=0;
+        for(let i=0;i<numbers.length;i++){
+            //배열값을 텍스트박스에 넣기
+            numObjs[i].value=numbers[i];
+            //텍스트박스의 값을 더하기
+            sum+=parseInt(numObjs[i].value);
+        }
+        return sum;
+    }
+    //화면에찍기
+    function printAnswer(){
+        document.getElementById("result").innerHTML=getAnswer();
+    }
+</script>
+</head>
+<body>
+    <div>
+        <input type="text" id="num1" name="num"/>
+        <input type="text" id="num2" name="num"/>
+        <input type="text" id="num3" name="num"/>
+        <input type="text" id="num4" name="num"/>
+        <input type="text" id="num5" name="num"/>
+        <input type="button" value="확인"  onclick="printAnswer()"/>
+    </div>
+    <div id="result"></div>
+<script></script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>학생리스트</title>
+    <style></style>
+    <script>
+        // 학생번호, 이름, 성별, 출생년도, 나이
+        //번호 : for문으로 부여하지 말고 다른 객체가 들어갈 수도 있으니 처음부터 만드는 게 좋다
+        var studNums = [];
+        var studNames = [];
+        var studGenders = [];
+        var studYears = [];
+        var studAges = [];
+        var nowYear = 2022;
+
+        //DB에서 데이터를 받아온다
+        //Oracle은 javascript 불가(java - jsp, servlet, spring 이용)
+        studNums = ["001", "002", "003", "004", "005", "006", "007"];
+        studNames = ["홍길동", "홍길순", "전우치", "박가람", "강기두","", "asdf"];
+        studGenders = ["남", "여", "남", "여", "남","", "남"];
+        studYears = [1975,1970,1980,1990,2000,0, 1999];
+
+        //반복되고 있는 내용을 함수로 만든다
+        //-> 학생 한 명의 데이터를 표시하는 줄(row) 반복됨
+        function getStudent(i){
+            var studHTML = "";
+
+            studHTML += '<tr>';
+            studHTML += '   <td width="100px" height="40px" align="center">';
+            studHTML += studNums[i];
+            studHTML += '   </td>';
+            studHTML += '   <td width="150px" height="40px" align="center">';
+            studHTML += studNames[i];
+            studHTML += '   </td>';
+            studHTML += '   <td width="100px" height="40px" align="center">';
+            studHTML += studGenders[i];
+            studHTML += '   </td>';
+            studHTML += '   <td width="150px" height="40px" align="center">';
+            studHTML += studYears[i];
+            studHTML += '   </td>';
+            studHTML += '   <td width="100px" height="40px" align="center">';
+            studHTML += getAge(studYears[i]);
+            studHTML += '   </td>';
+            studHTML += '</tr>';
+
+            return studHTML;
+        }
+
+        function getStudList(){
+            //몇 회 반복되는지(학생 수만큼)
+            //-> 학생 수 배열의 길이(studNums.length)
+            var studListHTML = "";
+            for(var i=0;i<studNums.length;i++){
+                studListHTML += getStudent(i);
+            }
+
+            document.getElementById("studentList").innerHTML = studListHTML;
+        }
+
+        //나이를 구하는 기능
+        function getAge(year){
+            var resultYear = 0;
+
+            if(year != 0){
+                resultYear = nowYear - year;
+            }
+
+            return resultYear;
+        }
+
+
+    </script>
+</head>
+<body>
+    <div>
+        <input type="button" value="불러오기" onclick="getStudList()"/>
+    </div>
+    <table border="1" cellpadding="0" cellspacing="0" width="600px" align="center">
+        <!--반복시작-->
+        <tr>
+            <td width="100px" height="40px" align="center">
+                순번
+            </td>
+            <td width="150px" height="40px" align="center">
+                이름
+            </td>
+            <td width="100px" height="40px" align="center">
+                성별
+            </td>
+            <td width="150px" height="40px" align="center">
+                출생년도
+            </td>
+            <td width="100px" height="40px" align="center">
+                나이
+            </td>
+        </tr>
+        <!--반복끝-->
+    </table>
+    <table border="1" cellpadding="0" cellspacing="0" width="600px" align="center" id="studentList">
+    
+    </table>
+    <script></script>
+</body>
+</html>

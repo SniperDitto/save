@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>체크박스값</title>
+  <style></style>
+  <script>
+	 
+	//checkbox와 radio의 경우 checked 속성값 true/false, 코드상으로는 checked만 표시(="" 없이)
+	function checkValue(){
+		//체크박스 중 무엇이 선택되었는지 판단
+		//5개 항목 참조 배열
+		var strHTML = "";
+		var objCheckBoxes = document.getElementsByName("hobby");
+		var checkedNum = 0;
+
+		for(var i=0; i<objCheckBoxes.length; i++){
+			if(objCheckBoxes[i].checked == true){
+				strHTML += "<div>" + objCheckBoxes[i].value + "</div>";
+				checkedNum++;
+			}
+		}
+
+		if(checkedNum==0){
+			strHTML += "<div>";
+			strHTML += "<font color='red'>";
+			strHTML += "값을 선택해 주세요";
+			strHTML += "<font>";
+			strHTML += "</div>";
+		}
+
+		document.getElementById("msg").innerHTML = strHTML;
+	}
+
+  </script>
+ </head>
+ <body>
+	<div>
+		취미
+	</div>
+	<div>
+		<label><input type="checkbox" value="먹기" name="hobby"/>먹기<label>
+		<label><input type="checkbox" value="자기" name="hobby"/>자기<label>
+		<label><input type="checkbox" value="놀기" name="hobby"/>놀기<label>
+		<label><input type="checkbox" value="게임" name="hobby"/>게임<label>
+		<label><input type="checkbox" value="코딩" name="hobby"/>코딩<label>
+	</div>
+	<div>
+		<input type="button" value="확인" style="font-size:30px" onclick="checkValue()"/>
+	</div>
+	<div id="msg">
+		
+	</div>
+ </body>
+</html>

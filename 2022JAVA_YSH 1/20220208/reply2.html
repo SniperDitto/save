@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>게시판댓글쓰기2</title>
+    <style>
+        .row{
+            clear: both;
+        }
+        .col{
+            border: 1px solid black;
+            display: block;
+            float: left;
+        }
+    </style>
+    <script>
+        
+        let boards = [
+        {number : 1, name : "홍길동", content : "adfasdfsadfasdfsdfsdf"},
+        {number : 2, name : "홍길동", content : "123"},
+        {number : 3, name : "홍길동", content : "234"},
+        {number : 4, name : "홍길동", content : "345"},
+        {number : 5, name : "홍길동", content : "456"},
+        ];
+        let numIndex = boards.length+1;
+        
+
+        function getReply(num){
+            
+            boards.reverse();
+            
+
+            let strHTML="";
+
+            for(let i=0;i<boards.length;i++){
+                strHTML += `<div class="row">`;
+                strHTML += `<span class="col" style="width:50px">`;
+                strHTML += `    <input type="checkbox" name="chk" value="${i}"/>`;
+                strHTML += `</span>`;
+                strHTML += `<span class="col" style="width:50px; ">${boards[i].number}</span>`;
+                strHTML += `<span class="col" style="width:100px;">${boards[i].name}</span>`;
+                strHTML += `<span class="col" style="width:500px">${boards[i].content}</span>`;
+                strHTML += `</div>`;
+            }
+
+            document.getElementById("boardList").innerHTML = strHTML;
+        }
+
+        function addReply(){
+            let strName = document.getElementById("userID").value;
+            let strContent = document.getElementById("content").value;
+            //들고 온 값들로 댓글 객체 생성
+            let reply = {
+                number : numIndex,
+                name : strName,
+                content : strContent
+            };
+            boards.reverse();
+            boards[boards.length] = reply;
+            
+            
+            getReply();
+
+            document.getElementById("userID").value="";
+            document.getElementById("content").value="";
+            numIndex++;
+        }
+
+        function delReply(){
+
+            let chks = document.getElementsByName("chk");
+            let tempIndex = 0;//index보정값
+            
+            for(let i=0;i<chks.length;i++){
+                if(chks[i].checked){
+                    boards.splice(chks[i].value-tempIndex,1);
+                    tempIndex++;
+                }
+            }
+            
+            boards.reverse();
+            getReply();
+
+        }
+    </script>
+</head>
+
+<body onload="getReply()">
+    <div id="msg"></div>
+    <div id="btns">
+        <input type="button" value="삭제" onclick="delReply()"/>
+    </div>
+    <div>
+        <div id="boardTitle">
+            <div class="row">
+                <span class="col" style="width:50px">
+                    <input type="checkbox" name="chk" />
+                </span>
+                <span class="col" style="width:50px;">글번호</span>
+                <span class="col" style="width:100px;">작성자</span>
+                <span class="col" style="width:500px">내용</span>
+            </div>
+        </div>
+        <div id="boardList"></div>
+    </div>
+    <table width="700px" border="1" cellpadding="0" cellspacing="0">
+        <tr>
+            <td width="700px" align="center" colspan="2">
+                <span>작성자 : </span>
+                <input type="text" id="userID" style="font-size: 15px;" />
+            </td>
+        </tr>
+        <tr>
+            <td width="600px" height="100px" align="center">
+                <textarea id="content" style="width: 600px; height: 100px;"></textarea>
+            </td>
+            <td width="100px" height="100px" align="center">
+                <input type="button" style="width: 100px; height: 100px;" value="확인" id="btnWrite" onclick="addReply()"/>
+            </td>
+        </tr>
+    </table>
+    <script>
+        
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+
+  <title></title>
+  <style></style>
+ </head>
+ <body>
+	<div id="msg"></div>
+
+	<script>
+		var strHTML = "";
+		var oddSum = 0;//홀수의 합
+		var evenSum = 0;//짝수의 합
+		
+//1부터 100까지의 숫자 중 화면에 짝수의 합과 홀수의 합 출력하기
+		for(var i=1; i<=100; i++){
+			
+			if( i % 2 == 0){
+				evenSum += i;
+			}
+			else{
+				oddSum += i;
+			}
+				
+		}
+
+		strHTML += "<div>짝수의 합 : " + evenSum + "</div>";
+		strHTML += "<div>홀수의 합 : " + oddSum + "</div>";
+		document.getElementById("msg").innerHTML += strHTML;
+
+	</script>
+ </body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>JS Key&Form Event</title>
+  <style>
+	input{
+		font-size:40px;
+	}
+  </style>
+  <script>
+	//Event Handler
+	//keydown - 키를 눌렸을 때(글자 입력되기 전)
+	//keyup - 키를 누른 상태에서 뗐을 때
+	//keypress - 키를 누를 때(글자 입력되기 전)
+	function keyUpFunc(){
+		var strLength = document.getElementById("j1").value.length;
+		document.getElementById("msg").innerHTML = "keyUp<br>입력된 글자 길이 : " + strLength+"<br>";
+		//6글자 입력되면 다음 칸으로
+		//키를 누른 상태에서는 이벤트가 발생되지 않음 주의 - maxlength
+
+	}
+
+	function keyDownFunc(){
+		var strLength = document.getElementById("j2").value.length;
+		document.getElementById("msg").innerHTML = "keyDown<br>입력된 글자 길이 : " + strLength+"<br>";
+	}
+
+	function keyPressFunc(){
+		var strLength = document.getElementById("j3").value.length;
+		document.getElementById("msg").innerHTML = "keyPress<br>입력된 글자 길이 : " + strLength+"<br>";
+	}
+
+	//form event
+	//onfocus - input 안에 커서가 들어오면 발생
+	function focusFunc(){
+		document.getElementById("msg").innerHTML = "focus 이벤트 발생";
+	}
+
+	//onblur - input 안에서 입력커서가 사라지면 발생
+	function blurFunc(){
+		document.getElementById("msg").innerHTML = "blur 이벤트 발생";
+	}
+
+	//onchange - 특정 객체의 value가 변하면 발생(text, password, select)
+	function changeFunc(){
+		document.getElementById("msg").innerHTML += "change 이벤트 발생";
+	}
+
+  </script>
+ </head>
+ <body>
+	<div>
+		주민등록번호 : 
+		<input type="text" id="j1" onkeyup="keyUpFunc()" maxlength="6" onfocus="focusFunc()"  onblur="blurFunc()" onchange="changeFunc()"/>
+		-
+		<input type="text" id=""/>
+	</div>
+	<div>
+		주민등록번호 : 
+		<input type="text" id="j2" onkeydown="keyDownFunc()"/>
+		-
+		<input type="text" id=""/>
+	</div>
+	<div>
+		주민등록번호 : 
+		<input type="text" id="j3" onkeypress="keyPressFunc()"/>
+		-
+		<input type="text" id=""/>
+	</div>
+	<div id="msg"></div>
+
+
+
+ </body>
+</html>

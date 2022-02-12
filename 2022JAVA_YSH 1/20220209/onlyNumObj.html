@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='UTF-8'>
+<title></title>
+<style></style>
+<script>
+    //숫자만 입력 -> 객체로 표현하기
+    let check = function(strAllow, strID){
+        //객체의 속성 만들기
+        this.strAllow = strAllow;
+        this.strID = strID;
+        this.checkValue = function(){
+            let resultStr = "";
+
+            let nowValue = document.getElementById(this.strID).value;
+
+            let eachValue = "";
+            for (let i = 0; i < nowValue.length; i++) {
+                eachValue = nowValue.substr(i, 1);
+
+                if (this.strAllow.indexOf(eachValue) != -1) {
+                    resultStr += eachValue;
+                }
+                document.getElementById(this.strID).value = resultStr;
+            }
+        }
+    }
+
+    let checkIDNum = function () {
+        let str = "0123456789";
+        //체크하는 객체 불러오기
+        let checkid = new check(str, "idNum");
+        checkid.checkValue();
+    }
+
+    let check2 = {
+        strCheck : "",
+        strID : "",
+        checkValue : function(){
+            let resultStr = "";
+
+            let nowValue = document.getElementById(this.strID).value;
+
+            let eachValue = "";
+            for (let i = 0; i < nowValue.length; i++) {
+                eachValue = nowValue.substr(i, 1);
+
+                if (this.strCheck.indexOf(eachValue) != -1) {
+                    resultStr += eachValue;
+                }
+                document.getElementById(this.strID).value = resultStr;
+            }
+        }
+    };
+
+    let checkIDNum2 = function () {
+        check2.strCheck = "0123456789";
+        check2.strID = "idNum";
+        check2.checkValue();
+    }
+
+</script>
+</head>
+<body>
+    <div>
+        <input id="idNum" onkeyup="checkIDNum2()"/>
+    </div>
+<script></script>
+</body>
+</html>

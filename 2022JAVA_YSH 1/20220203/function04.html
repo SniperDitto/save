@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+
+  <title>함수4 - 로또번호</title>
+  <style>
+	#msg{
+		
+	}
+
+  </style>
+  <script>
+	//숫자 뽑기(1~45)
+	function getNumber(){
+		var lottoNumber = parseInt(Math.random()*45+1);
+
+		return lottoNumber;
+	}
+
+	//중복 숫자인지 판단
+	function checkDup(lottoNumbers, num){
+		
+	}
+
+	//중복이면 다시 뽑기
+
+	//6회 반복
+	function getLotto(){
+		var lottoNumbers = [];
+		for(var i=0; i<6;i++){
+			//지금 생성한 숫자
+			var temp = getNumber();
+			
+			//여태까지 뽑았던 숫자들의 배열
+			lottoNumbers[i] = temp;
+
+			//하나씩 뽑을 때마다 앞의 숫자들과 중복 확인 필요
+			//배열을 매개변수로 넣을 시 주소가 참조됨
+			checkDup(lottoNumbers, temp);
+		}
+	}
+
+  </script>
+ </head>
+ <body>
+	<div id="msg"></div>
+	<div>
+		<input type="button" value="번호 생성" onclick="showLotto()"/>
+	</div>
+  
+  <script>
+	
+
+
+  </script>
+ </body>
+</html>

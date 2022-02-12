@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <title></title>
+    <style>
+        div {
+            width: 100px;
+            height: 50px;
+            border: 1px solid #efefef;
+            display: block;
+            background-color: #cccccc;
+            float: left;
+        }
+    </style>
+    <script>
+        let overFunction = function(){
+            document.getElementById("btn").innerHTML = "집갈래";
+        }
+        let outFuncton = function(){
+            document.getElementById("btn").innerHTML = "배고파";
+        }
+    </script>
+</head>
+
+<body>
+    <div onmouseover="overFunction()" onmouseout="outFuncton()" id="btn">
+        홍길동
+    </div>
+    <script></script>
+</body>
+
+</html>

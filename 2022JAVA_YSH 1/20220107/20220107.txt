@@ -1,0 +1,110 @@
+style 태그(style sheet) 내의 주석
+-> /* ~~~ */
+
+style 정의 방법 (우선순위 : 태그 내에 직접 쓰기 > 태그(스타일) > 클래스 > id )
+1. 태그(tag)
+div{
+	font-family : 궁서;		//글씨체
+	font-size : 20px;		//글자크기
+	color : #000000;		//글자색
+	font-weight : bold;		//굵기
+	text-decoration : underline;	//밑줄
+	text-align: center;		//정렬
+	
+	border-width : 5px	;	//줄 두께
+	border-style : solid	;	//줄 스타일(실선, 점선 등)
+	border-color : #ffffff;	//줄 색
+	border-radius : 10px ;	//꼭짓점 둥글게 만드는 원의 지름
+
+	display : inline;		//block은 사각형, inline은 a태그처럼 글자부분 차지
+	float : left;		//div들을 왼쪽으로 붙임
+	padding : 10px;		//안쪽 여백(안에 있는 태그, 글자 등과의 간격)
+	margin : 10px;		//바깥쪽 여백(바깥에 있는 태그, 글자와의 간격) 거의 사용하지 않음
+}
+-> 모든 div 태그 내의 내용들에 적용된다
+
+2. 클래스(class)
+임의로 이름을 정해서 씀
+태그 안에 속성처럼 클래스를 부여해서 적용
+
+3. ID
+
+
+div와 a의 차이
+-> 기본적으로 차지하는 영역이 다르다
+-> div는 한 줄 전체 차지(줄이 자동으로 바뀜, 글자가 있는 부분과 별개의 위치를 차지)
+-> a는 해당 글자 부분 차지
+-> 기본 스타일 display의 속성값이 div는 block, a는 inline(span, font는 inline)
+
+height 없이 안에 글자를 넣으면 안에 있는 글자 크기에 높이가 맞춰짐
+-> 이후 padding 조절하면 됨
+
+a:link{
+	a태그에 링크 걸렸을 때의 속성
+}
+a:visited{
+	a태그 링크에 방문한 적이 있을 때의 속성
+	요새는 잘 쓰지 않음(link와 같은 속성으로 처리함)
+}
+a:active{
+	클릭한(누르고 있는) 상태에서의 속성
+	요새는 잘 쓰지 않음(link와 같은 속성으로 처리함)
+}
+a:hover{
+	링크 위에 마우스를 올렸을 때의 속성
+}
+
+여백 줄 때 시계방향(top/right/bottom/left)으로 몰아서 쓸 수 있다.
+-> padding : 10px 0px 10px 0px;
+
+ul, li -> 목록 만들 때 쓰임, 최근에는 별로 사용x
+
+
+
+여러 개의 태그에 같은 스타일 적용하기
+span, a{
+	span 혹은 a에 모두 적용할 내용
+}
+
+div span{
+	div 아래에 포함된 span 태그에 적용할 내용
+}
+div a{
+	div 아래에 포함된 a 태그에 적용할 내용
+}
+
+
+공부해오기
+- 명제 and, or, not
+- 2, 8, 16진수
+- 수열의 합, 규칙 찾기
+
+
+tag(html)
+= element(javascript)
+= object
+
+object - property / attribute (속성값)
+
+ <> </>
+ -> 하나의 객체(object)
+
+javascript의 라이브러리(HTML5)
+vue, react - MVC패턴 기반
+jquery
+
+
+HTML : 웹 페이지를 구성하는 요소들
+웹 페이지의 데이터를 구분하는 데 사용됨
+
+CSS : Cascading Style Sheet
+
+
+
+24일에 2층 강의실로
+다음주에 카페+단톡방 개설 예정
+사물함 번호대로 카페 게시판 사용(과제제출 등)
+
+강의실 비밀번호 ---> 5232*
+
+

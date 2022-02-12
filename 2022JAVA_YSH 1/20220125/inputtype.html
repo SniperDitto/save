@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>input types</title>
+  <style>
+	
+  </style>
+ </head>
+ <body>
+	<!-- input submit 누르면 이동함 -->
+    <form action="./form01_ok.html" method="post">
+	<div>
+		<span>아이디 : </span>
+		<input type="text" class="txt"/>
+	</div>
+	<div>
+		<span>비밀번호 : </span>
+		<input type="password" class="txt"/>
+	</div>
+	<div>
+		<span>성별 : </span>
+		<label>
+			<input type="radio" class="txt" name="gender" value="m" checked="true"/>
+			<span>남자 </span>
+		</label>
+		<label>
+			<input type="radio" class="txt" name="gender" value="f"/>
+			<span>여자 </span>
+		</label>
+	</div>
+	<div>
+		<span>취미 : </span>
+		<label>
+			<input type="checkbox" class="txt" name="hobby" value="exercise"/>
+			<span>운동 </span>
+		</label>
+		<label>
+			<input type="checkbox" class="txt" name="hobby" value="movie"/>
+			<span>영화감상 </span>
+		</label>
+		<label>
+			<input type="checkbox" class="txt" name="hobby" value="game"/>
+			<span>게임 </span>
+		</label>
+	</div>
+	<div>
+		<!-- combobox와 같음 -->
+		<select class="txt">
+
+			<!-- option 태그 사이에 오는 값은 text(value와 다름) -->
+			<option value="seoul">서울</option>
+			<option value="busan">부산</option>
+			<option value="daegu">대구</option>
+			<option value="gwangju">광주</option>
+			<option value="daejeon">대전</option>
+			<option value="jeju">제주</option>
+		</select>
+	</div>
+	<div>
+		<!-- button : 주로 javascript와 함께 사용, 페이지 넘어가지 않음 -->
+		<input type="button" value="button" class="txt"/>
+
+		<!-- submit :  form의 데이터를 서버로 전송 + 페이지 넘어감 -->
+		<input type="submit" value="submit" class="txt"/><br>
+		<button>&lt;button&gt; 태그</button><br>
+
+		<!-- 이미지로 된 버튼 -->
+		<input type="image" src="./1.jpg" style="width:500px;height:100px"><br>
+		
+	</div>
+	<div>
+		<input type="reset"><br>
+		<span>=============================================================</span>
+	</div>
+	<!-- html5에서 새로 등장한 속성들 -->
+	<!-- 대부분 IE9에서 사용 불가 -->
+	<div>
+		<div>
+			<!-- color : chrome, edge 가능 -->
+			<span>색깔 : </span>
+			<input type="color">
+		</div>
+		<div>
+			<!-- date : chrome, edge 가능 -->
+			<span>날짜 : </span>
+			<input type="date">
+		</div>
+		<input type="datetime-local"><br>
+		<div>
+			<!-- 브라우저 확인 필요 -->
+			<span>이메일 : </span>
+			<input type="email">
+		</div>
+		<div>
+			<!-- month : chrome, edge 가능 -->
+			<span>월 선택 : </span>
+			<input type="month">
+		</div>
+		<div>
+			<!-- week : chrome, edge 가능 -->
+			<span>주 선택 : </span>
+			<input type="week">
+		</div>
+		<div>
+			<!-- time : chrome, edge 가능 -->
+			<span>시간 선택 : </span>
+			<input type="time">
+		</div>
+		<div>
+			<!-- number : chrome, edge 가능 -->
+			<span>숫자 입력 : </span>
+			<input type="number">
+		</div>
+		<div>
+			<!-- range : chrome, edge 가능, ie9는 스타일이 이상함 -->
+			<span>값 선택 : </span>
+			<input type="range">
+		</div>
+		<input type="search"><br>
+		<div>
+			<!-- tel : chrome, edge 가능, 속성값 확인 필요 -->
+			<span>전화번호 입력 : </span>
+			<input type="tel">
+		</div>
+		<div>
+			<!-- file : chrome, edge 가능, ie9는 모양이 다름 -->
+			<span>파일 업로드 : </span>
+			<input type="file">
+		</div>
+		<input type="hidden"><br>
+		<input type="url"><br>
+		<span>==============================================================</span>
+		<div>
+			<!-- 자동완성기능 -->
+			<!-- input의 속성 중 list의 값과 datalist의 id가 같은 값이어야 작동 -->
+			<span>자동완성</span>
+			<input type="text" list="a">
+			<datalist id="a">
+				<option value="aaa"></option>
+				<option value="bbb"></option>
+				<option value="ccc"></option>
+				<option value="abc"></option>
+				<option value="cba"></option>
+			</datalist>
+		</div>
+
+	</div>
+    </form>
+ </body>
+</html>

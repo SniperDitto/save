@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+
+  <title></title>
+  <style>
+	body{
+		margin:0px;
+	}
+	.box{
+		width:200px;
+		height:400px;
+		background-color:yellow;
+		border:1px solid black;
+		position:relative;
+	}
+	.layerBox{
+		width:200px;
+		height:200px;
+		background-color:orange;
+		border:1px solid black;
+		position:absolute;
+		top:0px;
+		left:200px;
+		visibility : hidden;
+	}
+	
+  </style>
+  <script>
+	function showBox(){
+		var objs = document.getElementsByTagName("div");
+		objs[2].style.visibility = "visible";
+	}
+
+	function hideBox(){
+		var objs = document.getElementsByTagName("div");
+		objs[2].style.visibility = "hidden";
+	}
+
+  </script>
+ </head>
+ <body>
+ 	<div class="box" onclick="showBox" onmouseover="showBox()" onmouseout="hideBox()"></div>
+	<div class="box" onclick="showBox()"></div>
+	<div class="layerBox"></div>
+
+  <script></script>
+ </body>
+</html>

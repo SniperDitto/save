@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+
+  <title></title>
+  <style></style>
+ </head>
+ <body>
+	<div id="msg"></div>
+
+	<script>
+		var strHTML = "";
+		
+		for(var i=0; i<10; i++){
+
+			//0부터 4까지, 5부터 9까지 묶어야 함
+
+			if(i%5==0){
+				//0, 5에서 묶는 태그 시작
+				strHTML += "<div class='line'>----------------";
+			}
+			
+			strHTML += "<div>"+ i +"</div>";
+
+			if(i%5==4){
+				//4, 9에서 묶는 태그 끝
+				strHTML += "</div>";
+			}
+
+		}
+
+		document.getElementById("msg").innerHTML += strHTML;
+
+	</script>
+ </body>
+</html>

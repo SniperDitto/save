@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+
+  <title>프론트앤드 question 3</title>
+
+	<script>
+		
+		/*
+			(1, "홍길동")
+			(2, "전우치")
+			(3, "김동일")
+			(4, "도석진")
+			(5, "김도율")
+			(6, "이경직")
+		*/
+
+		//위 데이터를 활용하여 페이지가 로딩되면 홀수번호를 가진 학생의 결과를 아래의 select 에 추가해주세요 -15점
+
+		//jquery 사용금지
+        
+        //upgrade
+        //페이지 로딩 시 전체에 체크되고 전체 리스트 출력
+
+        let students = [
+            {num:1, name:"홍길동"},
+            {num:2, name:"전우치"},
+            {num:3, name:"김동일"},
+            {num:4, name:"도석진"},
+            {num:5, name:"김도율"},
+            {num:6, name:"이경직"},
+        ];
+
+		function getStudent(num){
+            let strHTML = "";
+            document.getElementsByName("sel")[num].checked = true;
+            if(num==0){
+                for (let i = 0; i < students.length; i++) {
+
+                    strHTML += "<option>";
+                    strHTML += students[i].num;
+                    strHTML += ", ";
+                    strHTML += students[i].name;
+                    strHTML += "</option>";
+
+                }
+            }
+            else if(num==1){
+                //홀수만추가
+                for (let i = 0; i < students.length; i++) {
+                    if(students[i].num % 2 == 1){
+                        strHTML += "<option>";
+                        strHTML += students[i].num;
+                        strHTML += ", ";
+                        strHTML += students[i].name;
+                        strHTML += "</option>";
+                    }
+                    
+                }
+            }
+            else if(num==2){
+                //짝수만추가
+                for (let i = 0; i < students.length; i++) {
+                    if(students[i].num % 2 == 0){
+                        strHTML += "<option>";
+                        strHTML += students[i].num;
+                        strHTML += ", ";
+                        strHTML += students[i].name;
+                        strHTML += "</option>";
+                    }
+                    
+                }
+            }
+            
+            document.getElementById("student").innerHTML = strHTML;
+
+        }
+
+
+	</script>
+ </head>
+ <body onload="getStudent(0)">
+    <div>
+        <label><input type="radio" name="sel" value="all" onclick="getStudent(0)"/>전체</label>
+        <label><input type="radio" name="sel" value="odd"  onclick="getStudent(1)"/>홀수</label>
+        <label><input type="radio" name="sel" value="even"  onclick="getStudent(2)"/>짝수</label>
+    </div>
+	<div>
+		<select id="student">
+
+		</select>
+	</div>
+
+ </body>
+</html>

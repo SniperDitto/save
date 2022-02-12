@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>객체와 생성자</title>
+    <style></style>
+    <script>
+        let studentPrint = function(name, age, gender){
+            var strHTML = "";
+            strHTML += "<div>";
+            strHTML += name + "은 " + age + "살이고, "+ gender + "입니다.";
+            strHTML += "<div>";
+
+            document.getElementById("msg").innerHTML = strHTML;
+        }
+
+        let studentPrint2 = function(objStudent){
+            var strHTML = "";
+            strHTML += "<div>";
+            strHTML += objStudent.name + "은 " + objStudent.age + "살이고, "+ objStudent.gender + "입니다.";
+            strHTML += "<div>";
+
+            document.getElementById("msg2").innerHTML += strHTML;
+        }
+    </script>
+</head>
+<body>
+    <div id="msg"></div>
+    <div id="msg2"></div>
+
+    <script>
+        //0 - 함수
+        studentPrint("홍길동", 25, "남자");
+
+        //1 - 먼저 선언하고 속성 주기
+        let student = new Object();
+        student.name = "홍길동";
+        student.age = 25;
+        student.gender = "남자";
+
+        studentPrint2(student);
+
+        //2 - 객체 만들고 선언 + 생성자
+        let objStudent = function(name,age,gender){
+            this.name=name;
+            this.age=age;
+            this.gender=gender;
+        }
+        let student2 = new objStudent("홍길순",25,"여자");
+
+        studentPrint2(student2);
+
+        //3 - 선언할 필요 없음
+        let student3 = {
+            name : "전우치",
+            age : 27,
+            gender : "남자"
+        };
+
+        studentPrint2(student3);
+    </script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+
+  <title>프론트앤드 question 4</title>
+
+	<style>
+		div span{
+			width:100px;
+			height:50px;
+			border:1px solid #efefef;
+			display:block;
+			background-color:#cccccc;
+			float:left;
+		}
+	</style>
+
+	<script>
+		/*
+			화면에 표시되는 4개의 버튼모양의 사각형에 마우스를 올리면 
+			버튼에 표시된 글자색깔로 바탕색깔이 바뀌고 마우스를 버튼 밖으로 빼면 
+			원래색깔로 돌아가도록 코딩하세요 - 10점
+
+			jquery 사용 금지
+		*/
+		
+		function changeColor(color){
+            document.getElementById(color).style.backgroundColor = color;
+        }
+        function removeColor(color){
+            document.getElementById(color).style.backgroundColor = "#cccccc";
+        }
+
+		function menuFunction(obj, color){
+			obj.style.backgroundColor = color;
+		}
+
+	</script>
+
+ </head>
+ <body>
+	 <!--
+	<div>
+		<span id="red" onmouseover="changeColor('red')" onmouseout="removeColor('red')">빨강</span>
+		<span id="yellow" onmouseover="changeColor('yellow')" onmouseout="removeColor('yellow')">노랑</span>
+		<span id="blue" onmouseover="changeColor('blue')" onmouseout="removeColor('blue')">파랑</span>
+		<span id="purple" onmouseover="changeColor('purple')" onmouseout="removeColor('purple')">보라</span>
+	</div>
+	-->
+	<div>
+		<span id="red" onmouseover="menuFunction(this,'red')" onmouseout="menuFunction(this,'#cccccc')">빨강</span>
+		<span id="yellow" onmouseover="menuFunction(this,'yellow')" onmouseout="menuFunction(this,'#cccccc')">노랑</span>
+		<span id="blue" onmouseover="menuFunction(this,'blue')" onmouseout="menuFunction(this,'#cccccc')">파랑</span>
+		<span id="purple" onmouseover="menuFunction(this,'purple')" onmouseout="menuFunction(this,'#cccccc')">보라</span>
+	</div>
+	
+ </body>
+</html>

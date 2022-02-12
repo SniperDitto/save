@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>JS 반복문1</title>
+  <style>
+	div{
+		float:left;
+		font-size:50px;
+		border:1px solid black;
+		width:100px;
+		height:100px;
+		text-align:center;
+	}
+	#msg{
+		float:left;
+		border:1px solid red;
+		width:615px;
+		height:105px;
+	}
+	#wrap{
+		border:0px solid black;
+	}
+  </style>
+ </head>
+ <body>
+	<div id="wrap">
+		<div id="msg"></div>
+	</div>
+	<script>
+		/*
+		var sum = 0;
+	
+		//1에서 10까지의 합
+		for(var i=1; i<=10; i++){
+			sum += i;
+
+		}
+		document.write(sum);
+		*/
+
+		var num1 = 0;
+		var obj = null;
+		var strID = "";
+		//반복해서 같은 작업이 필요할 때
+		for(var i=1; i<=6; i++){
+			num1 = parseInt(Math.random()*45) + 1;
+			strID = "msg";
+			obj1 = document.getElementById(strID);
+			obj1.innerHTML += "<div>" + num1 + "</div>";
+		}
+
+	</script>
+ </body>
+</html>

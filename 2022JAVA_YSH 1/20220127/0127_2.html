@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>JS 구구단2</title>
+  <style>
+	div{
+		float:left;
+		text-align:center;
+		border:1px solid black;
+	}
+	#wrap{
+		border:3px dotted yellow;
+	}
+	.clear{
+		clear : both;
+		border:0px;
+	}
+	.box1{
+		border:1px solid red;
+		padding:5px;
+		margin:3px;
+		text-align:center;
+		width : 100px;
+		height : auto;
+		
+	}
+	.box2{
+		border:1px solid blue;
+		width:95px;
+		text-align:center;
+	}
+	.box3{
+		border:1px solid green;
+		text-align:center;
+		clear:both;
+	}
+	.textbox{
+		border:0px solid yellow;
+		text-align:center;
+		clear:both;
+		width:95px;
+	}
+  </style>
+ </head>
+ <body>
+	<div id="wrap">
+		<div id="msg"></div>
+	</div>
+	<script>
+		//반복문 중첩시키기
+		var str = "";
+
+		//단 만드는 반복문
+		for(var i=1; i<=99; i++){
+			if(i%10 == 0){
+				//10단은 표시 안함
+				str += "<div class='clear'></div>";
+			}
+			else{
+				str += "<div class='box1'>";
+				str += "<div class='box2'>"+ i + "단</div>";
+				
+				str+="<div class='box3'>";
+
+				//각 단에 1에서 9까지 곱하기
+				for(var j=1; j<=9; j++){
+
+					str += "<div class='textbox'>";
+					str += i + " x " + j + " = " + (i*j) + "<br>";
+					str += "</div>";
+					
+				}
+				str += "</div>";
+				str += "</div>";
+
+				document.getElementById("msg").innerHTML += str;
+
+				str = "";
+			}
+		}
+
+	</script>
+ </body>
+</html>

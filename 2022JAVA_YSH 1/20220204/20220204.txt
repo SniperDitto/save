@@ -1,0 +1,80 @@
+
+
+DOM - Document Of Model
+HTML 태그들을 Document에 포함된 하나의 객체(object)로 본다
+
+Jquery - DOM 쓰기 편하게 만든 라이브러리
+
+
+call by reference(객체를 참조)
+ - id 속성값 이용해 가져오는 것(getElementById)
+   └ $("#msg")
+ - 태그 이름으로 가져오는 것(getElementsByTagName)
+   └ 같은 태그 이름이 여러개 : 배열처럼 index로 구분
+   └ ex ) obj[0].innerHTML
+ - name 속성값 이용해 가져오기(getElementsByTagName)
+   └ 같은 속성값이 여러개 : 배열이 됨
+
+
+
+객체
+1. 속성
+2. 메서드
+
+
+obj.innerHTML - 열고 닫는 태그 사이의 내용들
+obj.style - 태그에 직접 준 속성들 다 지우고 대체됨
+	- 선택 객체의 하위 객체도 선택 가능(style.fontSize)
+obj.type - type 속성 변경
+
+
+NaN - 숫자가 아님
+parseInt("asdf") => NaN
+parseInt("100px") => 100(px이 숫자 단위이므로 js가 자동 변환)
+
+
+Event Handler
+이벤트 조작, 관리
+이벤트와 함수를 연결시켜 실행
+ex) onclick, onkeyup 등
+
+이벤트 터널링
+상위 항목의 이벤트가 하위 항목까지 적용됨
+
+이벤트 강제 동작
+getElement~().click() , focus(), blur() 등으로
+이벤트 발생과 같은 효과를 줄 수 있다
+
+
+css 추가 내용
+1. layer
+ - position : relative / absolute + top와 left 위치
+
+2. transition, animation
+3. flex box
+
+
+
+이중 for문으로 2차원 배열의 내용 읽어와서
+상위메뉴, 하위메뉴 만들기
+
+
+
+
+javascript에서는 함수도 객체로 취급한다.
+
+자바스크립트 변수의 데이터 타입
+숫자 / 문자 / 객체(배열 등)
+
+
+easyUI
+jQuery UI
+
+
+
+화/목 보충수업 있음
+
+
+-----------------------------------
+layer 메뉴 만들기
+

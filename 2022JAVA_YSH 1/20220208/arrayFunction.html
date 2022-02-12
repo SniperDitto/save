@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='UTF-8'>
+<title>내장함수</title>
+<style></style>
+<script>
+    
+
+    let students = [
+			"홍길동","전우치","박상일","조중동","한겨례","도욱수","이경직","차기수",
+            ];
+
+    let studentText = students.join("-");
+
+    let names = "홍길동-전우치-박상일";
+    let studentSplit = names.split("-");
+
+    //3~7번째 값만 잘라내기
+    let strSplice = students.splice(3,5);//slice 사용시 원래 데이터 보존됨
+    studentText = students.join("-");
+
+    strSplice = students.splice(4,0,"asdf");//없애고 그자리에 원하는 데이터 삽입
+    studentText = students.join("-");
+
+</script>
+</head>
+<body>
+<div id="msg"></div>
+<script>
+    document.getElementById("msg").innerHTML = strSplice;
+    document.getElementById("msg").innerHTML += "<br>"+studentText;
+</script>
+</body>
+</html>

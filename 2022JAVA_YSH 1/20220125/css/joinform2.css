@@ -1,0 +1,144 @@
+body{
+	margin : 0px;
+	font-size : 15px;
+	color : #111;
+}
+
+.topImage{
+	width : 900px;
+	background-color : #333848;
+	padding : 15px 0px 15px 20px;
+}
+
+.box{
+	width : 900px;
+	padding : 20px 50px 10px 20px;
+	float : left;
+	border-bottom : 1px solid #e3e3e3;
+}
+
+.box2{
+	float : left;
+}
+.box3{
+	border: 0px solid blue;
+	float : left;
+	width : 650px;
+	padding : 0px 0px 0px 100px;
+}
+.box4{
+	width : 500px;
+	padding : 0px 130px 0px 0px;
+}
+.box5{
+	margin : 10px 0px 10px 0px;
+}
+.inputBox{
+	float : left;
+}
+.warningBox{
+	float : left;
+	padding : 10px 0px 10px 270px;
+}
+.buttonBox{
+	float : left;
+	padding : 10px 0px 10px 270px;
+}
+
+.inputTxt{
+	width : 500px;
+	font-size : 1.2em;
+	border : 1px inset #ddd;
+	padding : 3px 3px 3px 3px;
+}
+.inputTxt2{
+	display : block;
+	width : 141px;
+	font-size : 1.2em;
+	border : 1px inset #ddd;
+	padding : 0px 0px 0px 0px;
+	float : left;
+}
+.inputTxt3{
+	width : 150px;
+	font-size : 1.2em;
+	border : 1px inset #ddd;
+	padding : 3px 3px 3px 3px;
+	float : left;
+}
+.phone{
+	width:141px;
+	font-size:1.0em;
+	padding : 3px 2px 2px 2px;
+	border : 0px solid black;
+}
+.dash{
+	display : block;
+	float : left;
+	width : 7px;
+	font-weight : bolder;
+	font-size : 1.2em;
+	color : black;
+	padding : 0px 0px 0px 7px;
+}
+.space{
+	width : 10px;
+	height : 15px;
+	float : left;
+}
+
+.check1{
+	width : 25px;
+	height : 25px;
+	margin : 0px;
+}
+.check2{
+	
+}
+.allAgree{
+	border-bottom : 1px solid #e3e3e3;
+	padding : 15px 0px 15px 0px;
+}
+
+.text1{
+	font-size : 1.3em;
+	font-weight : bolder;
+}
+
+.text2{
+	font-size : 1em;
+	font-weight : bolder;
+}
+
+.text3{
+	font-size : 0.8em;
+	color : #9b9b9b;
+}
+
+.warning{
+	display : block;
+	font-size : 0.6em;
+	color : #9b9b9b;
+	margin : 1px 0px 1px 0px;
+}
+
+.showAll{
+	display : block;
+	float : right;
+	font-size : 0.8em;
+	color : #999;
+}
+
+.btn1{
+	background-color : red;
+}
+
+.btn2{
+	background-color : #fff;
+}
+
+
+
+
+
+

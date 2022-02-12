@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+
+  <title>함수2 - 로또번호</title>
+  <style>
+	#msg{
+		
+	}
+
+  </style>
+  <script>
+	//1~45까지 랜덤 숫자를 생성하는 기능
+	function getLottoNum(){
+		var lottoNumber = parseInt(Math.random()*45+1);
+
+		return lottoNumber;
+	}
+
+	//번호를 출력하는 기능
+	var strHTML="";
+	function setPrint(){
+		strHTML = "<span>" + getLottoNum() + "</span><br>";
+		return strHTML;
+	}
+
+	//번호 6개를 생성해 출력하는 기능
+	function setLotto(){
+		var resultHTML = "";
+		for(var i=0;i<6;i++){
+			resultHTML += setPrint();
+		}
+		return resultHTML;
+	}
+
+	//화면에 내용을 출력하는 기능
+	function showLotto(){
+		document.getElementById("msg").innerHTML = setLotto();
+	}
+
+
+  </script>
+ </head>
+ <body>
+	<div id="msg"></div>
+	<div>
+		<input type="button" value="번호 생성" onclick="showLotto()"/>
+	</div>
+  
+  <script>
+	
+
+
+  </script>
+ </body>
+</html>

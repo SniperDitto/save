@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>0124box</title>
+  <style>
+  	body{
+		margin : 0px;
+	}
+	.wrap{
+		width : 700px;
+		height : 600px;
+		border : 1px solid black;
+		background-color : #ffffcc;
+	}
+	.title{
+		border : 1px solid black;
+		text-align : center;
+		margin : 3px 4px 5px 4px;
+		padding : 15px 0px 15px 0px;
+	}
+	.title a{text-decoration : none;}
+	.titletext{
+		font-size : 25px;
+		font-weight : bolder;
+		border : 0px solid black;
+	}
+	.menu{
+		border : 1px solid black;
+		margin : 0px 4px 5px 4px;
+		padding : 5px 0px 5px 150px;
+	}
+	.menu a{text-decoration : none;}
+	.menutext{
+		border : 0px solid red;
+		margin : 0px 10px 0px 10px;
+	}
+	.content{
+		border : 0px solid black;
+		margin : 3px 4px 5px 4px;
+	}
+	.text1{
+		font-size : 20px;
+		font-weight : bolder;
+		border : 0px solid black;
+	}
+	.text2{
+		border : 0px solid red;
+		margin : 0px 0px 0px 0px;
+		font-size : 12px;
+	}
+	.box1{
+		width : 450px;
+		margin-left : 100px;
+		border : 5px dotted black;
+		padding : 10px 10px 15px 10px; 
+	}
+	.box2{
+		border : 0px dotted green;
+		margin : 15px 0px 0px 5px;
+	}
+	.texttitle{
+		font-weight: bolder;
+	}
+
+  </style>
+ </head>
+ <body>
+  <div class="wrap">
+  	<div class="title">
+		<a href="../0124.html">
+			<span class="titletext">20220124</span>
+		</a>
+	</div>
+	
+	<div class="menu">
+		<span class="menutext">
+			<a href="../announcement/0124announcement.html">공지사항</a>
+		</span>
+		<span class="menutext">
+			<a href="../styletag/0124style.html">style</a>
+		</span>
+		<span class="menutext">
+			<a href="./0124box.html">box model</a>
+		</span>
+		<span class="menutext">
+			<a href="../fontsize/0124fontsize.html">font 크기</a>
+		</span>
+		<span class="menutext">
+			<a href="../form/0124form.html">form</a>
+		</span>
+	</div>
+	<div class="content">
+		<div class="box1">
+			<span class="text1">Box Model</span><br>
+			<div class="box2">
+				<span class="texttitle">display</span><br>
+				<span class="textcontent">
+					- inline : width와 height속성 x<br>
+					- block : width가 브라우저 창 크기 한 줄 전체 차지<br>
+					- flex
+				</span>
+			</div>
+			<div class="box2">
+				<span class="texttitle">속성</span><br>
+				<span class="textcontent">
+					- property<br>
+					- attribute
+				</span>
+			</div>
+			<div class="box2">
+				<span class="texttitle">여백</span><br>
+				<span class="textcontent">
+					- padding : 해당 객체와 그 안에 있는 객체 사이의 공간<br>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(위부터 시계방향)<br>
+					- margin : 해당 객체와 그 바깥의 객체 사이의 공간
+				</span>
+			</div>
+			<div class="box2">
+				<span class="texttitle">자신만의 box model 노하우 만들기</span><br>
+				<span class="textcontent">
+					- display, width/height, float, padding/margin, border 등
+				</span>
+			</div>
+		</div>
+	</div>
+  </div>
+ </body>
+</html>

@@ -1,0 +1,159 @@
+body{
+    margin : 0px;
+}
+.text{
+    font-family : arial black;
+    color : #ffffff;
+    font-weight : bolder;
+    font-size : 15px;
+    background-color : #19ce60;
+    
+}
+.text2{
+    font-family : arial black;
+    color : #ffffff;
+    font-size : 15px;
+    background-color : #19ce60;
+}
+
+.clear{
+    clear : left;
+}
+
+.rec1{
+    border : 2px solid #dae1e6;
+    width : 400px;
+    height : 100px;
+    padding : 10px;
+    background-color : #f7f9fa
+}
+.rec2{
+    border : 0px solid red;
+    width : 400px;
+    height : 20px;
+    color : #888888;
+    font-size : 12px;
+    padding : 0px 0px 5px 0px;
+}
+.rec3{
+    border: 0px solid #19ce60;
+    background-color : #19ce60;
+    text-align : center;
+    width : 400px;
+    display : block;
+    padding : 10px 0px 10px 0px;
+    text-decoration : none;
+}
+.rec3:hover{text-decoration : none;}
+
+.idbox a:link{font-size : 12px;color : #404040;text-decoration : none;}
+.idbox a:visited{font-size : 12px;color : #404040;text-decoration : none;}
+.idbox a:active{font-size : 12px;color : #404040;text-decoration : none;}
+.idbox a:hover{font-size : 12px;color : #404040;text-decoration : underline;}
+
+.id1{
+    display : block;
+    width : 50px;
+    border : 0px solid black;
+    float : left;
+    padding : 10px 0px 0px 0px;
+}
+.id2{
+    display : block;
+    width : 150px;
+    border : 0px solid black;
+    float : left;
+    padding : 10px 0px 0px 0px;
+}
+.id3{
+    display : block;
+    width : 200px;
+    border : 0px solid black;
+    float : left;
+    padding : 10px 0px 0px 0px;
+    text-align : right;
+}
+.issuebox{
+    border : 2px solid #dae1e6;
+    width : 400px;
+    height : 30px;
+    padding : 10px;
+    background-color : #f7f9fa
+}
+.issue{
+    display : block;
+    width : 40px;
+    border : 1px solid black;
+    text-align : center;
+    font-size : 14px;
+    font-weight : bold;
+    border-radius : 15px;
+    float : left;
+    padding : 2px 4px 2px 4px;
+}
+.issuetext{
+    display : block;
+    width : 280px;
+    border : 0px solid black;
+    float : left;
+    color : #333;
+    font-size : 14px;
+    padding : 2px 4px 2px 4px;
+}
+.issuenext{
+    display : block;
+    width : 20px;
+    border : 1px solid #dae1e6;
+    float : left;
+    text-align : center;
+    padding : 0px 2px 2px 2px;
+}
+.shoppingbox{
+    padding : 5px 5px 10px 5px;
+    border : 0px solid black;
+    width : 410px;
+    height : 20px;
+}
+.shoppingnext{
+    border : 0px solid black;
+    float : left;
+    margin : 0px 0px 5px 0px;
+    font-weight : bolder;
+    font-size : 14px;
+    color : #999;
+}
+.logo{
+    display : block;
+    width : 20px;
+    height : 20px;
+    font-family : arial black;
+    color : #ffffff;
+    font-weight : bolder;
+    font-size : 14px;
+    text-align : center;
+    background-color : #19ce60;
+    float : left;
+}
+.trendshopping{
+    font-weight : bolder;
+    font-size : 15px;
+    float : left;
+    margin : 0px 5px 0px 5px;
+    border : 0px solid black;
+    color : #111;
+}
+.trendshopping:hover{
+    text-decoration : underline;
+}
+.shoppingtext{
+    font-weight : bolder;
+    font-size : 15px;
+    float : left;
+    border : 0px solid black;
+    color : #111;
+    margin : 0px 0px 0px 10px;
+}
+.shoppingtext:hover{
+    color : #19ce60;
+    text-decoration : underline;
+}

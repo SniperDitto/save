@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>JS 조건문2</title>
+  <style></style>
+ </head>
+ <body>
+	<div>
+
+	</div>
+
+	<script>
+	var num = 100;
+/*
+	10 < num <= 100 일 경우 "만족"
+	그 이외는 "불만족"
+*/
+	if(num > 10 && num <= 100){
+		document.write("num : " + num);
+		document.write("<br>만족");
+	}
+	else{
+		document.write("num : " + num);
+		document.write("<br>불만족");
+	}
+	document.write("<br>");
+
+	var num2 = 200;
+	/*
+	num2 < 100 이거나 200 < num2 일 경우 "만족"
+	그 이외는 "불만족"
+	*/
+	if(num2 < 100 || 200 < num2){
+		document.write("num : " + num);
+		document.write("<br>만족");
+	}
+	else{
+		document.write("num : " + num);
+		document.write("<br>불만족");
+	}
+	document.write("<br>");
+
+	</script>
+ </body>
+</html>

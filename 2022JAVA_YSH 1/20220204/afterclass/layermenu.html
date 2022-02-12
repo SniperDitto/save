@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>layer 메뉴</title>
+  <style>
+    body {
+      margin: 0px;
+    }
+
+    .categoryBox {
+      width: 300px;
+      font-size: 20px;
+      font-weight: bolder;
+      text-align: center;
+      padding: 5px 0px 5px 0px;
+
+      border: 1px solid black;
+      background-color: rgb(50, 50, 50);
+      color: rgb(240, 240, 240);
+      float: left;
+    }
+
+    .menuBox {
+      width: 200px;
+      font-size: 20px;
+      text-align: center;
+      padding: 5px 0px 5px 0px;
+      border: 1px solid black;
+      background-color: rgb(50, 50, 50);
+      color: rgb(200, 200, 200);
+      float: left;
+      visibility: hidden;
+      position: absolute;
+      top: 0px;
+      left: 300px;
+    }
+  </style>
+  <script>
+    var categories = [];
+    categories[0] = "패션의류/잡화";
+    categories[1] = "뷰티";
+    categories[2] = "출산/유아동";
+    categories[3] = "식품";
+    categories[4] = "주방용품";
+    categories[5] = "생활용품";
+
+    var menus = [];
+    for (var i = 0; i < categories.length; i++) {
+      menus[i] = [];
+    }
+    // 패션의류/잡화
+    menus[0][0] = "여성패션";
+    menus[0][1] = "남성패션";
+    menus[0][2] = "남녀공용의류";
+    menus[0][3] = "유아동패션";
+    //뷰티
+    menus[1][0] = "명품뷰티";
+    menus[1][1] = "스킨케어";
+    menus[1][2] = "클렌징/필링";
+    menus[1][3] = "더마코스메틱";
+    menus[1][4] = "메이크업";
+    menus[1][5] = "향수";
+    menus[1][6] = "남성화장품";
+    menus[1][7] = "네일";
+    //출산/유아동
+    menus[2][0] = "베이비패션";
+    menus[2][1] = "여아키즈패션";
+    menus[2][2] = "남아키즈패션";
+    menus[2][3] = "유아동침구";
+    menus[2][4] = "물티슈";
+    menus[2][5] = "분유/어린이식품";
+    menus[2][6] = "수유용품";
+    //식품
+    menus[3][0] = "유기농/친환경 전문관";
+    menus[3][1] = "과일";
+    menus[3][2] = "견과/건과";
+    menus[3][3] = "채소";
+    menus[3][4] = "쌀/잡곡";
+    menus[3][5] = "축산/계란";
+    menus[3][6] = "수산물/건어물";
+    menus[3][7] = "생수/음료";
+    menus[3][8] = "커피/원두/차";
+    //주방용품
+    menus[4][0] = "주방가전";
+    menus[4][1] = "냄비/프라이팬";
+    menus[4][2] = "칼/도마";
+    menus[4][3] = "주방조리도구";
+    menus[4][4] = "그릇/홈세트";
+    menus[4][5] = "수저/커트러리";
+    //생활용품
+    menus[5][0] = "방한용품";
+    menus[5][1] = "헤어/바디/세안";
+    menus[5][2] = "구강/면도";
+    menus[5][3] = "화장지/물티슈";
+    menus[5][4] = "생리대/성인기저귀";
+    menus[5][5] = "기저귀";
+    menus[5][6] = "세탁세제";
+
+    function showMenus(num) {
+      var menuHTML = "";
+      for (var i = 0; i < menus[num].length; i++) {
+        menuHTML += "<div class='menuText' name='menu'>";
+        menuHTML += menus[num][i];
+        menuHTML += "<div>";
+      }
+      document.getElementById("menuBox").innerHTML = menuHTML;
+      document.getElementById("menuBox").style.visibility = "visible";
+    }
+
+    function hideMenus() {
+      document.getElementById("menuBox").style.visibility = "hidden";
+    }
+  </script>
+</head>
+
+<body>
+  <div class="categoryBox" style="clear: both;" id="categoryBox"></div>
+  <div class="menuBox" id="menuBox"></div>
+  <div style="float: left;">asdfasdfasdfasdf</div>
+</body>
+<script>
+  //카테고리
+  var categoryHTML = "";
+  for (var i = 0; i < categories.length; i++) {
+    categoryHTML += "<div class='categoryText' onmouseover='showMenus(" + i + ")' onmouseout='hideMenus()'>";
+    categoryHTML += categories[i];
+    categoryHTML += "</div>";
+  }
+  document.getElementById("categoryBox").innerHTML = categoryHTML;
+
+</script>
+
+</html>

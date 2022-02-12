@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+
+   <title>프론트앤드 question 7</title>
+
+  	<style>
+		#container {
+			clear:left;
+			text-align: center;
+		}
+		#container div{
+			float:left;
+			border:1px solid #cccccc;
+			width:400px;
+			height:400px;
+		}
+		.row{
+			width: auto;
+			display: block;
+			clear: both;
+		}
+		.col{
+			width : 198px;
+			display: block;
+			float: left;
+			border: 1px solid black;
+		}
+		#content span{
+			visibility: hidden;
+		}
+	</style>
+
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+
+	<script>
+
+		var students = [
+			{number:1, name:"홍길동", tel:"0100001111", addr:"부산"},
+			{number:2, name:"전우치", tel:"0100002222", addr:"경주"},
+			{number:3, name:"박상일", tel:"0100003333", addr:"울산"},
+			{number:4, name:"조중동", tel:"0100004444", addr:"서울"},
+			{number:5, name:"한겨례", tel:"0100005555", addr:"대구"},
+			{number:6, name:"도욱수", tel:"0100006666", addr:"대전"},
+			{number:7, name:"이경직", tel:"0100007777", addr:"광주"},
+			{number:8, name:"차기수", tel:"0100008888", addr:"제주"}
+		];
+
+		/*
+			위의 데이터를 활요하여 왼쪽 id="list"에는 번호화 이름을 사용하여 전체 학생 리스트를 보여주고
+			왼쪽의 리스트에서 각 학생을 클릭할때마다 
+			오른쪽 id="content"에는 그 학생의 전화번호와 주소가 출력되도록 코딩해주세요
+			jquery 사용가능
+
+			--25점
+		*/
+
+		function showNames(){
+			let strHTML = "<span class='row'>" +
+				"<span class='col'>번호</span>" +
+				"<span class='col'>이름</span>" +
+				"</span>";
+			let strHTML2 = `<span class='row' style='visibility:visible'>` +
+				`<span class='col' style='visibility:visible'>전화번호</span>` +
+				`<span class='col' style='visibility:visible'>주소</span>` +
+				"</span>";
+
+			for(let i=0;i<students.length;i++){
+				strHTML += "<span class='row'>";
+				strHTML += "<span class='col' onclick='showInfo(this)' name='num'>";
+				strHTML += students[i].number;
+				strHTML += "</span>";
+				strHTML += "<span class='col' onclick='showInfo(this)' name='name'>";
+				strHTML += students[i].name;
+				strHTML += "</span>";
+				strHTML += "</span>";
+
+				strHTML2 += "<span class='row'>";
+				strHTML2 += "<span class='col' name='tel'>";
+				strHTML2 += students[i].tel;
+				strHTML2 += "</span>";
+				strHTML2 += "<span class='col' name='addr'>";
+				strHTML2 += students[i].addr;
+				strHTML2 += "</span>";
+				strHTML2 += "</span>";
+			}
+
+			document.getElementById("list").innerHTML = strHTML;
+			document.getElementById("content").innerHTML = strHTML2;
+
+		}
+
+		function showInfo(obj){
+			
+			for(let i=1;i<=students.length;i++){
+				if(i == parseInt(obj.innerHTML)){
+					document.getElementsByName("tel")[i-1].style.visibility = "visible";
+					document.getElementsByName("addr")[i-1].style.visibility = "visible";
+				}
+				
+			}
+
+		}
+
+	</script>
+	
+
+ 
+ </head>
+ <body onload="showNames()">
+ 	<div id="container">
+		<div id="list">
+
+		</div>
+		<div id="content">
+
+		</div>
+	</div>
+	
+ </body>
+</html>

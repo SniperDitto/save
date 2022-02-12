@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <title></title>
+    <style></style>
+    <script>
+        //textbox 안에 입력된 값을 찾기 위한 event(keyup/keydown/keypress...)
+        //숫자가 입력되었는지 다른 키인지 확인(string indexOf)
+        //사용자의 키 입력 중 숫자가 아닌 값은 지운다(입력 못하게 막을 수는 없음)
+
+        let checkNumber=function(){
+            let strPermit = "0123456789";//허용되는 글자
+            let inputVal = document.getElementById("birth").value;
+
+            //마지막자리수로 자르기 = 마지막 입력값(문자열)
+            //length index 0부터 시작하므로 1 뺀다
+            let checkVal = inputVal.substr(inputVal.length-1,1);
+            
+            //문자 입력시 result가 -1
+            let result = strPermit.indexOf(checkVal);
+            
+            if(result==-1){
+                //문자가 입력되는 경우
+                //마지막으로 입력된 글자가 숫자가 아닌 경우 이전 값으로 되돌리기
+
+                //처음부터 마지막입력 전까지의 값 : inputVal.substr(0,inputVal.length-1)
+                document.getElementById("birth").value = inputVal.substr(0,inputVal.length-1);
+                document.getElementById("msg").innerHTML = "ㄴㄴ";
+
+
+                //문자를 꾹 누르는 경우에는 마지막 글자만 지워진다
+                checkFunction(document.getElementById("birth").value);
+            }
+            else{
+                document.getElementById("msg").innerHTML = inputVal;
+            }
+            
+        }
+
+        let checkFunction = function (val){
+            //최종입력값에 문자가 포함되어 있는지
+            //각 글자별로 문자인지 숫자인지 => 문자이면 삭제
+            let strPermit = "0123456789";
+            let eachStr = "";
+            let resultStr = "";
+
+            for(let i=0;i<val.length;i++){
+                eachStr = val.substr(i,1);//한글자씩 자름
+                
+                if(strPermit.indexOf(eachStr)!=-1){
+                    //숫자인 경우만 결과값에 추가
+                    resultStr += eachStr;
+                }
+            }
+            document.getElementById("birth").value = resultStr;
+        }
+    </script>
+</head>
+
+<body>
+    <div>
+        <span>생년월일 6자리 : </span>
+        <input type="text" id="birth" maxlength="6" onkeyup="checkNumber()"/>
+    </div>
+    <div id="msg"></div>
+    <script></script>
+</body>
+
+</html>

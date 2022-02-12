@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>DOM 모델2</title>
+  <style>
+	input{
+		font-size:50px;
+	}
+  </style>
+  <script>
+  
+	function changeFontSize(val){
+		/* 글자의 현재 font-size값을 들고오기 */
+		var objTags = document.getElementsByTagName("div");
+		var fontSize = objTags[0].style.fontSize;
+
+		if(val==1){
+			fontSize = parseInt(fontSize)+5;
+		}
+		else if(val==2){
+			fontSize = parseInt(fontSize)-5;
+		}
+		objTags[0].style.fontSize = fontSize+"px";
+	}
+
+	function plusFontSize(){
+		var objTags = document.getElementsByTagName("div");
+		var fontSize = objTags[0].style.fontSize;
+
+		fontSize = parseInt(fontSize)+5;
+		objTags[0].style.fontSize = fontSize+"px";
+	}
+
+	function minusFontSize(){
+		var objTags = document.getElementsByTagName("div");
+		var fontSize = objTags[0].style.fontSize;
+
+		fontSize = parseInt(fontSize)-5;
+		objTags[0].style.fontSize = fontSize+"px";
+	}
+
+  </script>
+ </head>
+ <body>
+<!-- 버튼 눌러서 글자 크기 키우기 -->
+  <div id="msg" name="helloMsg" style="font-size:50px;">
+	안녕
+  </div>
+  <div>
+	<input type="button" value="+" onclick="changeFontSize(1)"/>
+	<input type="button" value="-" onclick="changeFontSize(2)"/>
+  </div>
+  
+
+  <script>
+	
+  </script>
+ </body>
+</html>

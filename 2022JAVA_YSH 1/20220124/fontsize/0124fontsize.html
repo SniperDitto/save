@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>0124fontsize</title>
+  <style>
+  	body{
+		margin : 0px;
+	}
+	.wrap{
+		width : 700px;
+		height : 600px;
+		border : 1px solid black;
+		background-color : #ffffcc;
+	}
+	.title{
+		border : 1px solid black;
+		text-align : center;
+		margin : 3px 4px 5px 4px;
+		padding : 15px 0px 15px 0px;
+	}
+	.title a{text-decoration : none;}
+	.titletext{
+		font-size : 25px;
+		font-weight : bolder;
+		border : 0px solid black;
+	}
+	.menu{
+		border : 1px solid black;
+		margin : 0px 4px 5px 4px;
+		padding : 5px 0px 5px 150px;
+	}
+	.menu a{text-decoration : none;}
+	.menutext{
+		border : 0px solid red;
+		margin : 0px 10px 0px 10px;
+	}
+	.content{
+		border : 0px solid black;
+		margin : 3px 4px 5px 4px;
+	}
+	.text1{
+		font-size : 20px;
+		font-weight : bolder;
+		border : 0px solid black;
+	}
+	.text2{
+		border : 0px solid red;
+		margin : 0px 0px 0px 0px;
+		font-size : 12px;
+	}
+	.box1{
+		width : 450px;
+		margin-left : 100px;
+		border : 5px dotted black;
+		padding : 10px 10px 15px 10px; 
+	}
+	.box2{
+		border : 0px dotted green;
+		margin : 15px 0px 0px 5px;
+	}
+	.texttitle{
+		font-weight: bolder;
+	}
+
+  </style>
+ </head>
+ <body>
+  <div class="wrap">
+  	<div class="title">
+		<a href="../0124.html">
+			<span class="titletext">20220124</span>
+		</a>
+	</div>
+	
+	<div class="menu">
+		<span class="menutext">
+			<a href="../announcement/0124announcement.html">공지사항</a>
+		</span>
+        <span class="menutext">
+			<a href="../styletag/0124style.html">style</a>
+		</span>
+		<span class="menutext">
+            <a href="../box/0124box.html">box model</a>
+        </span>
+		<span class="menutext">
+            <a href="./0124fontsize.html">font 크기</a>
+        </span>
+        <span class="menutext">
+			<a href="../form/0124form.html">form</a>
+		</span>
+	</div>
+	<div class="content">
+		<div class="box1">
+			<span class="text1">Font Size</span><br>
+			<div class="box2">
+				<span class="texttitle">글자 크기를 표현하는 단위</span><br>
+				<span class="textcontent">
+                    - px<br>
+                    - pt<br>
+					- em<br>
+					- rem<br>
+					- ex<br>
+                    - %
+				</span>
+			</div>
+			<div class="box2">
+				<span class="texttitle">em</span><br>
+				<span class="textcontent">
+                    - 해당 페이지의 기본 폰트 사이즈의 배수<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    브라우저의 font 크기 기본값은 일반적으로 16px<br>
+                    - em과 %는 해당 폰트를 둘러싸는 가장 가까운 조상의 폰트 크기 설정에 따라 변한다
+				</span>
+			</div>
+            <div class="box2">
+				<span class="texttitle">rem</span><br>
+				<span class="textcontent">
+                    - 최상위 폰트 크기 설정값(* or 기본값)에 따름
+				</span>
+			</div>
+		</div>
+	</div>
+  </div>
+ </body>
+</html>

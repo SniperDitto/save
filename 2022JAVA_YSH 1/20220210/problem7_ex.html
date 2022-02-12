@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+
+   <title>프론트앤드 question 7</title>
+
+  	<style>
+		
+		.row{
+			clear: both;
+            width: 620px;
+            height: 40px;
+            border: 1px solid black;
+		}
+		.col{
+			width:100px;
+			height:30px;
+			border:1px solid #efefef;
+			display:block;
+			background-color:#cccccc;
+			float:left;
+		}
+		
+	</style>
+
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+
+	<script>
+
+		var students = [
+			{number:1, name:"홍길동", tel:"0100001111", addr:"부산"},
+			{number:2, name:"전우치", tel:"0100002222", addr:"경주"},
+			{number:3, name:"박상일", tel:"0100003333", addr:"울산"},
+			{number:4, name:"조중동", tel:"0100004444", addr:"서울"},
+			{number:5, name:"한겨례", tel:"0100005555", addr:"대구"},
+			{number:6, name:"도욱수", tel:"0100006666", addr:"대전"},
+			{number:7, name:"이경직", tel:"0100007777", addr:"광주"},
+			{number:8, name:"차기수", tel:"0100008888", addr:"제주"}
+		];
+
+		/*
+			위의 데이터를 활요하여 왼쪽 id="list"에는 번호화 이름을 사용하여 전체 학생 리스트를 보여주고
+			왼쪽의 리스트에서 각 학생을 클릭할때마다 
+			오른쪽 id="content"에는 그 학생의 전화번호와 주소가 출력되도록 코딩해주세요
+			jquery 사용가능
+
+			--25점
+		*/
+
+		let setList = function(){
+            let strHTML = "";
+            for(let i=0;i<students.length;i++){
+                strHTML += `<div class="row" onclick="showContent(${i})">`;
+                strHTML += `<span class="col">${students[i].number}</span>`;
+                strHTML += `<span class="col">${students[i].name}</span>`;
+                strHTML += `<span class="col">${students[i].tel}</span>`;
+                strHTML += `<span class="col">${students[i].addr}</span>`;
+                strHTML += `</div>`;
+            }
+            document.getElementById("list").innerHTML = strHTML;
+        }
+
+        let showContent = function(index){
+            let strTel = students[index].tel;
+            let strAddr = students[index].addr;
+
+            let strHTML = "전화번호 : "+strTel+" 지역 : "+strAddr;
+            document.getElementById("content").innerHTML = strHTML;
+        }
+
+	</script>
+	
+
+ 
+ </head>
+ <body onload="setList()">
+ 	<div id="container">
+		<div id="list">
+            
+		</div>
+		<div id="content">
+
+		</div>
+	</div>
+	
+ </body>
+</html>

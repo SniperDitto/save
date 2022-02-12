@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+
+	<style>
+		input{
+			width:40px;
+			height:40px;
+			border-radius:10px;
+		}
+		label, select{
+			font-size:40px;
+		}
+
+		.row{
+			clear:both;
+		}
+		.col{
+			width:150px;
+			font-size:30px;
+			padding:10px 0px 10px 0px;
+			float:left;
+			display:block;
+			border:1px solid #333;
+			text-align:center;
+			color:#111;
+			background-color:#fefefe;
+		}
+
+	</style>
+
+  	<script>
+		let changeCar = function(index){
+			let objRDOs = document.getElementsByName("rCar");
+			let objCHKs = document.getElementsByName("cCar");
+			let objSel = document.getElementById("sCar");
+			let objSpan = document.getElementsByName("pCar");
+
+			let selRODVal = objRDOs[index].value;
+
+			//전부다 풀었다가
+			for(let i=0;i<objCHKs.length;i++){
+				objCHKs[i].checked = false;
+			}
+			objCHKs[index].checked = true;
+
+
+			objSel.value = selRODVal;
+
+
+			//전부다 초기화
+			for(let i=0;i<objSpan.length;i++){
+				objSpan[i].style.color="#111";
+				objSpan[i].style.backgroundColor="#fefefe";
+			}
+			objSpan[index].style.color="#fefefe";
+			objSpan[index].style.backgroundColor="#111";
+		}
+
+		let changeCar2 = function(index){
+			let objRDOs = document.getElementsByName("rCar");
+			let objCHKs = document.getElementsByName("cCar");
+			let objSel = document.getElementById("sCar");
+			let objSpan = document.getElementsByName("pCar");
+
+			let selVal = objCHKs[index].value;
+
+			//전부다 풀었다가
+			for(let i=0;i<objCHKs.length;i++){
+				objCHKs[i].checked = false;
+			}
+			objCHKs[index].checked = true;
+
+			//전부다 풀었다가
+			for(let i=0;i<objRDOs.length;i++){
+				objRDOs[i].checked = false;
+			}
+			objRDOs[index].checked = true;
+
+			objSel.value = selVal;
+
+			//전부다 초기화
+			for(let i=0;i<objSpan.length;i++){
+				objSpan[i].style.color="#111";
+				objSpan[i].style.backgroundColor="#fefefe";
+			}
+			objSpan[index].style.color="#fefefe";
+			objSpan[index].style.backgroundColor="#111";
+		}
+
+		let changeCar3 = function(){
+
+			let objRDOs = document.getElementsByName("rCar");
+			let objCHKs = document.getElementsByName("cCar");
+			let objSel = document.getElementById("sCar");
+			let objSpan = document.getElementsByName("pCar");
+
+			let setVal = objSel.value;
+
+			//전부다 풀었다가
+			for(let i=0;i<objRDOs.length;i++){
+				objRDOs[i].checked = false;
+			}
+			objRDOs[setVal].checked = true;
+
+			//전부다 풀었다가
+			for(let i=0;i<objCHKs.length;i++){
+				objCHKs[i].checked = false;
+			}
+			objCHKs[setVal].checked = true;
+
+
+			//전부다 초기화
+			for(let i=0;i<objSpan.length;i++){
+				objSpan[i].style.color="#111";
+				objSpan[i].style.backgroundColor="#fefefe";
+			}
+			objSpan[setVal].style.color="#fefefe";
+			objSpan[setVal].style.backgroundColor="#111";
+
+		}
+
+
+		let changeCar4 = function(index){
+
+			let objRDOs = document.getElementsByName("rCar");
+			let objCHKs = document.getElementsByName("cCar");
+			let objSel = document.getElementById("sCar");
+			let objSpan = document.getElementsByName("pCar");
+
+
+			//전부다 풀었다가
+			for(let i=0;i<objRDOs.length;i++){
+				objRDOs[i].checked = false;
+			}
+			objRDOs[index].checked = true;
+
+			//전부다 풀었다가
+			for(let i=0;i<objCHKs.length;i++){
+				objCHKs[i].checked = false;
+			}
+			objCHKs[index].checked = true;
+			
+
+			objSel.value = index; 
+
+
+			//전부다 초기화
+			for(let i=0;i<objSpan.length;i++){
+				objSpan[i].style.color="#111";
+				objSpan[i].style.backgroundColor="#fefefe";
+			}
+			objSpan[index].style.color="#fefefe";
+			objSpan[index].style.backgroundColor="#111";
+
+		}
+
+	</script>
+
+  <title></title>
+ </head>
+ <body>
+ 	<div>
+		<div class="row">
+			<label><input type="radio" name="rCar" value="0" onclick="changeCar(0)"/>전기차</label>
+			<label><input type="radio" name="rCar" value="1" onclick="changeCar(1)"/>수소차</label>
+			<label><input type="radio" name="rCar" value="2" onclick="changeCar(2)"/>내연기관차</label>
+		</div>
+		<div class="row">
+			<label><input type="checkbox" name="cCar" value="0" onclick="changeCar2(0)"/>전기차</label>
+			<label><input type="checkbox" name="cCar" value="1" onclick="changeCar2(1)"/>수소차</label>
+			<label><input type="checkbox" name="cCar" value="2" onclick="changeCar2(2)"/>내연기관차</label>
+		</div>
+		<div class="row" onchange="changeCar3()">
+			<select id="sCar">
+				<option value="0">전기차</option>
+				<option value="1">수소차</option>
+				<option value="2">내연기관차</option>
+			</select>
+		</div>
+		<div class="row">
+			<span class="col" onclick="changeCar4(0)" name="pCar">전기차</span>
+			<span class="col" onclick="changeCar4(1)" name="pCar">수소차</span>
+			<span class="col" onclick="changeCar4(2)" name="pCar">내연기관차</span>
+		</div>
+	</div>
+	
+ </body>
+</html>

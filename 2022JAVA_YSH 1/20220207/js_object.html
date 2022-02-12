@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>js 객체</title>
+    <script>
+        var nowYear = 2022;
+        //JS에서 객체를 사용하는 방법
+        //1. Object()
+        //학생 한명을 객체화(객체 생성)
+        var student = new Object();
+        student.name = "홍길동"; //객체의 속성
+        student.age = "30";
+        student.gender = "남자";
+
+        //나이 : 현재 연도를 이용해 메서드 이용(함수XXXXX)
+        //변할 수 있는 데이터를 넣으면 안된다.
+        var students = [];
+        students[0] = new Object();
+        students[0].num = "001";
+        students[0].name = "홍길동";
+        students[0].bYear = 1970;
+        students[0].gender = "남자";
+
+        students[1] = new Object();
+        students[1].num = "002";
+        students[1].name = "홍길순";
+        students[1].bYear = 1980;
+        students[1].gender = "여자";
+
+        students[2] = new Object();
+        students[2].num = "003";
+        students[2].name = "전우치";
+        students[2].bYear = 1990;
+        students[2].gender = "남자";
+
+        students[3] = new Object();
+        students[3].num = "004";
+        students[3].name = "asdf";
+        students[3].bYear = 2000;
+        students[3].gender = "남자";
+
+        function getStudent(){
+            var studHTML= "";
+            //학생 이름, 나이, 성별 출력
+            for(var i=0;i<students.length;i++){
+                studHTML += "<div class='row'>";
+                studHTML += "<span class='col'>학생 번호는 ";
+                studHTML += students[i].num + "</span>";
+                studHTML += "<span class='col'>학생 이름은 ";
+                studHTML += students[i].name+ "</span>";
+                studHTML += "<span class='col'>학생의 출생년도는 ";
+                studHTML += students[i].bYear+ "</span>";
+                studHTML += "<span class='col'>학생의 성별은 ";
+                studHTML += students[i].gender+ "</span>";
+                studHTML += "<span class='col'>학생의 나이는 ";
+                studHTML += getAge(students[i].bYear);
+                studHTML += " 입니다. </span>";
+                studHTML += "</div>";
+            }
+            
+            document.getElementById("studentList").innerHTML = studHTML;
+        }
+
+        //나이를 구하는 기능(함수)
+        function getAge(year){
+            var resultYear = 0;
+
+            if(year != 0){
+                resultYear = nowYear - year;
+            }
+
+            return resultYear;
+        }
+
+    </script>
+    <style>
+        .col{
+            display: block;
+            float: left;
+            border: 1px solid black;
+            width: 200px;
+        }
+        .row{
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <input type="button" value="출력" onclick="getStudent()" />
+    </div>
+    <div id="studentList"></div>
+    
+</body>
+</html>

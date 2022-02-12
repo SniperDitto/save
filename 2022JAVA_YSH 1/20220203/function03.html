@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+
+  <title>함수3 - 매개변수</title>
+  <style>
+	#msg{
+		
+	}
+
+  </style>
+  <script>
+  	//입력된 숫자 범위의 자연수 합을 구하는 기능
+	function getSum(startNum,endNum){
+		var result = 0;
+		for(var i=startNum; i<=endNum; i++){
+			result += i;
+		}
+		return result;
+	}
+
+	
+	//입력된 값을 이용해 합을 구해서 화면에 출력시키는 기능
+	function showResult(){
+		//id가 start, end인 객체의 값을 가져온다(문자 취급됨)
+		var startNum = parseInt(document.getElementById("start").value);
+		var endNum = parseInt(document.getElementById("end").value);
+		
+		//가져온 값을 함수에 전달하고 값을 받아온다
+		var resultNum = getSum(startNum, endNum);
+
+		//화면에 결과값을 출력한다
+		document.getElementById("resMsg").innerHTML = resultNum;
+
+	}
+
+  </script>
+ </head>
+ <body>
+	<div>
+		<span>시작 숫자 : </span>
+		<input type="text" id="start"/>
+	</div>
+	<div>
+		<span>끝 숫자 : </span>
+		<input type="text" id="end"/>
+	</div>
+	<div>
+		<input type="button" value="결과 확인" onclick="showResult()"/>
+	</div>
+	<div id="resMsg"></div>
+  
+  <script>
+	
+
+
+  </script>
+ </body>
+</html>

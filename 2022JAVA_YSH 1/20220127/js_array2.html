@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>JS 배열2</title>
+  <style>
+	div{
+		float:left;
+		text-align:center;
+		border:1px solid black;
+	}
+	#wrap{
+		border:0px solid black;
+	}
+	.btn{
+		display:block;
+		width:100px;
+		text-align:center;
+		padding:5px;
+		background-color:black;
+		color : white;
+		border : 1px solid white;
+	}
+  </style>
+ </head>
+ <body>
+	<div id="wrap">
+		<div id="menus"></div>
+	</div>
+	<script>
+		
+		var strUrls = [];
+		strUrls[0] = "https://www.naver.com";
+		strUrls[1] = "https://www.daum.net";
+		strUrls[2] = "https://www.google.com";
+
+		var strSites = [];
+		strSites[0] = "네이버";
+		strSites[1] = "다음";
+		strSites[2] = "구글";
+		
+		var strHTML = "";
+		for(var i=0; i<3; i++){
+			strHTML = "<a class='btn' href='"+strUrls[i]+"'>"+strSites[i]+"</a>";
+			document.getElementById("menus").innerHTML += strHTML;
+		}
+
+		
+
+	</script>
+ </body>
+</html>

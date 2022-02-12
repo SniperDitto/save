@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+	#msg{
+		width : 100px;
+		text-align : center;
+		background-color : #666;
+		color : #fff;
+	}
+	#msgToday{
+		background-color : #666;
+		color : #fff;
+	}
+  </style>
+  <script>
+	var number = 1;
+	function f1(){
+		var text = "<div>";
+		text += "<span>";
+		text += number;
+		text += "</span>";
+		text += "</div>";
+
+		document.getElementById("msg").innerHTML += text;
+		number++;
+	}
+
+	function f2(){
+		var text = "<div>";
+		text += "<span>";
+
+		text += "컴파일<br>";
+		text += "CPU의 진동수 -&gt; 1번 진동에 1회 연산<br>";
+		text += " (CPU 세대에 따라 차이는 있음)<br>";
+		text += "프로그래밍 언어를 컴파일을 통해 CPU가 알아들을 수 있게 번역(0,1)<br>";
+		text += "javascript(인터프리터) -&gt; 웹브라우저가 컴파일<br>";
+		text += "<br>";
+		text += "배포<br>";
+		text += " - 컴파일해 CPU가 이해할 수 있도록 만든 후 배포<br>";
+		text += " - 저작권 보호(원본 소스 포함x)<br>";
+		text += "<br>";
+		text += "변수(variable)<br>";
+		text += "메모리에 공간을 차지해 저장할 수 있도록 함<br>";
+		text += "반복되는 데이터를 편하게 사용하기 위해 씀<br>";
+		text += "<br>";
+		text += "CPU의 캐시 메모리<br>";
+		text += "연산 도중 필요할 때 바로 꺼내 쓸 수 있도록 임시저장<br>";
+		text += "<br>";
+		text += "document.write(원하는 내용);<br>";
+		text += "-&gt; 기본적인 출력(화면에)<br>";
+		text += "-&gt; 안에 HTML 태그 입력 가능<br>";
+		text += "<br>";
+		text += "alert(내용);<br>";
+		text += "-&gt; 경고창 띄우기<br>";
+		text += "<br>";
+		text += "7이라는 값을 메모리에 저장 -&gt; 변수에 값을 할당함(assignment)<br>";
+		text += "ex) var a = 7; 혹은 int a=7;<br>";
+		text += "<br>";
+		text += "+, -, *, / 등 -&gt; 연산자(operator)<br>";
+		text += "JS의 경우 숫자+문자 연산시 문자로 인식<br>";
+		text += "<br>";
+		text += "getElemendById()<br>";
+		text += " - innerHTML 속성을 이용해서 html추가가능<br>";
+		text += "<br>";
+		text += "문자열 연결, 따옴표 중첩 시 구분 주의<br>";
+		text += "<br>";
+		text += "컴파일 에러 - 코드 상의 에러(변수선언, 할당, 오타 등)<br>";
+		text += "런타임 에러 - 실행 중 발생하는 에러<br>";
+		text += "로직 에러<br>";
+		text += "<br>";
+		text += "변수를 만드는 방법<br>";
+		text += "- 변수명은 숫자로 시작할 수 없다(중간, 끝에는 숫자 가능)";
+		text += "- 변수명은 문자로 시작해야 한다";
+		text += "- 특수문자 _, - 등 몇개만 가능";
+		text += "- 자바, JS의 경우 소문자로 시작해 추가되는 단어마다 대문자로 쓴다";
+		text += "- C#의 경우 첫글자가 대문자";
+
+		text += "</span>";
+		text += "</div>";
+
+		document.getElementById("msgToday").innerHTML = text;
+	}
+
+	
+
+  </script>
+ </head>
+ <body>
+  <div>
+	<div>
+		<input type="button" value="추가" onclick="f1();"/>
+	</div>
+	<div>
+		<input type="button" value="오늘배운것" onclick="f2();"/>
+	</div>
+	<div id="msgToday"></div>
+	<div id="msg"></div>
+	
+  </div>
+ </body>
+</html>

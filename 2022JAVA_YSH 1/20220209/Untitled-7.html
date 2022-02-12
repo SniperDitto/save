@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='UTF-8'>
+<title></title>
+<style>
+    .col{
+        width:130px;
+        font-size: 20px;
+        border: 1px solid blue;
+        display: block;
+        float: left;
+        padding: 10px 0px 10px 0px;
+
+    }
+
+    .row{
+        clear: both;
+        font-size: 50px;
+    }
+</style>
+<script>
+    //문자열 자르기 split
+    let str = "자기, 먹기, 놀기";
+    let str2 = "서울 - 대구 - 부산";
+
+    let cities = str2.split("-");//str2를 "-"로 나눈 배열
+    let hobbies = str.split(",");
+    let str4 = hobbies[0].trim();
+
+    //문자열의 앞뒤 공백 제거 trim
+    let str3 = " 1 2 3 ";
+    let str5 = str3.trim();
+//-------------------------------------------------
+
+    let menus = ["뉴스", "스포츠", "쇼핑", "취미"];
+
+    let showMenu = function(i){
+        document.getElementById("msg").innerHTML = menus[i];
+    }
+    let showMenu2 = function(obj){
+        document.getElementById("msg").innerHTML = obj.innerHTML;
+    }
+
+    
+    //child 객체 실행 시 parent객체의 함수까지 같이 실행되는 것을 event를 통해 방지할 수 있다
+    let showMenu3 = function(e){
+        //e.target : 현재 이벤트를 발생시킨 객체
+        document.getElementById("msg").innerHTML = e.target.innerHTML;
+    }
+    let showMenu4 = function(obj){
+        //태그에 data- 로 새 속성값 추가 - jQuery때 사용
+        document.getElementById("msg").innerHTML = obj.dataset.hobby;
+    }
+
+</script>
+</head>
+<body>
+<div id="showMenus" class="row"></div>
+<div id="msg" class="row"></div>
+<script>
+    let strHTML="";
+    for(let i=0; i<menus.length; i++){
+        //strHTML += `<span class="col" onclick="showMenu(${i})">${menus[i]}</span>`;
+        //strHTML += `<span class="col" onclick="showMenu2(this)">${menus[i]}</span>`;
+        //strHTML += `<span class="col" onclick="showMenu3(event)">${menus[i]}</span>`;
+        strHTML += `<span class="col" onclick="showMenu4(this)" data-hobby="${menus[i]}">${menus[i]}</span>`;
+    }
+    document.getElementById("showMenus").innerHTML = strHTML;
+</script>
+</body>
+</html>

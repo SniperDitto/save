@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>객체와 함수(메뉴만들기)</title>
+    <style>
+        #menus{
+            clear: both;
+        }
+
+        .col{
+            display: block;
+            width: 150px;
+            text-align: center;
+            padding: 10px 0px 10px 0px;
+            border: 1px solid black;
+            float: left;
+        }
+
+        .row{
+            
+        }
+    </style>
+    <script>
+        var getImgs = function(){
+            var imgs=["./img/1.PNG","./img/2.PNG","./img/3.PNG","./img/4.PNG"];
+
+            return imgs;
+        }
+
+        var getUrls = function(){
+            var urls=[
+                "https://www.naver.com",
+                "https://www.daum.net",
+                "https://www.google.com",
+                "https://www.danawa.co.kr"
+            ];
+            return urls;
+        }
+        
+        var getMenus = function(){
+            var menus=["네이버", "다음", "구글" ,"다나와"];
+
+            return menus;
+        }
+
+
+        // 사진으로 리스트를 만드는 기능
+        var getimgList = function(urls,imgs){
+            var strHTML = "";
+            for(var i=0; i< imgs.length; i++){
+                strHTML += '<a href="'+urls[i]+'" class="col">';
+                strHTML += '<img src="'+imgs[i]+'" width="100px" height="100px"/>';
+                strHTML += '</a>';
+            }
+            document.getElementById("imgList").innerHTML = strHTML;
+        }
+
+        //메뉴를 만드는 기능
+        var getMenus = function(urls,menus){
+            var strHTML = "";
+
+            for(var i=0; i< urls.length; i++){
+                strHTML += '<a href="'+urls[i]+'" class="col">'+menus[i]+'</a>';
+            }
+
+            document.getElementById("menus").innerHTML = strHTML;
+        }
+
+        //모든 항목을 불러오는 기능
+        var getAll = function(){
+            var imgs = getImgList();
+            var urls = getUrls();
+            var menus = getMenus();
+            getimgList(urls,imgs);
+            getMenus(urls,menus);
+        }
+
+        //-------------------------
+        var makeImgHTML = function(url, imgName){
+            var strHTML = "";
+
+            strHTML += '<a href="'+url+'" class="col">';
+            strHTML += '<img src="'+imgName+'" width="100px" height="100px"/>';
+            strHTML += '</a>';
+
+            return strHTML;
+        }
+
+        var makeMenuHTML = function(url, menu){
+            var strHTML = "";
+
+            strHTML += '<a href="'+url+'" class="col">'+menu+'</a>';
+
+            return strHTML;
+        }
+
+        var setImgList = function(urls,imgs){
+            var strHTML = "";
+            for(var i=0;i<4;i++){
+                strHTML += makeImgHTML(urls[i],imgs[i]);
+            }
+            return strHTML;
+        }
+
+        var getImgList = function(urls,imgs){
+            var strHTML = setImgList(urls,imgs);
+            
+            document.getElementById("imgList").innerHTML = strHTML;
+        }
+
+        var setMenuList = function(urls,menus){
+            var strHTML = "";
+            for(var i=0;i<4;i++){
+                strHTML += makeMenuHTML(urls[i],menus[i]);
+            }
+            return strHTML;
+            
+        }
+
+        var getMenuList = function(urls,menus){
+            var strHTML = setMenuList(urls,menus);
+            
+            document.getElementById("menus").innerHTML = strHTML;
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <input type="button" value="확인" onclick="getAll()"/>
+    </div>
+    <div class="row" id="imgList"></div>
+    <div class="row" id="menus" ></div>
+</body>
+</html>

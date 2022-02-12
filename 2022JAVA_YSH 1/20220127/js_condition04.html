@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>JS 조건문4</title>
+ </head>
+ <body>
+	<script>
+		var num1 = 10;
+		var num2 = 20;
+
+/*
+	x != 10 and x!= 20 : ~ (x=10 or x=20)과 같은 말
+	값이 10이거나 20인 경우 "불만족"
+	아닌 경우 "만족"
+*/
+	if(num1 != 10 && num1 != 20){
+		document.write("num1 : " + num1);
+		document.write("<br>");
+		document.write("만족");
+		document.write("<br>");
+	}
+	/* 아래와 같은 의미이다
+	if !(num1 == 10 || num1 == 20){
+		document.write("num1 : " + num1);
+		document.write("<br>");
+		document.write("만족");
+		document.write("<br>");
+	}
+	*/
+
+	</script>
+ </body>
+</html>

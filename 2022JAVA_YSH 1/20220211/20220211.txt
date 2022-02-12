@@ -1,0 +1,16 @@
+1번문제 - 객체로하기
+
+
+
+
+데이터타입
+ - 숫자
+ - 문자
+ - 객체 : 배열, function, object, {}
+
+
+
+
+
+function changeCar2,3,4 완성하기
+

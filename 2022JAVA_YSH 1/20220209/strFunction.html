@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='UTF-8'>
+<title>String 내장함수</title>
+<style></style>
+<script>
+    
+
+    function strFunc(){
+        let str = "0123456789";
+        let strHTML = "";
+
+        //substr(a,b) : a번째부터 b개 자르기
+        strHTML = str.substr(-7,4);
+
+
+        obj.innerHTML = strHTML;
+    }
+
+    function strIndex(){
+        let myMail = "12341123asdf@naver.com";
+        //indexOf("a") : 문자 a가 몇번째글자인지
+        // 여러개인 경우 가장 먼저 나오는 글자
+        // 없으면 -1
+        let result = myMail.indexOf("a");
+
+        obj.innerHTML = result;
+    }
+    
+</script>
+</head>
+<body onload="strIndex()">
+    <div id="msg"></div>
+
+<script>let obj = document.getElementById("msg");</script>
+</body>
+</html>

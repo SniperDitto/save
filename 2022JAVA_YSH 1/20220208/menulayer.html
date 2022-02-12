@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>menu</title>
+    <style>
+        .row{
+            float: left;
+            width: 150px;
+            height: 500px;
+            border: 1px solid black;
+        }
+        .col{
+            display: block;
+            width: 150px;
+            float: left;
+            cursor: pointer;
+        }
+        .col:hover{
+            background-color: bisque;
+        }
+        #submenu{
+            visibility: hidden;
+        }
+    </style>
+    <script>
+
+        let menus=[
+            {name : "가전", submenus:["컴퓨터", "TV", "냉장고", "세탁기", "청소기"]},
+            {name : "의류", submenus:["여성복", "남성복", "아동복"]},
+            {name : "생활", submenus:["휴지", "세제", "청소용품", "공구"]},
+            {name : "식품", submenus:["가공식품", "신선식품", "음료", "육류", "야채"]},
+        ];
+
+        function getMenus(){
+            let menuHTML = "";
+
+            for(let i=0;i<menus.length;i++){
+                menuHTML += `<span class="col" onclick="getSubmenus(${i})">${menus[i].name}</span>`;
+            }
+            
+            document.getElementById("menu").innerHTML = menuHTML;
+        }
+
+        function getSubmenus(menusIndex){
+            let subHTML = "";
+            for(let i=0;i<menus[menusIndex].submenus.length;i++){
+                subHTML += `<span class="col" onclick="">${menus[menusIndex].submenus[i]}</span>`;
+            }
+
+            document.getElementById("submenu").innerHTML = subHTML;
+            document.getElementById("submenu").style.visibility = "visible";
+        }
+
+        function delSubmenus(){
+            document.getElementById("submenu").style.visibility = "hidden";
+        }
+    </script>
+</head>
+
+<body>
+    <div style="clear: both;">
+        <div id="menu" class="row"></div>
+        <div id="submenu" class="row"></div>
+    </div>
+    <script>
+        getMenus()
+    </script>
+</body>
+
+</html>

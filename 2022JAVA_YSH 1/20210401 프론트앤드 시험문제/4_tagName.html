@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+
+  <title>프론트앤드 question 4</title>
+
+	<style>
+		div span{
+			width:100px;
+			height:50px;
+			border:1px solid #efefef;
+			display:block;
+			background-color:#cccccc;
+			float:left;
+		}
+	</style>
+
+	<script>
+		/*
+			화면에 표시되는 4개의 버튼모양의 사각형에 마우스를 올리면 
+			버튼에 표시된 글자색깔로 바탕색깔이 바뀌고 마우스를 버튼 밖으로 빼면 
+			원래색깔로 돌아가도록 코딩하세요 - 10점
+
+			jquery 사용 금지
+		*/
+		function changeColor(num){
+			var colorNums = document.getElementsByTagName("span");
+
+			if (0 == num) {
+				colorNums[num].style.backgroundColor = "red";
+			}
+			else if (1 == num) {
+				colorNums[num].style.backgroundColor = "yellow";
+			}
+			else if (2 == num) {
+				colorNums[num].style.backgroundColor = "blue";
+			}
+			else if (3 == num) {
+				colorNums[num].style.backgroundColor = "purple";
+			}
+			
+		}
+
+		function removeColor(num){
+			var colorNums = document.getElementsByTagName("span");
+
+			if (0 == num) {
+				colorNums[num].style.backgroundColor = "#cccccc";
+			}
+			else if (1 == num) {
+				colorNums[num].style.backgroundColor = "#cccccc";
+			}
+			else if (2 == num) {
+				colorNums[num].style.backgroundColor = "#cccccc";
+			}
+			else if (3 == num) {
+				colorNums[num].style.backgroundColor = "#cccccc";
+			}
+		}
+	</script>
+
+ </head>
+ <body>
+	<div>
+		<span onmouseover="changeColor(0)" onmouseout="removeColor(0)">빨강</span>
+		<span onmouseover="changeColor(1)" onmouseout="removeColor(1)">노랑</span>
+		<span onmouseover="changeColor(2)" onmouseout="removeColor(2)">파랑</span>
+		<span onmouseover="changeColor(3)" onmouseout="removeColor(3)">보라</span>
+	</div>
+ </body>
+</html>

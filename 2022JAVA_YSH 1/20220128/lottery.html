@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>로또번호</title>
+  <style>
+	.box{
+		float : left;
+		border : 1px solid black;
+		width : 100px;
+		height : 100px;
+		font-size : 3em;
+		text-align : center;
+		padding : 10px;
+		background-color : #ddd;
+	}
+  </style>
+ </head>
+ <body>
+
+  <div id="msg"></div>
+
+	<script>
+		var numRange = 45;
+		var arrLotto = [];
+		var arrNum = [
+		1,2,3,4,5,6,7,8,9,10,
+		11,12,13,14,15,16,17,18,19,20,
+		21,22,23,24,25,26,27,28,29,30,
+		31,32,33,34,35,36,37,38,39,40,
+		41,42,43,44,45];
+
+		function getRndIndex(range){
+			var num = parseInt(Math.random()*range);
+			return num;
+		}
+		
+		for(var i=0; i<6; i++){
+			
+			var tempIndex = getRndIndex(numRange);
+
+			arrLotto[i] = arrNum[tempIndex];
+
+			for(var j=tempIndex; j<numRange; j++){
+				arrNum[j] = arrNum[j+1];
+			}
+
+			numRange--;
+
+			document.getElementById("msg").innerHTML += '<div class="box">'+ arrLotto[i] +'</div>';
+		
+		}
+
+		
+		
+		
+		
+
+
+	</script>
+ </body>
+</html>

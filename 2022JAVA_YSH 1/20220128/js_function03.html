@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title></title>
+  <style></style>
+ </head>
+ <body>
+	<div></div>
+
+  <script>
+
+		//특정 구간 내 숫자들의 합을 구하는 함수
+		function sum(startNum, endNum){
+			var result = 0;
+			
+			if(startNum>endNum){
+				var temp = 0;
+				temp = startNum;
+				startNum = endNum;
+				endNum = startNum;
+			}
+
+			for(var i=startNum; i<=endNum; i++){
+				result += i;
+			}
+			document.write("<div>"+result+"</div>");
+		}
+
+
+  </script>
+ </body>
+</html>

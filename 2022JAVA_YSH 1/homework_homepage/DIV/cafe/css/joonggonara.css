@@ -1,0 +1,125 @@
+body {
+    margin: 0px;
+    background-color: #292A2D;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+.header {
+    width: 1000px;
+    height: 230px;
+    float: left;
+}
+
+.home {
+    color: #AAD4F1;
+    font-size: 80px;
+    font-weight: bolder;
+    text-align: center;
+    float: left;
+    width: 400px;
+    height: 100px;
+    margin-top: 40px;
+}
+
+.home:hover {
+    color: #249bf0;
+}
+
+.search {
+    width: 590px;
+    height: 65px;
+    float: left;
+    margin-top: 65px;
+}
+
+.menubar{
+    width: 950px;
+    height: 40px;
+    float: left;
+    padding-left: 50px;
+    padding-top: 10px;
+    margin-top: 30px;
+    background-color: #424346;
+    text-align: center;
+}
+.menutext{
+    color: #67b5ec;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    display: inline-block;
+}
+.menutext:hover{
+    text-decoration: underline;
+}
+.tv{
+    padding-top: 3px;
+    color: #67b5ec;
+    font-weight: bold;
+    display: inline-block;
+}
+.body{
+    width: 1100px;
+    height: auto;
+    float: left;
+}
+.sidemenu{
+    width : 190px;
+    height: 690px;
+    border : 0px solid red;
+    padding: 5px 5px 5px 5px;
+    background-color: #424346;
+    float: left;
+    margin-left: 10px;
+}
+.newmenu{
+    width : 190px;
+    height: 60px;
+    border : 0px solid red;
+    float: left;
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+.newcafe{
+    width: 180px;
+    height: 43px;
+    display: block;
+    border : 2px solid rgb(119, 119, 119);
+    float: left;
+    text-align: center;
+    padding-top: 17px;
+    background-color: #696b6e;
+}
+
+.content{
+    float: left;
+    width: 750px;
+    height: 690px;
+    padding: 5px 5px 5px 5px;
+    border : 0px solid red;
+    margin-left: 10px;
+    background-color: #424346;
+}
+.cafename{
+    width: 150px;
+    height: 20px;
+    float: left;
+    padding-top: 5px;
+}
+.cafename:hover{
+    text-decoration: underline;
+}
+.cafecontent{
+    font-size: 30px;
+    color: #fff;
+}
+.cafecontent a:hover{
+    color: rgb(175, 175, 175);
+}
+.clear {
+    clear: both;
+}

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+
+  <title>함수</title>
+  <style>
+	#msg input{
+		font-size : 20px;
+	}
+
+  </style>
+  <script>
+	function showMsg(){
+		//입력된 값과 정답을 비교
+		//입력된 값 : 입력input 박스의 value의 값
+		var ansInput = document.getElementById("ans").value;
+		if(result == ansInput){
+			document.getElementById("resMsg").innerHTML = "<font color='blue'>정답</font>";
+		}
+		else{
+			document.getElementById("resMsg").innerHTML = "<font color='red'>오답</font>";
+		}
+	}
+  </script>
+ </head>
+ <body>
+	<div id="msg">
+		
+	</div>
+	<div id="resMsg">
+		
+	</div>
+  
+  <script>
+	var number1 = parseInt(Math.random() * 10 + 1);
+	var number2 = parseInt(Math.random() * 10 + 1);
+
+	var result = number1 + number2;
+
+	var strHTML = "";
+	strHTML += number1 + " + " 
+				+ number2 + " = " 
+				+ "<input type='text' id='ans' />";
+	strHTML += "<input type='button' value='확인' onclick='showMsg()'/>";
+
+
+	
+
+
+
+
+	document.getElementById("msg").innerHTML = strHTML;
+
+  </script>
+ </body>
+</html>

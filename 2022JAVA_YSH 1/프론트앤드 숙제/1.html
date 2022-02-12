@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+
+  <title>프론트앤드 예제 1</title>
+
+
+	<style>
+		div, input{
+			font-size:50px;
+		}
+	</style>
+
+  <script>
+	
+	/*
+		아래의 텍스트박스에 원하는 숫자를 넣고 확인 버튼을 클릭하면
+		1~100사이에서 원하는 숫자의 배수의 합을 구합니다.
+		만약 3을 입력했다면
+		다음과 같이 id="showMsg" 에 표현 되도록 해주세요
+		3 + 6 + 9 + ......... 96 + 99 - ??
+
+		혹시 input textbox에 숫자만 입력되도록 하고 싶다면 
+		적용시켜 보세요 --> 선택입니다.
+	*/
+	function onlyNum(){
+		let checkVal = document.getElementById("number").value;
+		let strAllow = "0123456789";
+		let result = "";
+		for(let i=0;i<checkVal.length;i++){
+			if(strAllow.indexOf(checkVal.substr(i,1)) != -1){
+				result+=checkVal.substr(i,1);
+			}
+			else{
+				result="";
+			}
+			
+		}
+		document.getElementById("number").value = result;
+	}
+	
+
+	//어떤 숫자가 입력되었는지 알아내기
+	//해당 숫자의 100이하의 배수의 합 구하기
+	function buttonFunction(){
+
+		let strHTML = "";
+		let inputNum = parseInt(document.getElementById("number").value);//기준 숫자
+		if(inputNum>100){
+			document.getElementById("showMsg").innerHTML = "100보다 큰 수를 입력했습니다";
+			return;
+		}
+		let mulNum = inputNum;//해당 수의 n배수(초기값은 inputNum*1이므로)
+		let indexNum = 1;//곱할 수(n)
+		let sum = 0;//합
+		while(mulNum < 100){
+			strHTML += mulNum;
+			sum += mulNum;//배수를 합에 추가
+			indexNum++;//곱할숫자증가
+			mulNum = inputNum*indexNum;//새로운 배수
+			
+			if(mulNum<100){
+				strHTML += " + ";
+			}
+		}
+		strHTML += " = "+sum;
+		//답찍기
+		document.getElementById("showMsg").innerHTML = strHTML;
+		
+	}
+
+
+  </script>
+ </head>
+ <body>
+  
+	<div>
+		원하는 배수의 숫자를 입력하세요
+	</div>
+	<div>
+		<input type="text" id="number" onkeyup="onlyNum()"/>
+		<input type="button" value="확인" onclick="buttonFunction()"/>
+	</div>
+	<div id="showMsg">
+
+	</div>
+
+
+ </body>
+</html>

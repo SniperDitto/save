@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='UTF-8'>
+<title></title>
+<style>
+    input{
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+    }
+    label, select{
+        font-size: 40px;
+    }
+    .row{
+        clear: both;
+    }
+    .col{
+        width: 150PX;
+        font-size: 30px;
+        padding: 10px 0px 10px 0px;
+        float: left;
+        display: block;
+        border: 1px solid #333;
+        text-align: center;
+        color : #111;
+        background-color: #ddd;
+    }
+</style>
+<script>
+    let changeCar = function(i){
+        let objRDOs = document.getElementsByName("rCar");
+        let objCHKs = document.getElementsByName("cCar");
+        let objSel = document.getElementById("sCar");
+        let objSpans = document.getElementsByName("Car");
+
+        for(let j=0;j<objRDOs.length;j++){
+            objRDOs[j].checked = false;
+        }
+        let selRDOVal = objRDOs[i].value;
+
+        //일괄 체크 해제 후 선택한 값 체크
+        for(let j=0;j<objCHKs.length;j++){
+            objCHKs[j].checked = false;
+        }
+
+        objRDOs[i].checked = true;
+        objCHKs[i].checked = true;
+        objSel.value = selRDOVal;
+
+        for(let j=0;j<objSpans.length;j++){
+            objSpans[j].style.backgroundColor = "#ddd";
+            objSpans[j].style.color = "#111";
+        }
+
+        objSpans[i].style.backgroundColor = "#000";
+        objSpans[i].style.color = "#fff";
+
+    }
+    //2. ??
+    //3. value 받아서 같은 value 가진것끼리 바뀌게(e,h,g)
+    //4. value를 index로(0,1,2)
+
+</script>
+</head>
+<body>
+    <div>
+        <div class="row">
+            <label>
+                <input type="radio" name="rCar" value="e" onclick="changeCar(0)"/>
+                <span>전기차</span>
+            </label>
+            <label>
+                <input type="radio" name="rCar" value="h" onclick="changeCar(1)"/>
+                <span>수소차</span>
+            </label>
+            <label>
+                <input type="radio" name="rCar" value="g" onclick="changeCar(2)"/>
+                <span>내연기관차</span>
+            </label>
+        </div>
+        
+        <div class="row">
+            <label><input type="checkbox" name="cCar" value="e" onclick="changeCar(0)"/>
+                <span>전기차</span></label>
+            <label><input type="checkbox" name="cCar" value="h" onclick="changeCar(1)"/>
+                <span>수소차</span></label>
+            <label><input type="checkbox" name="cCar" value="g" onclick="changeCar(2)"/>
+                <span>내연기관차</span></label>
+        </div>
+        <div class="row">
+            <select id="sCar" onchange="">
+                <option value="e">전기차</option>
+                <option value="h">수소차</option>
+                <option value="g">내연기관차</option>
+            </select>
+        </div>
+        <div class="row">
+            <span class="col" onclick="changeCar(0)" name="Car">전기차</span>
+            <span class="col" onclick="changeCar(1)" name="Car">수소차</span>
+            <span class="col" onclick="changeCar(2)" name="Car">내연기관차</span>
+        </div>
+    </div>
+<script></script>
+</body>
+</html>
