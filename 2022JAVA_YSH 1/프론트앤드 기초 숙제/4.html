@@ -34,6 +34,21 @@
 			선택된 색깔이 아래의 id="backColor" div 사각형에 나타나도록 해주세요
 		*/
 
+		function checkFunction(obj){
+			let chks = document.getElementsByName("color");
+
+			//일단모두체크해제
+			for(let i=0;i<chks.length;i++){
+				chks[i].checked=false;
+			}
+			//선택된것만체크
+			obj.checked=true;
+
+			document.getElementById("rec").style.backgroundColor = obj.value;
+			document.getElementById("rec").innerHTML = obj.value;
+
+		}
+
 	</script>
 
 
@@ -42,14 +57,14 @@
  </head>
  <body>
  	<div>
-	<label><input type="checkbox" id="color1" name="color" />빨강</label> 
-	<label><input type="checkbox" id="color1" name="color" />파랑</label>
-	<label><input type="checkbox" id="color1" name="color" />검정</label>
-	<label><input type="checkbox" id="color1" name="color" />노랑</label>
-	<label><input type="checkbox" id="color1" name="color" />보라</label>
+	<label><input type="checkbox" id="color1" name="color" onclick="checkFunction(this)" value="red"/>빨강</label> 
+	<label><input type="checkbox" id="color1" name="color" onclick="checkFunction(this)" value="blue"/>파랑</label>
+	<label><input type="checkbox" id="color1" name="color" onclick="checkFunction(this)" value="black"/>검정</label>
+	<label><input type="checkbox" id="color1" name="color" onclick="checkFunction(this)" value="yellow"/>노랑</label>
+	<label><input type="checkbox" id="color1" name="color" onclick="checkFunction(this)" value="purple"/>보라</label>
 	</div>
 
-	<div class="rec">
+	<div class="rec" id="rec">
 		
 	</div>
  </body>

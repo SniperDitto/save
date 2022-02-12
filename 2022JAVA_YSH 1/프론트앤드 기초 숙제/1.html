@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
- <head>
-  <meta charset="UTF-8">
+
+<head>
+	<meta charset="UTF-8">
 
 	<style>
-
-		span, input{
-			font-size:40px;
-			width:100px;
+		span,
+		input {
+			font-size: 40px;
+			width: 100px;
 		}
-
 	</style>
 
-  <title>프론트앤드 숙제 1</title>
+	<title>프론트앤드 숙제 1</title>
 
 
 	<script>
-		
+
 		/*
 			문제 1
 
@@ -26,18 +26,25 @@
 			id = result textbox에 결과값이 나오도록 코딩하세요
 		*/
 
-		
+		function printSum() {
+			let num1 = parseInt(document.getElementById("number1").value);
+			let num2 = parseInt(document.getElementById("number2").value);
+
+			document.getElementById("result").value = num1 + num2;
+		}
 
 	</script>
 
- </head>
- <body>
+</head>
+
+<body>
 	<input type="text" id="number1" />
 	<span> + </span>
 	<input type="text" id="number2" />
 	<span> = </span>
 	<input type="text" id="result" />
 
-	<input type="button" value="확인" />
- </body>
+	<input type="button" value="확인" onclick="printSum()" />
+</body>
+
 </html>

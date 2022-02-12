@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
- <head>
-  <meta charset="UTF-8">
+
+<head>
+	<meta charset="UTF-8">
 
 	<style>
-		input, div {
-			font-size:40px;
-			width:100px;
+		input,
+		div {
+			font-size: 40px;
+			width: 100px;
 		}
 	</style>
 	<script>
@@ -22,21 +24,54 @@
 			없다면 경고창을 띄워서 몇번째 textbox의 값이 없음을 경고하고
 			커서를 해당 textbox로 보내주세요
 		*/
+		function getSumExcept(arr){
+			let result = 0;
+
+			for (let i = 1; i <= 100; i++) {
+				if (i != arr[0] && i != arr[1] && i != arr[2]) {
+					result += i;
+				}
+			}
+
+			return result;
+		}
+
+		function printSum() {
+			let result = 0;
+			let nums = document.getElementsByName("number");
+			let arrValues = [];
+			
+			for(let i=0;i<nums.length;i++){
+				if(nums[i].value!=""){
+					arrValues[i] = parseInt(nums[i].value);
+				}
+				else{
+					arrValues[i] = 0;
+				}
+			}
+
+			
+			
+			document.getElementById("result").innerHTML = getSumExcept(arrValues);
+			
+		}
 
 	</script>
 
 
-  <title>프론트 앤드 숙제 3</title>
- </head>
- <body>
+	<title>프론트 앤드 숙제 3</title>
+</head>
+
+<body>
 	<div style="width:600px;">
 		<input type="text" id="number1" name="number" />
 		<input type="text" id="number2" name="number" />
 		<input type="text" id="number3" name="number" />
-		<input type="button" value="확인" />
+		<input type="button" value="확인" onclick="printSum()" />
 	</div>
 	<div id="result">
 
-	</div>	
- </body>
+	</div>
+</body>
+
 </html>

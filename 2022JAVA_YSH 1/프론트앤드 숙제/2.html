@@ -11,6 +11,9 @@
 			font-size:40px;
 			width:150px;
 		}
+		#msg{
+			font-size: 30px;
+		}
 
 	</style>
 
@@ -32,15 +35,62 @@
 		   그 확인 버튼을 클릭하면
 		   id = "msg" div에 3개의 합을 보여주세요
 	*/
+
+	function inputFunction(obj){
+		obj.readOnly = false;
+		if(obj.value!=""){
+			obj.style.pointerEvents="auto";
+		}
+	}
+
+	function checkNum(strInput){
+		let result = "";
+		let strAllow="0123456789";
+		for(let i=0;i<strInput.length;i++){
+			let chkChar = strInput.substr(i,1);
+			if(strAllow.indexOf(chkChar)!=-1){
+				result+=chkChar;
+			}
+		}
+		return result;
+	}
+
+	function showBtn(obj){
+		obj.innerHTML = "확인";
+		obj.style.backgroundColor="#ccc";
+		obj.style.border="1px solid black";
+		obj.style.width="150px";
+		obj.style.fontSize="40px";
+		obj.style.textAlign="center";
+	}
+
+	function printSum(){
+		let nums=document.getElementsByName("number");
+		let result = 0;
+		for(let i=0;i<nums.length;i++){
+			result+=parseInt(nums[i].value);
+		}
+		if(isNaN(result)){
+			document.getElementById("msg").innerHTML = "올바른 값을 입력해주세요";
+		}
+		else{
+			document.getElementById("msg").innerHTML = result;
+		}
+		
+		
+	}
+
 	</script>
  </head>
  <body>
+	 <div>첫번째 상자를 클릭하고 탭으로 이동하세요<br>입력 완료시 탭키를 누르면 버튼이 생겨요~.~</div>
 	<div id="show">
-		<input type="text" name="number" readonly/>
-		<input type="text" name="number" readonly/>
-		<input type="text" name="number" readonly/>
+		<input type="text" name="number" readonly onclick="inputFunction(this)" tabindex="1"/>
+		<span>
+		<input type="text" name="number" readonly onfocus="inputFunction(this)" tabindex="2" style="pointer-events: none;"/>
+		<input type="text" name="number" readonly onfocus="inputFunction(this)" tabindex="3" style="pointer-events: none;"/>
 	</div>
-	<div id="btn">
+	<div id="btn" tabindex="4" onfocus="showBtn(this)" onclick="printSum()">
 		
 	</div>
 	<div id="msg">

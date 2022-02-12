@@ -27,7 +27,9 @@
 		padding:20px 0px 20px 0px;
 		float:left;
 		display:block;
-		text-align:center
+		text-align:center;
+		background-color:white;
+		color: black;
 	}
 	
 
@@ -36,6 +38,50 @@
 
 
 	<script>
+
+		
+		let chks = document.getElementsByName("selNumber");
+		let spns = document.getElementsByTagName("span");
+		
+		
+		/*
+		//원상복구 function
+		function resetFunction(){
+			//일괄체크해제
+			for(let i=0;i<chks.length;i++){
+				chks[i].checked=false;
+			}
+			//색깔 복구
+			for(let i=0;i<spns.length;i++){
+				spns[i].style.backgroundColor="white";
+				spns[i].style.color="black";
+			}
+		}
+		
+		function chkFunction(obj){
+			resetFunction();
+			obj.checked = true;
+
+			for (let i = 0; i < spns.length; i++) {
+				if (obj.value == spns[i].innerHTML) {
+					spns[i].style.backgroundColor = "black";
+					spns[i].style.color = "white";
+				}
+			}
+		}
+
+		function spnFunction(obj){
+			resetFunction();
+			obj.style.backgroundColor = "black";
+			obj.style.color = "white";
+
+			for (let i = 0; i < chks.length; i++) {
+				if (obj.innerHTML == chks[i].value) {
+					chks[i].checked = true;
+				}
+			}
+		}
+		*/
 
 		/*
 
@@ -48,8 +94,42 @@
 			위의 checkbox도 해당 숫자에 check가 되고
 			다시 클릭하면 원상복구 됩니다.
 
-
 		*/
+
+		//value-1 = index
+		function chkFunction(obj){
+			//일단 체크하는순간 checked가 되어버린다
+			//대응하는 span 색깔 바꾸기
+
+			spns[obj.value-1].style.backgroundColor="#eee";
+			spns[obj.value-1].style.color="#fefefe";
+			
+			if(!obj.checked){
+				spns[obj.value-1].style.backgroundColor="white";
+				spns[obj.value-1].style.color="black";
+			}
+
+		}
+
+		function spnFunction(obj){
+			//색깔바꾸기
+			//대응하는 checkbox 체크하기
+			
+
+			if(chks[obj.innerHTML-1].checked == true){
+				spns[obj.innerHTML-1].style.backgroundColor="white";
+				spns[obj.innerHTML-1].style.color="black";
+				chks[obj.innerHTML-1].checked = false;
+			}
+			else{
+				spns[obj.innerHTML-1].style.backgroundColor="#eee";
+				spns[obj.innerHTML-1].style.color="#fefefe";
+				chks[obj.innerHTML-1].checked = true;
+			}
+		}
+
+		
+		
 
 	</script>
 
@@ -60,29 +140,29 @@
 
 	<div class ="row">
 		
-	<label><input type="checkbox" name="selNumber" value="1" /> 1 </label>
-	<label><input type="checkbox" name="selNumber" value="2" /> 2 </label>
-	<label><input type="checkbox" name="selNumber" value="3" /> 3 </label>
-	<label><input type="checkbox" name="selNumber" value="4" /> 4 </label>
-	<label><input type="checkbox" name="selNumber" value="5" /> 5 </label>
-	<label><input type="checkbox" name="selNumber" value="6" /> 6 </label>
-	<label><input type="checkbox" name="selNumber" value="7" /> 7 </label>
-	<label><input type="checkbox" name="selNumber" value="8" /> 8 </label>
-	<label><input type="checkbox" name="selNumber" value="9" /> 9 </label>
-	<label><input type="checkbox" name="selNumber" value="10" /> 10 </label>
+	<label><input type="checkbox" name="selNumber" value="1" onclick="chkFunction(this)"/> 1 </label>
+	<label><input type="checkbox" name="selNumber" value="2" onclick="chkFunction(this)"/> 2 </label>
+	<label><input type="checkbox" name="selNumber" value="3" onclick="chkFunction(this)"/> 3 </label>
+	<label><input type="checkbox" name="selNumber" value="4" onclick="chkFunction(this)"/> 4 </label>
+	<label><input type="checkbox" name="selNumber" value="5" onclick="chkFunction(this)"/> 5 </label>
+	<label><input type="checkbox" name="selNumber" value="6" onclick="chkFunction(this)"/> 6 </label>
+	<label><input type="checkbox" name="selNumber" value="7" onclick="chkFunction(this)"/> 7 </label>
+	<label><input type="checkbox" name="selNumber" value="8" onclick="chkFunction(this)"/> 8 </label>
+	<label><input type="checkbox" name="selNumber" value="9" onclick="chkFunction(this)"/> 9 </label>
+	<label><input type="checkbox" name="selNumber" value="10" onclick="chkFunction(this)"/> 10 </label>
 		
 	</div>
   	<div class ="row">
-		<span class="col">1</span>
-		<span class="col">2</span>
-		<span class="col">3</span>
-		<span class="col">4</span>
-		<span class="col">5</span>
-		<span class="col">6</span>
-		<span class="col">7</span>
-		<span class="col">8</span>
-		<span class="col">9</span>
-		<span class="col">10</span>
+		<span class="col" onclick="spnFunction(this)" >1</span>
+		<span class="col" onclick="spnFunction(this)" >2</span>
+		<span class="col" onclick="spnFunction(this)" >3</span>
+		<span class="col" onclick="spnFunction(this)" >4</span>
+		<span class="col" onclick="spnFunction(this)" >5</span>
+		<span class="col" onclick="spnFunction(this)" >6</span>
+		<span class="col" onclick="spnFunction(this)" >7</span>
+		<span class="col" onclick="spnFunction(this)" >8</span>
+		<span class="col" onclick="spnFunction(this)" >9</span>
+		<span class="col" onclick="spnFunction(this)" >10</span>
 	</div>
 
 

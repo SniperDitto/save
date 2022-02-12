@@ -35,6 +35,20 @@
 			아래의 id = result div에 나타나도록 해 주세요
 		*/
 
+		function clickFunction(obj){
+			let nums = document.getElementsByName("num");
+			let result = 0;
+			//nums의 value들 합 구하기
+			for(let i=0;i<nums.length;i++){
+				if(nums[i].checked){
+					result+=parseInt(nums[i].value);
+				}
+				
+			}
+
+			document.getElementById("result").innerHTML=result;
+		}
+
 	</script>
 
 	<title>프론트 앤드 숙제 5</title>
@@ -44,34 +58,34 @@
  
 	<div>
 		<label>
-			<input type="checkbox" id="num1" name="num" /> 5
+			<input type="checkbox" id="num1" name="num" onclick="clickFunction(this)" value="5"/> 5
 		</label>
 		<label>
-			<input type="checkbox" id="num2" name="num" /> 8
+			<input type="checkbox" id="num2" name="num" onclick="clickFunction(this)" value="8"/> 8
 		</label>
 		<label>
-			<input type="checkbox" id="num3" name="num" /> 15
+			<input type="checkbox" id="num3" name="num" onclick="clickFunction(this)" value="15"/> 15
 		</label>
 		<label>
-			<input type="checkbox" id="num4" name="num" /> 4
+			<input type="checkbox" id="num4" name="num" onclick="clickFunction(this)" value="4"/> 4
 		</label>
 		<label>
-			<input type="checkbox" id="num5" name="num" /> 22
+			<input type="checkbox" id="num5" name="num" onclick="clickFunction(this)" value="22"/> 22
 		</label>
 		<label>
-			<input type="checkbox" id="num6" name="num" /> 11
+			<input type="checkbox" id="num6" name="num" onclick="clickFunction(this)" value="11"/> 11
 		</label>
 		<label>
-			<input type="checkbox" id="num7" name="num" /> 19
+			<input type="checkbox" id="num7" name="num" onclick="clickFunction(this)" value="19"/> 19
 		</label>
 		<label>
-			<input type="checkbox" id="num8" name="num" /> 31
+			<input type="checkbox" id="num8" name="num" onclick="clickFunction(this)" value="31"/> 31
 		</label>
 		<label>
-			<input type="checkbox" id="num9" name="num" /> 48
+			<input type="checkbox" id="num9" name="num" onclick="clickFunction(this)" value="48"/> 48
 		</label>
 		<label>
-			<input type="checkbox" id="num9" name="num" /> 48
+			<input type="checkbox" id="num10" name="num" onclick="clickFunction(this)" value="48"/> 48
 		</label>
 
 	</div>

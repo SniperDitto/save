@@ -36,8 +36,23 @@
 			color:#111;
 			background-color:#efefef;
 		*/
+		
+		
+		
 
+		function changeColor(obj,bgColor,txtColor){
+			if(obj.style.backgroundColor!="black"){
+				obj.style.backgroundColor = bgColor;
+				obj.style.color = txtColor;
+			}
+		}
 
+		function removeColor(obj){
+			if(obj.style.backgroundColor!="black"){
+				obj.style.backgroundColor = "#efefef";
+				obj.style.color = "#111";
+			}			
+		}
 
 	</script>
 
@@ -47,14 +62,18 @@
 
  <body>
 	<div class="row">
-		<span class="col" > 1 </span>
-		<span class="col" > 2 </span>
-		<span class="col" > 3 </span>
-		<span class="col" > 4 </span>
-		<span class="col" > 5 </span>
-		<span class="col" > 6 </span>
-		<span class="col" > 7 </span>
-		<span class="col" > 8 </span>
+		<span class="col" onmouseover="changeColor(this,'yellow','black')" onmouseout="removeColor(this)" onclick="changeColor(this,'black','white')"> 1 </span>
+		<span class="col" onmouseover="changeColor(this,'yellow','black')" onmouseout="removeColor(this)" onclick="changeColor(this,'black','white')"> 2 </span>
+		<span class="col" onmouseover="changeColor(this,'yellow','black')" onmouseout="removeColor(this)" onclick="changeColor(this,'black','white')"> 3 </span>
+		<span class="col" onmouseover="changeColor(this,'yellow','black')" onmouseout="removeColor(this)" onclick="changeColor(this,'black','white')"> 4 </span>
+		<span class="col" onmouseover="changeColor(this,'yellow','black')" onmouseout="removeColor(this)" onclick="changeColor(this,'black','white')"> 5 </span>
+		<span class="col" onmouseover="changeColor(this,'yellow','black')" onmouseout="removeColor(this)" onclick="changeColor(this,'black','white')"> 6 </span>
+		<span class="col" onmouseover="changeColor(this,'yellow','black')" onmouseout="removeColor(this)" onclick="changeColor(this,'black','white')"> 7 </span>
+		<span class="col" onmouseover="changeColor(this,'yellow','black')" onmouseout="removeColor(this)" onclick="changeColor(this,'black','white')"> 8 </span>
 	</div>
+
+	<script>
+
+	</script>
  </body>
 </html>

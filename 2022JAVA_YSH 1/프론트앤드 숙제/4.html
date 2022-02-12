@@ -4,7 +4,15 @@
   <meta charset="UTF-8">
 
   <title>프론트앤드 숙제 4</title>
-
+	<style>
+		.row{
+			clear: both;
+		}
+		.col{
+			border: 1px solid black;
+			float: left;
+		}
+	</style>
 	<script>
 
 	/*
@@ -39,20 +47,90 @@
 		{id:"004", name:"김도이", hobby:["먹기","놀기","게임"] },
 		{id:"005", name:"정수구", hobby:["먹기","자기","놀기","게임"] },
 		{id:"006", name:"화정수", hobby:["먹기","놀기"] },
-		{id:"006", name:"최길구", hobby:["자기","놀기","게임"] }
+		{id:"007", name:"최길구", hobby:["자기","놀기","게임"] }
 	];
-		
 	
+	function listFunction(){
+		printList();
+		makeCHKs();
+	}
+
+	function makeCHKs(){
+		let strHTML = "";
+		for(let i=0;i<hobbies.length;i++){
+			strHTML += `<input type="checkbox" name="hobbies"/>
+						<span>${hobbies[i]}</span>`;
+		}
+		
+		document.getElementById("hobby").innerHTML = strHTML;
+	}
+
+	function printList(){
+		let strHTML="";
+		strHTML+=`<div class="row">
+					<span class="col" style="width:100px">아이디</span>
+					<span class="col" style="width:100px">이름</span>
+					<span class="col" style="width:200px">취미</span>
+				</div>`;
+		
+		for(let i=0;i<datas.length;i++){
+			strHTML += `<div class="row" onclick="clickFunction(this)" id="${datas[i].id}">`;
+			strHTML+=`<span class="col" style="width:100px" >${datas[i].id}</span>`;
+			strHTML+=`<span class="col" style="width:100px" >${datas[i].name}</span>`;
+			strHTML+=`<span class="col" style="width:200px" >${getHobbies(datas[i].id)}</span>`;
+			strHTML += "</div>";
+		}
+		
+		document.getElementById("studentsList").innerHTML = strHTML;
+	}
+
+	function getHobbies(id){
+		let result = "";
+		for(let i=0;i<datas.length;i++){
+			if(id==datas[i].id){
+				for(let j=0;j<datas[i].hobby.length;j++){
+					result += datas[i].hobby[j];
+					if(j!=datas[i].hobby.length-1){
+						result+=", ";
+					}
+				}
+			}
+		}
+		return result;
+	}
+	
+	function clickFunction(obj){
+		//전체체크해제
+		for(let k=0;k<hobbies.length;k++){
+			document.getElementsByName("hobbies")[k].checked=false;
+		}
+		//obj.id가 datas[i].id
+		for(let i=0;i<datas.length;i++){
+			if(obj.id==datas[i].id){
+
+				for(let j=0;j<datas[i].hobby.length;j++){
+					for(let k=0;k<hobbies.length;k++){
+						
+						if(hobbies[k]==datas[i].hobby[j]){
+							document.getElementsByName("hobbies")[k].checked=true;
+						}
+					}
+					
+				}
+			}
+		}
+	}
+
 	</script>
 
 
  </head>
- <body>
+ <body onload="listFunction()">
   
 	<div id="studentsList">
 
 	</div>
-	<div id="hobby">
+	<div id="hobby" style="clear: both;">
 
 	</div>
 
