@@ -5,10 +5,12 @@
 	<meta charset="UTF-8">
 
 	<style>
-		input,
-		div {
+		input{
 			font-size: 40px;
 			width: 100px;
+		}
+		div {
+			font-size: 40px;
 		}
 	</style>
 	<script>
@@ -24,13 +26,35 @@
 			없다면 경고창을 띄워서 몇번째 textbox의 값이 없음을 경고하고
 			커서를 해당 textbox로 보내주세요
 		*/
+		/*
 		function getSumExcept(arr){
 			let result = 0;
 
 			for (let i = 1; i <= 100; i++) {
 				if (i != arr[0] && i != arr[1] && i != arr[2]) {
+					//if문 이렇게 안쓰고 할 수 있는 방법?
 					result += i;
 				}
+			}
+			return result;
+		}
+		*/
+
+		function getSumExcept(arrIn){
+			let result = 0;
+			let arrNums = [];//1~100중 arrIn으로 받은 값들을 제외하고 더할 수들
+			
+			for (let j = 0; j < 100; j++) {
+				arrNums[j] = j+1;
+				//j:더해질 숫자의 위치 index
+				//j+1:더해질 숫자(1~100)
+				for (let k = 0; k < arrIn.length; k++) {
+					if (arrIn[k] == j + 1) {
+						//제외할 숫자를 0으로
+						arrNums[j] = 0;
+					}
+				}
+				result += arrNums[j];
 			}
 
 			return result;
@@ -39,23 +63,78 @@
 		function printSum() {
 			let result = 0;
 			let nums = document.getElementsByName("number");
-			let arrValues = [];
+			let arrValues = [];//제외할 숫자들의 배열
+			let emptyCount = 0;
 			
+			//제외할 숫자들의 배열 구하기
 			for(let i=0;i<nums.length;i++){
 				if(nums[i].value!=""){
 					arrValues[i] = parseInt(nums[i].value);
 				}
 				else{
+					//빈칸인경우
 					arrValues[i] = 0;
+					emptyCount++;
 				}
+				
 			}
+			
+			
+			//어디가 빈칸인지 경고창 출력
+			makeAlert(arrValues);
+			//커서옮기기
+			moveFocus(arrValues);
 
-			
-			
-			document.getElementById("result").innerHTML = getSumExcept(arrValues);
+			result = getSumExcept(arrValues);
+
+			if(emptyCount>0){
+				document.getElementById("result").innerHTML = "올바른 값을 입력해주세요";
+			}
+			else{
+				document.getElementById("result").innerHTML = result;
+			}
 			
 		}
 
+		function checkNum(obj){
+			let strCheck = obj.value;
+			let strNums = "0123456789";
+			for(let i=0;i<strCheck.length;i++){
+				let charCheck = strCheck.substr(i,1);
+				if(strNums.indexOf(charCheck)==-1){
+					obj.value = ""
+				}
+			}
+		}
+
+		function makeAlert(arr){
+			//배열 중 값이 0인 곳은 빈칸
+			let strAlert="";
+			for(let i=0;i<arr.length;i++){
+				if(arr[i]==0){
+					strAlert+= i+1;
+					if(i!=arr.length){
+						strAlert+="번째 ";
+					}
+				}
+			}
+			strAlert+="칸이 비었습니다."
+
+			if(strAlert!="칸이 비었습니다."){
+				alert(strAlert);
+			}
+		}
+
+		function moveFocus(arr){
+			//배열 중 값이 0인 곳은 빈칸
+			//비어있는 칸 중 첫번째 칸에만 커서를 옮기고 종료
+			for(let i=0;i<arr.length;i++){
+				if(arr[i]==0){
+					document.getElementsByName("number")[i].focus();
+					return;
+				}
+			}
+		}
 	</script>
 
 
@@ -64,9 +143,9 @@
 
 <body>
 	<div style="width:600px;">
-		<input type="text" id="number1" name="number" />
-		<input type="text" id="number2" name="number" />
-		<input type="text" id="number3" name="number" />
+		<input type="text" id="number1" name="number" onkeyup="checkNum(this)"/>
+		<input type="text" id="number2" name="number" onkeyup="checkNum(this)"/>
+		<input type="text" id="number3" name="number" onkeyup="checkNum(this)"/>
 		<input type="button" value="확인" onclick="printSum()" />
 	</div>
 	<div id="result">

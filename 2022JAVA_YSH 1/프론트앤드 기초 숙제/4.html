@@ -45,6 +45,14 @@
 			obj.checked=true;
 
 			document.getElementById("rec").style.backgroundColor = obj.value;
+			if(obj.value=="black"){
+				document.getElementById("rec").style.color = "white";	
+			}
+			else{
+				document.getElementById("rec").style.color = "black";
+			}
+
+			
 			document.getElementById("rec").innerHTML = obj.value;
 
 		}

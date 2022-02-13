@@ -43,16 +43,15 @@
 		}
 	}
 
-	function checkNum(strInput){
-		let result = "";
-		let strAllow="0123456789";
-		for(let i=0;i<strInput.length;i++){
-			let chkChar = strInput.substr(i,1);
-			if(strAllow.indexOf(chkChar)!=-1){
-				result+=chkChar;
+	function checkNum(obj){
+		let strCheck = obj.value;
+		let strNums = "0123456789";
+		for(let i=0;i<strCheck.length;i++){
+			let charCheck = strCheck.substr(i,1);
+			if(strNums.indexOf(charCheck)==-1){
+				obj.value = ""
 			}
 		}
-		return result;
 	}
 
 	function showBtn(obj){
@@ -85,10 +84,10 @@
  <body>
 	 <div>첫번째 상자를 클릭하고 탭으로 이동하세요<br>입력 완료시 탭키를 누르면 버튼이 생겨요~.~</div>
 	<div id="show">
-		<input type="text" name="number" readonly onclick="inputFunction(this)" tabindex="1"/>
+		<input type="text" name="number" readonly onclick="inputFunction(this)" onkeyup="checkNum(this)" tabindex="1"/>
 		<span>
-		<input type="text" name="number" readonly onfocus="inputFunction(this)" tabindex="2" style="pointer-events: none;"/>
-		<input type="text" name="number" readonly onfocus="inputFunction(this)" tabindex="3" style="pointer-events: none;"/>
+		<input type="text" name="number" readonly onfocus="inputFunction(this)" onkeyup="checkNum(this)" tabindex="2" style="pointer-events: none;"/>
+		<input type="text" name="number" readonly onfocus="inputFunction(this)" onkeyup="checkNum(this)" tabindex="3" style="pointer-events: none;"/>
 	</div>
 	<div id="btn" tabindex="4" onfocus="showBtn(this)" onclick="printSum()">
 		

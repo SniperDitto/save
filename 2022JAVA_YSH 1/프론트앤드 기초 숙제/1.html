@@ -33,16 +33,27 @@
 			document.getElementById("result").value = num1 + num2;
 		}
 
+		function checkNum(obj){
+			let strCheck = obj.value;
+			let strNums = "0123456789";
+			for(let i=0;i<strCheck.length;i++){
+				let charCheck = strCheck.substr(i,1);
+				if(strNums.indexOf(charCheck)==-1){
+					obj.value = ""
+				}
+			}
+		}
+
 	</script>
 
 </head>
 
 <body>
-	<input type="text" id="number1" />
+	<input type="text" id="number1" onkeyup="checkNum(this)"/>
 	<span> + </span>
-	<input type="text" id="number2" />
+	<input type="text" id="number2" onkeyup="checkNum(this)"/>
 	<span> = </span>
-	<input type="text" id="result" />
+	<input type="text" id="result" readonly/>
 
 	<input type="button" value="확인" onclick="printSum()" />
 </body>
