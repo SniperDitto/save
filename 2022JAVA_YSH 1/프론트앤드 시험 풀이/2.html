@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+
+	<style>
+		#result{
+			font-size:30px;
+		}
+	</style>
+
+	<script>
+
+		/*
+			문제 2.    -     15점
+
+			1 + 2 - 3 + 4 - 5 + 6 - 7 + 8 - 9 + 10 = ??
+
+			위의 계산식을 계산하여 아래의 id = reuslt 에 표현해 주세요
+			단 위의 계산식이 모두 화면에 출력되어야 합니다.
+		*/
+
+		/*
+			이 풀이가 정답이라는 것이 아니고, 이런 관점으로도 볼수 있다는 것입니다.
+		*/
+
+		let sumFunc = function(){
+			
+			let resultNum = 0;
+			let oddNum = 0;
+			let resultHTML = "";
+			let lastNum = 10;
+			for(let i=1;i<=lastNum;i++){
+
+				if(i % 2 == 1){
+					resultHTML += i + " + ";
+					resultNum += (i == 1) ? i : i * -1;
+				}
+				else{
+					resultHTML += i + " - ";
+					resultNum += i;
+				}
+			}
+			alert(resultHTML.lastIndexOf("-"));
+			if(resultHTML.lastIndexOf("-") != -1){
+				resultHTML = resultHTML.substr(0, resultHTML.trim().lastIndexOf("-")) + " = ";
+			}
+			
+			resultHTML = resultHTML + resultNum;
+
+			document.getElementById("result").innerHTML = resultHTML;
+
+		}
+
+	</script>
+
+  <title>프론트앤드 시험문제 2</title>
+ </head>
+ <body onload="sumFunc()">
+	<div id="result">
+		
+	</div>
+ </body>
+</html>
