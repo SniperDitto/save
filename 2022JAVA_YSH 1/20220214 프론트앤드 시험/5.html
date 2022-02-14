@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+
+	<style>
+		input, #result{
+			font-size:30px;
+		}
+	</style>
+
+	<script>
+
+		/*
+			문제 5      15점
+ 
+			다음과 같은 기능을 수행하는 함수를 각각 3개 만들어주세요
+		
+			1. 3개의 숫자값을 주면 3개의 합을 구하는 함수
+			2. 3개의 문자값을 주면 3개의 문자를 모두 합하여 주는 함수
+			3. n개의 숫자를 주면 n개의 값중에 홀수번째의 값만의 합을 구하는 함수
+
+			3개의 함수를 완성시키고
+			아래의 각 1, 2, 3 번 함수를 실행하는 버튼을 누르면
+			해당 함수가 실행되어 id="result"에 출력되게 해 주세요
+
+		*/
+
+		function getStrElements(inputString){
+			//String의 요소들을 배열로 변환
+			let elements = inputString.split(", ");
+			return elements;
+		}
+
+
+		//1번함수
+		function sumNums(num1, num2, num3){
+			let result = 0;
+			result = parseInt(num1)+parseInt(num2)+parseInt(num3);
+			return result;
+		}
+
+		//2번함수
+		function sumStrs(str1, str2, str3){
+			let result = "";
+			result = str1 + str2 + str3;
+			return result;
+		}
+
+		//3번함수
+		function sumOdds(arrInput){
+			let result = 0;
+			for(let i=0;i<arrInput.length;i++){
+				if(i%2==0){
+					result+=parseInt(arrInput[i]);
+				}
+			}
+			return result;
+		}
+		
+		
+		function runFunction(num){
+			let divs = document.getElementsByTagName("div");
+			let arrVals = getStrElements(divs[num].children[0].value);
+			let result="";
+			if(num==0){
+				//1번함수실행
+				result = sumNums(arrVals[0],arrVals[1],arrVals[2]);
+			}
+			else if(num==1){
+				//2번함수실행
+				result = sumStrs(arrVals[0], arrVals[1], arrVals[2]);
+			}
+			else if(num==2){
+				//3번함수실행
+				result = sumOdds(arrVals);
+			}
+			document.getElementById("result").innerHTML = result;
+		}
+	</script>
+
+
+
+  <title>프론트앤드 시험문제 5</title>
+ </head>
+ <body>
+  
+    <div>
+		<input type="text" value="4, 6, 12" id="txt1" readonly/>
+		<input type="button" value="1번함수 실행" onclick="runFunction(0)"/>
+	</div>
+	<div>
+		<input type="text" value="철수야, 영희야, 안녕" id="txt2" readonly/>
+		<input type="button" value="2번함수 실행" onclick="runFunction(1)"/>
+	</div>
+	<div>
+		<input type="text" value="1, 5, 12, 11, 56, 12, 45" id="txt3" readonly/>
+		<input type="button" value="3번함수 실행" onclick="runFunction(2)"/>
+	</div>
+	<div id="result">
+
+	</div>
+	
+
+ </body>
+</html>

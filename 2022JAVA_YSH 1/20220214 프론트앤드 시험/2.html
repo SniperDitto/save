@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+
+	<style>
+		#result{
+			font-size:30px;
+		}
+	</style>
+
+	<script>
+
+		/*
+			문제 2.    -     15점
+
+			1 + 2 - 3 + 4 - 5 + 6 - 7 + 8 - 9 + 10 = ??
+
+			위의 계산식을 계산하여 아래의 id = reuslt 에 표현해 주세요
+			단 위의 계산식이 모두 화면에 출력되어야 합니다.
+		*/
+
+		function printResult(){
+			let strHTML = "";
+			let sum = 1;//반복문에서 1 제외하므로 1부터시작
+			for(let i=1;i<=10;i++){
+				if(i<10){
+					if(i%2 == 0 ){
+						strHTML+=" + ";
+						sum+=i;
+					}
+					else if(i%2 != 0 && i!=1){
+						//1 제외
+						strHTML+=" - ";
+						sum-=i;
+					}
+
+					strHTML+=i;
+
+				}else{
+					strHTML+=" + 10 = "
+					sum+=10;
+				}
+			}
+			strHTML += sum;
+			document.getElementById("result").innerHTML = strHTML;
+		}
+
+	</script>
+
+  <title>프론트앤드 시험문제 2</title>
+ </head>
+ <body onload="printResult()">
+	<div id="result">
+		
+	</div>
+ </body>
+</html>
