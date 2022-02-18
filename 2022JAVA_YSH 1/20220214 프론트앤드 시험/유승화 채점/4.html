@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+
+	<style>
+
+		.row{
+			clear:both;
+			width:1200px;
+		}
+		.col{
+			width:200px;
+			padding:20px 0px 20px 0px;
+			display:block;
+			border:1px solid #333;
+			color:#444;
+			background-color:#eee;
+			float:left;
+			text-align:center;
+			font-size:40px;
+		}
+
+	</style>
+
+	<script>
+		/*
+
+			innerHTML을 속성으로 이용하는것은 위험하다.
+			그 이유는 HTML redrawing 때문인데
+			선생님 아직 이야기하지 않아서 이겠지만
+			이런식의 속성값 활용은 위험하다.
+
+			어째든 문제는 잘 풀었다.
+
+			출제자(의뢰자)의 의도를 너무 배려하지 않은점 : -2점
+
+			13점
+
+		*/
+
+
+
+		/*
+			문제 4                - 15점
+			페이지가 로딩되면 아래의 selectbox에
+			서울, 부산, 대구, 광주, 대전 5개의 도시의 값이
+			모두 포함되어 나타나게 하고,
+			
+			class=row div태그 안에 포함된 5개의 box
+			에 마우스를 올리면 마우스가 올라간 box는
+			color:#eee;
+			background-color:#444;
+			로 반전되고 
+			마우스를 빼면 원상복구 되며 (color:#444;background-color:#eee;),
+			마우스가 올라간 도시의 값은 아래의 selectbox 에서도
+			선택이 되도록 해주세요
+
+		*/
+		let spns = document.getElementsByTagName("span")
+		//span의 innerHTML을 value로 <-- 아이디어는 좋은데 위험한 방법
+		
+		function loadFunction(){
+			let strOption = "";
+			
+			for(let i=0;i<spns.length;i++){
+				strOption+="<option>";
+				strOption+=spns[i].innerHTML;
+				strOption+="</option>";
+			}
+			document.getElementById("city").innerHTML = strOption;
+		}
+
+		function chgColor(obj){
+			let sel = document.getElementById("city");
+			obj.style.backgroundColor = "#444";
+			obj.style.color = "#eee";
+			
+			for(let i=0;i<spns.length;i++){
+				if(spns[i].innerHTML == obj.innerHTML){
+					sel.options[i].selected = true;
+				}
+			}
+
+		}
+
+		function rmvColor(obj){
+			if(obj.style.color != "#eee"){
+				obj.style.backgroundColor = "#eee";
+				obj.style.color = "#444";
+			}
+		}	
+
+	</script>
+
+
+
+  <title>프론트앤드 시험문제 4</title>
+ </head>
+ <body onload="loadFunction()">
+	<div class="row">
+		<span name="cities" class="col" onmouseover="chgColor(this)" onmouseout="rmvColor(this)" value="1">1. 서울</span>
+		<span name="cities" class="col" onmouseover="chgColor(this)" onmouseout="rmvColor(this)" value="2">2. 부산</span>
+		<span name="cities" class="col" onmouseover="chgColor(this)" onmouseout="rmvColor(this)" value="3">3. 대구</span>
+		<span name="cities" class="col" onmouseover="chgColor(this)" onmouseout="rmvColor(this)" value="4">4. 광주</span>
+		<span name="cities" class="col" onmouseover="chgColor(this)" onmouseout="rmvColor(this)" value="5">5. 대전</span>
+	</div>
+	<div>
+		<select id="city">
+			
+		</select>
+	</div>
+ </body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+
+	<style>
+		#result{
+			font-size:30px;
+		}
+	</style>
+
+	<script>
+		/*
+			일단 아래에 ?????? 한 부분을 왜 저렇게 짠건지
+			숫자가 10까지가 아니고 더 많으면 어케 할려고
+
+			승화야 어려운 프로그램을 잘 짜는것만이 능사는 아니다.
+			쉬운 프로그램일수록 더욱 일반화를 잘해야 하는 것인데
+
+			음 아무래도 섬세함이 부족한 듯
+
+			결과는 맞았지만 좀 이상해....
+
+			관점이 차이도 좀 있고,  
+
+
+			마지막 처리 미숙   -2점
+
+			13점
+		*/
+
+
+		/*
+			문제 2.    -     15점
+
+			1 + 2 - 3 + 4 - 5 + 6 - 7 + 8 - 9 + 10 = ??
+
+			위의 계산식을 계산하여 아래의 id = reuslt 에 표현해 주세요
+			단 위의 계산식이 모두 화면에 출력되어야 합니다.
+		*/
+
+		function printResult(){
+			let strHTML = "";
+			let sum = 1;//반복문에서 1 제외하므로 1부터시작
+			for(let i=1;i<=10;i++){
+				if(i<10){
+					if(i%2 == 0 ){
+						strHTML+=" + ";
+						sum+=i;
+					}
+					else if(i%2 != 0 && i!=1){
+						//1 제외
+						strHTML+=" - ";
+						sum-=i;
+					}
+
+					strHTML+=i;
+
+				}else{
+					strHTML+=" + 10 = "  //???????
+					sum+=10;             //???????
+				}
+			}
+			strHTML += sum;
+			document.getElementById("result").innerHTML = strHTML;
+		}
+
+	</script>
+
+  <title>프론트앤드 시험문제 2</title>
+ </head>
+ <body onload="printResult()">
+	<div id="result">
+		
+	</div>
+ </body>
+</html>
