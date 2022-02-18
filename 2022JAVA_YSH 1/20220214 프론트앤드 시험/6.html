@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+	<style>
+		.row,#scoreList,#result{
+			clear: both;
+		}
+		#stdName:hover{
+			background-color: lightskyblue;
+			cursor: pointer;
+		}
+		.col{
+			float: left;
+			display: block;
+			border: 1px solid black;
+			width: 100px;
+		}
+		
+	</style>
+
+	<script>
+
+		/*
+			문제 6  -      20점
+			아래의 데이터는 시험결과 데이터 입니다.
+			순서대로  아이디, 이름, 국어, 수학, 영어, 과학, 성별
+			데이터입니다.
+
+			아래의 데이터를 id=scoreList 에 리스트로 보여주세요
+			단 리스트는
+			아이디, 이름, 국어, 수학, 영어, 과학, 성별, 총점, 평균으로 
+			보여주세요
+
+			그리고 각 학생의 이름을 클릭하면
+			id="result" 에 합격여부를 알려주세요
+
+			평균이 60점 이상이면 합격이며, 한과목이라도 40점 미만이면 안됩니다.
+		*/
+
+		let datas = [
+			{id:"001", name:"김갑수", kor:78, math:67, eng:70, sci:80, gender:"M"},
+			{id:"002", name:"박길자", kor:58, math:47, eng:90, sci:90, gender:"F"},
+			{id:"003", name:"최수연", kor:67, math:51, eng:90, sci:40, gender:"F"},
+			{id:"004", name:"이자연", kor:90, math:87, eng:30, sci:70, gender:"F"},
+			{id:"005", name:"경수직", kor:45, math:47, eng:68, sci:45, gender:"M"}
+		]
+		setScore();
+
+		function setScore(){
+			for(let i=0;i<datas.length;i++){
+				datas[i].total = parseFloat(datas[i].kor) + parseFloat(datas[i].math) + parseFloat(datas[i].eng) + parseFloat(datas[i].sci);
+				datas[i].avg = datas[i].total / 4;
+			}
+		}
+		
+		function printList(){
+			let strHead = `<div class="row">
+							<span class="col">아이디</span>
+							<span class="col">이름</span>
+							<span class="col">국어</span>
+							<span class="col">수학</span>
+							<span class="col">영어</span>
+							<span class="col">과학</span>
+							<span class="col">성별</span>
+							<span class="col">총점</span>
+							<span class="col">평균</span>
+							</div>`;
+			document.getElementById("scoreList").innerHTML = strHead;
+
+			let strList ="";
+			for(let i=0;i<datas.length;i++){
+				strList += `<div class="row" >`;
+				strList += `<span class="col">${datas[i].id}</span>`;
+				strList += `<span class="col" onclick="pfFunction(${datas[i].id})" id="stdName">${datas[i].name}</span>`;
+				strList += `<span class="col">${datas[i].kor}</span>`;
+				strList += `<span class="col">${datas[i].math}</span>`;
+				strList += `<span class="col">${datas[i].eng}</span>`;
+				strList += `<span class="col">${datas[i].sci}</span>`;
+				strList += `<span class="col">${datas[i].gender}</span>`;
+				strList += `<span class="col">${datas[i].total}</span>`;
+				strList += `<span class="col">${datas[i].avg}</span>`;
+				strList += "</div>";
+			}
+			
+			document.getElementById("scoreList").innerHTML += strList;
+		}
+
+		function pfFunction(id){
+			let result = "";
+			let name = "";
+			for(let i=0;i<datas.length;i++){
+				if(datas[i].id == id){
+					name = datas[i].name;
+					if(datas[i].avg>=60){
+						result="<font color='blue'>합격</font>";
+					}else{
+						result="<font color='red'>불합격</font>(평균미달)";
+					}
+
+					if(datas[i].kor < 40 || datas[i].eng<40 || datas[i].math<40 || datas[i].sci<40){
+						result="<font color='red'>불합격</font>(과락)";
+					}
+
+				}
+			}
+
+			document.getElementById("result").innerHTML = name + "은(는) " + result + " 입니다."
+		}
+
+	</script>
+
+
+  <title>프론트앤드 시험문제 6</title>
+ </head>
+ <body onload="printList()">
+	<div id="scoreList">
+
+	</div>
+	<div id="result">
+
+	</div>
+ </body>
+</html>

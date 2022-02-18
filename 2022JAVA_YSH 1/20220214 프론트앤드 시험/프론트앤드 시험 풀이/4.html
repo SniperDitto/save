@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+
+	<style>
+
+		.row{
+			clear:both;
+			width:1200px;
+		}
+		.col{
+			width:200px;
+			padding:20px 0px 20px 0px;
+			display:block;
+			border:1px solid #333;
+			color:#444;
+			background-color:#eee;
+			float:left;
+			text-align:center;
+			font-size:40px;
+		}
+
+		select{
+			font-size:40px;
+		}
+
+	</style>
+
+	<script>
+
+		/*
+			문제 4                - 12점
+			페이지가 로딩되면 아래의 selectbox에
+			서울, 부산, 대구, 광주, 대전 5개의 도시의 값이
+			모두 포함되어 나타나게 하고,
+			
+			class=row div태그 안에 포함된 5개의 box
+			에 마우스를 올리면 마우스가 올라간 box는
+			color:#eee;
+			background-color:#444;
+			로 반전되고 
+			마우스를 빼면 원상복구 되며 (color:#444;background-color:#eee;),
+			마우스가 올라간 도시의 값은 아래의 selectbox 에서도
+			선택이 되도록 해주세요
+
+		*/
+
+		let cityDatas = [
+			{number:1, name:"서울"},
+			{number:2, name:"부산"},
+			{number:3, name:"대구"},
+			{number:4, name:"광주"},
+			{number:5, name:"대전"}
+		];
+
+		let loadDatas = function(){
+
+			let strHTML = "";
+			let strCityName = "";
+			for(let i=0;i<cityDatas.length;i++){
+
+				strCityName = cityDatas[i].number + ". " + cityDatas[i].name;
+				
+				strHTML += `<option value="${cityDatas[i].number}">${strCityName}</option>`;
+			}
+			
+			document.getElementById("city").innerHTML += strHTML;
+
+		}
+
+		let selFunc = function(index, oEvent){
+	
+			document.getElementById("city").value = cityDatas[index].number;
+
+
+			let objSpan = document.getElementsByName("cities");
+			if(oEvent == "over"){
+				objSpan[index].style.color = "#eee";
+				objSpan[index].style.backgroundColor = "#444";
+			}
+			if(oEvent == "out"){
+				objSpan[index].style.color = "#444";
+				objSpan[index].style.backgroundColor = "#eee";
+			}
+
+		}
+
+	</script>
+
+
+
+  <title>프론트앤드 시험문제 4</title>
+ </head>
+ <body >
+	<div class="row">
+		<span name="cities" class="col" onmouseover="selFunc(0, 'out')" onmouseout="selFunc(0, 'out')")>1. 서울</span>
+		<span name="cities" class="col" onmouseover="selFunc(1, 'out')" onmouseout="selFunc(1, 'out')">2. 부산</span>
+		<span name="cities" class="col" onmouseover="selFunc(2, 'out')" onmouseout="selFunc(2, 'out')">3. 대구</span>
+		<span name="cities" class="col" onmouseover="selFunc(3, 'out')" onmouseout="selFunc(3, 'out')">4. 광주</span>
+		<span name="cities" class="col" onmouseover="selFunc(4, 'out')" onmouseout="selFunc(4, 'out')">5. 대전</span>
+	</div>
+	<div class="row">
+		<select id="city">
+			
+		</select>
+	</div>
+
+	<script>
+		loadDatas();
+	</script>
+ </body>
+</html>

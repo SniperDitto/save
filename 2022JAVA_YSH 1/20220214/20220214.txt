@@ -1,0 +1,75 @@
+
+데이터베이스 = Server
+
+
+
+
+MS -> MS SQL
+Oracle -> Oracle
+MySQL -> 현재 Oracle 소유
+DB2 -> IBM
+
+ ====> 각각 문법이 조금씩 다르다
+
+
+
+Oracle
+7, 8, 9 ...
+10i -> 11g -> 12g -> 18c(AI 등) -> 21c(기능 +++)
+
+
+Server 관리 -> SA / programmer
+
+express버전 : 데이터 4기가 제한, 일부 기능 제한
+
+보통 JDK 포함된 것을 다운받아 쓴다
+
+데이터베이스(서버)에 접속하기 위해서는 클라이언트 툴이 필요하다
+
+Client tool
+-> Toad : 개비싸다. 개좋다.
+-> Orange : 비싸다. 좋다.
+-> SQL Developer : 무료다. 불편하다.
+
+
+
+C:\app\pknu\product\18.0.0\에 설치
+아이디 : 1
+비밀번호 : 1
+
+Oracle의 경우
+다른 사람에게 총 관리 아이디 비밀번호를 직접 알려주지 말고
+새 계정을 만들어 그 사람의 계정에 필요한 권한을 줘 데이터에 접근 가능하게 한다.
+
+
+MSSQL의 경우
+각 계정별로 접근 가능한 데이터가 다르다
+
+
+
+입력 / 조회 / 수정 / 삭제
+Create / Retrive / Update / Delete
+
+Create
+ - insert
+Retrive Read
+ - select
+Update
+ - update
+Delete
+ - delete
+
+2차원 데이터베이스에서 데이터의 최소 단위는 row다.
+
+
+
+--한 줄 주석
+/*여
+러줄 주
+/*석
+
+
+
+
+
+

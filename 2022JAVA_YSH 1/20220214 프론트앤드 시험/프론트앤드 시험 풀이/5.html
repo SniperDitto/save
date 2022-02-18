@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+
+	<style>
+		input, #result{
+			font-size:30px;
+		}
+	</style>
+
+	<script>
+
+		/*
+			문제 5      15점
+ 
+			다음과 같은 기능을 수행하는 함수를 각각 3개 만들어주세요
+		
+			1. 3개의 숫자값을 주면 3개의 합을 구하는 함수
+			2. 3개의 문자값을 주면 3개의 문자를 모두 합하여 주는 함수
+			3. n개의 숫자를 주면 n개의 값중에 홀수번째의 값만의 합을 구하는 함수
+
+			3개의 함수를 완성시키고
+			아래의 각 1, 2, 3 번 함수를 실행하는 버튼을 누르면
+			해당 함수가 실행되어 id="result"에 출력되게 해 주세요
+
+		*/
+
+		let questFunc = [];
+
+		//1.function
+		questFunc[0] = function(numbers){
+
+			let results = numbers.split(", ");
+
+			let sumNum = 0;
+			for(let i=0;i<results.length;i++){
+				sumNum += parseInt(results[i]);
+			}
+
+			return sumNum;
+
+		}
+
+		//2. function
+		questFunc[1] = function(strings){
+			let results = strings.split(", ");
+
+			let sumStr = "";
+			for(let i=0;i<results.length;i++){
+				sumStr += results[i];
+			}
+
+			return sumStr;
+		}
+
+		//3. function
+		questFunc[2] = function(numbers){
+			let results = numbers.split(", ");
+
+			let sumNum = 0;
+			for(let i=0;i<results.length;i++){
+				if(i % 2 == 1){
+					sumNum += parseInt(results[i]);
+				}
+			}
+
+			return sumNum;
+		}
+
+		let resultFunc = function(index){
+
+			let objResult = document.getElementById("result");
+			let objQuests = document.getElementsByName("quest");
+			
+			objResult.innerHTML = questFunc[index](objQuests[index].value);
+
+		}
+
+	</script>
+
+
+
+  <title>프론트앤드 시험문제 5</title>
+ </head>
+ <body>
+  
+    <div>
+		<input type="text" value="4, 6, 12" name="quest" readonly/>
+		<input type="button" value="1번함수 실행" onclick="resultFunc(0)"/>
+	</div>
+	<div>
+		<input type="text" value="철수야, 영희야, 안녕" name="quest" readonly/>
+		<input type="button" value="2번함수 실행" onclick="resultFunc(1)" />
+	</div>
+	<div>
+		<input type="text" value="1, 5, 12, 11, 56, 12, 45" name="quest" readonly/>
+		<input type="button" value="3번함수 실행" onclick="resultFunc(2)" />
+	</div>
+	<div id="result">
+
+	</div>
+	
+
+ </body>
+</html>
