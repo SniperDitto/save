@@ -1,3 +1,5 @@
+
+
 --2. 지역별 학생수 리스트를 보여주세요
     SELECT SADDR, COUNT(*) AS 학생수
     FROM STUDENTS
@@ -22,7 +24,7 @@
     
  
 --8. 1980년대생 교수들이 출제한 과목을 리스트로 보여주세요
-    SELECT P.BIRTH, P.PNAME, E.ENAME
+    SELECT P.BIRTH, P.PNAME, NVL(E.ENAME,'출제안함') AS 출제한과목
     FROM PROFESSORS P, EXAMS E
     WHERE P.PID=E.PID(+)
         AND P.BIRTH LIKE('198%');
@@ -41,6 +43,12 @@
     FROM STUDENTS ST, SCORES SC
     WHERE ST.SID=SC.SID
     GROUP BY ST.SADDR;
+    
+    SELECT ST.SADDR, SUM(SC.SCORE) AS SUM, ROUND(AVG(NVL(SC.SCORE,0)),2) AS AVG
+    FROM STUDENTS ST, SCORES SC, EXAMS E
+    WHERE ST.SID=SC.SID(+) AND E.PID=SC.PID(+) AND E.SUBID=SC.SUBID(+)
+    GROUP BY ST.SADDR
+    ORDER BY ST.SADDR;
 
 --14. 모든학생들의 총점과 평균 점수를 보여주세요
 --수업시간에한것
@@ -58,8 +66,8 @@
     SELECT ST.SNAME, SUM(SC.SCORE), ROUND(AVG(SC.SCORE),2)
     FROM STUDENTS ST, SCORES SC
     WHERE ST.SID=SC.SID
-    GROUP BY ST.SNAME
-    ORDER BY ST.SNAME;
+    GROUP BY ST.SID, ST.SNAME
+    ORDER BY ST.SID, ST.SNAME;
     
     --안 본 과목 0점으로 가정했을 때
     SELECT ST.SNAME, SUM(SC.SCORE), ROUND(AVG(NVL(SC.SCORE,0)),2)
@@ -88,11 +96,27 @@
 
 
 --18. 평균점수가 가장 낮은 시험의 가장 낮은 점수를 받은 학생을 찾아주세요
+    --시험 응시자만 포함
+    
     SELECT E.ENAME, SC.SCORE, ST.SNAME
     FROM EXAMS E, SCORES SC, STUDENTS ST
     WHERE E.PID=SC.PID AND E.SUBID=SC.SUBID AND SC.SID=ST.SID
-        AND (ENAME, AVG(SCORE)) IN(SELECT ENAME, MIN(AVG(SCORE)) FROM SCORES GROUP BY ENAME);
-        --(구글에서 찾음)
+        AND (ENAME, SCORE) IN(SELECT ENAME, MIN(SCORE) FROM SCORES GROUP BY ENAME);
+        -- 점수가 가장 낮은 시험이 영어 시험이라 우연히 맞게 나옴
+        
+    SELECT *
+    FROM(
+        --시험별 평균점수
+        SELECT E.ENAME, ROUND(AVG(SC.SCORE),2) AS 평균
+        FROM EXAMS E, SCORES SC
+        WHERE E.SUBID=SC.SUBID
+        GROUP BY E.ENAME
+        --ORDER BY 평균 ASC
+    ) A,
+    (
+        
+    ) B
+    ;
 
 --20. 가장 평균이 높은 시험을 출제한 교수가 사는 지역에 살고 있는 학생리스트를 보여주세요
    -- SELECT E.ENAME, SC.SCORE, P.PNAME, P.PADDR AS 교수주소, ST.SNAME, ST.SADDR AS 학생주소

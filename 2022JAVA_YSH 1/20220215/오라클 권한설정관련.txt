@@ -1,0 +1,238 @@
+[ oracle 에서 user 생성 및 table 생성,삭제 권한 부여하기 (12c, 18c) ]
+
+ 
+
+1)oracle 12c부터 계정을 생성할때 c##계정이름 이렇게 생성해야 계정이 만들어짐.
+
+   ex) SQL>conn c##hr/hr; 
+
+ 
+
+2)예전에 접속할때 SQL> conn hr/hr  이렇게 접속하기 위해서 해줘야 할 설정
+
+ 
+
+   . SQLPLUS에 SYS as SYSDBA 혹은 SYSTEM으로 로그인 한다. 
+
+     사용자명 입력 : SYSTEM( or SYS as SYSDBA)
+
+     비밀번호 입력 : 12345 [설치할때 입력한 비밀번호 입력후 엔터,예를 들어 12345로 입력했다면]
+
+      
+
+     [sqlpus 프롬프트에서 아래와 같이 작성하여 설정을 변경해 준다.]
+
+    . SQL>alter session set "_ORACLE_SCRIPT"=true; 
+
+
+     [예전에 계정 생성한것 처럼 create user (생성할계정명) identified by (생성할 계정의 비밀번호)]
+
+    . SQL>create user testuser identified by testuser;
+
+ 
+
+     [생성할 user에 세션 할당]
+
+    . SQL> grant create session to testuser; 
+
+ 
+
+     [나머지 DB사용할 수 있는 권한 할당]
+
+    . SQL> grant connect, resource to testuser;
+ 
+
+    여기까지만 적용시키면 생성된 유저로 테이블 생성은 되는데 insert실행시 다음같은 오류가 발생함
+
+    ORA-01950 : 테이블스페이스 'USERS"에 대한 권한이 없습니다.
+
+    하여 아래와 같이 하나를 더 적용시켜 준다. 
+
+  
+
+    [테이블 생성 및 데이터 insert까지 가능]
+
+    . SQL> alter user testuser default tablespace users quota unlimited on users;
+
+
+ 
+
+1. 계정의 테이블 스페이스 생성
+
+create tablespace [tablespace_name] 
+
+datafile '/home/oracle/oradata/DANBEE/[file_name].dbf' size 500m;
+
+예)
+
+CREATE TABLESPACE ADMIN DATAFILE 'D:\ORACLE\ORADATA\XE\ADMIN.dbf' SIZE  500M ;
+
+ 
+
+2. 오라클 유저 만들기
+
+CREATE USER [user_name] 
+
+IDENTIFIED BY [password]
+
+DEFAULT TABLESPACE [tablespace_name]
+
+TEMPORARY TABLESPACE TEMP;
+
+예)
+
+CREATE USER nextree IDENTIFIED BY nextree DEFAULT TABLESPACE NEXTREE TEMPORARY TABLESPACE TEMP;
+
+ 
+
+3. 생성한 USER에 권한주기
+
+GRANT connect, resource, dba TO [user_name];
+
+예)
+
+grant connect, dba, resource to 유저명; (모든 권한 주기)
+
+ 
+
+GRANT CREATE SESSION TO 유저명         // 데이터베이스에 접근할 수 있는 권한
+
+GRANT CREATE DATABASE LINK TO 유저명
+
+GRANT CREATE MATERIALIZED VIEW TO 유저명
+
+GRANT CREATE PROCEDURE TO 유저명
+
+GRANT CREATE PUBLIC SYNONYM TO 유저명
+
+GRANT CREATE ROLE TO 유저명
+
+GRANT CREATE SEQUENCE TO 유저명
+
+GRANT CREATE SYNONYM TO 유저명
+
+GRANT CREATE TABLE TO 유저명             // 테이블을 생성할 수 있는 권한
+
+GRANT DROP ANY TABLE TO 유저명         // 테이블을 제거할 수 있는 권한
+
+GRANT CREATE TRIGGER TO 유저명 
+
+GRANT CREATE TYPE TO 유저명 
+
+GRANT CREATE VIEW TO 유저명
+
+ 
+
+GRANT  
+
+ CREATE SESSION
+
+,CREATE TABLE
+
+,CREATE SEQUENCE   
+
+,CREATE VIEW
+
+TO 유저명;
+
+ 
+
+4. 생성한 USER로 ORACLE에 접속하기
+
+sqlplus nextree/nextree[@db_sid]
+
+ 
+
+5. 계정 삭제하기
+
+drop user 사용자계정 cascade;
+
+ 
+
+-- 테이블 스페이스 크기 확장해주는 쿼리문
+
+alter database 
+
+datafile 'D:\oracle\oradata\XE\ADMIN.DBF'  resize 900M;
+
+ 
+
+--테이블 스페이스 정보 보는 쿼리문 
+
+SELECT file_name, tablespace_name, bytes, status FROM  DBA_DATA_FILES;
+
+ 
+
+--테이블 명시적 인덱스 생성
+
+--1번째 방법
+
+CREATE INDEX MSID_IDX1 ON TEST(MSID)
+
+--2번째 방법
+
+create index test1_test on test1(test) 
+
+tablespace users 
+
+storage 
+
+( 
+
+initial 10k 
+
+next     10k 
+
+pctincrease 0) 
+
+pctfree 10
+
+ 
+
+--테이블 정보 보는 쿼리
+
+select * from user_constraints-- where table_name = upper('test1');
+
+ 
+
+--ORA-00054: 자원이 사용중이고, NOWAIT가 지정되어 있습니다 해결 방법 
+
+select a.sid, a.serial# 
+
+from v$session a, v$lock b, dba_objects c 
+
+where a.sid=b.sid and 
+
+b.id1=c.object_id and 
+
+b.type='TM' and 
+
+c.object_name='CAR_INFO';
+
+ 
+
+alter system kill session '12, 27846';
+
+ 
+
+-- CAR_INFO에는 있는 값을 DASH_BOARD에 넣기
+
+INSERT INTO DASH_BOARD(CAR_LICEN_NUM)
+
+SELECT CAR_LICEN_NUM FROM CAR_INFO
+
+MINUS
+
+SELECT CAR_LICEN_NUM FROM DASH_BOARD
+
+ 
+
+SYSTEM 계정 패스워드 변경하기
+
+사용자계정 : /as sysdba
+
+ 
+
+alter user system identified by "암호";
+
+일반 스트링은 관계없지만 특수문자가 있을경우 반드시 "" 따옴표로 감싸준다.
