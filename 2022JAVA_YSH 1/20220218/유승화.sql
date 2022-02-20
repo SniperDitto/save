@@ -98,11 +98,13 @@
 --18. 평균점수가 가장 낮은 시험의 가장 낮은 점수를 받은 학생을 찾아주세요
     --시험 응시자만 포함
     
+    /*
     SELECT E.ENAME, SC.SCORE, ST.SNAME
     FROM EXAMS E, SCORES SC, STUDENTS ST
     WHERE E.PID=SC.PID AND E.SUBID=SC.SUBID AND SC.SID=ST.SID
         AND (ENAME, SCORE) IN(SELECT ENAME, MIN(SCORE) FROM SCORES GROUP BY ENAME);
         -- 점수가 가장 낮은 시험이 영어 시험이라 우연히 맞게 나옴
+    */
         
     SELECT *
     FROM(
@@ -117,6 +119,22 @@
         
     ) B
     ;
+    
+    --임시 풀이
+        --1. 시험별 평균점수 : 영어가 가장 낮음
+        SELECT E.ENAME, ROUND(AVG(SC.SCORE),2) AS 평균
+        FROM EXAMS E, SCORES SC
+        WHERE E.SUBID=SC.SUBID
+        GROUP BY E.ENAME
+        ORDER BY 평균 ASC;
+        
+        --2. 영어시험의 점수 : 이효진이 가장 낮음
+        SELECT ST.SNAME, E.ENAME, SC.SCORE
+        FROM STUDENTS ST, EXAMS E, SCORES SC
+        WHERE ST.SID=SC.SID AND E.PID=SC.PID
+            AND E.ENAME='영어 시험'
+        ORDER BY SC.SCORE ASC;
+    
 
 --20. 가장 평균이 높은 시험을 출제한 교수가 사는 지역에 살고 있는 학생리스트를 보여주세요
    -- SELECT E.ENAME, SC.SCORE, P.PNAME, P.PADDR AS 교수주소, ST.SNAME, ST.SADDR AS 학생주소
@@ -126,6 +144,18 @@
     --    AND (PADDR, PNAM;
 
 
-
+    --임시 풀이
+        --1. 가장 평균이 높은 시험을 출제한 교수 : 이국중
+        SELECT P.PNAME, SC.SUBID, AVG(SC.SCORE)
+        FROM PROFESSORS P, SCORES SC
+        WHERE P.PID=SC.PID
+        GROUP BY P.PNAME, SC.SUBID
+        ORDER BY AVG(SC.SCORE) DESC;
+    
+        --2. 이국중 교수가 사는 지역에 사는 학생들
+        SELECT ST.SNAME, ST.SADDR, P.PNAME, P.PADDR
+        FROM STUDENTS ST, PROFESSORS P
+        WHERE ST.SADDR=P.PADDR
+            AND P.PNAME='이국중';
 
 
