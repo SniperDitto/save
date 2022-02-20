@@ -102,28 +102,64 @@
 --18. 평균점수가 가장 낮은 시험의 가장 낮은 점수를 받은 학생을 찾아주세요
 
     --시험 응시자만 포함
+    -- EXAMS + SCORE로 평균점수가 가장 낮은 과목 구하기
+    -- 위의 테이블과 학생 테이블을 이용해 가장 낮은 점수를 받은 학생 구하기
     
-    /*
-    SELECT E.ENAME, SC.SCORE, ST.SNAME
-    FROM EXAMS E, SCORES SC, STUDENTS ST
-    WHERE E.PID=SC.PID AND E.SUBID=SC.SUBID AND SC.SID=ST.SID
-        AND (ENAME, SCORE) IN(SELECT ENAME, MIN(SCORE) FROM SCORES GROUP BY ENAME);
-        -- 점수가 가장 낮은 시험이 영어 시험이라 우연히 맞게 나옴
-    */
-        
-    SELECT *
-    FROM(
-        --시험별 평균점수
-        SELECT E.ENAME, ROUND(AVG(SC.SCORE),2) AS 평균
+    -- 평균이 최소인 시험의 평균
+    SELECT MIN(AVG(SC.SCORE)) AS MINAVG
+    FROM EXAMS E, SCORES SC
+    WHERE E.SUBID=SC.SUBID AND E.PID=SC.PID
+    GROUP BY E.PID, E.SUBID;
+    
+    -- 위의 평균을 이용해 구한 시험명
+    SELECT E.ENAME, AVG(SC.SCORE)
+    FROM EXAMS E, SCORES SC
+    WHERE E.SUBID=SC.SUBID AND E.PID=SC.PID
+    GROUP BY E.ENAME
+    HAVING AVG(SC.SCORE)=(SELECT MIN(AVG(SC.SCORE)) AS MINAVG
         FROM EXAMS E, SCORES SC
-        WHERE E.SUBID=SC.SUBID
-        GROUP BY E.ENAME
-        --ORDER BY 평균 ASC
-    ) A,
-    (
+        WHERE E.SUBID=SC.SUBID AND E.PID=SC.PID
+        GROUP BY E.PID, E.SUBID
+        );
         
-    ) B
-    ;
+    --위의 테이블을 이용해 구한 해당 시험의 최저점
+    SELECT MIN(SC.SCORE)
+    FROM EXAMS E, SCORES SC, (
+        SELECT E.ENAME, AVG(SC.SCORE)
+        FROM EXAMS E, SCORES SC
+        WHERE E.SUBID=SC.SUBID AND E.PID=SC.PID
+        GROUP BY E.ENAME
+        HAVING AVG(SC.SCORE)=(SELECT MIN(AVG(SC.SCORE)) AS MINAVG
+            FROM EXAMS E, SCORES SC
+            WHERE E.SUBID=SC.SUBID AND E.PID=SC.PID
+            GROUP BY E.PID, E.SUBID
+        )
+    ) A
+    WHERE E.PID=SC.PID AND E.SUBID=SC.SUBID
+        AND E.ENAME=A.ENAME;
+    
+    --그 최저점을 가진 학생의 이름&점수&시험명
+    SELECT ST.SNAME, SC.SCORE, E.ENAME
+    FROM STUDENTS ST, SCORES SC, EXAMS E
+    WHERE ST.SID=SC.SID AND SC.SUBID=E.SUBID AND SC.PID=E.PID
+        AND SC.SCORE=(
+            SELECT MIN(SC.SCORE)
+            FROM EXAMS E, SCORES SC, (
+                SELECT E.ENAME, AVG(SC.SCORE)
+                FROM EXAMS E, SCORES SC
+                WHERE E.SUBID=SC.SUBID AND E.PID=SC.PID
+                GROUP BY E.ENAME
+                HAVING AVG(SC.SCORE)=(SELECT MIN(AVG(SC.SCORE)) AS MINAVG
+                    FROM EXAMS E, SCORES SC
+                    WHERE E.SUBID=SC.SUBID AND E.PID=SC.PID
+                    GROUP BY E.PID, E.SUBID
+                )
+            ) A
+        WHERE E.PID=SC.PID AND E.SUBID=SC.SUBID
+            AND E.ENAME=A.ENAME
+        );
+    --이게 맞나 너무 복잡한데
+    
     
     --임시 풀이
         --1. 시험별 평균점수 : 영어가 가장 낮음
