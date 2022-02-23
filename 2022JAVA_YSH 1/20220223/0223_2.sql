@@ -1,0 +1,124 @@
+
+SELECT * FROM GRPCOMMONS_TBL;
+SELECT * FROM COMMONS_TBL;
+
+SELECT * FROM STUDENTS_TBL;
+SELECT * FROM SUBJECTS_TBL;
+SELECT * FROM PROFESSORS_TBL;
+
+SELECT * FROM STUDENTS_TIME_TBL;
+SELECT * FROM SCORES_TBL;
+
+--1. 수강신청 안한 학생들
+SELECT * FROM STUDENTS_TBL T1, STUDENTS_TIME_TBL T2
+WHERE T1.STU_ID=T2.STU_ID(+)
+    AND T2.STU_ID IS NULL;
+
+
+--2. 수강신청을 하지 않은 학생들이 가장 많은 학과
+    --학과별 수강신청 안한 학생 수 : 단과대, 학과, 학생수, 순위
+    SELECT C2.COM_VAL AS 단과대, C1.COM_VAL AS 학과, A.CNT AS 학생수,
+        RANK() OVER(ORDER BY A.CNT DESC) AS RANKING
+    FROM COMMONS_TBL C1, COMMONS_TBL C2,
+    (
+        SELECT ST.STU_DEPT_GRP, ST.STU_DEPT, COUNT(*) AS CNT
+        FROM STUDENTS_TBL ST, STUDENTS_TIME_TBL STT
+        WHERE ST.STU_ID=STT.STU_ID(+)
+            AND STT.STU_ID IS NULL
+        GROUP BY ST.STU_DEPT_GRP, ST.STU_DEPT
+    ) A
+    WHERE C1.GRP_ID=A.STU_DEPT_GRP
+        AND C1.COM_ID=A.STU_DEPT
+        AND C1.PARENT_ID=C2.COM_ID
+        AND C1.PARENT_ID IS NOT NULL
+        AND C2.GRP_ID='GRP002';
+
+
+
+--학생리스트 : 학생ID, 이름, 단과대, 학과, 주소
+    SELECT T1.STU_ID, T1.STU_NAME, T2.COM_ID, T2.COM_VAL, T3.COM_ID, T3.COM_VAL, T3.GRP_ID
+    FROM STUDENTS_TBL T1, COMMONS_TBL T2, COMMONS_TBL T3
+    WHERE T1.STU_DEPT_GRP=T2.GRP_ID
+        AND T1.STU_DEPT=T2.COM_ID
+        AND T2.PARENT_ID=T3.COM_ID
+        AND T2.GRP_ID=T3.GRP_ID;
+
+    SELECT * FROM COMMONS_TBL
+    WHERE GRP_ID='GRP002'
+        AND COM_ID='COM0020';
+    
+    
+    
+-- 교수리스트 : 교수ID, 이름, 단과대, 학과, 주소
+    SELECT P.PRO_ID, P.PRO_NAME, P.PRO_DEPT_GRP, P.PRO_DEPT
+    FROM PROFESSORS_TBL P, COMMONS_TBL C1, COMMONS_TBL C2
+    WHERE P.PRO_DEPT_GRP=C1.DEPT_GRP
+        AND P.ADDR2=C1.COM_ID
+        AND C1.COM_ID=C2.PARENT_ID;
+    
+    SELECT B.PRO_ID, B.PRO_NAME AS 이름, C.COM_VAL AS 단과대, A.COM_VAL AS 학과
+    FROM
+    (
+        SELECT * FROM COMMONS_TBL WHERE GRP_ID='GRP002'
+    ) A, PROFESSORS_TBL B, 
+    (
+        SELECT * FROM COMMONS_TBL WHERE GRP_ID='GRP002'
+    ) C
+    WHERE A.GRP_ID=B.PRO_DEPT_GRP
+        AND A.COM_ID=B.PRO_DEPT
+        AND A.GRP_ID=C.GRP_ID
+        AND A.PARENT_ID=C.COM_ID;
+    
+    
+    
+-- 학생별로 신청한 과목수, 총 학점
+-- 학생이 과목을 수강(신청)하다
+    SELECT ST.STU_ID
+    FROM STUDENTS_TBL ST, SUBJECTS_TBL SU, STUDENTS_TIME_TBL STT
+    ;
+    
+    --학생의 수강신청 목록
+    SELECT *
+    FROM STUDENTS_TBL A, STUDENTS_TIME_TBL B, SUBJECTS_TBL C
+    WHERE A.STU_ID=B.STU_ID
+        AND B.SUB_ID=C.SUB_ID;
+    
+    
+    --잘못된 데이터
+    SELECT SUB_ID, COUNT(*) FROM SUBJECTS_TBL
+    GROUP BY SUB_ID
+    HAVING COUNT(*)>1;
+    
+    SELECT * FROM SUBJECTS_TBL T1, STUDENTS_TIME_TBL T2
+    WHERE T1.SUB_ID=T2.SUB_ID
+        --AND T1.SUB_ID='SUB0046'
+        AND T1.SUB_ID='SUB0051'
+        ;
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+
