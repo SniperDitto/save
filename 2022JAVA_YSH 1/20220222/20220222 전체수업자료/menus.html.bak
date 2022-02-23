@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+
+	<script>
+
+		var menus1 = [
+			{'M001','공지사항'},
+			{'M002','수업자료'},
+			{'M003','숙제'},
+			{'M004','자료공유'}
+		];
+
+		var menus2 = [
+			{'M201', '공지사항', 'M001'},
+			{'M202', 'PM게시판', 'M001'},
+			{'M203', '김장현 가입안하나', 'M002'},
+			{'M204', 'HTML', 'M002'},
+			{'M205', 'JAVASCRIPT', 'M002'},
+			{'M206', 'DATABASE', 'M002'},
+			{'M207', 'WEBPROGRAM', 'M002'},
+			{'M208', '숙제1', 'M003'},
+			{'M209', '숙제2', 'M003'},
+			{'M210', '자료1', 'M004'},
+			{'M211', '자료2', 'M004'}
+		];
+
+
+	</script>
+
+ </head>
+ <body>
+
+	<select id="menu1">
+		<option value='M001'>공지사항</option>
+		<option value='M002'>수업자료</option>
+		<option value='M003'>숙제</option>
+		<option value='M004'>자료공유</option>
+	</select>
+
+	<select id="menu2">
+
+	<select>
+
+ </body>
+</html>
