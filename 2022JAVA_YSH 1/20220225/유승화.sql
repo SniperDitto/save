@@ -1,12 +1,162 @@
 
+--주소
+    SELECT DECODE(T1.COM_VAL,'ROOT','',T1.COM_VAL)||' '||T2.COM_VAL||' '||T3.COM_VAL||' '||T4.COM_VAL AS ADDRESS,
+        T1.GRP_ID AS GID,
+        T1.COM_ID AS CID1,
+        T2.COM_ID AS CID2,
+        T3.COM_ID AS CID3,
+        T4.COM_ID AS CID4
+    FROM COMMONS_TBL T1, COMMONS_TBL T2, COMMONS_TBL T3, COMMONS_TBL T4
+    WHERE T1.GRP_ID=T2.GRP_ID(+) AND T1.GRP_ID=T3.GRP_ID(+) AND T1.GRP_ID=T4.GRP_ID(+)
+        AND T1.GRP_ID='GRP001'
+        AND T1.COM_LVL=1
+        AND T1.COM_ID=T2.PARENT_ID(+)
+        AND T2.COM_ID=T3.PARENT_ID(+)
+        AND T3.COM_ID=T4.PARENT_ID(+)
+        ;
+        
+        
+        
+--학과
+    SELECT 
+        DECODE(T1.COM_VAL,'ROOT','',T1.COM_VAL)||' '||T2.COM_VAL AS DEPT,
+        T1.GRP_ID AS GID,
+        T1.COM_ID AS CID1,
+        T2.COM_ID AS CID2
+    FROM COMMONS_TBL T1, COMMONS_TBL T2
+    WHERE T1.COM_ID=T2.PARENT_ID(+)
+        AND T1.GRP_ID='GRP002' 
+        AND T1.GRP_ID=T2.GRP_ID
+        AND T2.COM_LVL=2
+        ;
+    
+    
 
 --1. 학생리스트 출력
 -- 학생아이디, 학생이름,  학생주소,  학생학과
 
+    --학생&주소------------
+    SELECT ST.STU_ID AS SID1,
+        ST.STU_NAME AS SNAME1,
+        C.ADDRESS AS SADDR
+    FROM STUDENTS_TBL ST,
+        (
+            --주소
+            SELECT DECODE(T1.COM_VAL,'ROOT','',T1.COM_VAL)||' '||T2.COM_VAL||' '||T3.COM_VAL||' '||T4.COM_VAL AS ADDRESS,
+                T1.GRP_ID AS GID,
+                T1.COM_ID AS CID1,
+                T2.COM_ID AS CID2,
+                T3.COM_ID AS CID3,
+                T4.COM_ID AS CID4
+            FROM COMMONS_TBL T1, COMMONS_TBL T2, COMMONS_TBL T3, COMMONS_TBL T4
+            WHERE T1.GRP_ID=T2.GRP_ID(+) AND T1.GRP_ID=T3.GRP_ID(+) AND T1.GRP_ID=T4.GRP_ID(+)
+                AND T1.GRP_ID='GRP001'
+                AND T1.COM_LVL=1
+                AND T1.COM_ID=T2.PARENT_ID(+)
+                AND T2.COM_ID=T3.PARENT_ID(+)
+                AND T3.COM_ID=T4.PARENT_ID(+)
+        
+        ) C
+    WHERE ST.STU_ADDR_GRP=C.GID AND ST.STU_ADDR2=C.CID1
+        AND ST.STU_ADDR=C.CID2 OR ST.STU_ADDR=C.CID3 OR ST.STU_ADDR=C.CID4
+        ORDER BY ST.STU_ID ASC
+        ;
+        
+    --학생&학과---------
+    SELECT ST.STU_ID AS SID2,
+        ST.STU_NAME AS SNAME2,
+        D.DEPT AS SDEPT
+    FROM STUDENTS_TBL ST,
+        (
+            --학과
+            SELECT 
+                DECODE(T1.COM_VAL,'ROOT','',T1.COM_VAL)||' '||T2.COM_VAL AS DEPT,
+                T1.GRP_ID AS GID,
+                T1.COM_ID AS CID1,
+                T2.COM_ID AS CID2
+            FROM COMMONS_TBL T1, COMMONS_TBL T2
+            WHERE T1.COM_ID=T2.PARENT_ID(+)
+                AND T1.GRP_ID='GRP002' 
+                AND T1.GRP_ID=T2.GRP_ID(+)
+                AND T2.COM_LVL=2
+        ) D
+    WHERE ST.STU_DEPT_GRP=D.GID AND STU_DEPT=D.CID2
+        ORDER BY ST.STU_ID ASC
+        ;
+        
+    --학생리스트--------------------------------------
+    SELECT ST.STU_ID AS 학생아이디,
+        ST.STU_NAME AS 학생이름,
+        A.SADDR AS 학생주소,
+        B.SDEPT AS 학과
+    FROM STUDENTS_TBL ST,
+    (
+        --학생&주소
+        SELECT ST.STU_ID AS SID1,
+            ST.STU_NAME AS SNAME1,
+            C.ADDRESS AS SADDR
+        FROM STUDENTS_TBL ST,
+            (
+                --주소
+                SELECT DECODE(T1.COM_VAL,'ROOT','',T1.COM_VAL)||' '||T2.COM_VAL||' '||T3.COM_VAL||' '||T4.COM_VAL AS ADDRESS,
+                    T1.GRP_ID AS GID,
+                    T1.COM_ID AS CID1,
+                    T2.COM_ID AS CID2,
+                    T3.COM_ID AS CID3,
+                    T4.COM_ID AS CID4
+                FROM COMMONS_TBL T1, COMMONS_TBL T2, COMMONS_TBL T3, COMMONS_TBL T4
+                WHERE T1.GRP_ID=T2.GRP_ID(+) AND T1.GRP_ID=T3.GRP_ID(+) AND T1.GRP_ID=T4.GRP_ID(+)
+                    AND T1.GRP_ID='GRP001'
+                    AND T1.COM_LVL=1
+                    AND T1.COM_ID=T2.PARENT_ID(+)
+                    AND T2.COM_ID=T3.PARENT_ID(+)
+                    AND T3.COM_ID=T4.PARENT_ID(+)
+            
+            ) C
+        WHERE ST.STU_ADDR_GRP=C.GID AND ST.STU_ADDR2=C.CID1
+            AND ST.STU_ADDR=C.CID2 OR ST.STU_ADDR=C.CID3 OR ST.STU_ADDR=C.CID4
+    ) A, 
+    (
+        --학생&학과
+        SELECT ST.STU_ID AS SID2,
+            ST.STU_NAME AS SNAME2,
+            D.DEPT AS SDEPT
+        FROM STUDENTS_TBL ST,
+            (
+                --학과
+                SELECT 
+                    DECODE(T1.COM_VAL,'ROOT','',T1.COM_VAL)||' '||T2.COM_VAL AS DEPT,
+                    T1.GRP_ID AS GID,
+                    T1.COM_ID AS CID1,
+                    T2.COM_ID AS CID2
+                FROM COMMONS_TBL T1, COMMONS_TBL T2
+                WHERE T1.COM_ID=T2.PARENT_ID(+)
+                    AND T1.GRP_ID='GRP002' 
+                    AND T1.GRP_ID=T2.GRP_ID(+)
+                    AND T2.COM_LVL=2
+            ) D
+        WHERE ST.STU_DEPT_GRP=D.GID AND STU_DEPT=D.CID2
+        
+    ) B
+    WHERE ST.STU_ID=A.SID1 AND ST.STU_ID=B.SID2
+    ORDER BY ST.STU_ID ASC;
 
 --2. 교수리스트 출력
 --교수아이디   교수이름   교수주소   소속학과
-
+    
+    --교수&주소----------------
+    SELECT *
+    FROM PROFESSORS_TBL P,
+    (
+        
+    ) C
+    WHERE P.PRO_ADDR_GRP=C.GID AND P.PRO_ADDR2=C.CID1
+        AND P.PRO_ADDR=C.CID2 OR P.PRO_ADDR=C.CID3 OR P.PRO_ADDR=C.CID4
+        
+    
+    --교수&학과----------------
+    
+    --교수리스트-------------------------------------
 
 --3. 과목리스트
 -- 등록년도   등록학기   해당학과   과목    학점
