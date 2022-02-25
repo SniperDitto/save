@@ -7,10 +7,15 @@ SELECT * FROM PROFESSORS_TBL;
 SELECT * FROM STUDENTS_TIME_TBL;
 SELECT * FROM SCORES_TBL;
 
+-- 학생이 과목에 수강신청을 한다
+--주소
+    SELECT *
+    FROM COMMONS_TBL;
+    
 
 --1. 학생리스트 출력
 -- 학생아이디, 학생이름,  학생주소,  학생학과
-
+    
 
 --2. 교수리스트 출력
 --교수아이디   교수이름   교수주소   소속학과
@@ -163,14 +168,15 @@ SELECT * FROM SCORES_TBL;
 --7. 각 학과별 학생숫자
 --학과명    학생수
     --ST, C
-    SELECT C.CVAL1||' '||C.CVAL2 AS 학과명,
+    SELECT C.FULLNAME,
         COUNT(ST.STU_ID) AS 학생수
     FROM STUDENTS_TBL ST,
     (
             SELECT T2.GRP_ID AS GID1, T2.COM_ID AS CID1, 
                 T2.COM_VAL AS CVAL1,
                 T3.GRP_ID AS GID2, T3.COM_ID AS CID2, 
-                T3.COM_VAL AS CVAL2 
+                T3.COM_VAL AS CVAL2,
+                T2.COM_VAL||' '||T3.COM_VAL AS FULLNAME
             FROM COMMONS_TBL T1, COMMONS_TBL T2, COMMONS_TBL T3
             WHERE T1.GRP_ID=T2.GRP_ID AND T1.COM_ID=T2.PARENT_ID
                 AND T2.GRP_ID=T3.GRP_ID AND T2.COM_ID=T3.PARENT_ID
@@ -178,20 +184,21 @@ SELECT * FROM SCORES_TBL;
     ) C
     WHERE ST.STU_DEPT_GRP(+)=C.GID1 AND ST.STU_DEPT_GRP(+)=C.GID2
         AND ST.STU_DEPT(+)=C.CID2
-    GROUP BY C.CID2, C.CVAL1||' '||C.CVAL2;
+    GROUP BY C.FULLNAME;
 
 
 --8. 각 학과별 교수숫자
 --학과명    교수수
     --P, C
-    SELECT C.CVAL1||' '||C.CVAL2 AS 학과명,
+    SELECT C.FULLNAME,
         COUNT(P.PRO_ID) AS 교수수
     FROM PROFESSORS_TBL P,
     (
             SELECT T2.GRP_ID AS GID1, T2.COM_ID AS CID1, 
                 T2.COM_VAL AS CVAL1,
                 T3.GRP_ID AS GID2, T3.COM_ID AS CID2, 
-                T3.COM_VAL AS CVAL2 
+                T3.COM_VAL AS CVAL2,
+                T2.COM_VAL||' '||T3.COM_VAL AS FULLNAME
             FROM COMMONS_TBL T1, COMMONS_TBL T2, COMMONS_TBL T3
             WHERE T1.GRP_ID=T2.GRP_ID AND T1.COM_ID=T2.PARENT_ID
                 AND T2.GRP_ID=T3.GRP_ID AND T2.COM_ID=T3.PARENT_ID
@@ -199,7 +206,7 @@ SELECT * FROM SCORES_TBL;
     ) C
     WHERE P.PRO_DEPT_GRP(+)=C.GID1 AND P.PRO_DEPT_GRP(+)=C.GID2
         AND P.PRO_DEPT(+)=C.CID2
-    GROUP BY C.CID2, C.CVAL1||' '||C.CVAL2;
+    GROUP BY C.FULLNAME;
 
 
 --9. 각 학과별 학생숫자 , 소속교수숫자
@@ -251,33 +258,143 @@ SELECT * FROM SCORES_TBL;
 
 --10. 각 지역별 학생숫자 , 소속교수숫자,
 --지역명    학생수,   교수수
-    --주소테이블완성하기-------------------------------------
-    SELECT *
+    --주소테이블
+        SELECT T1.GRP_ID AS GID,
+            T1.COM_ID AS CID1, T2.COM_ID AS CID2, T3.COM_ID AS CID3, T4.COM_ID AS CID4,
+            DECODE(T1.COM_VAL,'ROOT','',T1.COM_VAL)||' '||T2.COM_VAL||' '||T3.COM_VAL||' '||T4.COM_VAL AS ADDRESS
         FROM COMMONS_TBL T1, COMMONS_TBL T2, COMMONS_TBL T3, COMMONS_TBL T4
-        WHERE T1.GRP_ID=T2.GRP_ID(+) AND T1.COM_ID=T2.PARENT_ID(+)
-            AND T2.GRP_ID=T3.GRP_ID(+) AND T2.COM_ID=T3.PARENT_ID(+)
-            AND T3.GRP_ID=T4.GRP_ID(+) AND T3.COM_ID=T4.PARENT_ID(+)
-            AND T1.GRP_ID='GRP001' --AND T2.COM_ID!='COM0015'
-            ;
+        WHERE T1.GRP_ID=T2.GRP_ID(+) AND T1.COM_ID=T2.PARENT_ID(+) 
+            AND T2.GRP_ID=T3.GRP_ID(+) AND T2.COM_ID=T3.PARENT_ID(+) 
+            AND T3.GRP_ID=T4.GRP_ID(+) AND T3.COM_ID=T4.PARENT_ID(+) 
+            AND T1.GRP_ID='GRP001' AND T1.COM_LVL=1;
+            
+            
+    /*-------------------
+    SELECT COM_ID, LPAD(' ',COM_LVL*1)||COM_VAL, COM_LVL
+    FROM COMMONS_TBL 
+    WHERE GRP_ID='GRP001'
+    START WITH PARENT_ID='COM0000'
+    CONNECT BY PRIOR COM_ID=PARENT_ID;
+    --------------------*/
+    
     --A. 지역별 학생 : GRPID COMID 주소 학생수
-    SELECT *
+    SELECT C.GID AS GID_ST,
+        C.CID1 AS CID1_ST,
+        C.CID2 AS CID2_ST,
+        C.CID3 AS CID3_ST,
+        C.CID4 AS CID4_ST,
+        C.ADDRESS AS ADDR_ST,
+        COUNT(ST.STU_ID) AS CNT_ST
     FROM STUDENTS_TBL ST,
     (
         --주소테이블
         SELECT T1.GRP_ID AS GID,
-            DECODE(T1.COM_VAL,'ROOT','',T1.COM_VAL)||' '||T2.COM_VAL||'시 '||T3.COM_VAL||' '||T4.COM_VAL AS ADDR,
-            T4.COM_ID AS CID
+            T1.COM_ID AS CID1, T2.COM_ID AS CID2, T3.COM_ID AS CID3, T4.COM_ID AS CID4,
+            DECODE(T1.COM_VAL,'ROOT','',T1.COM_VAL)||' '||T2.COM_VAL||' '||T3.COM_VAL||' '||T4.COM_VAL AS ADDRESS
         FROM COMMONS_TBL T1, COMMONS_TBL T2, COMMONS_TBL T3, COMMONS_TBL T4
-        WHERE T1.GRP_ID=T2.GRP_ID AND T1.COM_ID=T2.PARENT_ID
-            AND T2.GRP_ID=T3.GRP_ID AND T2.COM_ID=T3.PARENT_ID
-            AND T3.GRP_ID=T4.GRP_ID AND T3.COM_ID=T4.PARENT_ID
-            AND T1.GRP_ID='GRP001' --AND T2.COM_ID!='COM0015'
-            ;
+        WHERE T1.GRP_ID=T2.GRP_ID(+) AND T1.COM_ID=T2.PARENT_ID(+) 
+            AND T2.GRP_ID=T3.GRP_ID(+) AND T2.COM_ID=T3.PARENT_ID(+) 
+            AND T3.GRP_ID=T4.GRP_ID(+) AND T3.COM_ID=T4.PARENT_ID(+) 
+            AND T1.GRP_ID='GRP001' AND T1.COM_LVL=1
     ) C
+    WHERE ST.STU_ADDR_GRP=C.GID AND ST.STU_ADDR2=C.CID1 
+        --AND ST.STU_ADDR=C.CID2 
+        --AND ST.STU_ADDR=C.CID3 
+        --AND ST.STU_ADDR=C.CID4
+        AND ST.STU_ADDR=CID2 OR ST.STU_ADDR=C.CID3 OR ST.STU_ADDR=C.CID4
+    GROUP BY C.GID, C.CID1, C.CID2, C.CID3, C.CID4, C.ADDRESS
     ;
-    --B. 지역별 교수 : GRPID COMID 주소 교수수
     
+    
+    --B. 지역별 교수 : GRPID COMID 주소 교수수
+    SELECT C.GID AS GID_P,
+        C.CID1 AS CID1_P,
+        C.CID2 AS CID2_P,
+        C.CID3 AS CID3_P,
+        C.CID4 AS CID4_P,
+        C.ADDRESS AS ADDR_P,
+        COUNT(P.PRO_ID) AS CNT_P
+    FROM PROFESSORS_TBL P,
+    (
+        --주소테이블
+        SELECT T1.GRP_ID AS GID,
+            T1.COM_ID AS CID1, T2.COM_ID AS CID2, T3.COM_ID AS CID3, T4.COM_ID AS CID4,
+            DECODE(T1.COM_VAL,'ROOT','',T1.COM_VAL)||' '||T2.COM_VAL||' '||T3.COM_VAL||' '||T4.COM_VAL AS ADDRESS
+        FROM COMMONS_TBL T1, COMMONS_TBL T2, COMMONS_TBL T3, COMMONS_TBL T4
+        WHERE T1.GRP_ID=T2.GRP_ID(+) AND T1.COM_ID=T2.PARENT_ID(+) 
+            AND T2.GRP_ID=T3.GRP_ID(+) AND T2.COM_ID=T3.PARENT_ID(+) 
+            AND T3.GRP_ID=T4.GRP_ID(+) AND T3.COM_ID=T4.PARENT_ID(+) 
+            AND T1.GRP_ID='GRP001' AND T1.COM_LVL=1
+    ) C
+    WHERE P.PRO_ADDR_GRP=C.GID AND P.PRO_ADDR2=C.CID1 
+        AND P.PRO_ADDR=CID2 OR P.PRO_ADDR=CID3 OR P.PRO_ADDR=CID4
+    GROUP BY C.GID, C.CID1, C.CID2, C.CID3, C.CID4, C.ADDRESS
+    ;
+    
+             
     --합치기
+    
+        --???
+    
+    -----------------
+
+    SELECT A.ADDR_ST, B.ADDR_P, NVL(A.CNT_ST,0) AS STUCNT, NVL(B.CNT_P,0) AS PCNT
+    FROM 
+    (
+            --A. 지역별 학생 : GRPID COMID 주소 학생수
+            SELECT C.GID AS GID_ST,
+                C.CID1 AS CID1_ST,
+                C.CID2 AS CID2_ST,
+                C.CID3 AS CID3_ST,
+                C.CID4 AS CID4_ST,
+                C.ADDRESS AS ADDR_ST,
+                COUNT(ST.STU_ID) AS CNT_ST
+            FROM STUDENTS_TBL ST,
+            (
+                --주소테이블
+                SELECT T1.GRP_ID AS GID,
+                    T1.COM_ID AS CID1, T2.COM_ID AS CID2, T3.COM_ID AS CID3, T4.COM_ID AS CID4,
+                    DECODE(T1.COM_VAL,'ROOT','',T1.COM_VAL)||' '||T2.COM_VAL||' '||T3.COM_VAL||' '||T4.COM_VAL AS ADDRESS
+                FROM COMMONS_TBL T1, COMMONS_TBL T2, COMMONS_TBL T3, COMMONS_TBL T4
+                WHERE T1.GRP_ID=T2.GRP_ID(+) AND T1.COM_ID=T2.PARENT_ID(+) 
+                    AND T2.GRP_ID=T3.GRP_ID(+) AND T2.COM_ID=T3.PARENT_ID(+) 
+                    AND T3.GRP_ID=T4.GRP_ID(+) AND T3.COM_ID=T4.PARENT_ID(+) 
+                    AND T1.GRP_ID='GRP001' AND T1.COM_LVL=1
+            ) C
+            WHERE ST.STU_ADDR_GRP=C.GID AND ST.STU_ADDR2=C.CID1 
+                AND ST.STU_ADDR=CID2 OR ST.STU_ADDR=CID3 OR ST.STU_ADDR=CID4
+            GROUP BY C.GID, C.CID1, C.CID2, C.CID3, C.CID4, C.ADDRESS
+    ) A FULL OUTER JOIN
+    (
+            --B. 지역별 교수 : GRPID COMID 주소 교수수
+            SELECT C.GID AS GID_P,
+                C.CID1 AS CID1_P,
+                C.CID2 AS CID2_P,
+                C.CID3 AS CID3_P,
+                C.CID4 AS CID4_P,
+                C.ADDRESS AS ADDR_P,
+                COUNT(P.PRO_ID) AS CNT_P
+            FROM PROFESSORS_TBL P,
+            (
+                --주소테이블
+                SELECT T1.GRP_ID AS GID,
+                    T1.COM_ID AS CID1, T2.COM_ID AS CID2, T3.COM_ID AS CID3, T4.COM_ID AS CID4,
+                    DECODE(T1.COM_VAL,'ROOT','',T1.COM_VAL)||' '||T2.COM_VAL||' '||T3.COM_VAL||' '||T4.COM_VAL AS ADDRESS
+                FROM COMMONS_TBL T1, COMMONS_TBL T2, COMMONS_TBL T3, COMMONS_TBL T4
+                WHERE T1.GRP_ID=T2.GRP_ID(+) AND T1.COM_ID=T2.PARENT_ID(+) 
+                    AND T2.GRP_ID=T3.GRP_ID(+) AND T2.COM_ID=T3.PARENT_ID(+) 
+                    AND T3.GRP_ID=T4.GRP_ID(+) AND T3.COM_ID=T4.PARENT_ID(+) 
+                    AND T1.GRP_ID='GRP001' AND T1.COM_LVL=1
+            ) C
+            WHERE P.PRO_ADDR_GRP=C.GID AND P.PRO_ADDR2=C.CID1 
+                AND P.PRO_ADDR=CID2 OR P.PRO_ADDR=CID3 OR P.PRO_ADDR=CID4
+            GROUP BY C.GID, C.CID1, C.CID2, C.CID3, C.CID4, C.ADDRESS        
+    ) B
+    ON A.GID_ST=B.GID_P 
+        AND NVL(A.CID1_ST,0)=NVL(B.CID1_P,0) AND NVL(A.CID2_ST,0)=NVL(B.CID2_P,0) AND NVL(A.CID3_ST,0)=NVL(B.CID3_P,0) AND NVL(A.CID4_ST,0)=NVL(B.CID4_P,0)
+        --AND ADDR_ST=ADDR_P
+        ;
+
 
 
 --11. 가장많은 학점을 듣고 있는 학생을 찾아주세요 : DENSE_RANK() OVER()
@@ -300,6 +417,7 @@ SELECT * FROM SCORES_TBL;
     GROUP BY ST.STU_ID, ST.STU_NAME ORDER BY SUM(SJ.SUB_CREDIT) DESC;
     
     --가장많은학점(22)만큼 신청한 학생들
+    --RANK() 없이
     SELECT B.STU_ID AS 학생ID,
         B.STU_NAME AS 이름,
         A.MAXCREDIT AS 신청학점
@@ -376,7 +494,7 @@ SELECT * FROM SCORES_TBL;
 
 
 --16. 학생이 한명도 없는 학과의 교수명단 리스트를 보여주세요
-    --학생 학과 인원수 : 학생수가 0인 학과?
+    --학생 학과 인원수 : 학생수가 0인 학과 찾기
         SELECT C.CVAL1||' '||C.CVAL2 AS 학과명,
             COUNT(ST.STU_ID) AS 학생수
         FROM STUDENTS_TBL ST,
@@ -393,9 +511,38 @@ SELECT * FROM SCORES_TBL;
         WHERE ST.STU_DEPT_GRP(+)=C.GID1 AND ST.STU_DEPT_GRP(+)=C.GID2
             AND ST.STU_DEPT(+)=C.CID2
         GROUP BY C.CID2, C.CVAL1||' '||C.CVAL2;
+    
+    SELECT A.DEPT, A.CNT
+    FROM
+    (
+        SELECT C.CVAL1||' '||C.CVAL2 AS DEPT,
+            COUNT(ST.STU_ID) AS CNT
+        FROM STUDENTS_TBL ST,
+        (
+                SELECT T2.GRP_ID AS GID1, T2.COM_ID AS CID1, 
+                    T2.COM_VAL AS CVAL1,
+                    T3.GRP_ID AS GID2, T3.COM_ID AS CID2, 
+                    T3.COM_VAL AS CVAL2 
+                FROM COMMONS_TBL T1, COMMONS_TBL T2, COMMONS_TBL T3
+                WHERE T1.GRP_ID=T2.GRP_ID AND T1.COM_ID=T2.PARENT_ID
+                    AND T2.GRP_ID=T3.GRP_ID AND T2.COM_ID=T3.PARENT_ID
+                    AND T1.GRP_ID='GRP002' 
+        ) C
+        WHERE ST.STU_DEPT_GRP(+)=C.GID1 AND ST.STU_DEPT_GRP(+)=C.GID2
+            AND ST.STU_DEPT(+)=C.CID2
+        GROUP BY C.CID2, C.CVAL1||' '||C.CVAL2
+    ) A
+    WHERE A.CNT=0;
+    
+    SELECT P.PRO_ID, P.PRO_NAME, B.DEPT
+    FROM PROFESSORS_TBL P,
+    (
+    
+    ) B
+    WHERE 
 
 --17. 각 학과별 학생들의 시험성적 평균과 합계를 보여주세요
-
+    --중간/기말/전체
 
 --18. 전체 학생 성적리스트 
      -- 소속학과  학생명  평균   총점  신청학점  순위 순으로 보여주세요

@@ -2254,7 +2254,7 @@
         INSERT INTO SCORES_TBL VALUES('STU085','SUB0056','2018', '1', '2', 78.00, '2018-06-26');
         INSERT INTO SCORES_TBL VALUES('STU085','SUB0057','2018', '1', '2', 80.24, '2018-06-29');
         
-        
+        --DELETE FROM SCORES_TBL WHERE STU_ID='STU005';
         
         --STU005	홍길동05  --중간고사  
         INSERT INTO SCORES_TBL VALUES('STU005','SUB0052','2018', '1', '1', 81.00, '2018-04-17');
@@ -2267,17 +2267,6 @@
         INSERT INTO SCORES_TBL VALUES('STU005','SUB0054','2018', '1', '2', 90.00, '2018-06-27');
         INSERT INTO SCORES_TBL VALUES('STU005','SUB0055','2018', '1', '2', 85.44, '2018-06-26');
         
-        
-        --STU005	홍길동05  --중간고사
-        INSERT INTO SCORES_TBL VALUES('STU005','SUB0052','2018', '1', '1', 77.00, '2018-04-17');
-        INSERT INTO SCORES_TBL VALUES('STU005','SUB0053','2018', '1', '1', 81.11, '2018-04-23');
-        INSERT INTO SCORES_TBL VALUES('STU005','SUB0054','2018', '1', '1', 87.00, '2018-04-19');
-        INSERT INTO SCORES_TBL VALUES('STU005','SUB0055','2018', '1', '1', 78.25, '2018-04-22');
-        --STU005	홍길동05  --기말고사
-        INSERT INTO SCORES_TBL VALUES('STU005','SUB0052','2018', '1', '2', 90.00, '2018-06-25');
-        INSERT INTO SCORES_TBL VALUES('STU005','SUB0053','2018', '1', '2', 78.15, '2018-06-28');
-        INSERT INTO SCORES_TBL VALUES('STU005','SUB0054','2018', '1', '2', 89.00, '2018-06-27');
-        INSERT INTO SCORES_TBL VALUES('STU005','SUB0055','2018', '1', '2', 66.44, '2018-06-26');
         
         -----------------------------------------------------------------------------------------------------------------
         
