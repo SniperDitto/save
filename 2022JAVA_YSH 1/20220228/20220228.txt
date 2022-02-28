@@ -1,0 +1,29 @@
+
+대리기사 DRIVERS_TBL
+    기사ID/이름/전화번호/성별
+    DR_ID/DR_NAME/DR_TEL/DR_GENDER
+
+손님 DR_MEMBER_TBL
+    전화번호/포인트
+    R_TEL/MEM_POINT
+
+예약 들어온것 RESERVATION_TBL
+    예약ID/예약자전화/출발지/목적지/금액
+    R_ID/R_TEL/R_STR/R_DEST/R_PAY
+
+예약 수락한것 DRIVER_RST_TBL
+    예약ID/수락기사ID/시간
+    R_ID/DR_ID/RST_DATE
+
+완료된 예약 FINISH_DRIVE_TBL
+    IDX/예약ID/수락기사ID/완료시간/완료여부
+    IDX/R_ID/DR_ID/F_DATE/F_GUBUN
+
+
+
+
+
+
+
+
+
