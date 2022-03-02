@@ -74,6 +74,36 @@ AND PARENT_ID!='ROOT'
 
 
 
+    SELECT *
+    FROM COMMONS_TBL
+    WHERE GRP_ID='GRP002'
+    START WITH PARENT_ID='ROOT'
+    CONNECT BY PRIOR COM_ID=PARENT_ID;
 
+    SELECT *
+    FROM COMMONS_TBL 
+    WHERE GRP_ID='GRP001'
+    START WITH PARENT_ID='COM0000'
+    CONNECT BY PRIOR COM_ID=PARENT_ID;
+    
+    
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
