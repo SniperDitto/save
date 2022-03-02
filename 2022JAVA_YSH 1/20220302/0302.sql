@@ -1,0 +1,109 @@
+
+/*
+CREATE OR REPLACE
+PACKAGE PKG_COMMONS AS
+    
+    --GRPCOMMONS_TBL INSERT
+    PROCEDURE PROC_INS_GRPCOMMONS
+    (
+        IN_GRP_ID     IN  VARCHAR2
+        ,IN_GRP_NAME   IN  VARCHAR2
+    );
+    
+    --GRPCOMMONS_TBL SELECT
+    PROCEDURE PROC_SEL_GRPCOMMONS
+    (
+        IN_GRP_ID       IN      VARCHAR2
+        ,IN_GRP_NAME    IN      VARCHAR2
+        ,O_CUR          OUT     SYS_REFCURSOR
+    );
+    
+    --GRPCOMMONS_TBL UPDATE
+    PROCEDURE PROC_UP_GRPCOMMONS
+    (
+        IN_GRP_ID     IN  VARCHAR2
+        ,IN_GRP_NAME   IN  VARCHAR2
+    );
+    
+    --GRPCOMMONS_TBL DELETE
+    PROCEDURE PROC_DEL_GRPCOMMONS
+    (
+        IN_GRP_ID     IN  VARCHAR2
+    );
+    
+END PKG_COMMONS;
+*/
+
+
+
+
+
+
+
+    SELECT * FROM GRPCOMMONS_TBL
+    WHERE GRP_ID LIKE '%'|| :IN_GRP_ID||'%'
+    AND GRP_NAME LIKE '%'|| :IN_GRP_NAME||'%'
+    ;
+
+    UPDATE GRPCOMMONS_TBL
+    SET GRP_NAME = :IN_GRP_NAME
+    WHERE GRP_ID = :IN_GRP_ID
+    ;
+
+    DELETE FROM GRPCOMMONS_TBL
+    WHERE GRP_ID = :IN_GRP_ID
+    ;
+
+
+
+
+    SELECT 'GRP'||TO_CHAR(TO_NUMBER(SUBSTR(TRIM(NVL(MAX(GRP_ID),'GRP000')),4,3))+1,'FM000')
+    FROM GRPCOMMONS_TBL;
+
+
+
+
+
+SELECT 'COM'||TO_CHAR(TO_NUMBER(SUBSTR(NVL(MAX(COM_ID),'ROOT'),4,4))+1,'FM0000')
+FROM COMMONS_TBL
+WHERE GRP_ID=:IN_GRP_ID
+AND PARENT_ID!='ROOT'
+;
+--> 처음 들어가는 데이터는 MAX로 다음 번호를 찾을 수가 없다
+--      =MAX()로 값을 구하면 NULL이 됨 : NVL로 처리해줘야 한다
+
+
+
+    SELECT *
+    FROM COMMONS_TBL
+    WHERE GRP_ID='GRP002'
+    START WITH PARENT_ID='ROOT'
+    CONNECT BY PRIOR COM_ID=PARENT_ID;
+
+    SELECT *
+    FROM COMMONS_TBL 
+    WHERE GRP_ID='GRP001'
+    START WITH PARENT_ID='COM0000'
+    CONNECT BY PRIOR COM_ID=PARENT_ID;
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
