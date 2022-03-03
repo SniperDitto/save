@@ -1,0 +1,40 @@
+CREATE OR REPLACE
+PACKAGE BODY PKG_DRIVER AS
+
+  PROCEDURE PRO_INS_DRIVERS
+    (
+        IN_DR_NAME  IN  VARCHAR2
+        ,IN_DR_TEL  IN  VARCHAR2
+        ,IN_DR_GENDER  IN  VARCHAR2
+    )  AS
+    
+        V_NEW_DR_ID CHAR(5);
+
+    BEGIN
+        --아이디만들기
+        SELECT 'DR'||TO_CHAR(TO_NUMBER(NVL(SUBSTR(TRIM(MAX(DR_ID)),3,3),-1))+1,'FM000')
+        INTO V_NEW_DR_ID
+        FROM DRIVERS_TBL
+        ;
+
+        --INSERT
+        INSERT INTO DRIVERS_TBL
+        (
+            DR_ID,
+            DR_NAME,
+            DR_TEL,
+            DR_GENDER
+        )
+        VALUES
+        (
+            V_NEW_DR_ID,
+            IN_DR_NAME,
+            IN_DR_TEL,
+            IN_DR_GENDER
+        );
+    END PRO_INS_DRIVERS;
+    
+    
+    
+
+END PKG_DRIVER;

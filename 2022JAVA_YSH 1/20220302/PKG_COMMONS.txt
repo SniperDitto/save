@@ -29,6 +29,7 @@ create or replace NONEDITIONABLE PACKAGE PKG_COMMONS AS
     
     -----------------------------
     --COMMONS
+    --COMMONS_TBL INSERT
     PROCEDURE PROC_INS_COMMONS
     (
         IN_GRP_ID       IN  VARCHAR2
@@ -37,13 +38,47 @@ create or replace NONEDITIONABLE PACKAGE PKG_COMMONS AS
         ,IN_PARENT_ID   IN  VARCHAR2
     );
 
+    
+    --COMMONS_TBL UPDATE
+    PROCEDURE PROC_UP_COMMONS
+    (
+        IN_GRP_ID       IN  VARCHAR2
+        ,IN_COM_ID      IN  VARCHAR2
+        ,IN_COM_VAL     IN  VARCHAR2
+        ,IN_COM_LVL     IN  VARCHAR2
+        ,IN_PARENT_ID   IN  VARCHAR2
+    );
+    
+    --COMMONS_TBL SELECT
+    PROCEDURE PROC_SEL_COMMONS
+    (
+        IN_GRP_ID       IN  VARCHAR2
+        ,IN_COM_ID      IN  VARCHAR2
+        ,IN_COM_VAL     IN  VARCHAR2
+        ,IN_COM_LVL     IN  VARCHAR2
+        ,O_CUR          OUT SYS_REFCURSOR
+    );
+    
+    --COMMONS_TBL DELETE
+    PROCEDURE PROC_DEL_COMMONS
+    (
+        IN_GRP_ID       IN  VARCHAR2
+        ,IN_COM_ID      IN  VARCHAR2
+    );
+    
 
+    --단과대학목록
+    PROCEDURE PROC_SEL_COLLEGE
+    (
+        O_CUR   OUT SYS_REFCURSOR
+    );
 
-
-
-
-
-
+    --소속된학과
+    PROCEDURE PROC_SEL_PART
+    (
+        IN_PARENT_ID    IN  VARCHAR2
+        ,O_CUR          OUT SYS_REFCURSOR
+    );
 
 
 

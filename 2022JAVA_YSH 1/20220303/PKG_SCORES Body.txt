@@ -1,0 +1,81 @@
+CREATE OR REPLACE
+PACKAGE BODY PKG_SCORES AS
+    
+    --SCORES_TBL INSERT
+    PROCEDURE PROC_INS_SCORES
+    (
+        IN_STU_ID       IN  VARCHAR2
+        ,IN_SUB_ID      IN  VARCHAR2
+        ,IN_YEAR        IN  VARCHAR2
+        ,IN_SEMESTER    IN  VARCHAR2
+        ,IN_GBN         IN  VARCHAR2
+        ,IN_SCORE       IN  VARCHAR2
+        ,IN_DATE        IN  VARCHAR2
+    ) AS
+    BEGIN
+        
+        INSERT INTO SCORES_TBL(
+            STU_ID,
+            SUB_ID,
+            DO_YEAR,
+            SEMESTER,
+            GUBUN,
+            SCORE,
+            EXAM_DATE
+        ) VALUES (
+            IN_STU_ID,
+            IN_SUB_ID,
+            IN_YEAR,
+            IN_SEMESTER,
+            IN_GBN,
+            IN_SCORE,
+            TO_DATE(IN_DATE, 'YYYY-MM-DD')
+        );
+        
+    END PROC_INS_SCORES;
+    
+    --선택학과 개설 과목
+      PROCEDURE PROC_SEL_SUBJECTS
+        (
+            IN_GRP_ID   IN  VARCHAR2
+            ,IN_COM_ID  IN  VARCHAR2
+            ,O_CUR      OUT SYS_REFCURSOR
+        ) AS
+      BEGIN
+        OPEN O_CUR FOR
+        SELECT SUB_ID, SUB_NAME
+        FROM SUBJECTS_TBL
+        WHERE DEPT_GRP=IN_GRP_ID
+            AND DEPT_CODE=IN_COM_ID
+        ;
+      END PROC_SEL_SUBJECTS;
+
+        --SCORE 등록 페이지에 나올 리스트
+      PROCEDURE PROC_SEL_INS_SCORE
+        (
+            IN_DO_YEAR      IN  VARCHAR2
+            ,IN_SEMESTER    IN  VARCHAR2
+            ,IN_GBN         IN  VARCHAR2
+            ,IN_GRP_ID      IN  VARCHAR2
+            ,IN_COM_ID      IN  VARCHAR2
+            ,IN_SUB_ID      IN  VARCHAR2
+            ,O_CUR          OUT SYS_REFCURSOR
+        ) AS
+      BEGIN
+            OPEN O_CUR FOR
+            SELECT T3.STU_ID, T3.STU_NAME, T2.SCORE, TO_CHAR(T2.EXAM_DATE, 'YYYY-MM-DD') AS EXAM_DATE
+            FROM SUBJECTS_TBL T1, SCORES_TBL T2, STUDENTS_TBL T3
+            WHERE T1.SUB_ID=T2.SUB_ID
+                AND T1.DO_YEAR=T2.DO_YEAR
+                AND T1.SEMESTER=T2.SEMESTER
+                AND T2.STU_ID=T3.STU_ID
+                AND T2.DO_YEAR=IN_DO_YEAR
+                AND T2.SEMESTER=IN_SEMESTER
+                AND T2.GUBUN=IN_GBN
+                AND T1.DEPT_GRP=IN_GRP_ID
+                AND T1.DEPT_CODE=IN_COM_ID
+                AND T1.SUB_ID=IN_SUB_ID
+            ;
+      END PROC_SEL_INS_SCORE;
+
+END PKG_SCORES;
