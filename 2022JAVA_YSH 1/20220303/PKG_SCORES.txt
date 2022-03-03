@@ -1,0 +1,36 @@
+CREATE OR REPLACE 
+PACKAGE PKG_SCORES AS 
+    
+    --SCORES_TBL INSERT
+    PROCEDURE PROC_INS_SCORES
+    (
+        IN_STU_ID       IN  VARCHAR2
+        ,IN_SUB_ID      IN  VARCHAR2
+        ,IN_YEAR        IN  VARCHAR2
+        ,IN_SEMESTER    IN  VARCHAR2
+        ,IN_GBN         IN  VARCHAR2
+        ,IN_SCORE       IN  VARCHAR2
+        ,IN_DATE        IN  VARCHAR2
+    );
+    
+    --선택학과 개설 과목
+    PROCEDURE PROC_SEL_SUBJECTS
+    (
+        IN_GRP_ID   IN  VARCHAR2
+        ,IN_COM_ID  IN  VARCHAR2
+        ,O_CUR      OUT SYS_REFCURSOR
+    );
+    
+    --SCORE 등록 페이지에 나올 리스트
+    PROCEDURE PROC_SEL_INS_SCORE
+    (
+        IN_DO_YEAR      IN  VARCHAR2
+        ,IN_SEMESTER    IN  VARCHAR2
+        ,IN_GBN         IN  VARCHAR2
+        ,IN_GRP_ID      IN  VARCHAR2
+        ,IN_COM_ID      IN  VARCHAR2
+        ,IN_SUB_ID      IN  VARCHAR2
+        ,O_CUR          OUT SYS_REFCURSOR
+    );
+
+END PKG_SCORES;

@@ -1,0 +1,17 @@
+create or replace NONEDITIONABLE PACKAGE PKG_DRIVER AS 
+        
+        --새로운 대리운전 기사를 등록하는 프로시저를 만들어주세요
+        --대리기사 아이디는 따로 함수로 만들지 말고 프로시저 내부에 로직을 포함시켜주세요
+    PROCEDURE PRO_INS_DRIVERS
+    (
+        IN_DR_NAME  IN  VARCHAR2
+        ,IN_DR_TEL  IN  VARCHAR2
+        ,IN_DR_GENDER  IN  VARCHAR2
+    );
+
+
+END PKG_DRIVER;
+
+
+
+

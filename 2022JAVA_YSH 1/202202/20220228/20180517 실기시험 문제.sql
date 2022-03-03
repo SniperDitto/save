@@ -71,9 +71,9 @@ INSERT INTO RESERVATION_TBL VALUES('R0015', '010-6666-1111', '해양대앞','동
 --대리기사 결정 테이블
 CREATE TABLE DRIVER_RST_TBL
 (
-    R_ID    CHAR(5)     NOT NULL,  --대리예약 아이디
-    DR_ID   CHAR(5)     NOT NULL,  --대리기사 아이디
-    RST_DATE        DATE        NOT NULL --대리예약시간
+    R_ID        CHAR(5)     NOT NULL,  --대리예약 아이디
+    DR_ID       CHAR(5)     NOT NULL,  --대리기사 아이디
+    RST_DATE    DATE        NOT NULL --대리예약시간
 );
 
 --ROLLBACK;
@@ -221,20 +221,58 @@ INSERT INTO FINISH_DRIVE_TBL VALUES(13, 'R0015', 'DR003', TO_DATE('2018-05-05 22
 --8. 이용자는 대리운전 신청을 하였으나 대리기사가 결정되지 않아서 취소된 대리운전 건을 보여주세요(5점)
     --(이용자핸드폰번호, 출발지, 도착지, 금액)
     
+    SELECT R.R_TEL AS 이용자번호,
+        R.R_STR AS 출발지,
+        R.R_DEST AS 도착지,
+        R.R_PAY AS 금액,
+        D.DR_ID AS 대리기사
+    FROM RESERVATION_TBL R, DRIVER_RST_TBL DR, DRIVERS_TBL D
+    WHERE R.R_ID=DR.R_ID(+)
+        AND DR.DR_ID=D.DR_ID(+)
+        AND D.DR_ID IS NULL
+        ;
+    
 --9. 정상적으로 완료된 대리운전중에 가장 시간이 많이 걸린 대리운전 건을 보여주세요(5점)
+    SELECT F.R_ID, F.DR_ID, F.F_DATE, F.F_GUBUN
+    FROM FINISH_DRIVE_TBL F, DRIVER_RST_TBL DR,
+    (
+        SELECT MAX(F.F_DATE-DR.RST_DATE) AS MAXTIME
+        FROM FINISH_DRIVE_TBL F, DRIVER_RST_TBL DR
+        WHERE F.R_ID=DR.R_ID
+            AND F.F_GUBUN=1
+    ) A
+    WHERE F.R_ID=DR.R_ID
+        AND (F.F_DATE-DR.RST_DATE)=A.MAXTIME
+    ;
 
 --10. 대리운전비가 가장 비싼 대리운전을 보여주세요(5점)
        --(대리기사이름, 출발지, 목적지, 이용자핸드폰, 금액, 완료여부)
-
+    SELECT D.DR_NAME AS 기사이름,
+        R.R_STR AS 출발지,
+        R.R_DEST AS 목적지,
+        R.R_TEL AS 이용자번호,
+        R.R_PAY AS 금액,
+        DECODE(F.F_GUBUN,1,'O',2,'X') AS 완료여부,
+        DENSE_RANK() OVER(ORDER BY R.R_PAY DESC) AS RANKING
+    FROM RESERVATION_TBL R, FINISH_DRIVE_TBL F, DRIVERS_TBL D
+    WHERE R.R_ID=F.R_ID
+        AND F.DR_ID=D.DR_ID
+    ;
 
 
 --B. 패키지 프로시져 - 각 5점
---1. 대리운전의 업무를 위한 패키지를 하나 만들어주세요 패키지 이름 : PKG_DRIVER  
+--1. 대리운전의 업무를 위한 패키지를 하나 만들어주세요 패키지 이름 : PKG_DRIVER 
+    
 
 --2. 위의 패키지에 첫번째 프로시저를 하나 만들어주세요 - 
         --새로운 대리운전 기사를 등록하는 프로시저를 만들어주세요
         --대리기사 아이디는 따로 함수로 만들지 말고 프로시저 내부에 로직을 포함시켜주세요
         
+        --아이디만들기
+        SELECT 'DR'||TO_CHAR(TO_NUMBER(NVL(SUBSTR(TRIM(MAX(DR_ID)),3,3),-1))+1,'FM000')
+        FROM DRIVERS_TBL
+        ;
+
 --3. 위의 패키지에 두번째 프로시저를 만들어주세요
        --현재 불특정 회원의 POINT가 모두 0원입니다.
        --프로시저를 사용하여 POINT가 모두 계산 되도록 해주세요
@@ -259,6 +297,7 @@ INSERT INTO FINISH_DRIVE_TBL VALUES(13, 'R0015', 'DR003', TO_DATE('2018-05-05 22
      --  2018-05-05      16000     2000
      -- 위와 같은 형식으로 결과가 보여지도록 해 주세요
 
+    
 --C 트리거
 -- 대리운전이 취소가 되면 해당 이용자의 포인트를 10% 차감하는 트리거를 만들어주세요 (10점)
 -- 계산은 원단위까지만 하며 소수점은 반올림한다.
