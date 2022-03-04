@@ -1,0 +1,105 @@
+CREATE OR REPLACE
+PACKAGE BODY PKG_BANK AS
+
+    --조회
+    PROCEDURE PROC_SEL_BANKLIST
+    (
+        MID     IN  VARCHAR2
+        ,O_CUR  OUT SYS_REFCURSOR
+    ) AS
+    BEGIN
+        -- TODO: PROCEDURE PKG_BANK.PROC_SEL_BANKLIST에 대해 구현이 필요합니다.
+        NULL;
+    END PROC_SEL_BANKLIST;
+
+    --이체
+      PROCEDURE PROC_INS_TRANS
+        (
+            IN_SEND_BID     IN  VARCHAR2    --보내는사람
+            ,IN_REC_BID     IN  VARCHAR2    --받는사람
+            ,IN_PRICE       IN  VARCHAR2
+            --에러처리
+            ,O_ERRCODE      OUT VARCHAR2
+            ,O_ERRMSG       OUT VARCHAR2
+        ) AS
+        
+        V_NEW_IDX           NUMBER(8);
+        V_SEND_TLTPRICE     NUMBER(8);
+        V_CHK_EXIST_BID     NUMBER(8);
+        
+        OVER_EXCEPTION        EXCEPTION; -- 잔액 예외
+        CHECK_BID_EXCEPTION   EXCEPTION; --통장 번호 확인 예외
+        
+      BEGIN
+        --다음IDX번호생성
+        SELECT NVL(MAX(IDX),0)+1
+        INTO V_NEW_IDX
+        FROM SAVE_TBL
+        ;
+        
+        --1. 보내는사람 잔액 확인
+        SELECT SUM(PRICE*DECODE(GBN,'O',-1,1)) AS PRICE
+        INTO V_SEND_TLTPRICE
+        FROM SAVE_TBL
+        WHERE BID=IN_SEND_BID
+        ;
+        --강제로 에러 발생(잔액확인)
+        IF V_SEND_TLTPRICE < IN_PRICE THEN
+            RAISE OVER_EXCEPTION;
+        END IF;
+        --잔액이 충분하면 보내는쪽에서 출금
+        INSERT INTO SAVE_TBL(IDX, BID, PRICE, GBN) 
+        VALUES(V_NEW_IDX, IN_SEND_BID, IN_PRICE,'O')
+        ;
+        
+        
+        --2. 받는사람 통장이 유효한지 확인
+        SELECT DECODE(MAX(BID),NULL,0,1)
+        INTO V_CHK_EXIST_BID --유효하면 1, 아니면 0
+        FROM BANKBOOK
+        WHERE BID=IN_REC_BID
+        ;
+        --강제로 에러 발생(통장존재여부확인)
+        IF V_CHK_EXIST_BID =0 THEN
+            RAISE CHECK_BID_EXCEPTION;
+        END IF;
+        --통장이 존재하면 받는쪽으로 입금
+        V_NEW_IDX := V_NEW_IDX+1;
+        INSERT INTO SAVE_TBL(IDX, BID, PRICE, GBN) 
+        VALUES(V_NEW_IDX, IN_REC_BID, IN_PRICE,'I')
+        ;
+
+        
+        --예외처리
+        --런타임 에러를 로직 에러로 바꾸어 실행되게 함
+        EXCEPTION
+        WHEN OVER_EXCEPTION THEN
+            --사용자 정의 에러 처리
+            O_ERRCODE := 'ERR001';
+            O_ERRMSG := '잔액 부족';
+            ROLLBACK;
+        WHEN CHECK_BID_EXCEPTION THEN
+            --사용자 정의 에러 처리
+            O_ERRCODE := 'ERR002';
+            O_ERRMSG := '받는사람 통장 없음';
+            ROLLBACK;
+        WHEN OTHERS THEN
+            --DBMS_OUTPUT.PUT_LINE(SQLCODE);--에러코드
+            --DBMS_OUTPUT.PUT_LINE(SQLERRM);--자세한 에러메시지
+            O_ERRCODE := SQLCODE;
+            O_ERRMSG := SQLERRM;
+            ROLLBACK;
+        
+        
+      END PROC_INS_TRANS;
+
+END PKG_BANK;
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,25 @@
+CREATE OR REPLACE 
+PACKAGE PKG_BANK AS 
+    
+    --조회
+    PROCEDURE PROC_SEL_BANKLIST
+    (
+        MID     IN  VARCHAR2
+        ,O_CUR  OUT SYS_REFCURSOR
+    );
+
+
+    --이체
+    PROCEDURE PROC_INS_TRANS
+    (
+        IN_SEND_BID     IN  VARCHAR2    --보내는사람
+        ,IN_REC_BID     IN  VARCHAR2    --받는사람
+        ,IN_PRICE       IN  VARCHAR2
+        --에러처리
+        ,O_ERRCODE      OUT VARCHAR2
+        ,O_ERRMSG       OUT VARCHAR2
+    );
+
+
+
+END PKG_BANK;

@@ -1,5 +1,4 @@
-CREATE OR REPLACE
-PACKAGE BODY PKG_STUDENTS AS
+create or replace NONEDITIONABLE PACKAGE BODY PKG_STUDENTS AS
     --BODY부분
     
     -------------------------1
@@ -95,14 +94,100 @@ PACKAGE BODY PKG_STUDENTS AS
     PROCEDURE PROC_DEL_STUDENT
     (
         IN_STU_ID       IN      VARCHAR2
-        
+        --에러처리
+        ,O_ERRCODE      OUT VARCHAR2
+        ,O_ERRMSG       OUT VARCHAR2
     )
     AS
+        V_STUDENTS_CNT  NUMBER(1);
+        V_STUTIME_CNT  NUMBER(1);
+        V_SCORE_CNT  NUMBER(1);
+        
+        STUDENTS_DEL_EXCEPTION  EXCEPTION;
+        STUTIME_DEL_EXCEPTION  EXCEPTION;
+        SCORES_DEL_EXCEPTION  EXCEPTION;
+        
     BEGIN
-        DELETE FROM STUDENTS_TBL
-        WHERE STU_ID=IN_STU_ID;
+        
+        
+        --학생에 관련된 모든 데이터도 삭제되어야 한다
+        --성적, 시간표 등
+        --이렇게 동시에 처리되어야 하는 업무 묶음을 트랜잭션이라 한다.
+        --ALL OR NOTHING
+        
+        
+        --1. 학생 삭제
+        --학생이 존재하는지 확인
+        SELECT DECODE(MAX(STU_ID),NULL,0,1)
+        INTO V_STUDENTS_CNT
+        FROM STUDENTS_TBL
+        WHERE STU_ID=IN_STU_ID
+        ;
+        IF V_STUDENTS_CNT=0 THEN
+            --에러발생 + 예외처리
+            RAISE STUDENTS_DEL_EXCEPTION;
+        ELSE
+            DELETE FROM STUDENTS_TBL
+            WHERE STU_ID=IN_STU_ID
+            ;
+        END IF;
+        
+        --2. 시간표 삭제
+        --시간표에 존재하는지 확인
+        SELECT DECODE(MAX(STU_ID),NULL,0,1)
+        INTO V_STUTIME_CNT
+        FROM STUDENTS_TIME_TBL
+        WHERE STU_ID=IN_STU_ID
+        ;
+        IF V_STUTIME_CNT=0 THEN
+            --에러발생 + 예외처리
+            RAISE STUTIME_DEL_EXCEPTION;
+        ELSE
+            DELETE FROM STUDENTS_TIME_TBL
+            WHERE STU_ID = IN_STU_ID
+            ;
+        END IF;
+        
+        
+        --3. 성적 삭제
+        --성적데이터에 존재하는지 확인
+        SELECT DECODE(MAX(STU_ID),NULL,0,1)
+        INTO V_SCORE_CNT
+        FROM SCORES_TBL
+        WHERE STU_ID=IN_STU_ID
+        ;
+        IF V_SCORE_CNT=0 THEN
+            --에러발생 + 예외처리
+            RAISE SCORES_DEL_EXCEPTION;
+        ELSE
+            DELETE FROM SCORES_TBL
+            WHERE STU_ID=IN_STU_ID
+            ;
+        END IF;
+        
+        
+        -- 예외 처리 추가
+        EXCEPTION
+        WHEN STUDENTS_DEL_EXCEPTION THEN
+            O_ERRCODE := 'ERR001';
+            O_ERRMSG := '삭제할 학생이 존재하지 않음';
+            ROLLBACK;
+        WHEN STUTIME_DEL_EXCEPTION THEN
+            O_ERRCODE := 'ERR002';
+            O_ERRMSG := '삭제할 시간표가 존재하지 않음';
+            ROLLBACK;
+        WHEN SCORES_DEL_EXCEPTION THEN
+            O_ERRCODE := 'ERR003';
+            O_ERRMSG := '삭제할 점수가 존재하지 않음';
+            ROLLBACK;
+        WHEN OTHERS THEN
+            O_ERRCODE := SQLCODE;
+            O_ERRMSG := SQLERRM;
+            
         
     END PROC_DEL_STUDENT;
+    
+    
     
     --------------------------5
     

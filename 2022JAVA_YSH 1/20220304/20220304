@@ -1,0 +1,58 @@
+오라클  TRANSACTION과 예외 처리
+
+
+고객(엔티티)
+    고객아이디  고객이름
+
+통장(엔티티)
+    통장아이디  통장이름    고객아이디
+
+입금&출금 -> 하나의 행위
+    INDEX   고객아이디  금액  입출금구분
+
+
+고객 -|----<- 통장 -|-----<- 입출금
+
+
+EXCEPTION 예외처리
+- 런타임 에러
+에러가 나도 경고창 띄우고 해당 부분만 실행되지 않게 하고
+나머지는 쓸 수 있도록 예외 처리 필요
+
+- 트랜잭션 처리
+상상도 못한 데이터가 들어오면...ㄴㅇㄱ
+
+EXCEPTION
+        WHEN OVER_EXCEPTION THEN
+            --사용자 정의 에러 처리
+            O_ERRCODE := 'ERR001';
+            O_ERRMSG := '잔액 부족';
+            ROLLBACK;
+        WHEN OTHERS THEN
+            --DBMS_OUTPUT.PUT_LINE(SQLCODE);--에러코드
+            --DBMS_OUTPUT.PUT_LINE(SQLERRM);--자세한 에러메시지
+            O_ERRCODE := SQLCODE;
+            O_ERRMSG := SQLERRM;
+            ROLLBACK;
+
+모든 프로시저에
+    --에러처리 변수
+        ,O_ERRCODE      OUT VARCHAR2
+        ,O_ERRMSG       OUT VARCHAR2
+    추가해서 사용자 에러 정의해 처리한다.
+
+
+에러가 나도 그 부분만 제외하고 나머지 기능은 이용할 수 있도록 해야 한다!
+
+
+에러의 종류
+- COMPILE 에러 : 컴파일이 안됨(실행이 안됨)
+- RUNTIME 에러
+    실행 중 에러 -> 일반적인 예외처리
+    알아서 롤백 해준다
+- LOGIC 에러
+    에러 난거 빼고 실행되므로 ALL OR NOTHING이 불가
+    사용자 정의 예외처리를 통해 해결(USER DEFINED EXCEPTION)
+    자동으로 ROLLBACK되지 않음
+
+
