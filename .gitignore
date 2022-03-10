@@ -4,3 +4,5 @@
 2022JAVA_YSH 1/유승화_프론트앤드 숙제.zip
 
 
+*.exe
+!jcpicker.exe
