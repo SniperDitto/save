@@ -108,3 +108,49 @@ WHERE PRO_ID=:IN_PRO_ID
 --수강신청 테이블의 CRUD 해보기 + 패키지만들기
 SELECT * FROM STUDENTS_TIME_TBL;
 
+--INSERT
+    --DO_YEAR : TO_CHAR(SYSDATE,'YYYY') 
+    --이번학기에 개설하는 수업만 수강신청?
+    INSERT INTO STUDENTS_TIME_TBL(STU_ID, SUB_ID, DO_YEAR, SEMESTER, REG_TIME)
+    VALUES(:IN_STU_ID, :IN_SUB_ID, :IN_DO_YEAR, :IN_SEMESTER, SYSDATE)
+    ;
+    
+--UPDATE
+    UPDATE STUDENTS_TIME_TBL
+    SET DO_YEAR=:IN_DO_YEAR,
+        SEMESTER=:IN_SEMESTER
+    WHERE STU_ID=:IN_STU_ID
+        AND SUB_ID=:IN_SUB_ID
+    ;
+    
+--SELECT
+    SELECT *
+    FROM STUDENTS_TIME_TBL
+    WHERE STU_ID LIKE '%'||:IN_STU_ID||'%'
+        AND SUB_ID LIKE '%'||:IN_SUB_ID||'%'
+        AND DO_YEAR LIKE '%'||:IN_DO_YEAR||'%'
+        AND SEMESTER LIKE '%'||:IN_SEMESTER||'%'
+    ;
+    
+--DELETE
+    DELETE FROM STUDENTS_TIME_TBL
+    WHERE STU_ID=:IN_STU_ID
+        AND SUB_ID=:IN_SUB_ID
+    ;
+
+--------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

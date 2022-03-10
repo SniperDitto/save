@@ -1,0 +1,75 @@
+CREATE OR REPLACE
+PACKAGE BODY PKG_TIMETABLE AS
+
+
+    --INSERT
+      PROCEDURE PROC_INS_TIMETABLE
+        (
+            IN_STU_ID   IN  VARCHAR2
+            ,IN_SUB_ID  IN  VARCHAR2
+            ,IN_DO_YEAR IN  VARCHAR2
+            ,IN_SEMESTER    IN  VARCHAR2
+        ) AS
+      BEGIN
+        --DO_YEAR : TO_CHAR(SYSDATE,'YYYY') 
+        --이번학기에 개설하는 수업만 수강신청?
+        INSERT INTO STUDENTS_TIME_TBL(STU_ID, SUB_ID, DO_YEAR, SEMESTER, REG_TIME)
+        VALUES(IN_STU_ID, IN_SUB_ID, IN_DO_YEAR, IN_SEMESTER, SYSDATE)
+        ;
+      END PROC_INS_TIMETABLE;
+  
+  
+    --UPDATE
+      PROCEDURE PROC_UP_TIMETABLE
+        (
+            IN_STU_ID   IN  VARCHAR2
+            ,IN_SUB_ID  IN  VARCHAR2
+            ,IN_DO_YEAR IN  VARCHAR2
+            ,IN_SEMESTER    IN  VARCHAR2
+        ) AS
+      BEGIN
+        UPDATE STUDENTS_TIME_TBL
+        SET DO_YEAR=IN_DO_YEAR,
+            SEMESTER=IN_SEMESTER
+        WHERE STU_ID=IN_STU_ID
+            AND SUB_ID=IN_SUB_ID
+        ;
+      END PROC_UP_TIMETABLE;
+
+
+    --SELECT
+      PROCEDURE PROC_SEL_TIMETABLE
+        (
+            IN_STU_ID   IN  VARCHAR2
+            ,IN_SUB_ID  IN  VARCHAR2
+            ,IN_DO_YEAR IN  VARCHAR2
+            ,IN_SEMESTER    IN  VARCHAR2
+            ,O_CUR      OUT SYS_REFCURSOR
+        ) AS
+      BEGIN
+        OPEN O_CUR FOR
+        SELECT *
+        FROM STUDENTS_TIME_TBL
+        WHERE STU_ID LIKE '%'||IN_STU_ID||'%'
+            AND SUB_ID LIKE '%'||IN_SUB_ID||'%'
+            AND DO_YEAR LIKE '%'||IN_DO_YEAR||'%'
+            AND SEMESTER LIKE '%'||IN_SEMESTER||'%'
+        ;
+      END PROC_SEL_TIMETABLE;
+
+
+    --DELETE
+      PROCEDURE PROC_DEL_TIMETABLE
+        (
+            IN_STU_ID   IN  VARCHAR2
+            ,IN_SUB_ID  IN  VARCHAR2
+        ) AS
+      BEGIN
+        DELETE FROM STUDENTS_TIME_TBL
+        WHERE STU_ID=IN_STU_ID
+            AND SUB_ID=IN_SUB_ID
+        ;
+      END PROC_DEL_TIMETABLE;
+      
+
+END PKG_TIMETABLE;
