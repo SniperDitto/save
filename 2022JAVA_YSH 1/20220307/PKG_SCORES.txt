@@ -1,0 +1,47 @@
+create or replace NONEDITIONABLE PACKAGE PKG_SCORES AS 
+    
+    --점수->학점 변환함수
+    FUNCTION FUNC_GET_GRADE(
+        IN_SCORE    IN  NUMBER
+    )RETURN VARCHAR2;
+    
+    --학점구하기
+    FUNCTION FUNC_GET_AVERAGE(
+        IN_STU_ID   IN  VARCHAR2
+        ,IN_DO_YEAR IN  VARCHAR2
+        ,IN_SEMESTER    IN  VARCHAR2
+    )RETURN NUMBER;
+    
+    --SCORES_TBL INSERT
+    PROCEDURE PROC_INS_SCORES
+    (
+        IN_STU_ID       IN  VARCHAR2
+        ,IN_SUB_ID      IN  VARCHAR2
+        ,IN_YEAR        IN  VARCHAR2
+        ,IN_SEMESTER    IN  VARCHAR2
+        ,IN_GBN         IN  VARCHAR2
+        ,IN_SCORE       IN  VARCHAR2
+        ,IN_DATE        IN  VARCHAR2
+    );
+    
+    --선택학과 개설 과목
+    PROCEDURE PROC_SEL_SUBJECTS
+    (
+        IN_GRP_ID   IN  VARCHAR2
+        ,IN_COM_ID  IN  VARCHAR2
+        ,O_CUR      OUT SYS_REFCURSOR
+    );
+    
+    --SCORE 등록 페이지에 나올 리스트
+    PROCEDURE PROC_SEL_INS_SCORE
+    (
+        IN_DO_YEAR      IN  VARCHAR2
+        ,IN_SEMESTER    IN  VARCHAR2
+        ,IN_GBN         IN  VARCHAR2
+        ,IN_GRP_ID      IN  VARCHAR2
+        ,IN_COM_ID      IN  VARCHAR2
+        ,IN_SUB_ID      IN  VARCHAR2
+        ,O_CUR          OUT SYS_REFCURSOR
+    );
+
+END PKG_SCORES;
