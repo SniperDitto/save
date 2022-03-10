@@ -1,0 +1,39 @@
+CREATE OR REPLACE 
+PACKAGE PKG_PROFESSORS AS 
+    --INSERT
+    PROCEDURE PROC_INS_PROFESSOR
+    (
+        IN_PRO_NAME         IN  VARCHAR2
+        ,IN_PRO_ADDR_GRP    IN  VARCHAR2
+        ,IN_PRO_ADDR        IN  VARCHAR2
+        ,IN_PRO_ADDR2       IN  VARCHAR2
+        ,IN_PRO_DEPT_GRP    IN  VARCHAR2
+        ,IN_PRO_DEPT        IN  VARCHAR2
+    );
+    
+    --SELECT
+    PROCEDURE PROC_SEL_PROFESSORS
+    (
+        IN_PRO_ID       IN  VARCHAR2
+        ,IN_PRO_NAME    IN  VARCHAR2
+        ,O_CUR          OUT SYS_REFCURSOR
+    );
+    
+    --UPDATE
+    PROCEDURE PROC_UP_PROFESSORS
+    (   
+        IN_PRO_ID           IN  VARCHAR2
+        ,IN_PRO_NAME        IN  VARCHAR2
+        ,IN_PRO_ADDR_GRP    IN  VARCHAR2
+        ,IN_PRO_ADDR        IN  VARCHAR2
+        ,IN_PRO_ADDR2       IN  VARCHAR2
+        ,IN_PRO_DEPT_GRP    IN  VARCHAR2
+        ,IN_PRO_DEPT        IN  VARCHAR2
+    );
+
+    --DELETE
+    PROCEDURE PROC_DEL_PROFESSORS
+    (
+        IN_PRO_ID   IN  VARCHAR2
+    );
+END PKG_PROFESSORS;
