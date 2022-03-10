@@ -1,0 +1,106 @@
+CREATE OR REPLACE
+PACKAGE BODY PKG_BOARDS AS
+
+
+    --INSERT
+  PROCEDURE PROC_INS_BOARDS
+      (
+        IN_TITLE    IN  VARCHAR2
+        ,IN_CONTENT IN  VARCHAR2
+        ,IN_STU_ID  IN  VARCHAR2
+      ) AS
+      
+    V_NEW_IDX   NUMBER;
+    
+  BEGIN
+    
+    --글쓴이가 회원인지 확인
+    --IN_STU_ID가 STUDENTS_TBL 내에 있는지?
+    
+  
+    --다음 IDX값 생성
+    SELECT NVL(MAX(IDX),0)+1
+    INTO V_NEW_IDX
+    FROM BOARDS
+    ;
+  
+    INSERT INTO BOARDS(IDX, TITLE, CONTENT, REGDATE, STU_ID)
+    VALUES (V_NEW_IDX, IN_TITLE, IN_CONTENT, SYSDATE, IN_STU_ID)
+    ;
+    
+  END PROC_INS_BOARDS;
+  
+  
+  
+    --SELECT(게시글목록)
+  PROCEDURE PROC_SEL_BOARDS
+      (
+        IN_TITLE    IN  VARCHAR2
+        ,O_CUR   OUT SYS_REFCURSOR
+      ) AS
+  BEGIN
+    
+    OPEN O_CUR FOR
+    SELECT *
+    FROM BOARDS
+    WHERE TITLE LIKE '%'||IN_TITLE||'%'
+    ORDER BY IDX DESC
+    ;
+    
+  END PROC_SEL_BOARDS;
+  
+  --SELECT(글 읽기)
+  PROCEDURE PROC_SEL_CONTENT
+      (
+        IN_IDX    IN  VARCHAR2
+        ,IN_STU_ID  IN  VARCHAR2
+        ,O_CUR   OUT SYS_REFCURSOR
+      ) AS
+  BEGIN
+    --글 읽기 권한 설정 추후에 추가
+    
+    OPEN O_CUR FOR
+    SELECT *
+    FROM BOARDS
+    WHERE IDX=IN_IDX
+    ;
+    
+  END PROC_SEL_CONTENT;
+  
+  
+  
+    --UPDATE
+  PROCEDURE PROC_UP_BOARDS
+      (
+        IN_TITLE    IN  VARCHAR2
+        ,IN_CONTENT IN  VARCHAR2
+        ,IN_IDX     IN  VARCHAR2
+      ) AS
+  BEGIN
+  
+    UPDATE BOARDS
+    SET TITLE=IN_TITLE, CONTENT=IN_CONTENT
+    WHERE IDX=IN_IDX
+    ;
+    
+  END PROC_UP_BOARDS;
+  
+  
+    --DELETE
+  PROCEDURE PROC_DEL_BOARDS
+      (
+        IN_IDX  IN  VARCHAR2
+        ,IN_STU_ID  IN  VARCHAR2
+      ) AS
+  BEGIN
+    --본인이 쓴 글만 삭제 가능
+        --예외처리 필요
+    
+    DELETE FROM BOARDS 
+    WHERE IDX=IN_IDX 
+        AND STU_ID=IN_STU_ID
+    ;
+    
+  END PROC_DEL_BOARDS;
+
+END PKG_BOARDS;
