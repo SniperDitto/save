@@ -1,0 +1,87 @@
+CREATE OR REPLACE
+PACKAGE BODY PKG_SALES AS
+
+  PROCEDURE PROC_INS_SALES
+    (
+        IN_CID      IN  VARCHAR2
+        ,IN_PID     IN  VARCHAR2
+        ,IN_SPRICE  IN  NUMBER
+        ,IN_QTY     IN  NUMBER
+        ,IN_SDATE   IN  VARCHAR2
+        ,IN_POINT_YN    IN  VARCHAR2
+        ,IN_POINT   IN  VARCHAR2
+        ,O_ERRCODE  OUT VARCHAR2
+        ,O_ERRMSG   OUT VARCHAR2
+    ) AS
+        V_CID_COUNT   NUMBER(3);
+        V_PID_COUNT   NUMBER(3);
+        V_CPOINT     NUMBER(8,2);
+        V_POINT     NUMBER(3,2);
+        
+        --오류처리
+        EXCEPT_POINT    EXCEPTION;
+        
+  BEGIN
+    --IN_CID가 회원가입이 되지 않은 사람일 경우?
+    SELECT COUNT(*)
+    INTO V_CID_COUNT
+    FROM CUSTOMERS
+    WHERE CID=IN_CID
+    ;
+    --IN_PID가 존재하는 상품인가?
+    SELECT COUNT(*)
+    INTO V_PID_COUNT
+    FROM PRODUCTS
+    WHERE PID=IN_PID
+    ;
+    --회원인 경우에만 물건 구매
+    IF V_CID_COUNT>0 AND V_PID_COUNT>0 THEN
+        INSERT INTO SALES(CID, PID, SPRICE, SQTY, SDATE) 
+        VALUES(IN_CID, IN_PID, IN_SPRICE, IN_QTY, TO_DATE(IN_SDATE,'YYYY-MM-DD'))
+        ;
+        /*
+        --해당상품의 포인트적립율 가져오기
+        SELECT POINT_PER
+        INTO V_POINT
+        FROM PRODUCTS
+        WHERE PID=IN_PID
+        ;
+        --포인트적립
+        UPDATE CUSTOMERS
+        SET CPOINT=CPOINT + ((IN_SPRICE*IN_QTY) * V_POINT)
+        WHERE CID=IN_CID
+        ;
+        
+        --포인트사용여부
+        IF IN_POINT_YN='Y' THEN
+            --현재 고객의 포인트 잔액이 충분한지 확인
+            SELECT CPOINT INTO V_CPOINT
+            FROM CUSTOMERS
+            WHERE CID=IN_CID
+            ;
+            IF V_CPOINT>=IN_POINT THEN
+                UPDATE CUSTOMERS
+                SET CPOINT=CPOINT-IN_POINT
+                WHERE CID=IN_CID
+                ;
+            ELSE
+                RAISE EXCEPT_POINT;
+            END IF;
+        END IF;
+        */
+    END IF;
+
+    EXCEPTION
+    WHEN EXCEPT_POINT THEN
+        O_ERRCODE:='NO_POINT';
+        O_ERRMSG:='포인트 잔액이 부족합니다.';
+        ROLLBACK;
+    WHEN OTHERS THEN
+        O_ERRCODE := SQLCODE;
+        O_ERRMSG := SQLERRM;
+        ROLLBACK;
+    
+    
+  END PROC_INS_SALES;
+
+END PKG_SALES;
