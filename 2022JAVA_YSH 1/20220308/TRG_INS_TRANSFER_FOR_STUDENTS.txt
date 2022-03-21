@@ -1,0 +1,66 @@
+CREATE OR REPLACE TRIGGER TRG_INS_TRANSFER_FOR_STUDENTS 
+AFTER UPDATE OF STU_DEPT,STU_DEPT_GRP,STU_ID ON STUDENTS_TBL 
+REFERENCING OLD AS O NEW AS N 
+FOR EACH ROW
+DECLARE
+    V_NEW_IDX   NUMBER(5);
+BEGIN
+
+    SELECT NVL(MAX(TRANS_IDX),0)+1
+    INTO V_NEW_IDX
+    FROM STUDENTS_TRANSFER
+    WHERE STU_ID=:O.STU_ID
+    ;
+    
+    
+    INSERT INTO STUDENTS_TRANSFER
+    (
+        STU_ID, 
+        TRANS_IDX, 
+        BEFORE_DEPT, 
+        BEFORE_GRP, 
+        TRANS_DEPT, 
+        TRANS_GRP
+    )
+    VALUES
+    (
+        :O.STU_ID, 
+        V_NEW_IDX, 
+        :O.STU_DEPT, 
+        :O.STU_DEPT_GRP, 
+        :N.STU_DEPT, 
+        :N.STU_DEPT_GRP
+    );
+    
+    -------------------------
+    --IF V_NEW_IDX=1 THEN 
+    --> 이렇게 하면 편의상 좋지만 모든 행위를 다 담지 못한다
+    --ROW로 모든 데이터를 담아야 한다
+        
+        --이전학과
+        INSERT INTO STUDENTS_TRANSFER2
+        (
+            STU_ID, 
+            TRANS_IDX, 
+            STU_DEPT, 
+            STU_DEPT_GRP, 
+            GBN
+        )
+        VALUES(:O.STU_ID, V_NEW_IDX, :O.STU_DEPT, :O.STU_DEPT_GRP, 'O')
+        ;
+    --END IF;
+    
+        --옮긴학과
+        V_NEW_IDX:=V_NEW_IDX+1;
+        INSERT INTO STUDENTS_TRANSFER2
+        (
+            STU_ID, 
+            TRANS_IDX, 
+            STU_DEPT, 
+            STU_DEPT_GRP, 
+            GBN
+        )
+        VALUES(:O.STU_ID, V_NEW_IDX, :N.STU_DEPT, :N.STU_DEPT_GRP, 'T')
+        ;
+    
+END;
