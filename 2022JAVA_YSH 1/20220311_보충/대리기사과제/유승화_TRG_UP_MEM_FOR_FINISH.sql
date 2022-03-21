@@ -1,0 +1,66 @@
+CREATE OR REPLACE TRIGGER TRG_UP_MEM_FOR_FINISH 
+BEFORE INSERT ON FINISH_DRIVE_TBL 
+REFERENCING OLD AS O NEW AS N 
+FOR EACH ROW
+WHEN (N.F_GUBUN=2)
+DECLARE
+    V_CHK_MEM   CHAR(1);
+    V_PAY     NUMBER(7,0);
+    V_POINT   NUMBER(7,0);
+    V_TEL     VARCHAR2(20);
+    
+    NO_MEMBER   EXCEPTION;
+    NO_POINT    EXCEPTION;
+BEGIN
+    --포인트 내역 테이블 별도로 X
+    
+    --취소건의 금액
+    SELECT R_PAY
+    INTO V_PAY
+    FROM RESERVATION_TBL 
+    WHERE R_ID=:N.R_ID
+    ;
+    --포인트 차감할 회원 번호
+    SELECT M.R_TEL
+    INTO V_TEL
+    FROM DR_MEMBER_TBL M, RESERVATION_TBL R
+    WHERE M.R_TEL=R.R_TEL
+        AND R.R_ID=:N.R_ID
+    ;
+    --잔여포인트
+    SELECT MEM_POINT
+    INTO V_POINT
+    FROM DR_MEMBER_TBL
+    WHERE R_TEL=V_TEL
+    ;
+    
+    --회원번호 존재하는지 확인
+    SELECT DECODE(MAX(R_TEL),NULL,0,1)
+    INTO V_CHK_MEM
+    FROM DR_MEMBER_TBL
+    WHERE R_TEL=V_TEL
+    ;
+    IF V_CHK_MEM=0 THEN
+        RAISE NO_MEMBER;
+    END IF;
+    
+    --취소건 금액의 10% 차감
+    IF V_POINT-ROUND((V_PAY*0.1),0)<0 THEN
+        RAISE NO_POINT;
+    END IF;
+    
+    UPDATE DR_MEMBER_TBL
+    SET MEM_POINT=V_POINT-ROUND((V_PAY*0.1),0)
+    WHERE R_TEL=V_TEL
+    ;
+    
+    
+    EXCEPTION
+    WHEN NO_MEMBER THEN
+        DBMS_OUTPUT.PUT_LINE('회원이 존재하지 않습니다');
+    WHEN NO_POINT THEN
+        DBMS_OUTPUT.PUT_LINE('포인트가 부족합니다');
+    WHEN OTHERS THEN
+        DBMS_OUTPUT.PUT_LINE(SQLERRM);
+
+END;
