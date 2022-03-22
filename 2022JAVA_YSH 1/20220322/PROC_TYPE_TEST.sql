@@ -1,0 +1,35 @@
+CREATE OR REPLACE PROCEDURE PROC_TYPE_TEST 
+(
+    O_CUR   OUT SYS_REFCURSOR
+)
+AS 
+    --사용자 정의 타입 이용
+    V_ARR_STU_NAME  ARR_TYPE;
+    V_SUM   NUMBER(10);
+BEGIN
+    V_SUM := 0;
+    --배열 타입
+    V_ARR_STU_NAME := ARR_TYPE('LEE','KIM','PARK','CHOI','SHIN');
+    
+    FOR I IN 1..5
+    LOOP
+        DBMS_OUTPUT.PUT_LINE(V_ARR_STU_NAME(I));
+    END LOOP;
+    
+    OPEN O_CUR FOR
+    SELECT
+    V_ARR_STU_NAME(1)
+    ,V_ARR_STU_NAME(2)
+    ,V_ARR_STU_NAME(3)
+    ,V_ARR_STU_NAME(4)
+    ,V_ARR_STU_NAME(5)
+    FROM DUAL
+    ;
+    
+    FOR I IN 1..100
+    LOOP
+        V_SUM := V_SUM + I;
+        DBMS_OUTPUT.PUT_LINE(V_SUM);
+    END LOOP;
+    
+END PROC_TYPE_TEST;

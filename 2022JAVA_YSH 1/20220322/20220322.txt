@@ -1,0 +1,76 @@
+DATATYPE
+    USER DEFINED TYPE
+    사용자 정의 타입
+    본인이 필요하면 정의해서 사용하는 데이터 타입
+    VARCHAR2, NUMBER, INTEGER, CHAR ...
+    ORACLE에서 기본적으로 제공하는 데이터타입
+
+유형 에서 만들거나(전역)
+프로시져의 변수 선언부(지역)에서 만들 수 있다
+    보통 지역변수로 쓴다
+
+
+----보안 위해 데이터 조회 시켜줄 때
+1. SELECT 권한만 줌
+2. 받는 쪽에서 필요한 FIELD로 테이블을 만들면 주는 쪽에서 내용을 채워서 줌
+    --ORACLE SCHEDULER 이용해 매일 갱신하도록
+
+-------------
+대리기사 취소 스케줄러
+현재 취소테이블의 데이터 다 삭제
+빈 취소테이블에 새로 INSERT
+백업테이블에 INSERT
+-------------------------
+
+1. 정규화
+ - 제1정규화
+    테이블 생성 시 모든 필드는 다른 필드에 연관되어서는 안된다
+ - 제2정규화
+    고객이 상품 여러개를 주문
+    두개의 엔티티가 다대 다의 관계를 형성하면 반드시 1대 다의 새로운 테이블로 행위를 표현한다
+ - 제3정규화
+    코드성 테이블(지역, 백신종류 등), 대상이 없는 행위 따로 정리
+ - 제4정규화(역정규화)
+    COMMONS_TBL, 답변형 게시판, 메뉴
+    편의상 정규화 위배
+
+2. CRUD
+ - INSERT C
+ - SELECT R
+ - UPDATE U
+ - DELETE D
+
+3. JOIN / PROCEDURE / PACKAGE / FUNCTION
+ - JOIN
+    1대 다의 관계를 가지는 필드끼리 JOIN
+ - PROCEDURE
+    TRANSACTION : 업무의 최소 단위
+    어플리케이션에서 사용
+    EXCEPTION 처리 필수
+    TRIGGER : 특정 테이블에 이벤트 발생시 실행되는 프로시져
+ - PACKAGE
+    관련된 프로시져 묶음
+ - FUNCTION
+    ORACLE 내부에서 사용
+
+FUNCTION(C)
+PROCEDURE(DATABASE)
+METHOD(JAVA,C#,C++)
+
+4. VIEW
+    메모리에 존재하는 가상의 테이블
+    자주 쓰이는 JOIN문을 뷰로 저장해두고 쓰는 경우 많음
+    INSERT, UPDATE, DELETE 제한
+
+
+5. TYPE
+    명시적 커서 : FOR CUR IN ....
+
+6. MERGE INTO
+    JOIN으로 UPDATE + INSERT 동시에 가능
+    커서 사용 시 실행속도가 느려지므로 MERGE INTO 사용
+
+
+
+
+    
