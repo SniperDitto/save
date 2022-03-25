@@ -412,3 +412,5 @@ CREATE TABLE ADMISSION_MEDICINES_TBL( -- 입원자 처방약
 	ADM_MED_QTY		NUMBER		    NOT NULL,					-- 처방약 수량
 	ADM_MED_DATE	DATE		    NOT NULL					-- 처방일
 );
+
+--COMMIT;
