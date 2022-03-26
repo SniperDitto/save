@@ -65,6 +65,8 @@ DISCHARGE_TBL
         2) DELETE
         3) 연관된 다른 테이블의 값도 삭제
 
+
+----------------------------여기까지함
 2. INJECTION_TBL
     INSERT
         IN_RES_ID   IN VARCHAR2

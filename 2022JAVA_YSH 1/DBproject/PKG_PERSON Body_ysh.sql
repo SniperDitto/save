@@ -23,6 +23,7 @@ create or replace NONEDITIONABLE PACKAGE BODY PKG_PERSON AS
         FROM PERSON_TBL
         WHERE PER_ID=IN_PER_ID
         ;
+        --주민번호 자체의 유효성 검사는 생략합니다...
     
     IF V_CHK_PER_ID=1 THEN
         RAISE PERSON_EXIST_EXCEPTION;
@@ -49,13 +50,13 @@ create or replace NONEDITIONABLE PACKAGE BODY PKG_PERSON AS
     (
         IN_PER_ID       IN      VARCHAR2
         ,IN_PER_NAME    IN      VARCHAR2
-        ,O_CURSOR       OUT     SYS_REFCURSOR
+        ,O_CUR          OUT     SYS_REFCURSOR
         ,O_ERRCODE      OUT     VARCHAR2
         ,O_ERRMSG       OUT     VARCHAR2
     ) AS
   BEGIN
     
-    OPEN O_CURSOR FOR
+    OPEN O_CUR FOR
     SELECT * FROM PERSON_TBL
     WHERE PER_ID LIKE '%'||IN_PER_ID||'%'
         AND PER_NAME LIKE '%'||IN_PER_NAME||'%'
@@ -229,6 +230,9 @@ create or replace NONEDITIONABLE PACKAGE BODY PKG_PERSON AS
                 WHERE PER_ID=IN_PER_ID
                 ;
             END IF;
+            
+----------------------------회의 이후 결정---------
+/*
     --4. ADMISSION_TBL에서 삭제
         --입원건 있는지 확인
         SELECT DECODE(MAX(PER_ID),NULL,0,1)
@@ -295,7 +299,9 @@ create or replace NONEDITIONABLE PACKAGE BODY PKG_PERSON AS
                 WHERE ADM_ID=V_DEL_ADM_ID
                 ;
             END IF;
-    
+            */
+------------------------------------------------
+
     EXCEPTION
         WHEN NO_PERSON_EXCEPTION THEN
             O_ERRCODE := 'NO_PERSON_EXCEPTION';
@@ -312,6 +318,8 @@ create or replace NONEDITIONABLE PACKAGE BODY PKG_PERSON AS
         WHEN NO_TREAT_EXCEPTION  THEN
             O_ERRCODE := 'NO_TREAT_EXCEPTION ';
             O_ERRMSG := '존재하지 않는 진료건입니다';
+        ---------------회의 이후 결정---------------------
+        /*
         WHEN NO_ADMISSION_EXCEPTION  THEN
             O_ERRCODE := 'NO_ADMISSION_EXCEPTION ';
             O_ERRMSG := '존재하지 않는 입원건입니다';
@@ -324,6 +332,8 @@ create or replace NONEDITIONABLE PACKAGE BODY PKG_PERSON AS
         WHEN NO_DISCHARGE_EXCEPTION  THEN
             O_ERRCODE := 'NO_DISCHARGE_EXCEPTION ';
             O_ERRMSG := '존재하지 않는 퇴원건입니다';
+        */
+        -----------------------------------------------
         WHEN OTHERS THEN
             O_ERRCODE := SQLCODE;
             O_ERRMSG := SQLERRM;
