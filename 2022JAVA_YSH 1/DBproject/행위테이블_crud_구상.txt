@@ -1,0 +1,321 @@
+기본 Table 6개
+COMMONS_TBL
+PERSON_TBL
+VACCINE_TBL
+HOSPITAL_TBL
+VACCINE_IN_TBL
+DOCTOR_TBL
+
+행위 Table 6+2개
+RESERVATION_TBL
+INJECTION_TBL
+PATIENT_TBL
+TREAT_TBL
+ADMISSION_TBL
+    ADMISSION_ROOMS_TBL
+    ADMISSION_MEDICINES_TBL
+DISCHARGE_TBL
+
+--예외처리
+    ,O_ERRCODE  OUT VARCHAR2
+    ,O_ERRMSG   OUT VARCHAR2
+
+    EXCEPTION
+        WHEN OTHERS THEN
+            O_ERRCODE := SQLCODE;
+            O_ERRMSG := SQLERRM;
+--------
+
+1. RESERVATION_TBL
+    INSERT
+        IN_PER_ID   IN VARCHAR2
+        ,IN_HOS_ID  IN VARCHAR2
+        ,IN_VAC_ID  IN VARCHAR2
+        ,IN_RES_DATE    IN VARCHAR2
+
+        1) 주민번호, 병원ID, 백신ID 유효한지 체크
+        2) 선택한 백신 잔여수량 확인(예약화면과 예약 신청 사이에 다른사람이 신청해서 수량 차감되었을 수 있으므로)
+        3) 다음 RES_ID 생성
+            'RES'||TO_CHAR(TO_NUMBER(SUBSTR(NVL(MAX(RES_ID),'RES000'),4,3))+1,'FM000')
+        4) 값 넣기
+
+    SELECT
+        IN_RES_ID   IN VARCHAR2
+        ,IN_PER_ID   IN VARCHAR2
+        ,IN_HOS_ID   IN VARCHAR2
+        ,IN_VAC_ID   IN VARCHAR2
+        ,O_CUR      OUT SYS_REFCURSOR
+
+        1) LIKE 이용해 SELECT 작성
+
+    UPDATE
+        IN_RES_ID   IN VARCHAR2
+        ,IN_PER_ID  IN VARCHAR2
+        ,IN_HOS_ID  IN VARCHAR2
+        ,IN_VAC_ID  IN VARCHAR2
+        ,IN_RES_DATE    IN VARCHAR2
+
+        1) IN_RES_ID 유효한지 확인
+        2) UPDATE
+
+    DELETE
+        IN_RES_ID   IN VARCHAR2
+
+        1) 존재하는 RES_ID인지 체크
+        2) DELETE
+        3) 연관된 다른 테이블의 값도 삭제
+
+2. INJECTION_TBL
+    INSERT
+        IN_RES_ID   IN VARCHAR2
+        ,IN_INJ_DATE     IN VARCHAR2
+
+        1) 존재하는 RES_ID인지 체크
+        2) RES_ID의 접종자 PER_ID가 INJECTION_TBL에 몇번 있는지 CNT 세기
+        3) INSERT
+        4) 해당 병원의 백신 재고 차감
+
+    SELECT
+        IN_RES_ID   IN VARCHAR2
+        ,O_CUR   OUT SYS_REFCURSOR
+
+        1) LIKE 이용해서 SELECT
+
+    UPDATE
+        IN_RES_ID   IN VARCHAR2
+        ,IN_INJ_DATE    IN VARCHAR2
+        ,IN_INJ_CNT     IN VARCHAR2
+
+        1) RES_ID 유효한지 체크
+        2) UPDATE
+
+    DELETE
+        IN_RES_ID   IN VARCHAR2
+
+        1) RES_ID 유효한지 체크
+        2) UPDATE
+----------------------------------------------------
+3. PATIENT_TBL
+    INSERT
+        IN_PER_ID   IN VARCHAR2
+        ,IN_PAT_SYMP_GRP    IN VARCHAR2
+        ,IN_PAT_SYMP        IN VARCHAR2
+        ,IN_PAT_IN_DATE     IN VARCHAR2
+        ,IN_HOS_ID          IN VARCHAR2
+
+        1) 주민번호, 병원ID, GRP, COM 유효한지 체크
+        2) 다음 PAT_ID 생성
+        3) INSERT
+
+    SELECT
+        IN_PAT_ID   IN VARCHAR2
+        ,IN_PER_ID  IN VARCHAR2
+        ,O_CUR  OUT SYS_REFCURSOR
+
+        1) LIKE 이용해 SELECT
+
+    UPDATE
+        IN_PAT_ID   IN VARCHAR2
+        ,IN_PER_ID  IN VARCHAR2
+        ,IN_PAT_SYMP_GRP    IN VARCHAR2
+        ,IN_PAT_SYMP    IN VARCHAR2
+        ,IN_PAT_IN_DATE     IN VARCHAR2
+        ,IN_HOS_ID      IN VARCHAR2
+
+        1) 주민번호, 병원ID, GRP, COM 유효한지 체크
+        2) UPDATE
+
+    DELETE
+        IN_PAT_ID   IN VARCHAR2
+
+        1) IN_PAT_ID 유효한지 확인
+        2) DELETE
+        3) 연관 테이블에서도 삭제
+
+4. TREAT_TBL
+    INSERT
+        IN_PAT_ID   IN VARCHAR2
+        ,IN_PER_ID  IN VARCHAR2
+        ,IN_DOC_ID  IN VARCHAR2
+        ,IN_TRE_DATE    IN VARCHAR2
+        ,IN_TRE_PAY     IN VARCHAR2
+
+        1) 방문환자, 사람, 의사 ID 유효한지 확인
+        2) 다음 TRE_ID 생성
+        3) INSERT
+
+    SELECT
+        IN_TRE_ID   IN VARCHAR2
+        ,IN_PAT_ID  IN VARCHAR2
+        ,IN_PER_ID  IN VARCHAR2
+        ,IN_DOC_ID  IN VARCHAR2
+        ,O_CUR  OUT SYS_REFCURSOR
+
+        1) LIKE 이용해서 SELECT
+
+    UPDATE
+        IN_TRE_ID   IN VARCHAR2
+        ,IN_PAT_ID  IN VARCHAR2
+        ,IN_PER_ID  IN VARCHAR2
+        ,IN_DOC_ID  IN VARCHAR2
+        ,IN_TRE_DATE    IN VARCHAR2
+        ,IN_TRE_PAY     IN VARCHAR2
+
+        1) 진료, 방문환자, 사람, 의사ID 유효한지 확인
+        2) UPDATE
+
+    DELETE
+        IN_TRE_ID   IN VARCHAR2
+
+        1) 진료ID 유효한지 확인
+        2) DELETE
+        3) 관련 테이블에서도 삭제
+
+5. ADMISSION_TBL
+    INSERT
+        IN_PER_ID   IN VARCHAR2
+        ,IN_TRE_ID   IN VARCHAR2
+        ,IN_ADM_DATE     IN VARCHAR2
+
+        1) 사람, 진료ID 유효한지 확인
+        2) IDX, ADM_ID 생성
+        3) INSERT
+
+    SELECT
+        IN_ADM_ID   IN VARCHAR2
+        ,IN_PER_ID  IN VARCHAR2
+        ,IN_TRE_ID  IN VARCHAR2
+        ,O_CUR  OUT SYS_REFCURSOR
+
+        1) LIKE 이용해 SELECT
+
+    UPDATE
+        IN_ADM_ID   IN VARCHAR2
+        ,IN_PER_ID  IN VARCHAR2
+        ,IN_TRE_ID  IN VARCHAR2
+        ,IN_ADM_DATE     IN VARCHAR2
+
+        1) 입원, 사람, 진료 ID 유효한지 확인
+        2) UPDATE
+
+    DELETE
+        IN_ADM_ID   IN VARCHAR2
+
+        1) 입원ID 유효한지 확인
+        2) DELETE
+        3) 관련된 테이블에서도 삭제
+
+    5-1. ADMISSION_ROOMS_TBL
+        INSERT
+            IN_ADM_ID   IN VARCHAR2
+            ,IN_ADM_ROOM_GRP    IN VARCHAR2
+            ,IN_ADM_ROOM    IN VARCHAR2
+            ,IN_ADM_ROOM_DATE   IN VARCHAR2
+
+            1) 입원ID, GRP, COM 유효한지 확인
+            2) IN_ADM_ROOM_DATE가 입원일 이후인지 확인
+            3) IDX 생성
+            4) INSERT
+
+        SELECT
+            IN_ADM_ID   IN VARCHAR2
+            ,O_CUR  OUT SYS_REFCURSOR
+
+            1) LIKE 이용해 SELECT
+
+        UPDATE
+            IN_ADM_ID   IN VARCHAR2
+            ,IN_ADM_ROOM_GRP    IN VARCHAR2
+            ,IN_ADM_ROOM    IN VARCHAR2
+            ,IN_ADM_ROOM_DATE   IN VARCHAR2
+
+            1) 입원ID, GRP, COM 유효한지 확인
+            2) IN_ADM_ROOM_DATE가 입원일 이후인지 확인
+            3) UPDATE
+
+        DELETE
+            IN_ADM_ID   IN VARCHAR2
+            ,IN_ADM_DATE    IN VARCHAR2
+
+            1) 입원ID 유효한지 확인
+            2) DELETE
+
+    5-2. ADMISSION_MEDICINES_TBL
+        INSERT
+            IN_ADM_ID   IN VARCHAR2
+            ,IN_ADM_MED_GRP     IN VARCHAR2
+            ,IN_ADM_MED     IN VARCHAR2
+            ,IN_ADM_MED_QTY     IN VARCHAR2
+            ,IN_ADM_MED_DATE    IN VARCHAR2
+
+            1) 입원ID 유효한지 확인
+            2) 약 수량 1 이상인지 확인
+            3) IN_ADM_MED_DATE가 입원일 이후인지 확인
+            4) IDX 생성
+            5) INSERT
+
+        SELECT
+            IN_ADM_ID   IN VARCHAR2
+            ,IN_ADM_MED     IN VARCHAR2
+            ,O_CUR  OUT SYS_REFCURSOR
+
+            1) LIKE 이용해 SELECT
+
+        UPDATE
+            IN_ADM_ID   IN VARCHAR2
+            ,IN_ADM_MED_GRP     IN VARCHAR2
+            ,IN_ADM_MED     IN VARCHAR2
+            ,IN_ADM_MED_QTY     IN VARCHAR2
+            ,IN_ADM_MED_DATE    IN VARCHAR2
+
+            1) 입원ID 유효한지 확인
+            2) 약 수량 1 이상인지 확인
+            3) IN_ADM_MED_DATE가 입원일 이후인지 확인
+            4) UPDATE
+
+        DELETE
+            IN_ADM_ID   IN VARCHAR2
+            ,IN_ADM_MED  IN VARCHAR2
+            ,IN_ADM_MED_DATE     IN VARCHAR2
+
+            1) 입원ID 유효한지 확인
+            2) DELETE
+
+6. DISCHARGE_TBL
+    INSERT
+        IN_ADM_ID   IN VARCHAR2
+        ,IN_PER_ID  IN VARCHAR2
+        ,IN_DOC_ID  IN VARCHAR2
+        ,IN_DIS_DATE    IN VARCHAR2
+
+        1) 입원, 사람, 의사ID 유효한지 확인
+        2) IN_DIS_DATE가 입원일보다 이후인지 확인
+        3) IDX 생성
+        4) INSERT
+
+    SELECT
+        IN_ADM_ID   IN VARCHAR2
+        ,IN_PER_ID  IN VARCHAR2
+        ,IN_DOC_ID  IN VARCHAR2
+        ,O_CUR  OUT SYS_REFCURSOR
+
+        1) LIKE 이용해 SELECT
+
+    UPDATE
+        IN_ADM_ID   IN VARCHAR2
+        ,IN_PER_ID  IN VARCHAR2
+        ,IN_DOC_ID  IN VARCHAR2
+        ,IN_DIS_DATE    IN VARCHAR2
+
+        1) 진료, 사람, 의사ID 유효한지 확인
+        2) IN_DIS_DATE가 입원일보다 이후인지 확인
+        3) UPDATE
+
+    DELETE
+        IN_ADM_ID   IN VARCHAR2
+        IN_DIS_DATE     IN VARCHAR2
+
+        1) 입원ID 유효한지 확인
+        2) DELETE
+
+
