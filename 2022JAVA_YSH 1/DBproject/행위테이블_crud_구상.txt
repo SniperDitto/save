@@ -65,8 +65,6 @@ DISCHARGE_TBL
         2) DELETE
         3) 연관된 다른 테이블의 값도 삭제
 
-
-----------------------------여기까지함
 2. INJECTION_TBL
     INSERT
         IN_RES_ID   IN VARCHAR2
@@ -79,7 +77,7 @@ DISCHARGE_TBL
 
     SELECT
         IN_RES_ID   IN VARCHAR2
-        O_CUR   OUT SYS_REFCURSOR
+        ,O_CUR   OUT SYS_REFCURSOR
 
         1) LIKE 이용해서 SELECT
 
@@ -96,7 +94,7 @@ DISCHARGE_TBL
 
         1) RES_ID 유효한지 체크
         2) UPDATE
-
+----------------------------------------------------
 3. PATIENT_TBL
     INSERT
         IN_PER_ID   IN VARCHAR2
@@ -105,7 +103,7 @@ DISCHARGE_TBL
         ,IN_PAT_IN_DATE     IN VARCHAR2
         ,IN_HOS_ID          IN VARCHAR2
 
-        1) 주민번호, 병원ID 유효한지 체크
+        1) 주민번호, 병원ID, GRP, COM 유효한지 체크
         2) 다음 PAT_ID 생성
         3) INSERT
 
@@ -124,7 +122,7 @@ DISCHARGE_TBL
         ,IN_PAT_IN_DATE     IN VARCHAR2
         ,IN_HOS_ID      IN VARCHAR2
 
-        1) 환자, 사람, 병원ID 유효한지 확인
+        1) 주민번호, 병원ID, GRP, COM 유효한지 체크
         2) UPDATE
 
     DELETE
@@ -214,14 +212,13 @@ DISCHARGE_TBL
             ,IN_ADM_ROOM    IN VARCHAR2
             ,IN_ADM_ROOM_DATE   IN VARCHAR2
 
-            1) 입원ID 유효한지 확인
+            1) 입원ID, GRP, COM 유효한지 확인
             2) IN_ADM_ROOM_DATE가 입원일 이후인지 확인
             3) IDX 생성
             4) INSERT
 
         SELECT
             IN_ADM_ID   IN VARCHAR2
-            IN_ADM_ROOM     IN VARCHAR2
             ,O_CUR  OUT SYS_REFCURSOR
 
             1) LIKE 이용해 SELECT
@@ -232,7 +229,7 @@ DISCHARGE_TBL
             ,IN_ADM_ROOM    IN VARCHAR2
             ,IN_ADM_ROOM_DATE   IN VARCHAR2
 
-            1) 입원ID 유효한지 확인
+            1) 입원ID, GRP, COM 유효한지 확인
             2) IN_ADM_ROOM_DATE가 입원일 이후인지 확인
             3) UPDATE
 

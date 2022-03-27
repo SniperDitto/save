@@ -13,8 +13,12 @@ create or replace NONEDITIONABLE PACKAGE BODY PKG_PERSON AS
         ,O_ERRMSG           OUT VARCHAR2
     ) AS
         V_CHK_PER_ID    CHAR(1); --없으면 0 / 중복시 1
+        V_CHK_ADDR_GRP  CHAR(1);
+        V_CHK_ADDR      CHAR(1);
         
         PERSON_EXIST_EXCEPTION  EXCEPTION;
+        NOT_VALID_GRP_ID_EXCEPTION  EXCEPTION;
+        NOT_VALID_COM_ID_EXCEPTION  EXCEPTION;
   BEGIN
     
     --주민번호중복확인
@@ -24,9 +28,21 @@ create or replace NONEDITIONABLE PACKAGE BODY PKG_PERSON AS
         WHERE PER_ID=IN_PER_ID
         ;
         --주민번호 자체의 유효성 검사는 생략합니다...
+    --주소 GRP COM 확인
+    --COMMONS_TBL에서 체크
+    SELECT DECODE(MAX(GRP_ID),NULL,0,1), DECODE(MAX(COM_ID),NULL,0,1)
+    INTO V_CHK_ADDR_GRP, V_CHK_ADDR
+    FROM COMMONS_TBL
+    WHERE GRP_ID=IN_PER_ADDR_GRP AND GRP_ID='GRP001'
+        AND COM_ID=IN_PER_ADDR AND PARENT_ID='COM001'
+    ;
     
     IF V_CHK_PER_ID=1 THEN
         RAISE PERSON_EXIST_EXCEPTION;
+    ELSIF V_CHK_ADDR_GRP=0 THEN
+        RAISE NOT_VALID_GRP_ID_EXCEPTION;
+    ELSIF V_CHK_ADDR=0 THEN
+        RAISE NOT_VALID_COM_ID_EXCEPTION;
     ELSE
     --사람추가
         INSERT INTO PERSON_TBL(PER_ID, PER_NAME, PER_GENDER, PER_TEL, PER_ADDR_GRP, PER_ADDR)
@@ -38,6 +54,12 @@ create or replace NONEDITIONABLE PACKAGE BODY PKG_PERSON AS
         WHEN PERSON_EXIST_EXCEPTION THEN
             O_ERRCODE := 'PERSON_EXIST_EXCEPTION';
             O_ERRMSG := '이미 존재하는 주민번호입니다';
+        WHEN NOT_VALID_GRP_ID_EXCEPTION THEN
+            O_ERRCODE := 'NOT_VALID_GRP_ID_EXCEPTION';
+            O_ERRMSG := '올바르지 않은 GRP_ID입니다';
+        WHEN NOT_VALID_COM_ID_EXCEPTION THEN
+            O_ERRCODE := 'NOT_VALID_COM_ID_EXCEPTION';
+            O_ERRMSG := '올바르지 않은 COM_ID입니다';
         WHEN OTHERS THEN
             O_ERRCODE := SQLCODE;
             O_ERRMSG := SQLERRM;
@@ -83,6 +105,11 @@ create or replace NONEDITIONABLE PACKAGE BODY PKG_PERSON AS
         ,O_ERRMSG           OUT VARCHAR2
     ) AS
         V_CHK_PER_ID    CHAR(1); --있으면 1 없으면 0
+        V_CHK_ADDR_GRP  CHAR(1);
+        V_CHK_ADDR      CHAR(1);
+        
+        NOT_VALID_GRP_ID_EXCEPTION  EXCEPTION;
+        NOT_VALID_COM_ID_EXCEPTION  EXCEPTION;
         NO_PERSON_EXCEPTION         EXCEPTION;
   BEGIN
   --주민번호 존재 확인
@@ -91,10 +118,21 @@ create or replace NONEDITIONABLE PACKAGE BODY PKG_PERSON AS
     FROM PERSON_TBL
     WHERE PER_ID=IN_PER_ID
     ;
+    --COMMONS_TBL에서 체크
+    SELECT DECODE(MAX(GRP_ID),NULL,0,1), DECODE(MAX(COM_ID),NULL,0,1)
+    INTO V_CHK_ADDR_GRP, V_CHK_ADDR
+    FROM COMMONS_TBL
+    WHERE GRP_ID=IN_PER_ADDR_GRP AND GRP_ID='GRP001'
+        AND COM_ID=IN_PER_ADDR AND PARENT_ID='COM001'
+    ;
     
     --존재여부에 따라 예외처리/수정
     IF V_CHK_PER_ID=0 THEN
         RAISE NO_PERSON_EXCEPTION;
+    ELSIF V_CHK_ADDR_GRP=0 THEN
+        RAISE NOT_VALID_GRP_ID_EXCEPTION;
+    ELSIF V_CHK_ADDR=0 THEN
+        RAISE NOT_VALID_COM_ID_EXCEPTION;
     ELSE
         UPDATE PERSON_TBL
         SET PER_NAME=IN_PER_NAME
@@ -109,6 +147,12 @@ create or replace NONEDITIONABLE PACKAGE BODY PKG_PERSON AS
         WHEN NO_PERSON_EXCEPTION THEN
             O_ERRCODE := 'NO_PERSON_EXCEPTION';
             O_ERRMSG := '주민번호가 일치하는 사람이 없습니다';
+        WHEN NOT_VALID_GRP_ID_EXCEPTION THEN
+            O_ERRCODE := 'NOT_VALID_GRP_ID_EXCEPTION';
+            O_ERRMSG := '올바르지 않은 GRP_ID입니다';
+        WHEN NOT_VALID_COM_ID_EXCEPTION THEN
+            O_ERRCODE := 'NOT_VALID_COM_ID_EXCEPTION';
+            O_ERRMSG := '올바르지 않은 COM_ID입니다';
         WHEN OTHERS THEN
             O_ERRCODE := SQLCODE;
             O_ERRMSG := SQLERRM;
@@ -128,6 +172,7 @@ create or replace NONEDITIONABLE PACKAGE BODY PKG_PERSON AS
         V_DEL_ADM_ID    VARCHAR2(6);
         --존재여부 0:없음/1:존재
         V_CHK_PERSON        CHAR(1);
+        /*
         V_CHK_RESERVATION   CHAR(1);
         V_CHK_INJECTION     CHAR(1);
         V_CHK_PATIENT       CHAR(1);
@@ -136,8 +181,10 @@ create or replace NONEDITIONABLE PACKAGE BODY PKG_PERSON AS
         V_CHK_ROOMS         CHAR(1);
         V_CHK_MEDICINE      CHAR(1);
         V_CHK_DISCHARGE     CHAR(1);
+        */
         --예외들
         NO_PERSON_EXCEPTION         EXCEPTION;
+        /*
         NO_RESERVATION_EXCEPTION    EXCEPTION;
         NO_INJECTION_EXCEPTION      EXCEPTION;
         NO_PATIENT_EXCEPTION        EXCEPTION;
@@ -146,9 +193,10 @@ create or replace NONEDITIONABLE PACKAGE BODY PKG_PERSON AS
         NO_A_ROOMS_EXCEPTION        EXCEPTION;
         NO_A_MEDICINE_EXCEPTION     EXCEPTION;
         NO_DISCHARGE_EXCEPTION      EXCEPTION;
+        */
   BEGIN
     
-    --사람이 포함된 모든 데이터도 함께 삭제
+    --사람이 포함된 모든 데이터도 함께 삭제?
     --1. PERSON_TBL에서 삭제
         --사람 있는지 확인
         SELECT DECODE(MAX(PER_ID),NULL,0,1)
@@ -164,6 +212,7 @@ create or replace NONEDITIONABLE PACKAGE BODY PKG_PERSON AS
             WHERE PER_ID=IN_PER_ID
             ;
         END IF;
+/*
     --2. RESERVATION_TBL에서 삭제
         --예약건 있는지 확인
         SELECT DECODE(MAX(PER_ID),NULL,0,1)
@@ -231,8 +280,6 @@ create or replace NONEDITIONABLE PACKAGE BODY PKG_PERSON AS
                 ;
             END IF;
             
-----------------------------회의 이후 결정---------
-/*
     --4. ADMISSION_TBL에서 삭제
         --입원건 있는지 확인
         SELECT DECODE(MAX(PER_ID),NULL,0,1)
@@ -306,6 +353,7 @@ create or replace NONEDITIONABLE PACKAGE BODY PKG_PERSON AS
         WHEN NO_PERSON_EXCEPTION THEN
             O_ERRCODE := 'NO_PERSON_EXCEPTION';
             O_ERRMSG := '존재하지 않는 주민번호입니다';
+        /*
         WHEN NO_RESERVATION_EXCEPTION  THEN
             O_ERRCODE := 'NO_RESERVATION_EXCEPTION ';
             O_ERRMSG := '존재하지 않는 예약건입니다';
@@ -318,8 +366,6 @@ create or replace NONEDITIONABLE PACKAGE BODY PKG_PERSON AS
         WHEN NO_TREAT_EXCEPTION  THEN
             O_ERRCODE := 'NO_TREAT_EXCEPTION ';
             O_ERRMSG := '존재하지 않는 진료건입니다';
-        ---------------회의 이후 결정---------------------
-        /*
         WHEN NO_ADMISSION_EXCEPTION  THEN
             O_ERRCODE := 'NO_ADMISSION_EXCEPTION ';
             O_ERRMSG := '존재하지 않는 입원건입니다';
