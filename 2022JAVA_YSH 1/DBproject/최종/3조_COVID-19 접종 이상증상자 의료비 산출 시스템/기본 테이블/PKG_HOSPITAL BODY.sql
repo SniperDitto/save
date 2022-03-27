@@ -33,7 +33,7 @@ BEGIN
     
     ELSE
         --2) 다음 HOS_ID 생성
-        SELECT 'HOS'||TO_CHAR(TO_NUMBER(SUBSTR(NVL(MAX(HOS_ID),'HOS000'),4,3))+1,'FM000')
+        SELECT 'HOS' || TO_CHAR(NVL(TO_NUMBER(SUBSTR(MAX(HOS_ID), 4, 3)), 0) + 1, 'FM000')
         INTO V_NEW_HOS_ID
         FROM HOSPITAL_TBL
         ;
