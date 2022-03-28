@@ -1,0 +1,178 @@
+create or replace NONEDITIONABLE PACKAGE BODY PKG_HOSPITAL AS
+
+-- INSERT
+    PROCEDURE PROC_INS_HOSPITAL
+(
+    IN_HOS_ID               IN VARCHAR2
+    , IN_HOS_NAME	        IN VARCHAR2
+	, IN_HOS_ADDR_GRP	    IN VARCHAR2   
+	, IN_HOS_ADDR	        IN VARCHAR2		    
+	, IN_HOS_ROOM_QTY	    IN VARCHAR2		    
+	, IN_HOS_OPEN_DATE      IN VARCHAR2	
+    , O_ERRCODE       OUT     VARCHAR2
+    , O_ERRMSG        OUT     VARCHAR2  
+)
+AS
+    -- 병원 ID 체크
+    V_CHK_HOS_ID    CHAR(1);
+    
+    --새로운 HOS_ID 생성
+    V_NEW_HOS_ID    CHAR(6);
+
+    NO_HOS_ID_EXCEPTION     EXCEPTION;
+    
+BEGIN
+-- 1) 병원 ID 유효한지 체크
+    SELECT DECODE(MAX(HOS_ID),NULL,0,1)
+        INTO V_CHK_HOS_ID
+        FROM HOSPITAL_TBL
+        WHERE HOS_ID=IN_HOS_ID
+        ;
+    IF V_CHK_HOS_ID=0 THEN
+    RAISE NO_HOS_ID_EXCEPTION;
+    
+    ELSE
+        --2) 다음 HOS_ID 생성
+        SELECT 'HOS'||TO_CHAR(TO_NUMBER(SUBSTR(NVL(MAX(HOS_ID),'HOS000'),4,3))+1,'FM000')
+        INTO V_NEW_HOS_ID
+        FROM HOSPITAL_TBL
+        ;
+       --3) 값 넣기
+        INSERT INTO HOSPITAL_TBL(HOS_ID, HOS_ADDR_GRP, HOS_ADDR, HOS_ROOM_QTY, HOS_OPEN_DATE)
+        VALUES(IN_HOS_ID, IN_HOS_ADDR_GRP, IN_HOS_ADDR, IN_HOS_ROOM_QTY, IN_HOS_OPEN_DATE);
+    END IF;
+    
+    EXCEPTION
+        WHEN NO_HOS_ID_EXCEPTION THEN
+            O_ERRCODE := 'NO_HOS_ID_EXCEPTION';
+            O_ERRMSG := '이미 있는 병원입니다';
+        WHEN OTHERS THEN
+            O_ERRCODE := SQLCODE;
+            O_ERRMSG := SQLERRM;
+
+  END PROC_INS_HOSPITAL;
+  
+  
+  -- SELECT
+  PROCEDURE PROC_SEL_HOSPITAL
+(
+    IN_HOS_ID               IN VARCHAR2
+    , IN_HOS_NAME	        IN VARCHAR2
+	, IN_HOS_ADDR_GRP	    IN VARCHAR2   
+	, IN_HOS_ADDR	        IN VARCHAR2		    
+	, IN_HOS_ROOM_QTY	    IN VARCHAR2		    
+	, IN_HOS_OPEN_DATE      IN VARCHAR2
+    , O_CUR           OUT     SYS_REFCURSOR
+    , O_ERRCODE       OUT     VARCHAR2
+    , O_ERRMSG        OUT     VARCHAR2  
+) AS
+BEGIN
+
+  OPEN O_CUR FOR
+    SELECT A.HOS_NAME, A.HOS_ADDR_GRP, A.HOS_ADDR, C.COM_VAL, A.HOS_ROOM_QTY, A.HOS_OPEN_DATE
+    FROM HOSPITAL_TBL A, COMMONS_TBL C
+    WHERE HOS_ID LIKE '%'||IN_HOS_ID||'%'
+    AND A.HOS_NAME LIKE '%'||IN_HOS_NAME||'%'
+    AND A.HOS_ADDR_GRP LIKE '%'||IN_HOS_ADDR_GRP||'%'
+    AND A.HOS_ADDR LIKE '%'||IN_HOS_ADDR||'%'
+    AND A.HOS_ROOM_QTY LIKE '%'||IN_HOS_ROOM_QTY||'%'
+    AND A.HOS_OPEN_DATE LIKE '%'||IN_HOS_OPEN_DATE||'%'
+    AND A.HOS_ADDR = C.COM_ID
+    AND C.GRP_ID = 'GRP001'
+    ;
+    
+    EXCEPTION
+        WHEN OTHERS THEN
+            O_ERRCODE := SQLCODE;
+            O_ERRMSG := SQLERRM;
+            
+  END PROC_SEL_HOSPITAL;
+  
+
+--UPDATE
+  PROCEDURE PROC_UP_HOSPITAL
+(
+    IN_HOS_ID               IN VARCHAR2
+    , IN_HOS_NAME	        IN VARCHAR2
+	, IN_HOS_ADDR_GRP	    IN VARCHAR2   
+	, IN_HOS_ADDR	        IN VARCHAR2		    
+	, IN_HOS_ROOM_QTY	    IN VARCHAR2		    
+	, IN_HOS_OPEN_DATE      IN VARCHAR2
+    , O_ERRCODE       OUT     VARCHAR2
+    , O_ERRMSG        OUT     VARCHAR2  
+) AS
+    V_CHK_HOS_ID    CHAR(1);
+    NO_HOS_ID_EXCEPTION EXCEPTION;
+  
+  BEGIN  
+-- 1) 병원 ID 유효한지 체크
+    SELECT DECODE(MAX(HOS_ID),NULL,0,1)
+        INTO V_CHK_HOS_ID
+        FROM HOSPITAL_TBL
+        WHERE HOS_ID=IN_HOS_ID
+        ;
+  
+  IF V_CHK_HOS_ID=0 THEN
+    RAISE NO_HOS_ID_EXCEPTION;
+        
+    ELSE
+--2) UPDATE
+        UPDATE HOSPITAL_TBL
+        SET
+            HOS_ID=IN_HOS_ID
+            ,HOS_NAME=IN_HOS_NAME
+            ,HOS_ADDR_GRP=IN_HOS_ADDR_GRP
+            ,HOS_ROOM_QTY=IN_HOS_ROOM_QTY
+            ,HOS_OPEN_DATE=IN_HOS_OPEN_DATE
+       WHERE HOS_ADDR=IN_HOS_ADDR
+          ;
+    END IF;
+            
+        EXCEPTION
+            WHEN NO_HOS_ID_EXCEPTION THEN
+                O_ERRCODE := 'NO_HOS_ID_EXCEPTION';
+                O_ERRMSG := '동일한 병원 ID입니다';
+            WHEN OTHERS THEN
+                O_ERRCODE := SQLCODE;
+                O_ERRMSG := SQLERRM;
+  
+  
+END PROC_UP_HOSPITAL;  
+  
+
+-- DELETE  
+PROCEDURE PROC_DEL_HOSPITAL
+    (
+        IN_HOS_ID       IN VARCHAR2
+        ,O_ERRCODE      OUT VARCHAR2
+        ,O_ERRMSG       OUT VARCHAR2
+    ) AS
+        V_CHK_HOS_ID    CHAR(1);
+        NO_HOS_ID_EXCEPTION EXCEPTION;
+  BEGIN
+    --1) IN_HOS_ID 유효한지 확인
+    SELECT DECODE(MAX(HOS_ID),NULL,0,1)
+    INTO V_CHK_HOS_ID
+    FROM HOSPITAL_TBL
+    WHERE HOS_ID=IN_HOS_ID
+    ;
+    
+    IF V_CHK_HOS_ID=0 THEN
+        RAISE NO_HOS_ID_EXCEPTION;
+    ELSE
+    --2) DELETE
+        DELETE FROM HOSPITAL_TBL
+        WHERE HOS_ID=IN_HOS_ID
+        ;
+    END IF;
+    
+    EXCEPTION
+        WHEN NO_HOS_ID_EXCEPTION THEN
+            O_ERRCODE := 'NO_HOS_ID_EXCEPTION';
+            O_ERRMSG := '없는 병원ID입니다';
+        WHEN OTHERS THEN
+            O_ERRCODE := SQLCODE;
+            O_ERRMSG := SQLERRM;
+END PROC_DEL_HOSPITAL;  
+
+END PKG_HOSPITAL;
