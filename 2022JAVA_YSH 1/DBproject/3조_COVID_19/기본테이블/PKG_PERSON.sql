@@ -18,6 +18,9 @@ create or replace NONEDITIONABLE PACKAGE PKG_PERSON AS
     (
         IN_PER_ID       IN      VARCHAR2
         ,IN_PER_NAME    IN      VARCHAR2
+        ,IN_PER_GENDER  IN      VARCHAR2
+        ,IN_PER_TEL     IN      VARCHAR2
+        ,IN_PER_ADDR_VAL    IN  VARCHAR2
         ,O_CUR          OUT     SYS_REFCURSOR
         ,O_ERRCODE      OUT     VARCHAR2
         ,O_ERRMSG       OUT     VARCHAR2

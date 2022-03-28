@@ -81,10 +81,19 @@ create or replace NONEDITIONABLE PACKAGE BODY PKG_COMMONS AS
   BEGIN
     
     OPEN O_CUR FOR
-    SELECT * FROM COMMONS_TBL
+    --COMMONS_TBL SELECT
+    --값 / 비고1 / 비고2 / 비고3
+    SELECT GRP_ID
+        , DECODE(TRIM(PARENT_ID),'root','--- ','')||COM_VAL||DECODE(TRIM(PARENT_ID),'root',' ---','') AS COM_VAL
+        , COM_ID
+        , PARENT_ID
+        , REGEXP_REPLACE(REVERSE(REGEXP_REPLACE(REVERSE(TO_CHAR(EXP_VAL1)),'([0-9]{3})','\1,')),'^,','') AS EXP_VAL1
+        , EXP_VAL2
+        , EXP_VAL3
+    FROM COMMONS_TBL
     WHERE GRP_ID LIKE '%'||IN_GRP_ID||'%'
         AND COM_ID LIKE '%'||IN_COM_ID||'%'
-        AND COM_VAL LIKE '%'||IN_COM_VAL||'%'
+        AND TRIM(COM_VAL) LIKE '%'||TRIM(IN_COM_VAL)||'%'
     ;
     
     EXCEPTION

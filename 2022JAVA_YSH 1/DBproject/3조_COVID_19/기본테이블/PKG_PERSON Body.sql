@@ -72,6 +72,9 @@ create or replace NONEDITIONABLE PACKAGE BODY PKG_PERSON AS
     (
         IN_PER_ID       IN      VARCHAR2
         ,IN_PER_NAME    IN      VARCHAR2
+        ,IN_PER_GENDER  IN      VARCHAR2
+        ,IN_PER_TEL     IN      VARCHAR2
+        ,IN_PER_ADDR_VAL    IN  VARCHAR2
         ,O_CUR          OUT     SYS_REFCURSOR
         ,O_ERRCODE      OUT     VARCHAR2
         ,O_ERRMSG       OUT     VARCHAR2
@@ -79,9 +82,22 @@ create or replace NONEDITIONABLE PACKAGE BODY PKG_PERSON AS
   BEGIN
     
     OPEN O_CUR FOR
-    SELECT * FROM PERSON_TBL
-    WHERE PER_ID LIKE '%'||IN_PER_ID||'%'
-        AND PER_NAME LIKE '%'||IN_PER_NAME||'%'
+    --PERSON_TBL SELECT
+    --이름 주민번호 성별 전화번호 주소
+    SELECT T1.PER_NAME AS 이름
+        ,T1.PER_ID AS 주민번호
+        ,T1.PER_GENDER AS 성별
+        ,T1.PER_TEL AS 전화번호
+        ,'부산광역시 '||T2.COM_VAL AS 주소
+    FROM PERSON_TBL T1
+        ,COMMONS_TBL T2
+    WHERE T1.PER_ADDR_GRP=T2.GRP_ID
+        AND T1.PER_ADDR=T2.COM_ID
+        AND T1.PER_ID LIKE '%'||IN_PER_ID||'%'
+        AND T1.PER_NAME LIKE '%'||IN_PER_NAME||'%'
+        AND T1.PER_GENDER LIKE '%'||IN_PER_GENDER||'%'
+        AND T1.PER_TEL LIKE '%'||IN_PER_TEL||'%'
+        AND TRIM(T2.COM_VAL) LIKE '%'||TRIM(IN_PER_ADDR_VAL)||'%'
     ;
     
     EXCEPTION

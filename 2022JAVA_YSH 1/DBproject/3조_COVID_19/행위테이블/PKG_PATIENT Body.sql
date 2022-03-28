@@ -99,9 +99,23 @@ create or replace NONEDITIONABLE PACKAGE BODY PKG_PATIENT AS
   BEGIN
     
     OPEN O_CUR FOR
-    SELECT * FROM PATIENT_TBL
-    WHERE PAT_ID LIKE '%'||IN_PAT_ID||'%'
-        AND PER_ID LIKE '%'||IN_PER_ID||'%'
+    --PATIENT_TBL SELECT
+    --방문아이디 방문자이름 증상 방문일 방문병원명
+    SELECT T1.PAT_ID AS 방문아이디
+        ,T2.PER_NAME AS 방문자명
+        ,T4.COM_VAL||' 이상' AS 증상
+        ,T1.PAT_IN_DATE AS 방문일
+        ,T3.HOS_NAME AS 방문병원
+    FROM PATIENT_TBL T1
+        ,PERSON_TBL T2
+        ,HOSPITAL_TBL T3
+        ,COMMONS_TBL T4
+    WHERE T1.PER_ID=T2.PER_ID
+        AND T1.HOS_ID=T3.HOS_ID
+        AND T1.PAT_SYMP_GRP=T4.GRP_ID
+        AND T1.PAT_SYMP=T4.COM_ID
+        AND T1.PAT_ID LIKE '%'||IN_PAT_ID||'%'
+        AND T1.PER_ID LIKE '%'||IN_PER_ID||'%'
     ;
     
     EXCEPTION

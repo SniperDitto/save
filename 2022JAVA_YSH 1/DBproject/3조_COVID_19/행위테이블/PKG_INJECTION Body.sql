@@ -89,14 +89,40 @@ create or replace NONEDITIONABLE PACKAGE BODY PKG_INJECTION AS
   PROCEDURE PROC_SEL_INJECTION
     (
         IN_RES_ID   IN VARCHAR2
+        ,IN_PER_NAME    IN  VARCHAR2
+        ,IN_PER_ID      IN  VARCHAR2
+        ,IN_HOS_NAME    IN  VARCHAR2
+        ,IN_VAC_NAME    IN  VARCHAR2
+        ,IN_INJ_CNT     IN  VARCHAR2
         ,O_CUR   OUT SYS_REFCURSOR
         ,O_ERRCODE      OUT VARCHAR2
         ,O_ERRMSG       OUT VARCHAR2
     ) AS
   BEGIN
     OPEN O_CUR FOR
-    SELECT * FROM INJECTION_TBL
-    WHERE RES_ID LIKE '%'||IN_RES_ID||'%'
+    --INJECTION_TBL SELECT
+    --예약번호 접종자이름 주민번호 백신이름 차수 병원이름
+    SELECT T2.RES_ID AS 예약번호
+        ,T1.PER_NAME AS 접종자명
+        ,T1.PER_ID AS 주민번호
+        ,T5.COM_VAL AS 백신이름
+        ,T6.INJ_CNT AS 접종차수
+        ,T3.HOS_NAME AS 접종병원
+    FROM PERSON_TBL T1
+        ,RESERVATION_TBL T2
+        ,HOSPITAL_TBL T3
+        ,VACCINE_TBL T4
+        ,COMMONS_TBL T5
+        ,INJECTION_TBL T6
+    WHERE T1.PER_ID=T2.PER_ID
+        AND T2.HOS_ID=T3.HOS_ID
+        AND T2.VAC_ID=T4.VAC_ID
+        AND T2.RES_ID=T6.RES_ID
+        AND T2.RES_ID LIKE '%'||IN_RES_ID||'%'
+        AND T1.PER_NAME LIKE '%'||IN_PER_NAME||'%'
+        AND T1.PER_ID LIKE '%'||IN_PER_ID||'%'
+        AND TRIM(T5.COM_VAL) LIKE '%'||TRIM(IN_VAC_NAME)||'%'
+        AND T6.INJ_CNT=IN_INJ_CNT
     ;
     
     EXCEPTION

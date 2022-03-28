@@ -103,12 +103,11 @@ create or replace NONEDITIONABLE PACKAGE BODY PKG_ADMISSION AS
     BEGIN
     
         OPEN O_CUR FOR
-        SELECT IDX, ADM_ID, PER_ID, TRE_ID, ADM_DATE
-        FROM ADMISSION_TBL
-        WHERE ADM_ID LIKE '%' || IN_ADM_ID || '%'
-        AND PER_ID LIKE '%' || IN_PER_ID || '%'
-        AND TRE_ID LIKE '%' || IN_TRE_ID || '%';
-
+        SELECT T1.IDX, T1.ADM_ID, T1.PER_ID, T2.PER_NAME, T2.PER_GENDER, T1.TRE_ID, T1.ADM_DATE
+        FROM ADMISSION_TBL T1, PERSON_TBL T2
+        WHERE T1.ADM_ID LIKE '%' || IN_ADM_ID || '%'
+        AND T1.PER_ID = T2.PER_ID
+        ;
         EXCEPTION
         WHEN OTHERS THEN
             O_ERRCODE := SQLCODE;

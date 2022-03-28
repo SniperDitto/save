@@ -103,18 +103,34 @@ create or replace NONEDITIONABLE PACKAGE BODY PKG_RESERVATION AS
         O_ERRMSG        OUT VARCHAR2
     )
     AS
-    /*
+    
         V_TRUE_CHK                  NUMBER(1);
         RESERVATION_SEL_EXCEPTION   EXCEPTION;
-    */
+    
     BEGIN
     
     
     OPEN O_CUR FOR
-    SELECT RES_ID, PER_ID, HOS_ID, VAC_ID, RES_DATE 
-    FROM RESERVATION_TBL
-    WHERE PER_ID LIKE '%' || IN_PER_ID || '%'
-    OR RES_ID LIKE '%' || IN_RES_ID || '%';
+    SELECT A.RES_ID, A.PER_ID, A.PER_NAME, A.PER_GENDER, A.HOS_ID, 
+    A.HOS_NAME, A.VAC_ID, B.COM_VAL, A.RES_DATE FROM
+    (
+        SELECT T1.RES_ID, T2.PER_ID, T2.PER_NAME, T2.PER_GENDER, T1.HOS_ID, 
+        T1.VAC_ID, T3.COM_VAL, T4.HOS_NAME, T1.RES_DATE
+        FROM RESERVATION_TBL T1, PERSON_TBL T2, COMMONS_TBL T3, HOSPITAL_TBL T4
+        WHERE T1.PER_ID = T2.PER_ID 
+        AND T2.PER_ADDR_GRP = T3.GRP_ID
+        AND T2.PER_ADDR = T3.COM_ID
+        AND T1.HOS_ID = T4.HOS_ID
+    )A,
+    (
+        SELECT T1.VAC_ID, T2.COM_VAL
+        FROM VACCINE_TBL T1, COMMONS_TBL T2
+        WHERE T1.VAC_NAME_GRP = T2.GRP_ID
+        AND T1.VAC_NAME = T2.COM_ID
+    )B
+    WHERE A.VAC_ID = B.VAC_ID
+    AND A.PER_ID LIKE '%' || IN_PER_ID || '%'
+    AND A.RES_ID LIKE '%' || IN_RES_ID || '%';
     
     /*
     SELECT DECODE(MAX(PER_ID), NULL, 0, 1)
@@ -129,17 +145,16 @@ create or replace NONEDITIONABLE PACKAGE BODY PKG_RESERVATION AS
         SELECT * FROM RESERVATION_TBL
         WHERE PER_ID LIKE '%' || IN_PER_ID || '%';
     END IF;
-    
+    */
     EXCEPTION
     WHEN RESERVATION_SEL_EXCEPTION THEN
         O_ERRCODE := 'ERR101';
         O_ERRMSG := '사람에 대한 정보가 없습니다.';
-    */
-    
-    EXCEPTION
+        
     WHEN OTHERS THEN
         O_ERRCODE := SQLCODE;
         O_ERRMSG := SQLERRM;
+    
         
         
     END PROC_SEL_RESERVATION;
