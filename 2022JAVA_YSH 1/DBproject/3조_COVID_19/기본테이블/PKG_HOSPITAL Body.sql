@@ -46,6 +46,9 @@ BEGIN
         WHEN NO_HOS_ID_EXCEPTION THEN
             O_ERRCODE := 'NO_HOS_ID_EXCEPTION';
             O_ERRMSG := '이미 있는 병원입니다';
+        WHEN OTHERS THEN
+            O_ERRCODE := SQLCODE;
+            O_ERRMSG := SQLERRM;
 
   END PROC_INS_HOSPITAL;
   
@@ -129,6 +132,9 @@ BEGIN
             WHEN NO_HOS_ID_EXCEPTION THEN
                 O_ERRCODE := 'NO_HOS_ID_EXCEPTION';
                 O_ERRMSG := '동일한 병원 ID입니다';
+            WHEN OTHERS THEN
+                O_ERRCODE := SQLCODE;
+                O_ERRMSG := SQLERRM;
   
   
 END PROC_UP_HOSPITAL;  
