@@ -96,8 +96,21 @@ SELECT GRP_ID
     ;
 
 
+----------------------------------------------
 
+SELECT T1.PER_NAME
+    , T2.COM_VAL
+    , T3.HOS_NAME
+    , DECODE(T2.COM_ID,'COM017','가지마','COM011','가지마','COM016','접종만','COM003','접종만') AS ASDF
+    , T3.HOS_ID
+FROM PERSON_TBL T1, COMMONS_TBL T2, HOSPITAL_TBL T3
+WHERE T1.PER_ADDR_GRP=T2.GRP_ID
+    AND T1.PER_ADDR=T2.COM_ID
+    AND T3.HOS_ADDR_GRP=T2.GRP_ID
+    AND T3.HOS_ADDR=T2.COM_ID
+;
 
+-----------------------------------------------
 
 
 
