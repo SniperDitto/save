@@ -50,7 +50,7 @@ create or replace NONEDITIONABLE PACKAGE BODY PKG_INJECTION AS
         
         INSERT INTO INJECTION_TBL(RES_ID, INJ_DATE, INJ_CNT)
         VALUES(IN_RES_ID, IN_INJ_DATE, V_INJ_CNT);
-        
+        /*
         --4) 해당 병원의 백신 재고 차감
         --접종 병원 어딘지/뭘 맞았는지
         SELECT HOS_ID, VAC_ID
@@ -72,6 +72,7 @@ create or replace NONEDITIONABLE PACKAGE BODY PKG_INJECTION AS
         --백신입고테이블에 재고 -1로 INSERT
         INSERT INTO VACCINE_IN_TBL(IDX, HOS_ID, VAC_ID, VAC_QTY, VAC_IN_DATE)
         VALUES(V_NEW_IDX, V_HOS_ID, V_VAC_ID, -1, IN_INJ_DATE);
+        */
     END IF;
     
     EXCEPTION

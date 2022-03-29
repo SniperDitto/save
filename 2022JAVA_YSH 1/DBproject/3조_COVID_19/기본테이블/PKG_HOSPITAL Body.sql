@@ -46,9 +46,6 @@ BEGIN
         WHEN NO_HOS_ID_EXCEPTION THEN
             O_ERRCODE := 'NO_HOS_ID_EXCEPTION';
             O_ERRMSG := '이미 있는 병원입니다';
-        WHEN OTHERS THEN
-            O_ERRCODE := SQLCODE;
-            O_ERRMSG := SQLERRM;
 
   END PROC_INS_HOSPITAL;
   
@@ -56,30 +53,66 @@ BEGIN
   -- SELECT
   PROCEDURE PROC_SEL_HOSPITAL
 (
-    IN_HOS_ID               IN VARCHAR2
-    , IN_HOS_NAME	        IN VARCHAR2
-	, IN_HOS_ADDR_GRP	    IN VARCHAR2   
-	, IN_HOS_ADDR	        IN VARCHAR2		    
-	, IN_HOS_ROOM_QTY	    IN VARCHAR2		    
-	, IN_HOS_OPEN_DATE      IN VARCHAR2
+    IN_HOS_ID          IN     VARCHAR2
+    ,IN_HOS_NAME        IN     VARCHAR2
     , O_CUR           OUT     SYS_REFCURSOR
     , O_ERRCODE       OUT     VARCHAR2
     , O_ERRMSG        OUT     VARCHAR2  
 ) AS
 BEGIN
 
-  OPEN O_CUR FOR
-    SELECT A.HOS_NAME, A.HOS_ADDR_GRP, A.HOS_ADDR, C.COM_VAL, A.HOS_ROOM_QTY, A.HOS_OPEN_DATE
-    FROM HOSPITAL_TBL A, COMMONS_TBL C
-    WHERE HOS_ID LIKE '%'||IN_HOS_ID||'%'
-    AND A.HOS_NAME LIKE '%'||IN_HOS_NAME||'%'
-    AND A.HOS_ADDR_GRP LIKE '%'||IN_HOS_ADDR_GRP||'%'
-    AND A.HOS_ADDR LIKE '%'||IN_HOS_ADDR||'%'
-    AND A.HOS_ROOM_QTY LIKE '%'||IN_HOS_ROOM_QTY||'%'
-    AND A.HOS_OPEN_DATE LIKE '%'||IN_HOS_OPEN_DATE||'%'
-    AND A.HOS_ADDR = C.COM_ID
-    AND C.GRP_ID = 'GRP001'
-    ;
+    OPEN O_CUR FOR
+    SELECT IN_HOS_ID, IN_HOS_NAME
+        , SUM(VAC001) AS VAC001_TLT
+        , SUM(VAC002) AS VAC002_TLT
+        , SUM(VAC003) AS VAC003_TLT
+        , SUM(VAC004) AS VAC004_TLT
+        , SUM(VAC005) AS VAC005_TLT
+        , SUM(VAC001) + SUM(VAC002) + SUM(VAC003) + SUM(VAC004) + SUM(VAC005) AS TLT
+    FROM
+    (
+        SELECT 
+            HOS_ID,HOS_NAME,
+            DECODE(VAC_ID, 'VAC001', REMAIN_CNT, 0) AS VAC001,
+            DECODE(VAC_ID, 'VAC002', REMAIN_CNT, 0) AS VAC002,
+            DECODE(VAC_ID, 'VAC003', REMAIN_CNT, 0) AS VAC003,
+            DECODE(VAC_ID, 'VAC004', REMAIN_CNT, 0) AS VAC004,
+            DECODE(VAC_ID, 'VAC005', REMAIN_CNT, 0) AS VAC005
+        FROM
+        (
+    
+    
+            SELECT TBL1.HOS_ID, TBL1.HOS_NAME, TBL1.VAC_ID
+                   , TBL1.VAC_NAME, TBL1.VAC_QTY, TBL2.INJ_CNT,
+                   NVL(TBL1.VAC_QTY, 0) - NVL(TBL2.INJ_CNT, 0) AS REMAIN_CNT
+            FROM
+            (
+                SELECT A.HOS_ID, A.HOS_NAME, A.VAC_ID, D.COM_VAL AS VAC_NAME, B.VAC_QTY
+                FROM
+                (
+                    SELECT T1.HOS_ID, T1.HOS_NAME, T2.VAC_ID
+                    FROM HOSPITAL_TBL T1, VACCINE_TBL T2
+                    ORDER BY T1.HOS_ID ASC, T2.VAC_ID ASC
+                ) A, VACCINE_IN_TBL B, VACCINE_TBL C, COMMONS_TBL D
+                WHERE A.HOS_ID = B.HOS_ID(+) AND A.VAC_ID = B.VAC_ID(+)
+                AND A.VAC_ID = C.VAC_ID
+                AND C.VAC_NAME_GRP = D.GRP_ID AND C.VAC_NAME = D.COM_ID
+            ) TBL1,
+            (
+                SELECT T1.HOS_ID, T1.VAC_ID, COUNT(*) AS INJ_CNT
+                FROM RESERVATION_TBL T1, INJECTION_TBL T2
+                WHERE T1.RES_ID = T2.RES_ID
+                GROUP BY T1.HOS_ID, T1.VAC_ID
+            ) TBL2
+            WHERE TBL1.HOS_ID = TBL2.HOS_ID(+) AND TBL1.VAC_ID = TBL2.VAC_ID(+)
+            ORDER BY TBL1.HOS_ID ASC, TBL1.VAC_ID ASC
+            
+        )
+    )
+    GROUP BY IN_HOS_ID,IN_HOS_NAME
+    ORDER BY IN_HOS_ID ASC
+    ;        
+        
     
     EXCEPTION
         WHEN OTHERS THEN
@@ -132,9 +165,6 @@ BEGIN
             WHEN NO_HOS_ID_EXCEPTION THEN
                 O_ERRCODE := 'NO_HOS_ID_EXCEPTION';
                 O_ERRMSG := '동일한 병원 ID입니다';
-            WHEN OTHERS THEN
-                O_ERRCODE := SQLCODE;
-                O_ERRMSG := SQLERRM;
   
   
 END PROC_UP_HOSPITAL;  
