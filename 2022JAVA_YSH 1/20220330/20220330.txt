@@ -1,0 +1,95 @@
+
+솔라리스
+-서버프로그램
+서버 : 하나의 목적으로 여러 사용자가 한 개의 시스템을 동시에 사용할 수 있게 함
+
+1996 자바(개발용) 1.0발표
+(JDK 1.0.2)
+
+1997 자바 SE 1.1발표 (jre)
+
+2014 자바 1.8(가장 많이 사용)
+(JDK 8)
+
+2018 자바 SE 10
+->이후 유료화
+
+
+
+
+runtime : 컴파일 이후 실행
+
+개발용 : development kit 다운
+실행만 : runtime
+
+
+
+------------------
+1. 자바 8 설치
+https://www.oracle.com/java/technologies/javase/javase8u211-later-archive-downloads.html
+JDK+JRE
+
+2. 시스템변수
+%JAVA_HOME%에 JDK폴더
+CLASSPATH에 JDK폴더 밑에 LIB 폴더
+
+3. 환경변수 PATH에
+%JAVA_HOME%\BIN 추가
+
+4. 이클립스 2020-06 버전
+https://www.eclipse.org/downloads/packages/release/2020-06/r
+-> ENTERPRISE로 설치
+
+5. 맥북
+https://bigchan9.github.io/tips/m1-java-env.html
+
+6. 이클립스 WORKSPACE 기본폴더
+C:\Users\PKNU\eclipse-workspace
+
+-----------------
+
+JAVA : 가장 대표적인 OOP
+Object Oriented Programming
+- 객체 지향 프로그래밍
+
+OOP 
+ - c++ (MS)
+ - java (Sun)
+ - c# (MS)
+
+
+
+객체지향 객체 : 클래스(class)
+- 클래스 단위로 모든 것을 만든다
+
+
+java 파일 -> 컴파일 이후 class 파일
+class 파일은 원본 소스가 아님
+참조를 통해 사용
+
+
+
+
+----------------------------
+
+추상화
+기본 틀을 만들어두고 세부 특징은 상속해서 만든다
+행위의 주체를 추상화
+
+행위를 통해 관계 형성 - 객체지향
+
+
+객체지향의 interface는 행위로 귀결된다.
+
+
+
+
+
+
+
+
+
+
+
+
+
