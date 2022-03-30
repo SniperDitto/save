@@ -1,0 +1,84 @@
+  PROCEDURE PROC_ADM_PERSON_PAY
+    (
+        IN_PER_ID       IN  VARCHAR2
+        ,IN_PER_NAME    IN  VARCHAR2
+        ,IN_ADM_ID      IN  VARCHAR2
+        ,O_CUR          OUT SYS_REFCURSOR
+        ,O_ERRCODE      OUT VARCHAR2
+        ,O_ERRMSG       OUT VARCHAR2
+    ) AS
+  BEGIN
+    
+    OPEN O_CUR FOR
+    SELECT T1.ADM_ID
+        , T1.PER_ID
+        , T1.PER_NAME
+        , TO_CHAR(T2.ROOMPAY,'999,999,999') AS ROOMPAY
+        , TO_CHAR(T2.MEDPAY,'999,999,999') AS MEDPAY
+        , TO_CHAR(T2.TRE_PAY,'999,999,999') AS TREPAY
+        , TO_CHAR(T2.TOTALPAY,'999,999,999') AS TOTALPAY
+    FROM
+    (
+        --사람 + 입원
+        SELECT T1.PER_NAME, T1.PER_ID, T2.ADM_ID
+        FROM PERSON_TBL T1, ADMISSION_TBL T2
+        WHERE T1.PER_ID=T2.PER_ID
+    ) T1,
+    (
+        --입원건당 병실비 + 약값 + 진료비
+        SELECT A.ADM_ID
+            , A.ROOMPAY
+            , B.MEDPAY
+            , C.TRE_PAY
+            , SUM(A.ROOMPAY+B.MEDPAY+C.TRE_PAY) AS TOTALPAY
+        FROM
+        (
+            --입원건별 병실비
+            SELECT T2.ADM_ID
+                , SUM(TO_NUMBER(T1.EXP_VAL1)) AS ROOMPAY
+            FROM COMMONS_TBL T1
+                , ADMISSION_ROOMS_TBL T2
+            WHERE T1.GRP_ID=T2.ADM_ROOM_GRP
+                AND T1.COM_ID=T2.ADM_ROOM
+            GROUP BY T2.ADM_ID
+        ) A,
+        (
+            --입원건별 약값
+            SELECT T2.ADM_ID
+                , SUM(TO_NUMBER(T1.EXP_VAL1)*ADM_MED_QTY) AS MEDPAY
+            FROM COMMONS_TBL T1
+                , ADMISSION_MEDICINES_TBL T2
+            WHERE T1.GRP_ID=T2.ADM_MED_GRP
+                AND T1.COM_ID=T2.ADM_MED
+            GROUP BY T2.ADM_ID
+        ) B,
+        (
+            --입원건별 진료비
+            SELECT T3.ADM_ID
+                , T2.TRE_PAY
+            FROM PATIENT_TBL T1
+                , TREAT_TBL T2
+                , ADMISSION_TBL T3
+            WHERE T1.PAT_ID=T2.PAT_ID
+                AND T2.TRE_ID=T3.TRE_ID
+        ) C,
+        ADMISSION_TBL T1
+        WHERE T1.ADM_ID=A.ADM_ID
+            AND T1.ADM_ID=B.ADM_ID
+            AND T1.ADM_ID=C.ADM_ID
+        GROUP BY A.ADM_ID, A.ROOMPAY, B.MEDPAY, C.TRE_PAY
+    ) T2, DISCHARGE_TBL T3
+    WHERE T1.ADM_ID=T2.ADM_ID
+        AND T1.ADM_ID=T3.ADM_ID
+        AND T1.PER_ID LIKE '%'||IN_PER_ID||'%'
+        AND T1.PER_NAME LIKE '%'||IN_PER_NAME||'%'
+        AND T1.ADM_ID LIKE '%'||IN_ADM_ID||'%'
+    ORDER BY T1.ADM_ID ASC
+    ;
+    
+    EXCEPTION
+        WHEN OTHERS THEN
+            O_ERRCODE := SQLCODE;
+            O_ERRMSG := SQLERRM;
+            
+  END PROC_ADM_PERSON_PAY;
