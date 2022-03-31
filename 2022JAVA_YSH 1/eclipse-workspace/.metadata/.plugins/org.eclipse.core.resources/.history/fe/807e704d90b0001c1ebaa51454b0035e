@@ -1,0 +1,17 @@
+
+public class Customer {
+	
+	
+	//객체 - 속성 & 행위
+	
+	//속성 : property, attribute
+	//행위 : method
+	
+	public String cID;
+	public String cName;
+	public int cAge;
+	public String cGender;//char 추천
+	
+	
+	
+}

@@ -1,0 +1,22 @@
+
+public class Condition {
+
+	public static void main(String[] args) {
+		
+		//조건문
+		//if & switch case
+		//js와 문법 같다
+		
+		int a=14;//call by value
+		int b=a;//call by reference
+		System.out.println(a);
+		System.out.println(b);
+		a=17;
+		System.out.println(a);
+		System.out.println(b);
+		
+		
+
+	}
+
+}

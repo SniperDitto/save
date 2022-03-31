@@ -1,0 +1,23 @@
+
+public class HelloWorld {
+
+	public static void main(String[] args) {
+		//이게 주석 입니다
+		System.out.println("Hello~");
+		
+		//변수
+		//모든 변수는 데이터 타입을 지정해야 한다
+		
+		//1. 숫자에 관련된 데이터 타입
+		int a = 8;
+		int b = 4;
+		int c = a + b;
+		//int는 4byte = 32bit
+		
+		
+		
+		
+		
+	}
+
+}

@@ -1,0 +1,15 @@
+
+public class ChgType {
+
+	public static void main(String[] args) {
+		
+		//형 변환
+		
+		//1. 명시적 형변환
+		//2. 묵시적 형변환
+		
+		
+		
+	}
+
+}

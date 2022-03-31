@@ -1,0 +1,39 @@
+
+자바 if문에서의 비교
+=두 값의 value를 비교
+
+일반적으로 if문에서의 == 는 call by value가 같음을 의미
+두 객체를 정확히 비교하려면(reference) 다른 방법이 필요
+
+-----------------------
+1. static area
+2. stack area
+    - 크기가 좀 작음
+    - 숫자들 value 저장(call by value)
+    - 문자열 등의 주소 저장(call by reference)
+3. heap area
+    - 크기가 큼
+    - 문자열, 클래스 등의 value 저장
+------------------------
+숫자들 : call by value, stack 영역 사용
+	byte, short, char, int, long, float, double
+String은 stack 영역 사용 불가
+	원래는 String str1 = new String();처럼 선언해야 하나 편의상 string만 저렇게 사용할 수 있도록 함
+-------------------------
+
+객체 - 속성 & 행위
+    속성 : property, attribute
+    행위 : method
+
+행위의 추상화
+- 객체에 뭔가 행위를 시키기 전에 그 행위를 할 수 있는지 체크해야 한다
+- 여러 객체가 같은 행위를 한다면 행위 메서드 이름이 서로 같아야 한다
+
+어떤 행위를 하나의 객체만 하는 게 아님
+
+
+--복습
+클래스 만들 때 속성/행위(method)
+배열
+
+

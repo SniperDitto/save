@@ -1,0 +1,14 @@
+
+public class ChgType2 {
+
+	public static void main(String[] args) {
+		//숫자형
+		//byte, short, char, int, long
+		int a = 123;
+		long b = 12345L;
+		
+		
+
+	}
+
+}
