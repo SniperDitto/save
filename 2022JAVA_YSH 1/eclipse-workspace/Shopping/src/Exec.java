@@ -46,10 +46,74 @@ public class Exec {
 		prod2.checkAge(cus1.cAge);
 		prod2.checkAge(cus2.cAge);
 		
+		double[] ds = new double[3];
+		
+		float[] fs = new float[3];
+		//--------------------------
+		Car car1 = new Car();
+		car1.birthYear= 2021;
+		car1.strBrand = "현대";
+		car1.strCarName = "SONATA";
+		
+		car1.carTires = new String[4];
+		car1.carTires[0] = "한국타이어";
+		car1.carTires[1] = "한국타이어";
+		car1.carTires[2] = "금호타이어";
+		car1.carTires[3] = "금호타이어";
+		car1.carRun();
+		
+		Car car2 = new Car();
+		car2.birthYear= 2020;
+		car2.strBrand = "기아";
+		car2.strCarName = "K5";
+		
+		car2.carTires = new String[4];
+		car2.carTires[0] = "넥센타이어";
+		car2.carTires[1] = "넥센타이어";
+		car2.carTires[2] = "금호타이어";
+		car2.carTires[3] = "금호타이어";
+		car2.carRun();
+		
+		Car[] cars = new Car[3];
+		cars[0] = new Car();
+			cars[0].birthYear = 2019;
+			cars[0].strBrand = "벤츠";
+			cars[0].strCarName = "S_Class";
+		cars[1] = new Car();
+			cars[1].birthYear = 2020;
+			cars[1].strBrand = "기아";
+			cars[1].strCarName = "K7";
+		cars[2] = new Car();
+			cars[2].birthYear = 2021;
+			cars[2].strBrand = "VOLVO";
+			cars[2].strCarName = "트럭";
+			cars[2].carTires = new String[10];
+		
+		for(int i=0;i<cars.length;i++) {
+			cars[i].carRun();
+		}
+		
+		//주차장
+		Parks park = new Parks();
+		park.parkCars = cars;
+		park.showCarList();
 		
 		
 		
-
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	}
 
 }
