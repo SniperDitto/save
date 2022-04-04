@@ -13,4 +13,8 @@ public class CanCoffee extends Coffee{
 		this.coffeeBrand = coffeeBrand;
 	}
 	
+	public void DrinkCanCoffee() {
+		System.out.println("캔커피를 마신다");
+	}
+	
 }

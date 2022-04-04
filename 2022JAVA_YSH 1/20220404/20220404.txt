@@ -4,4 +4,43 @@
 - 상속받은 클래스도 생성자는 만들어줘야 한다
 - super()이용해서 부모 클래스의 생성자 그대로 사용 가능
 
+Coffee - CanCoffee
+       - MixCoffee
+Person - Student
+       - Teacher
+       - Staff
+
+
+A has a B 관계
+    A 클래스가 B 클래스 안의 메서드 등을 사용
+    B 클래스를 상속받은 여러 메서드 중 어떤 것을 사용할 지 모르는 경우 -> 부모 클래스인 B를 A에 추가
+    public class Person {
+        ...
+	    public Coffee coffee;
+    }
+
+upcasting, downcasting : 형변환	
+	Student2 stud2 = new Student2("여자", "BoB","S001");
+	stud2.Study();
+		
+자식 클래스를 부모 클래스의 데이터타입으로 선언(upcasting)
+	Person p1 = new Student2("여자", "bob");
+	//p1.Study(); -> 실행 불가, 부모 클래스의 메서드만 사용 가능
+	
+person class의 coffee는 coffee(부모)타입이지만 상속받은 다른 종류의 커피들도 들어간다(자동으로 upcasting)
+	CanCoffee c1 = new CanCoffee("원두1","칠레","오뚜기");
+	CanCoffee c2 = new CanCoffee("원두2","미국","농심");
+	MixCoffee m1 = new MixCoffee("원두3","한국",1000);
+
+	p1.coffee = c2;
+	p1.drinkCoffee();
+		
+person class에서 상속받은 다른 종류의 커피들 안의 메서드를 사용하기 위해 downcasting을 한다
+	((MixCoffee) p1.coffee).MakeMixCoffee();
+
+--------------
+
+추상화
+캡슐화
+상속
 
