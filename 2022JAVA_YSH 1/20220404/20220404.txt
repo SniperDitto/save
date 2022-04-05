@@ -38,6 +38,10 @@ person class의 coffee는 coffee(부모)타입이지만 상속받은 다른 종�
 person class에서 상속받은 다른 종류의 커피들 안의 메서드를 사용하기 위해 downcasting을 한다
 	((MixCoffee) p1.coffee).MakeMixCoffee();
 
+coffee 객체에 들어온 값이 MixCoffee인지 CanCoffee인지
+ -> instanceof로 비교
+ this.coffee instanceof MixCoffee
+
 --------------
 
 추상화
