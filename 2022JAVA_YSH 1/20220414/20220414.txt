@@ -1,0 +1,214 @@
+
+자바의 예외처리 : Class
+
+에러
+컴파일 에러 Compile Error
+ - 문법상 오류, 오타 (Syntax Error)
+ - 컴파일되지 않음
+런타임 에러 Runtime Error
+ - 문법적으로 문제 x
+ - 컴파일 도중 문제 발생
+로직 에러 Login Error
+ - 자바가 판단할 수 없음
+ - 문법적으로 문제 x
+
+
+예외처리
+컴파일 에러
+런타임 에러
+사용자 정의 에러
+    Exception 클래스 상속받아 만든다.
+
+
+
+java.lang.Object
+    java.lang.Throwable
+        java.lang.Exception(예외처리클래스)
+
+
+DB연결
+1. userid
+2. pw
+3. ip주소 
+    localhost(자기컴)
+String id = "product";
+String pw = "1";
+String url = "jdbc:oracle:thin:@localhost:1521:XE";
+
+
+
+생성
+    //driver loading
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+연결
+    //1. Connection 객체 생성
+		Connection conn = null;
+		try {
+			conn = DriverManager.getConnection(this.dbURL, this.dbID, this.dbPW);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+쿼리문
+    
+    직접 자바로 insert문 짜기
+    //inline query
+		//String sql = "INSERT INTO USERS(USERID, USERNAME) VALUES(?, ?)";
+    미리 프로시져 만들어두고 호출
+    //2. sql 생성
+		String sql = "{call "+ProcName+"(?)}";
+쿼리문 담아서 db로 날려주기
+    //3. sql을 담을 객체 생성
+		try {
+			//일반 sql문의 경우(inline query)
+			PreparedStatement psmt = dbConn.prepareStatement(sql);
+			psmt.setNString(1, userID);
+			psmt.setNString(2, userNAME);
+			psmt.executeUpdate();
+			
+			//프로시져 사용할 경우
+			CallableStatement csmt = dbConn.prepareCall(sql);
+			csmt.setNString(1, userNAME);
+			csmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			System.out.println("ok.");
+		}
+
+
+
+
+
+
+-----------------------------------------
+메모
+
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+
+public class DBHandle {
+	private String id;
+	private String pw;
+	private String url;
+	private sqlQueryType sqlQueryType;
+	
+	public DBHandle(String id, String pw, String url) {
+		this.id = id;
+		this.pw = pw;
+		this.url = url;
+	}
+	
+	private Connection getConnection() {
+		Connection conn = null;
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			conn = DriverManager.getConnection(this.url, this.id, this.pw);
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println(e.getMessage());
+		}
+		
+		return conn;
+	}
+	
+	private PreparedStatement getPreparedStatement(String sql, String[] strParams) {
+		PreparedStatement psmt = null;
+		try {
+			psmt = getConnection().prepareStatement(sql);
+			
+			int index = 1;
+			for(String i : strParams) {
+				psmt.setNString(index,i);
+				index++;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println(e.getMessage());
+		}
+		return psmt;
+	}
+	
+	private CallableStatement getCallableStatement(String sql, String[] strParams) {
+		CallableStatement csmt = null;
+		try {
+			csmt = getConnection().prepareCall(sql);
+			
+			int index = 1;
+			for(String i : strParams) {
+				csmt.setNString(index,i);
+				index++;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println(e.getMessage());
+		}
+		return csmt;
+	}
+	
+	public void dbManage(String sql, String[] strParams, sqlQueryType sqlQueryType) {
+
+		try {
+
+			if (sqlQueryType == sqlQueryType.Inline) {
+				PreparedStatement ps = getPreparedStatement(sql, strParams);
+				ps.executeUpdate();
+			} else if(sqlQueryType == sqlQueryType.Procedure){
+				CallableStatement csmt = getCallableStatement(sql, strParams);
+				csmt.executeUpdate();
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println(e.getMessage());
+		} finally {
+			System.out.println("완.");
+		}
+		
+		
+	}
+	
+	private void dbSelect() {}
+	
+}
+
+---------------------
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Scanner;
+
+public class Exec {
+
+	public static void main(String[] args) {
+		
+		String[] strParams = new String[4];
+		Scanner s = new Scanner(System.in);
+		
+		System.out.print("글번호 : ");
+		strParams[0] = s.nextLine();
+		
+		System.out.print("글제목 : ");
+		strParams[1] = s.nextLine();
+		
+		System.out.print("작성자ID : ");
+		strParams[2] = s.nextLine();
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		strParams[3] = simpleDateFormat.format(new Date());
+		
+		DBHandle dbHandle = new DBHandle("product", "1", "jdbc:oracle:thin:@localhost:1521:XE");
+		String sql = "INSERT INTO BOARD(IDX, TITLE, USERID, REGDATE) VALUES(?,?,?,?)";
+		
+ 		dbHandle.dbManage(sql,strParams,sqlQueryType.Inline);
+		
+		
+		
+		
+	}
+
+}
