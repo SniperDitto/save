@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;pkg.DB.DBUser&apos; to &apos;DBUse&apos;&#x0D;&#x0A;- Original project: &apos;20220418&apos;&#x0D;&#x0A;- Original element: &apos;pkg.DB.DBUser&apos;&#x0D;&#x0A;- Renamed element: &apos;pkg.DB.DBUse&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;DBUser&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;pkg.DB{DBUser.java[DBUser" matchStrategy="1" name="DBUse" qualified="false" references="true" similarDeclarations="false" stamp="1650268481131" textual="false" version="1.0"/>
+</session>

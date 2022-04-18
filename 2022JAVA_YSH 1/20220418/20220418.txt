@@ -1,0 +1,167 @@
+
+
+
+1. Collection을 사용하는 이유
+2. Collection의 종류
+    Collection
+        List
+            LinkedList
+                데이터삽입, 삭제 잦을 경우 위치정보만 수정하면 편함
+                양방향 포인터 구조
+            Stack
+            Vector
+                내부에서 자동으로 동기화
+                느리고 무거워 잘 안쓰임
+            ArrayList
+                각 데이터별 인덱스 보유
+                조회 성능 좋음
+                쓰레드 동기화 안됨
+        Set(중복x, 순서유지x)
+            HashSet
+                임의접근속도 가장 빠름
+                순서 예측 불가
+            SortedSet
+                TreeSet
+                    정렬해서 저장됨
+                    사용자 임의로 정렬 가능
+        (Queue)
+            (LinkedList)
+            (PriorityQueue)
+    Map(키중복 x, 값중복 O)
+        Hashtable
+            동기화o
+            null 안됨
+            hashmap보다 느림
+        HashMap
+            동기화x
+            null 가능
+            중복x, 순서x
+        SortedMap
+            TreeMap
+            정렬해서 저장
+            검색 빠름
+3. 동기화에 대한 이해(thread)
+
+
+
+LinkedList/Stack/Vector/ArrayList는 메모리 구조에 저장하는 방법이 각각 다르다
+
+
+List -> ArrayList
+자바 쓰레드에서 동기화되지 않는다
+
+
+
+검색속도 vs 메모리용량
+- 잠깐 검색 때만 쓰고 지울건지?
+- 앱이 돌아가는 내내 유지되는지?
+
+
+HashMap, ArrayList 자주 사용 : 익숙해지기
+
+set 쓸때 객체 비교 CompareTo로 정의해주기
+
+DB연결때 ResultSet 사용해 ArrayList로 데이터 받아서 해보기
+    - connection, PreparedStatement, CallableStatement, resultset 사용 후 닫기
+    - ResultSet
+        getMetaData
+        getObject
+    - ResultSetMetaData
+        getColumnCount
+        getColunmName
+    - ArrayList 안에 HashMap을 담아서
+        HashMap = 컬럼명 : 데이터
+
+
+
+--------------------------
+
+Swing 설치
+Java 1.8에는 WindowBuilder 1.9.1버전 설치
+https://download.eclipse.org/windowbuilder/1.9.1/
+eclipse에 install new software -> 링크 붙여넣기
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--------------------------------
+List<String> aList = new ArrayList<String>();
+List<String> v1 = new Vector<String>();
+		
+Map<String, Car> ht2 = new Hashtable<String, Car>();
+Map<String, Car> hm = new HashMap<String, Car>();
+		
+Map<String, List<String>> boardList = new HashMap<String, List<String>>();
+boardList.put("board1", aList);
+boardList.put("board2", v1);
+		
+Map<Integer, Map<String, Car>> partList = new HashMap<Integer, Map<String,Car>>();
+partList.put(1, ht2);
+partList.put(1,hm);
+---------------------------
+ArrayList<Object> arr = new ArrayList<Object>();
+arr.add(1);
+arr.add("asdf");
+arr.add(aList);
+arr.add(hm);
+for(Object o : arr) {
+	if(o instanceof Integer) {
+		System.out.println((Integer)o);
+	}
+	else if(o instanceof String) {
+		System.out.println((String)o);
+	}
+	else if(o instanceof List) {
+		System.out.println((ArrayList<String>)o);
+	}
+	else if(o instanceof Map) {
+		System.out.println((HashMap<String, Car>)o);
+	}
+}
