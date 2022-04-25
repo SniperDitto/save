@@ -1,0 +1,33 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<script src="../jquery/jquery-3.6.0.min.js"></script>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	var student = function(id, name, age){
+		this.id=id;
+		this.name=name;
+		this.age=age;
+	}
+	
+	var stu1 = student("S01","asdf",123);
+	var students[0] = student("S01","asdf",123);
+	var students[1] = student("S02","qwer",456);
+	var students[2] = student("S03","zxcv",789);
+	var students[3] = student("S04","tyui",100);
+</script>
+</head>
+<body>
+	<div>
+		<span class="b1">학생ID</span>
+		<span class="b1">이름</span>
+		<span class="b1">나이</span>
+	</div>
+	<div id="msg">
+	
+	</div>
+</body>
+</html>

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move &apos;jquery-3.6.0.min.js&apos; to &apos;jquery&apos;" description="Move &apos;jquery-3.6.0.min.js&apos; to &apos;jquery&apos;" destination="WebContent/jquery" element1="jquery-3.6.0.min.js" flags="7" id="org.eclipse.ltk.core.refactoring.move.resources" resources="1" stamp="1650848070253" updateReferences="true"/>
+</session>

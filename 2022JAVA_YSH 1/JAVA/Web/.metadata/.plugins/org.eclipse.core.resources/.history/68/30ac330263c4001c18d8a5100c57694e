@@ -1,0 +1,20 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div>
+		<input type="button" value="check" onclick="chkFunc()"/>
+	</div>
+	<div>
+		<label><input type="checkbox"  value="먹기" />먹기</label>
+		<label><input type="checkbox"  value="자기" />자기</label>
+		<label><input type="checkbox"  value="놀기" />놀기</label>
+		<label><input type="checkbox"  value="노래하기" />노래하기</label>
+	</div>
+</body>
+</html>

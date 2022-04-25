@@ -1,0 +1,27 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<script src="../jquery/jquery-3.6.0.min.js"></script>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	.box{
+		width:30px;
+		height:30px;
+		background-color:#999;
+		display:block;
+		float:left;
+	}
+</style>
+</head>
+<body>
+	<div>
+<%	for(int i=0;i<10;i++){%>
+		<input type='radio' id='rd<%=i %>' name='num'/><%=i %>
+<%	}%>
+	</div>
+	<div style="clear:both"></div>
+</body>
+</html>

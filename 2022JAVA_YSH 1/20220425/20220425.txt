@@ -1,0 +1,67 @@
+
+dynamic 웹 프로젝트
+라이브러리 : ojdbc8, tomcat9.0
+웹 서버 세팅 : add & remove 에 add 되어있는지
+------------------------------
+web server
+    html
+    javascript
+        jquery : 원래 js의 dom을 간단하게 한 라이브러리
+    java
+    db
+-> rendering (html로 변환해 브라우저로 전달)
+------------------------------
+http : html 전송 위한 프로토콜
+html4 이전에는 한글 작성 위해 EUC-KR 사용
+html5 이후에는 UTF-8 사용
+------------------------------
+인코딩 UTF-8로 바꾸기
+    java class file
+    text
+    css
+    html
+    jsp
+    xml
+----------------------------
+web server(port)
+    tomcat(8080)
+        일일히 파일 하나씩 배포하기 힘들기 때문에 수업 때는 프로젝트 전체를 배포
+    DB(1521)
+----------------------------
+Java Resources 안에 자바 클래스 생성
+웹 서버에서 자바 클래스 생성 시 반드시 패키지 안에 만들어야 한다
+-----------------------------
+JSP
+    html
+    javascript
+        jquery
+    java
+-----------------------------
+JAVA 컴파일 이외의 경우 web server 껐다 켜지 않아도 된다
+-----------------------------
+System.out.println(s);//콘솔에 출력
+out.println(s);//웹 페이지에 출력
+-> 배포 시에는 주석처리 or 삭제
+-----------------------------
+WebContent 폴더를 root로 해서 상대경로로 표시
+-----------------------------
+
+jquery selector
+-> 태그 하나를 객체로 취급해 참조하는 방법
+1. id $("#id")
+2. css class $(".class")
+3. tagname $("tagname")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
