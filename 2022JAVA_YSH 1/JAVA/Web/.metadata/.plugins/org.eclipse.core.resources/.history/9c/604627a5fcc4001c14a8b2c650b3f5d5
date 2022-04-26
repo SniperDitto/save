@@ -1,0 +1,16 @@
+<%@page import="javax.security.auth.message.callback.PrivateKeyCallback.Request"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<% 
+
+	out.println("<font color='red'>글 작성 완.</font>");
+	
+	//값 3개 받아서 db에 저장하기
+	//1. 값 받기
+	String userID = request.getParameter("userID");
+	String title = request.getParameter("title");
+	String content = request.getParameter("content");
+	out.println(userID);
+	
+	
+%>

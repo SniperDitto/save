@@ -1,0 +1,16 @@
+
+CREATE TABLE BOARDS
+(
+    IDX         INT             PRIMARY KEY,--글번호아님
+    TITLE       VARCHAR2(300)   NOT NULL,
+    CONTENT     VARCHAR2(4000)  NOT NULL,
+    USERID      VARCHAR2(20)    NOT NULL,--8~12자 개인 아이디
+    REGNUM      INT             NOT NULL,
+    REGDATE     DATE            NOT NULL
+);
+
+SELECT IDX, USERID, TITLE,
+        TO_CHAR(REGDATE, 'YYYY/MM/DD HH24:MI:SS') AS REGDATE,
+        CONTENT
+    FROM BOARDS
+    WHERE IDX=4;
