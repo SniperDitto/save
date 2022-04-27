@@ -91,7 +91,7 @@
 				<%=rs.getString("USERID")%>
 			</td>
 			<td width="100px" height="30px" align="center">
-				<%=rs.getString("REGDATE")%>
+				<%=rs.getString("REGDATES")%>
 			</td>
 		</tr>
 <%		}%>

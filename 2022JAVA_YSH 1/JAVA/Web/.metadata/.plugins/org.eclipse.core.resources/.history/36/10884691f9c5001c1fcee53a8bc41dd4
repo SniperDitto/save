@@ -1,0 +1,48 @@
+package Pkg.DB;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+
+public class DBConn {
+	
+	//1. procedure(callablestatement) / inline query(preparedstatement)
+	
+	//2. select(cursor,resultset) / 그 외
+	
+	private static String id;
+	private static String pw;
+	private static String url;
+	
+	public static Connection getConnection() {
+		Connection conn = null;
+		
+		try {
+			
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			conn = DriverManager.getConnection(url,id,pw);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return conn;
+	}
+	
+	public static PreparedStatement getPreparedStatement(String sql) {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		
+		try {
+			conn = getConnection();
+			ps = conn.prepareStatement(sql);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return ps;
+	}
+	
+	
+}

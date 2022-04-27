@@ -1,0 +1,29 @@
+package Pkg.DB;
+
+import java.sql.Connection;
+
+public class DBConn {
+	
+	//1. procedure(callablestatement) / inline query(preparedstatement)
+	
+	//2. select(cursor,resultset) / 그 외
+	
+	private static String id;
+	private static String pw;
+	private static String url;
+	
+	public static Connection getConnection() {
+		Connection conn = null;
+		
+		try {
+			
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return conn;
+	}
+	
+}

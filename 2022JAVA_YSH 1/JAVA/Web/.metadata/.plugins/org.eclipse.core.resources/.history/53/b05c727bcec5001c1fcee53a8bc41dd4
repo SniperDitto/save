@@ -1,0 +1,147 @@
+package Pkg.Board;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+public class Board {
+	
+	private String idx;
+	private String title;
+	private String content;
+	private String userID;
+	private String regNum;
+	private String regDate;
+	
+	public String getIdx() {
+		return idx;
+	}
+	public void setIdx(String idx) {
+		this.idx = idx;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
+	public String getUserID() {
+		return userID;
+	}
+	public void setUserID(String userID) {
+		this.userID = userID;
+	}
+	public String getRegNum() {
+		return regNum;
+	}
+	public void setRegNum(String regNum) {
+		this.regNum = regNum;
+	}
+	public String getRegDate() {
+		return regDate;
+	}
+	public void setRegDate(String regDate) {
+		this.regDate = regDate;
+	}
+	
+	public void boardDelete(String idx) {
+		//1. db연결
+		String id = "scores";
+		String pw = "1";
+		String url = "jdbc:oracle:thin:@localhost:1521:XE";
+		
+		Connection dbCon = null;
+		PreparedStatement ps = null;
+		
+		String sql = "";
+		
+		try{
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			dbCon = DriverManager.getConnection(url,id,pw);
+			dbCon.setAutoCommit(false);
+			
+			//2. 삭제
+			sql = "DELETE FROM BOARDS WHERE IDX="+idx;
+			ps = dbCon.prepareStatement(sql);
+			ps.executeUpdate();
+			
+			
+			
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+			try {
+				dbCon.rollback();
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+		}finally {
+			try {
+				//3. 저장하고 닫기
+				dbCon.commit();
+				ps.close();
+				dbCon.close();
+				ps=null;
+				dbCon=null;
+				
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+
+	}
+	
+	public void boardUpdate() {
+		String id = "scores";
+		String pw = "1";
+		String url = "jdbc:oracle:thin:@localhost:1521:XE";
+		
+		Connection dbCon = null;
+		PreparedStatement ps = null;
+		
+		String sql = "";
+		
+		try{
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			dbCon = DriverManager.getConnection(url,id,pw);
+			dbCon.setAutoCommit(false);
+			
+			//2. 삭제
+			sql = "DELETE FROM BOARDS WHERE IDX="+idx;
+			ps = dbCon.prepareStatement(sql);
+			ps.executeUpdate();
+			
+			
+			
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+			try {
+				dbCon.rollback();
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+		}finally {
+			try {
+				//3. 저장하고 닫기
+				dbCon.commit();
+				ps.close();
+				dbCon.close();
+				ps=null;
+				dbCon=null;
+				
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
+	
+	
+}

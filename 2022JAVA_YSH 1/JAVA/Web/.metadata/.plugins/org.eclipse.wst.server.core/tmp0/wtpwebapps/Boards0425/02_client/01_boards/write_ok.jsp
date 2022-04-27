@@ -9,6 +9,7 @@
 	out.println("<font color='red'>글 작성 완.</font>");
 	
 	//값 3개 받아서 db에 저장하기
+	request.setCharacterEncoding("UTF-8");
 	//1. 값 받기 + 인코딩 처리
 	String strUserID = request.getParameter("userID");
 	String strTitle = request.getParameter("title");
