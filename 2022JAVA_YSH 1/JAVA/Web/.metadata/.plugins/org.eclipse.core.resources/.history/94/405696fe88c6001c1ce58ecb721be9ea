@@ -1,0 +1,13 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<jsp:useBean id="" class=""></jsp:useBean>
+
+<% 
+
+	String userID = request.getParameter("userID");//name으로 값 받기
+	String userPW = request.getParameter("userPW");
+	String userName = request.getParameter("userName");
+	
+	
+
+%>

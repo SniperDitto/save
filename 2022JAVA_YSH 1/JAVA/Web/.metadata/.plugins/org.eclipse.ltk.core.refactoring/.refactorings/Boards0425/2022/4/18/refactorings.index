@@ -1,2 +1,4 @@
 1650848070253	Move 'jquery-3.6.0.min.js' to 'jquery'
 1650941043752	Copy file
+1651106874059	Rename field 'userPW'
+1651106893758	Rename method 'getUserPW'

@@ -15,9 +15,9 @@ public class DBConn {
 	
 	//2. select(cursor,resultset) / 그 외
 	
-	public static String id;
-	public static String pw;
-	public static String url;
+	public static String id = "scores";
+	public static String pw = "1";
+	public static String url = "jdbc:oracle:thin:@localhost:1521:XE";
 	
 	
 	

@@ -1,0 +1,16 @@
+package Pkg.Member;
+
+
+
+//Member 관련 업무처리클래스
+public class MemberService {
+	
+	//1. 중복검사 + db저장
+	public void memberJoin(MemberVO member) {
+		
+		//중복검사
+		
+		
+	}
+	
+}

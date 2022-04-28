@@ -1,0 +1,52 @@
+
+회원가입 폼
+ - 유효성 검사
+ - 값 넘기기
+    - request.getParameter("userID");//name으로 값 받기
+    - DBconn(DAO) 이용해 값 저장
+        - MemberVO
+        - MemberService
+            업무처리
+
+
+VO(View Object) 클래스의 변수 이름은
+html name과 동일해야 한다
+
+
+
+Model1
+    VO + Service = model
+    임시로 _ok.jsp 만든것 = controller
+    html, css(jsp) = view
+Model2
+    Model1에서 업무관련 Service 분리된 것
+
+업무 부분(Service)는 항상 수정되기 때문에 jsp에 모든 코딩을 넣으면 유지보수하기 불편하다.
+디자이너와 프로그래머가 동시에 수정하기 불편하다.
+ -> 업무 부분과 디자인 부분(view) 분리한다
+
+
+
+단순 데이터 담기만 하는 VO를 만든 이유
+여러 개의 데이터를 담아 간편하게 관리
+처음 클라이언트로부터 값을 받아 객체를 한번 생성해서 여러 페이지에서 사용 가능
+html의 name속성과 VO의 변수명을 똑같이 만들어 setProperty로 자동으로 받아올 수 있도록 함
+    property에 받고 싶은 변수명 입력
+
+A와 B는 같은 의미
+/*
+	A
+		<jsp:useBean id="member" class="Pkg.Member.MemberVO"></jsp:useBean>
+		<jsp:setProperty property="*" name="member"/>
+*/
+/*	
+	B 
+	String userID = request.getParameter("userID");//name으로 값 받기
+	String userPass = request.getParameter("userPass");
+	String userName = request.getParameter("userName");
+	
+	MemberVO member = new MemberVO();
+	member.setUserID(userID);
+	member.setUserPass(userPass);
+	member.setUserName(userName);
+*/
