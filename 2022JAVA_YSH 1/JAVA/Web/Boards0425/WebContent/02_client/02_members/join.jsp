@@ -5,6 +5,55 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입</title>
+<script type="text/javascript">
+	var chkCharacter = function(){
+		var obj = document.getElementById("userID");
+		var inputVal = obj.value;
+		//영문, 숫자 제외 입력불가
+		var strUse = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890";
+		var isOk=true;
+		var result = "";
+		var chkChar = "";
+		for(var i=0;i<inputVal.length;i++){
+			chkChar = inputVal.substr(i,1);
+			if(strUse.indexOf(chkChar)!=-1){
+				result+=chkChar;
+			}else{
+				isOk = false;
+				break;
+			}
+		}
+		if(!isOk){
+			result = "";
+			alert("아이디는 영문과 숫자만 가능합니다");
+			obj.focus();
+		}
+		obj.value = result;
+	}
+	
+	var chkCharacter2 = function(strUse, obj){
+		var inputVal = obj.value;
+		var isOk=true;
+		var result = "";
+		var chkChar = "";
+		for(var i=0;i<inputVal.length;i++){
+			chkChar = inputVal.substr(i,1);
+			if(strUse.indexOf(chkChar)!=-1){
+				result+=chkChar;
+			}else{
+				isOk = false;
+				break;
+			}
+		}
+		if(!isOk){
+			result = "";
+			alert("아이디는 영문과 숫자만 가능합니다");
+			obj.focus();
+		}
+		obj.value = result;
+	}	
+
+</script>
 </head>
 <body>
 	<% 
@@ -23,7 +72,7 @@
 		<div class="row">
 			<span>아이디</span>
 			<span>
-				<input type="text" name="userID" id="userID" class=""/>
+				<input type="text" name="userID" id="userID" class="" onblur="chkCharacter()" />
 			</span>
 		</div>
 		<div class="row">
@@ -66,5 +115,8 @@
 		</div>
 	</form>
 	</div>
+	
+	
+	
 </body>
 </html>
