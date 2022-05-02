@@ -9,9 +9,11 @@
 <fullyQualifiedTypeName name="oracle.jdbc.OracleTypes"/>
 <fullyQualifiedTypeName name="java.lang.Object"/>
 <fullyQualifiedTypeName name="Pkg.Board.Board"/>
+<fullyQualifiedTypeName name="Pkg.Member.MemberVO"/>
 <fullyQualifiedTypeName name="java.lang.String"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
-<fullyQualifiedTypeName name="Pkg.DB.DBConn"/>
-<fullyQualifiedTypeName name="Pkg.Member.MemberVO"/>
 <fullyQualifiedTypeName name="java.sql.ResultSet"/>
+<fullyQualifiedTypeName name="Pkg.Admin.Board.BoardVO"/>
+<fullyQualifiedTypeName name="Pkg.DB.DBConn"/>
+<fullyQualifiedTypeName name="Pkg.Admin.Board.BoardTypes"/>
 </qualifiedTypeNameHistroy>

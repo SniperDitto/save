@@ -1,0 +1,34 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div id="btns">
+	<a href="">추가</a>
+	<a href="">저장</a>
+	<a href="">삭제</a>
+</div>
+<div id="board">
+
+	<span>
+		<input type="checkbox" name="chks" value=""/>
+	</span>
+	<span>
+		<input type="checkbox" name="idxs" value="" readonly/>
+	</span>
+	<span>
+		<input type="checkbox" name="titles" value="" readonly/>
+	</span>
+	<span>
+		<input type="checkbox" name="users" value="" readonly/>
+	</span>
+	<span>
+		<input type="checkbox" name="regdates" value="" readonly/>
+	</span>
+</div>
+</body>
+</html>

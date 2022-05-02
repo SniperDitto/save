@@ -1,0 +1,82 @@
+<%@page import="Pkg.Admin.Board.BoardVO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="Pkg.Admin.Board.BoardList"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="../css/board.css"/>
+<meta charset="UTF-8">
+<title>게시판 리스트 - 관리자</title>​
+<script>
+	var chkAll = function(obj){
+		var chks = document.getElementsByName("chk");
+		for(var i=0;i<chks.length;i++){
+		if(obj.checked){
+			chks.checked=true;
+		}
+		else{
+			chks.checked=false;
+		}
+		}
+	}
+	
+	var goDelete = function(){
+		var obj = document.getElementById("adminBordForm");
+		obj.submit();
+	}
+</script>
+</head>
+<body>
+<%
+
+	BoardList boardList = new BoardList();
+	ArrayList<BoardVO> aList = boardList.getBoardList();
+
+%>
+<div id="wrap">
+		<div id="btns">
+			<div class="left"></div>
+			<div class="right">
+				<span class="btn">조회</span>
+				<span class="btn">추가</span>
+				<span class="btn">저장</span>
+				<span class="btn" onclick="goDelete()">삭제</span>
+			</div><!-- right -->
+		</div><!-- btns -->
+		
+		<form name="adminBordForm" id="adminBordForm" method="post"
+			action="./boardList_ok.jsp">
+			<div id="boards">
+				<div class="row" name="boardTRow">
+					<span class="col0">
+						<input type="checkbox" name="chkT" id="chkT" onclick="chkAll(this)"/>
+					</span>
+					<span class="col1">번호</span>
+					<span class="col2" style="text-align: center">글제목</span>
+					<span class="col3">작성자</span>
+					<span class="col4">작성일</span>
+				</div><!-- boardTRow -->
+				<%
+					for(BoardVO vo : aList){
+				%>
+				<div class="row" name="boardRow">
+					<span class="col0">
+						<input type="checkbox" name="idxs" value="<%=vo.getIdx() %>"/>
+					</span>
+					<span class="col1"><%=vo.getIdx() %></span>
+					<input type="text" class="col2" name="title" value="<%=vo.getTitle() %>"/>
+					<input type="text" class="col3" name="userID" value="<%=vo.getUserID() %>"/>
+					<span class="col4"><%=vo.getRegdate() %></span>
+				</div><!-- boardRow -->
+				
+				<%
+					}
+				%>
+				
+			</div><!-- boards -->
+		</form><!-- adminBordForm -->
+	</div><!-- wrap -->
+	</body>
+</html>

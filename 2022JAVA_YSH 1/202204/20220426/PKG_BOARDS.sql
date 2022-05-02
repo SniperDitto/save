@@ -1,0 +1,37 @@
+create or replace NONEDITIONABLE PACKAGE PKG_BOARDS AS 
+
+    PROCEDURE PROC_SEL_BOARD
+    (
+        IN_IDX     IN  VARCHAR2
+        ,O_CUR  OUT SYS_REFCURSOR
+    );
+
+    PROCEDURE PROC_SEL_BOARD_CONTENT
+    (
+        IN_IDX     IN  VARCHAR2
+        ,O_CUR  OUT SYS_REFCURSOR
+    );
+    
+    PROCEDURE PROC_UP_BOARD
+    (
+        IN_IDX      IN  VARCHAR2
+        ,IN_USERID  IN  VARCHAR2
+        ,IN_TITLE   IN  VARCHAR2
+        ,IN_CONTENT IN  VARCHAR2
+    );
+    
+    PROCEDURE PROC_DEL_BOARD
+    (
+        IN_IDX  IN  VARCHAR2
+    );
+    
+    PROCEDURE PROC_SAVE_BOARD
+  (
+        IN_IDX      IN  VARCHAR2
+        ,IN_USERID  IN  VARCHAR2
+        ,IN_TITLE   IN  VARCHAR2
+        ,IN_CONTENT IN  VARCHAR2
+        ,IN_REGDATE IN  VARCHAR2
+  );
+    
+END PKG_BOARDS;

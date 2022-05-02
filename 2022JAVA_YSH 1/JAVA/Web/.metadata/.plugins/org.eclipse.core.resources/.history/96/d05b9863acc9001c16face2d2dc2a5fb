@@ -1,0 +1,18 @@
+package Pkg.Admin.Board;
+
+import java.util.ArrayList;
+
+import Pkg.DB.DBConn;
+
+public class BoardList {
+	
+	public ArrayList<BoardVO> getBoardList(){
+		ArrayList<BoardVO> result = new ArrayList<BoardVO>();
+		
+		DBConn dbConn = n
+		
+		return result;
+	}
+	
+	
+}

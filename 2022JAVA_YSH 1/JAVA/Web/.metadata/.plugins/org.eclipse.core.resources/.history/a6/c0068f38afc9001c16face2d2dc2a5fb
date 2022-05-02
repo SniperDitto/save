@@ -1,0 +1,39 @@
+package Pkg.Admin.Board;
+
+import java.sql.ResultSet;
+import java.util.ArrayList;
+
+import Pkg.DB.DBConn;
+
+public class BoardList {
+	
+	public ArrayList<BoardVO> getBoardList(){
+		ArrayList<BoardVO> result = new ArrayList<BoardVO>();
+		
+		String sql = "{call PKG_BOARDS.PROC_SEL_BOARD(?,?)}";
+		ArrayList<String> params = new ArrayList<String>();
+		params.add("");
+		
+		try {
+			ResultSet rs = DBConn.select(sql, params, true);
+			
+			while (rs.next()) {
+				BoardVO vo = new BoardVO();
+				vo.setIdx(rs.getString("IDX"));
+				vo.setTitle(rs.getString("TITLE"));
+				vo.setUserID(rs.getString("USERID"));
+				vo.setContent(rs.getString("CONTENTS"));
+				vo.setRegdate(rs.getString("REGDATE"));
+				
+				result.add(vo);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+	
+	
+}

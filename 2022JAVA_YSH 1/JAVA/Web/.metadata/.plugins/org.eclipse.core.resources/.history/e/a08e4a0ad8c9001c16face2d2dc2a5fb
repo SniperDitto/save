@@ -1,0 +1,13 @@
+package pkg.board;
+
+public class BoardVO {
+	private String idx;
+	private String title;
+	private String userID;
+	private String content;
+	private String regdate;
+	private String[] chks;
+	private String[] titles;
+	private String[] users;
+	private String[] gbns;
+}

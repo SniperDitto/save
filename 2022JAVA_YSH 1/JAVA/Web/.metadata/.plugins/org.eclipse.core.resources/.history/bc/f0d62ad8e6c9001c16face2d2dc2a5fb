@@ -1,0 +1,32 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div id="btns">
+	
+</div>
+<div id="board">
+
+	<span>
+		<input type="checkbox" name="chks" value=""/>
+	</span>
+	<span>
+		<input type="checkbox" name="idxs" value="" readonly/>
+	</span>
+	<span>
+		<input type="checkbox" name="titles" value="" readonly/>
+	</span>
+	<span>
+		<input type="checkbox" name="users" value="" readonly/>
+	</span>
+	<span>
+		<input type="checkbox" name="regdates" value="" readonly/>
+	</span>
+</div>
+</body>
+</html>

@@ -1,0 +1,10 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+	String[] chks = request.getParameterValues("chk");
+	for(String s : chks){
+		out.println(s);
+	}
+	
+
+%>

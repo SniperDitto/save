@@ -1,0 +1,60 @@
+<%@page import="java.sql.ResultSet"%>
+<%@page import="Pkg.DB.DBConn"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="Pkg.Admin.Board.BoardList2"%>
+<%@page import="Pkg.Admin.Board.BoardVO2"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+var addRow = function(){
+	var objDiv = document.createElement("DIV");
+}
+</script>
+</head>
+<body>
+<%
+	BoardList2 board2 = new BoardList2();
+	ArrayList<BoardVO2> aList = board2.getBoardList();
+	
+	String idx = "";
+	String title = "";
+	String userID = "";
+	String regdate = "";
+	
+%>
+<div id="btns">
+	<a href="javascript:addRow()">추가</a>
+	<a href="">저장</a>
+	<a href="javascript:submitFunc()">삭제</a>
+</div>
+<div id="board">
+<%for(BoardVO2 vo2 : aList){
+	idx = vo2.getIdx();
+	title=vo2.getTitle();
+	userID = vo2.getUserID();
+	regdate = vo2.getRegdate();
+	%>
+	<span>
+		<input type="checkbox" name="chks" value="<%=idx %>"/>
+	</span>
+	<span>
+		<input type="checkbox" name="idxs" value="<%=idx %>" readonly/>
+	</span>
+	<span>
+		<input type="checkbox" name="titles" value="<%=title %>" readonly/>
+	</span>
+	<span>
+		<input type="checkbox" name="users" value="<%=userID %>" readonly/>
+	</span>
+	<span>
+		<input type="checkbox" name="regdates" value="<%=regdate %>" readonly/>
+	</span>
+<%}%>
+</div>
+</body>
+</html>

@@ -1,0 +1,26 @@
+package Pkg.Admin.Board;
+
+import java.util.ArrayList;
+
+import Pkg.DB.DBConn;
+
+public class BoardList {
+	
+	public ArrayList<BoardVO> getBoardList(){
+		ArrayList<BoardVO> result = new ArrayList<BoardVO>();
+		
+		String sql = "{call PKG_BOARD.PROC_SEL_BOARD(?,?)}";
+		ArrayList<String> params = new ArrayList<String>();
+		params.add("");
+		
+		try {
+			DBConn.select(sql, params, true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+	
+	
+}
