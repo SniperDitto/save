@@ -1,0 +1,8 @@
+package Pkg.Client.Members;
+
+public class HmenuVO {
+	
+	private String menuID;
+	private String menuName;
+	
+}

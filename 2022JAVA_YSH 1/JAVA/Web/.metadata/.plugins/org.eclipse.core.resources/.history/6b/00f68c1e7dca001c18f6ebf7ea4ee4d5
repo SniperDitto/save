@@ -1,0 +1,67 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Home</title>
+<style>
+	body{
+		margin:0px;
+		padding:0px;
+	}
+</style>
+</head>
+<body>
+	<div>
+		<span>메인 페이지</span>
+	</div>
+	<div>
+		<a href="./02_client/01_boards/write.jsp">글쓰기</a>
+	</div>
+	<div>
+		<a href="./02_client/01_boards/list.jsp">글목록</a>
+	</div>
+<!-- 상단메뉴테이블시작 -->
+<div>
+<table width="800px" align="center" border="1" cellpadding="0" cellspacing="0">
+	<tr>
+		<td width="120px" align="center" height="30px">1</td>
+		<td width="120px" align="center" height="30px">2</td>
+		<td width="120px" align="center" height="30px">3</td>
+		<td width="120px" align="center" height="30px">4</td>
+		<td width="120px" align="center" height="30px">5</td>
+		<td width="120px" align="center" height="30px">6</td>
+	</tr>
+</table>
+</div>
+<!-- 상단메뉴테이블끝 -->
+<!-- 하단메뉴테이블시작 -->
+<div>
+<table width="800px" align="center" border="1" cellpadding="0" cellspacing="0">
+	<tr>
+		<td width="200px" height="600px" align="center">
+			<!-- 서브메뉴테이블 -->
+		</td>
+		<td width="600px" height="600px" align="center" valign="top">
+			<!-- 로그인시작 -->
+			<div>
+				<form name="loginForm" id="loginForm" method="post" action="./02_Members/login_ok.jsp"></form>
+				<table width="600px" align="center" border="1" cellpadding="0" cellspacing="0">
+					<tr>
+						<td width="600px" align="center">
+							아이디 : <input type="text" name="userID" id="userID"/>
+							비밀번호 : <input type="password" name="userPW" id="userPW"/>
+							<input type="button" value="로그인"/>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<!-- 로그인끝 -->
+		</td>
+	</tr>
+</table>
+</div>
+<!-- 하단메뉴테이블끝 -->
+</body>
+</html>

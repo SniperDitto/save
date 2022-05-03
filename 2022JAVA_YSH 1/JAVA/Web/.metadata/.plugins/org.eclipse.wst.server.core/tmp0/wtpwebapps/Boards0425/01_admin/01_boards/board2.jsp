@@ -48,11 +48,12 @@ var addRow = function(){
 		objDiv.appendChild(objSpans[i]);
 	}
 	
-	
-	
-	
 }
 
+var submitFunc = function(){
+	var obj = document.getElementById("adminBordForm");
+	obj.submit();
+}
 
 </script>
 </head>
@@ -65,9 +66,10 @@ var addRow = function(){
 %>
 <div id="btns">
 	<a href="javascript:addRow()">추가</a>
-	<a href="">저장</a>
+	<a href="javascript:submitFunc()">저장</a>
 	<a href="javascript:submitFunc()">삭제</a>
 </div>
+<form name="adminBordForm" id="adminBordForm" method="post" action="./board_ok.jsp">
 <div id="board">
 <%for(BoardVO2 vo2 : aList){%>
 	<span>
@@ -85,8 +87,12 @@ var addRow = function(){
 	<span>
 		<input type="text" name="regdates" value="<%=vo2.getRegdate() %>" readonly/>
 	</span>
+	<span>
+		<input type="hidden" name="gbn" value=""/>
+	</span>
 	<br/>
 <%}%>
 </div>
+</form>
 </body>
 </html>

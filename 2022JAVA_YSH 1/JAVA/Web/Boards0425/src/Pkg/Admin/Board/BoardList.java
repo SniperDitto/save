@@ -52,4 +52,28 @@ public class BoardList {
 		
 	}
 	
+	public void saveBoard(String[] idxs, String[] titles, String[] userIDs) {
+		try {
+			String sql = "{call PKG_BOARD.PROC_SAVE_BOARD(?,?,?)}";
+			ArrayList<String> params = null;
+			
+			for(int i=0;i<userIDs.length;i++) {
+				params = new ArrayList<String>();
+				params.add(idxs[i]);
+				params.add(titles[i]);
+				params.add(userIDs[i]);
+				DBConn.insUpDel(sql, params, true);
+				
+			}
+			
+			
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+	}
+	
 }

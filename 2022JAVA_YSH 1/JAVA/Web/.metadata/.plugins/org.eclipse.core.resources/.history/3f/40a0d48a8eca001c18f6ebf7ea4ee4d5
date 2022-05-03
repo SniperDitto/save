@@ -1,0 +1,24 @@
+package Pkg.Client.Menus;
+
+import java.util.ArrayList;
+
+import Pkg.Client.Members.HmenuVO;
+
+public class MenuService {
+	
+	public ArrayList<HmenuVO> getHmenus(){
+		ArrayList<HmenuVO> result = new ArrayList<HmenuVO>();
+		
+		try {
+			
+			
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+	
+}
