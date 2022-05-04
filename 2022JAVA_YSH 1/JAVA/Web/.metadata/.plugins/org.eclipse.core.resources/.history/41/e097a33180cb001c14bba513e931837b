@@ -1,0 +1,11 @@
+package Pkg.Client.Boards;
+
+public class BoardService {
+	
+	public void insertBoard(BoardVO vo) {
+		
+		
+	}
+	
+	
+}

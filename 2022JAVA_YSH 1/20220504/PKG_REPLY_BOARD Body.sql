@@ -1,0 +1,28 @@
+CREATE OR REPLACE
+PACKAGE BODY PKG_REPLY_BOARD AS
+
+  PROCEDURE PROC_INS_BOARDS
+    (
+        IN_IDX      IN  VARCHAR2,
+        IN_TITLE    IN  VARCHAR2,
+        IN_CONTENT  IN  VARCHAR2,
+        IN_USERID   IN  VARCHAR2,
+        IN_REGNUM   IN  VARCHAR2,
+        IN_LVL      IN  VARCHAR2,
+        IN_COMBINE  IN  VARCHAR2,
+        IN_LMENUID  IN  VARCHAR2,
+        IN_ORD      IN  VARCHAR2
+    ) AS
+  BEGIN
+
+    IF IN_IDX='null' THEN
+        --새글쓰기
+    ELSE
+        --답글쓰기
+    END IF;
+
+
+    NULL;
+  END PROC_INS_BOARDS;
+
+END PKG_REPLY_BOARD;

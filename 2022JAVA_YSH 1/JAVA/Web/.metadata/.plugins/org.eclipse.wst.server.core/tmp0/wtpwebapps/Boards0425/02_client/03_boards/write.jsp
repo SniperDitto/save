@@ -1,0 +1,154 @@
+<%@page import="Pkg.Client.Members.LmenuVO"%>
+<%@page import="Pkg.Client.Members.HmenuVO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="Pkg.Client.Menus.MenuService"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>글쓰기</title>
+<style>
+	body{
+		margin:0px;
+		padding:0px;
+	}
+</style>
+<script>
+	var selHMenu = function(){
+		var selVal = document.getElementById("hMenu").value;
+		return selVal;
+	}
+</script>
+</head>
+<body>
+<%
+
+	//값 받기
+	String idx = request.getParameter("idx");
+	String regnum = request.getParameter("regnum");
+	String lvl = request.getParameter("lvl");
+	String combine = request.getParameter("combine");
+	String ord = request.getParameter("ord");
+	String delnum = request.getParameter("delnum");
+
+	String hMenuID = request.getParameter("hMenuID");
+	if(hMenuID==null){
+		hMenuID="MENU01";
+	}
+
+	//대메뉴
+	MenuService ms = new MenuService();
+	ArrayList<HmenuVO> hList = ms.getHmenus();
+	
+	//소메뉴
+	ArrayList<LmenuVO> lList = ms.getLmenus(hMenuID);
+	
+	
+%>
+	<div>
+		<span>글쓰기</span>
+	</div>
+	<div>
+		<a href="./02_client/01_boards/write.jsp">글쓰기</a>
+	</div>
+	<div>
+		<a href="./02_client/01_boards/list.jsp">글목록</a>
+	</div>
+<!-- 상단메뉴테이블시작 -->
+<div>
+<table width="800px" align="center" border="1" cellpadding="0" cellspacing="0">
+	<tr>
+		<%for(HmenuVO h : hList){ %>
+		<td width="120px" align="center" height="50px">
+			<a href="index.jsp?hMenuID=<%=h.getMenuID() %>"><%=h.getMenuName() %></a>
+		</td>
+		<%} %>
+	</tr>
+</table>
+</div>
+<!-- 상단메뉴테이블끝 -->
+<!-- 하단메뉴테이블시작 -->
+<div>
+<table width="800px" align="center" border="1" cellpadding="0" cellspacing="0">
+	<tr>
+		<td width="200px" height="600px" align="center" valign="top">
+			<!-- 서브메뉴테이블 -->
+			<div>
+			<table width="200px" align="center" border="1" cellpadding="0" cellspacing="0" >
+				<%for(LmenuVO l : lList){ %>
+				<tr>
+					<td width="200px" align="center" height="30px">
+						<a href=""><%=l.getlMenuName() %></a>
+					</td>
+				</tr>
+				<%} %>
+			</table>
+			</div>
+		</td>
+		<td width="600px" height="600px" align="center" valign="top">
+			<!-- 로그인시작 -->
+			<div>
+				<jsp:include page="../02_members/include/login.jsp"></jsp:include>
+			<!-- 
+				<form name="loginForm" id="loginForm" method="post" action="./02_client/02_members/login_ok.jsp">
+				<table width="600px" align="center" border="1" cellpadding="0" cellspacing="0">
+					<tr>
+						<td width="600px" align="center">
+							아이디 : <input type="text" name="userID" id="userID"/>&nbsp;&nbsp;
+							비밀번호 : <input type="password" name="userPW" id="userPW"/>&nbsp;&nbsp;
+							<input type="submit" value="로그인"/>
+						</td>
+					</tr>
+				</table>
+				</form> -->
+			</div>
+			<!-- 로그인끝 -->
+			<!-- 글쓰기시작 -->
+			<div id="boards">
+			<form action="./write_ok.jsp" method="post" name="boardForm" id="boardForm">
+				<table cellpadding="0" cellspacing="0" border="1" width="590px" align="center">
+					<tr>
+						<td width="590px" height="40px">
+							<select name="hMenu" id="hMenu">
+							<%for(HmenuVO h : hList){ %>
+								<option value="<%=h.getMenuID() %>" onchange="selHMenu()"><%=h.getMenuName() %></option>
+							<%} %>
+							</select>
+							<select name="lMenu" id="lMenu">
+							<%
+							
+							for(LmenuVO l : lList){ %>
+								<option value="<%=l.getMenuID() %>" onchange="selHMenu()"><%=l.getlMenuName() %></option>
+							<%} %>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td width="590px" height="40px">
+							<input type="text" name="title" id="title" style="width:590px" placeholder="글제목입력"/>
+						</td>
+					</tr>
+					<tr>
+						<td width="590px">
+							<textarea type="text" name="content" id="content" style="width:590px;height:430px" placeholder="글내용입력"></textarea>
+						</td>
+					</tr>
+					<tr>
+						<td width="590px">
+							<button>작성</button>
+						</td>
+					</tr>
+				</table>
+			</form>
+			</div>
+			<!-- 글쓰기끝 -->
+		</td>
+	</tr>
+</table>
+</div>
+<!-- 하단메뉴테이블끝 -->
+</body>
+</html>

@@ -12,7 +12,7 @@
 
 
 	<%if(userID==null){ %>
-<form name="loginForm" id="loginForm" method="post" action="./02_client/02_members/login_ok.jsp">
+<form name="loginForm" id="loginForm" method="post" action="/Boards0425/02_client/02_members/login_ok.jsp">
 	<table width="600px" align="center" border="1" cellpadding="0"
 		cellspacing="0">
 		<tr>
@@ -25,7 +25,7 @@
 	</table>
 </form>
 	<%} else{%>
-	<form name="logoutForm" id="logoutForm" method="post" action="./02_client/02_members/logout.jsp">
+	<form name="logoutForm" id="logoutForm" method="post" action="/Boards0425/02_client/02_members/logout.jsp">
 		<%=userID %> 계정으로 로그인
 		<input type="submit" value="로그아웃"/>
 	</form>

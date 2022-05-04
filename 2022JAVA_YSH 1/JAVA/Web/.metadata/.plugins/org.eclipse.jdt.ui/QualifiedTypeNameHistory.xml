@@ -14,9 +14,12 @@
 <fullyQualifiedTypeName name="Pkg.Admin.Board.BoardTypes"/>
 <fullyQualifiedTypeName name="org.eclipse.jdt.internal.compiler.tool.EclipseBatchRequestor"/>
 <fullyQualifiedTypeName name="Pkg.Client.Members.HmenuVO"/>
-<fullyQualifiedTypeName name="java.lang.String"/>
-<fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="java.sql.ResultSet"/>
 <fullyQualifiedTypeName name="Pkg.DB.DBConn"/>
 <fullyQualifiedTypeName name="Pkg.Client.Members.LmenuVO"/>
+<fullyQualifiedTypeName name="pkg.test.Teacher"/>
+<fullyQualifiedTypeName name="Pkg.Client.Boards.BoardVO"/>
+<fullyQualifiedTypeName name="java.lang.String"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="oracle.net.aso.l"/>
 </qualifiedTypeNameHistroy>

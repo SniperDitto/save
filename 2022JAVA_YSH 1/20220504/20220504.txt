@@ -1,0 +1,45 @@
+
+
+답변형 게시판
+list.jsp에서는 새 글(답글x)만 작성 가능
+content.jsp에서 해당 글의 답글 작성 가능
+
+LVL, COMBINE, ORDER에 따라 글 정렬
+LVL : 글 수준(글/답글/답글의 답글...)
+COMBINE : 글 + 해당 글의 답글들의 그룹
+ORDER : 글에 달린 답글들끼리의 순서
+    원글 = 1
+    같은 LEVEL의 새 답글이 달리면 기존순서 + 1이 되고 새 답글의 ORDER가 2가 됨(원글 - 새답글 순)
+    답글이 달렸을 때 같은 LEVEL, COMBINE의 글이 있다면 모든 COMBINE의 ORDER+1을 하고 새로 달린 글의 ORDER를 2로 해서 새 글이 같은 LEVEL끼리 모였을 때 가장 위로 가도록 한다
+
+
+
+글3
+    ㄴ글3-1
+글2
+    ㄴ글2-1
+글1
+    ㄴ글1-2
+        ㄴ글1-2-3
+        ㄴ글1-2-2
+        ㄴ글1-2-1
+    ㄴ글1-1
+        ㄴ글1-1-2
+        ㄴ글1-1-1
+
+
+새글쓰기
+    LVL COMBINE     ORD
+    1   NEWCOMBINE  1
+
+    NEWCOMBINE : MAX(COMBINE)
+
+답글쓰기(OLD : 답글 달 글)
+
+    LVL         COMBINE     ORD
+    OLDLVL+1    OLDCOMBINE  NEWORD
+
+    NEWORDER : 같은 COMBINE안의 같은LVL의 글이 있는지 여부에 따라 결정
+        - 있으면 NEWORDER=MIN(ORD)(같은레벨 같은그룹 중 가장 작은값이 새글), 그 이하 LVL의 글들 ORD+1
+        - 없으면 
+
