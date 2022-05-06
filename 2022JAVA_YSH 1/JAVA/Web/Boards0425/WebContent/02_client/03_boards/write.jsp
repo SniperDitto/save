@@ -4,7 +4,6 @@
 <%@page import="Pkg.Client.Menus.MenuService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -142,7 +141,13 @@
 						</td>
 					</tr>
 				</table>
-				<input type="hidden" name="idx" id="idx" value=""/>
+				<input type="hidden" name="idx" id="idx" value="<%=idx %>"/>
+				<input type="hidden" name="regnum" id="regnum" value="<%=regnum %>"/>
+				<input type="hidden" name="lvl" id="lvl" value="<%=lvl %>"/>
+				<input type="hidden" name="combine" id="combine" value="<%=combine %>"/>
+				<input type="hidden" name="ord" id="ord" value="<%=ord %>"/>
+				<input type="hidden" name="delnum" id="delnum" value="<%=delnum %>"/>
+			
 			</form>
 			</div>
 			<!-- 글쓰기끝 -->

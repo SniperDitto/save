@@ -39,7 +39,4 @@ ORDER : 글에 달린 답글들끼리의 순서
     LVL         COMBINE     ORD
     OLDLVL+1    OLDCOMBINE  NEWORD
 
-    NEWORDER : 같은 COMBINE안의 같은LVL의 글이 있는지 여부에 따라 결정
-        - 있으면 NEWORDER=MIN(ORD)(같은레벨 같은그룹 중 가장 작은값이 새글), 그 이하 LVL의 글들 ORD+1
-        - 없으면 
 

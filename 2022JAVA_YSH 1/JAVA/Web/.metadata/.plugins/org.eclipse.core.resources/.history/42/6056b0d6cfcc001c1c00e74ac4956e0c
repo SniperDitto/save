@@ -1,0 +1,21 @@
+<%@page import="Pkg.Client.Boards.BoardService"%>
+<%@page import="Pkg.Client.Boards.BoardVO"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<jsp:useBean id="vo" class="Pkg.Client.Boards.BoardVO"></jsp:useBean>
+<jsp:setProperty property="*" name="board"/>
+<% 
+	
+	String userID = (String)session.getAttribute("userID");
+	vo.setUserID(userID);//세션에 있는 값이라 setProperty로 안됨
+	
+	BoardService bs = new BoardService();
+	bs.insertBoard(vo);
+	
+	String lMenuID = request.getParameter("lMenuID");
+	String hMenuID = request.getParameter("hMenuID");
+	vo.setlMenuID(lMenuID);
+	
+	
+
+%>
