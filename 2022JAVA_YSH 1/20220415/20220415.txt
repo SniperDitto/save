@@ -67,3 +67,11 @@ DB 접속 정보 static으로 띄우기(url, id, pw)
 
 
 예외처리 그냥 Exception으로 묶어서
+
+
+
+
+----------------
+public static String url = "jdbc:oracle:thin:@DB202202181749_high?TNS_ADMIN=/Users/sniperditto/Documents/Wallet_DB202202181749";
+	public static String id = "admin";
+	public static String pw = "El1dydhd!1234";
