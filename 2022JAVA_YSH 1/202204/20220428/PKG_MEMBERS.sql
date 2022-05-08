@@ -1,0 +1,27 @@
+CREATE OR REPLACE 
+PACKAGE PKG_MEMBERS AS 
+
+    PROCEDURE PROC_CHK_USERID
+    (
+        IN_USERID   IN      VARCHAR2,
+        O_CUR       OUT     SYS_REFCURSOR
+    );
+    
+    PROCEDURE PROC_INS_USER
+    (
+        IN_USERID   IN  VARCHAR2,
+        IN_USERPASS   IN  VARCHAR2,
+        IN_USERNAME IN  VARCHAR2
+    );
+    
+    PROCEDURE PROC_JOIN_USER
+    (
+        IN_USERID       IN  VARCHAR2,
+        IN_USERPASS     IN  VARCHAR2,
+        IN_USERNAME     IN  VARCHAR2,
+        IN_USERGEN      IN  VARCHAR2,
+        IN_USERHOBBY    IN  VARCHAR2,
+        O_CUR       OUT SYS_REFCURSOR
+    );
+    
+END PKG_MEMBERS;

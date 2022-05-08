@@ -1,0 +1,117 @@
+
+
+.row_head, .row_body {
+	width: 700px;
+	height: 30px;
+	border: 1px solid black;
+	display: block;
+	clear: both;
+}
+
+.col_chk {
+	width: 30px;
+	height: 20px;
+	font-size: 15px;
+	border: 1px solid black;
+	display: block;
+	padding: 5px 0px 5px 0px;
+	text-align: center;
+	float: left;
+}
+
+​
+
+.col_idx {
+	width: 70px;
+	height: 20px;
+	font-size: 15px;
+	border: 1px solid black;
+	
+	display: block;
+	padding: 5px 0px 5px 0px;
+	text-align: center;
+	float: left;
+}
+
+​
+
+.col_title {
+	width: 350px;
+	height: 20px;
+	font-size: 15px;
+	border: 1px solid black;
+	display: block;
+	padding: 5px 0px 5px 0px;
+	text-align: left;
+	float: left;
+}
+
+​
+
+.col_userID {
+	width: 120px;
+	height: 20px;
+	font-size: 15px;
+	border: 1px solid #444;
+	display: block;
+	padding: 5px 0px 5px 0px;
+	text-align: center;
+	float: left;
+}
+
+​
+
+.col_regdate {
+	width: 120px;
+	height: 20px;
+	font-size: 15px;
+	border: 1px solid black;
+	display: block;
+	padding: 5px 0px 5px 0px;
+	text-align: center;
+	float: left;
+}
+
+​
+
+#btns {
+	width: 700px;
+	height: 30px;
+	padding: 0px;
+	border: 1px solid #333;
+	display: block;
+	clear: both;
+}
+
+​
+
+.btn_space {
+	display: block;
+	height: 30px;
+	border: 0px solid red;
+	width: 440px;
+	float: left;
+}
+
+.btn_contents {
+	display: block;
+	width: 258px;
+	height: 30px;
+	border: 0px solid red;
+	float: left;
+}
+
+.btn {
+	width: 61px;
+	font-size: 13px;
+	padding: 4px 0px 5px 0px;
+	background-color: #eee;
+	border: 1px solid #333;
+	border-radius: 10px;
+	color: #333;
+	display: block;
+	text-align: center;
+	float: left;
+}
+
+

@@ -1,0 +1,9 @@
+package Pkg.Client.Members;
+
+import java.util.ArrayList;
+
+public class MenuService {
+	
+	public ArrayList<E>
+	
+}

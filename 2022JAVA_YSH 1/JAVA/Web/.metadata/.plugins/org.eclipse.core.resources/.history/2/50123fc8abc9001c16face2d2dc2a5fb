@@ -1,0 +1,11 @@
+package Pkg.Admin.Board;
+
+public class BoardVO {
+	
+	private String idx;
+	private String title;
+	private String userID;
+	private String content;
+	private String regdate;
+	
+}

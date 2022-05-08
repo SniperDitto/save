@@ -1,0 +1,16 @@
+package Pkg.Admin.Board;
+
+import java.util.ArrayList;
+
+public class BoardList {
+	
+	public ArrayList<BoardVO> getBoardList(){
+		ArrayList<BoardVO> result = new ArrayList<BoardVO>();
+		
+		
+		
+		return result;
+	}
+	
+	
+}

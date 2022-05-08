@@ -1,0 +1,21 @@
+<%@page import="Pkg.Member.MemberService"%>
+<%@page import="Pkg.Member.MemberVO"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<jsp:useBean id="" class=""></jsp:useBean>
+
+<% 
+
+	String userID = request.getParameter("userID");//name으로 값 받기
+	String userPW = request.getParameter("userPW");
+	String userName = request.getParameter("userName");
+	
+	MemberVO member = new MemberVO();
+	member.setUserID(userID);
+	member.setUserPW(userPW);
+	member.setUserName(userName);
+	
+	MemberService mService = new MemberService();
+	mService.memberJoin(member);
+
+%>

@@ -1,0 +1,8 @@
+package Pkg.Client.Members;
+
+public class LmenuVO {
+	private String lMenuID;
+	private String lMenuName;
+	private String lMenuURL;
+	private String menuID;
+}

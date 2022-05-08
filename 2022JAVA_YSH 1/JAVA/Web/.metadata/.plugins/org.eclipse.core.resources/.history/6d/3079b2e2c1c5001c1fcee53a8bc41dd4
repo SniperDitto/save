@@ -1,0 +1,61 @@
+package Pkg.Board;
+
+public class Board {
+	
+	private String idx;
+	private String title;
+	private String content;
+	private String userID;
+	private String regNum;
+	private String regDate;
+	
+	public String getIdx() {
+		return idx;
+	}
+	public void setIdx(String idx) {
+		this.idx = idx;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
+	public String getUserID() {
+		return userID;
+	}
+	public void setUserID(String userID) {
+		this.userID = userID;
+	}
+	public String getRegNum() {
+		return regNum;
+	}
+	public void setRegNum(String regNum) {
+		this.regNum = regNum;
+	}
+	public String getRegDate() {
+		return regDate;
+	}
+	public void setRegDate(String regDate) {
+		this.regDate = regDate;
+	}
+	
+	public void boardDelete(String idx) {
+		//1. db연결
+		
+		//2. 삭제
+		
+		//3. 닫기
+		
+	}
+	
+	
+	
+	
+}

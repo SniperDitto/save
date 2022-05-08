@@ -1,0 +1,11 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<jsp:useBean id="BoardVO" class="Pkg.Admin.Board.BoardVO"></jsp:useBean>
+<%
+	String[] chks = request.getParameterValues("idxs");
+	for(String s : chks){
+		out.println(s);
+	}
+	
+
+%>

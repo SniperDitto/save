@@ -1,0 +1,15 @@
+package Pkg.Client.Boards;
+
+public class BoardVO {
+	
+	private String idx;
+	private String title;
+	private String content;
+	private String userID;
+	private String regnum;
+	private String lvl;
+	private String combine;
+	private String ord;
+	private String delnum;
+	
+}

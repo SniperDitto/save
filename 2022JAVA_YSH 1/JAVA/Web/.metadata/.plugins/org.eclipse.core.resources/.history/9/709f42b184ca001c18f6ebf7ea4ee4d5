@@ -1,0 +1,22 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<jsp:useBean id="user" class="Pkg.Member.MemberVO"></jsp:useBean>
+<jsp:useBean id="ms" class="Pkg.Client.Members.MemberService"></jsp:useBean>
+<jsp:setProperty property="userID" name="User"/>
+<jsp:setProperty property="userPass" name="User"/>
+
+<%
+
+	//id, pw 체크 - db연결해 select
+	ms.chkLogin(user.getUserID(), user.getUserPass());
+	
+
+
+	//Session 처리
+	HttpSession s = request.getSession();
+	out.println(s.getId()); //세션 id
+	
+	s.setAttribute("userID", user.getUserID());
+	
+	
+%>

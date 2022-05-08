@@ -1,0 +1,28 @@
+<%@page import="Pkg.Member.MemberService"%>
+<%@page import="Pkg.Member.MemberVO"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<jsp:useBean id="member" class="Pkg.Member.MemberVO"></jsp:useBean>
+<jsp:setProperty property="*" name="member"/>
+
+<% 
+	request.setCharacterEncoding("UTF-8");
+/*
+	String userID = request.getParameter("userID");//name으로 값 받기
+	String userPass = request.getParameter("userPass");
+	String userName = request.getParameter("userName");
+	
+	MemberVO member = new MemberVO();
+	member.setUserID(userID);
+	member.setUserPass(userPass);
+	member.setUserName(userName);
+	*/
+	MemberService mService = new MemberService();
+	boolean isIdDuplicate = mService.memberJoin(member);
+	if(isIdDuplicate){
+		out.println("중복된 id");
+	}
+	else{
+		out.println("사용가능한 id");
+	}
+%>

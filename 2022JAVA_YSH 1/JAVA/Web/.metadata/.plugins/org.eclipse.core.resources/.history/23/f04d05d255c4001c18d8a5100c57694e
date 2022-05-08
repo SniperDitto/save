@@ -1,0 +1,43 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<script src="../jquery/jquery-3.6.0.min.js"></script>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	//javascript
+	var jsFunc=function(){
+		
+	}
+	
+	
+	//jquery
+	var jqFunc=function(){
+		//$("input[type='checkbox']").click(function(){
+			if($(this).prop("checked")){
+				var chkVal=$(this).val();
+				$("input[type='checkbox']").prop("checked",false);
+				$(this).prop("checked",true);
+				$("#msg").html(chkVal);	
+			}
+		//});
+	}
+	
+	
+</script>
+</head>
+<body>
+	<div>
+		<!-- 값 하나만 선택되도록 -->
+		<label><input type="checkbox" onclick="jqFunc()" value="먹기"/>먹기</label>
+		<label><input type="checkbox" onclick="jqFunc()" value="자기"/>자기</label>
+		<label><input type="checkbox" onclick="jqFunc()" value="놀기"/>놀기</label>
+		<label><input type="checkbox" onclick="jqFunc()" value="노래하기"/>노래하기</label>
+	</div>
+	<div id="msg">
+		<!-- 선택된 값 표시 -->
+	</div>
+</body>
+</html>

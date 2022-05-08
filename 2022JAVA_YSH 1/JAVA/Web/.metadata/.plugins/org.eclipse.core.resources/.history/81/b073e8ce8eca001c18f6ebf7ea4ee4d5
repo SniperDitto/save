@@ -1,0 +1,26 @@
+package Pkg.Client.Menus;
+
+import java.util.ArrayList;
+
+import Pkg.Client.Members.HmenuVO;
+import Pkg.DB.DBConn;
+
+public class MenuService {
+	
+	public ArrayList<HmenuVO> getHmenus(){
+		ArrayList<HmenuVO> result = new ArrayList<HmenuVO>();
+		
+		try {
+			
+			String sql = "{call PKG_MENUS.PROC_SEL_HMENUS(?)}";
+			ArrayList<String> params = new ArrayList<String>();
+			DBConn.select(sql, params, true);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+	
+}

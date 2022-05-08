@@ -1,0 +1,51 @@
+<%@page import="java.sql.ResultSet"%>
+<%@page import="Pkg.DB.DBConn"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="Pkg.Admin.Board.BoardList2"%>
+<%@page import="Pkg.Admin.Board.BoardVO2"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<%
+	BoardList2 board2 = new BoardList2();
+	ArrayList<BoardVO2> aList = board2.getBoardList();
+	
+	String idx = "";
+	String title = "";
+	String userID = "";
+	String regdate = "";
+	for(BoardVO2 b2 : aList){
+		
+	}
+%>
+<div id="btns">
+	<a href="">추가</a>
+	<a href="">저장</a>
+	<a href="">삭제</a>
+</div>
+<div id="board">
+
+	<span>
+		<input type="checkbox" name="chks" value=""/>
+	</span>
+	<span>
+		<input type="checkbox" name="idxs" value="" readonly/>
+	</span>
+	<span>
+		<input type="checkbox" name="titles" value="" readonly/>
+	</span>
+	<span>
+		<input type="checkbox" name="users" value="" readonly/>
+	</span>
+	<span>
+		<input type="checkbox" name="regdates" value="" readonly/>
+	</span>
+</div>
+</body>
+</html>

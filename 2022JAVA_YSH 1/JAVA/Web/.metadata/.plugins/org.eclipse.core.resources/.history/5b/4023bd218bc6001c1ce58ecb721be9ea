@@ -1,0 +1,21 @@
+package Pkg.Member;
+
+import java.util.ArrayList;
+
+import Pkg.DB.DBConn;
+
+//Member 관련 업무처리클래스
+public class MemberService {
+	
+	//1. 중복검사 + db저장
+	public void memberJoin(MemberVO member) {
+		
+		//중복검사
+		String sql="{call PKG_MEMBERS.PROC_CHK_USERID(?,?)}";
+		ArrayList<String> params=new ArrayList<String>();
+		params.add(member.getUserID());
+		DBConn.select(sql, params, true);
+		
+	}
+	
+}

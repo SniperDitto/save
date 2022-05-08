@@ -1,0 +1,60 @@
+
+
+Business Logic
+
+php, asp, jsp
+-> 업무 변경 시 다 갈아엎어야 함
+-> 외부 업무 정보를 가져오기 힘듬
+
+java bean으로 인해 jsp 점유율 상승
+
+
+Spring
+view
+ html
+business
+ db연결 + 데이터처리 + 이외 업무 분리
+
+
+DB ----- VO ----- jsp
+
+
+트랜젝션 처리
+conn의 autoCommit 끄기+반드시 별도로 커밋
+
+
+JSTL JAVABEANS 읽어보기
+nossodia.tistory.com/172
+
+
+--------------------------------
+View(frontend)
+    html
+    javascript
+
+----
+(backend)
+Web Server
+    jsp
+    java
+DataBase
+
+업무 로직과 DB관리 로직을 각 클래스로 분리
+
+jsp의 한계 : 프론트/업무/db분리 불가
+ -> servlet으로 프론트/(업무+db)클래스 분리
+ -> 클래스 안의 메서드에서 jsp를 리턴
+ -> jsp가 렌더링되어 브라우저에 표시
+
+
+MVC : Model1/2
+Model1
+    업무 / DB
+    클라이언트가 list.jsp(view) 호출 시 DB와 연동하는 Model 생성됨
+        DB관리(DBConn), 업무관리 클래스가 모델에 포함
+
+
+웹 서버 로딩 시 static 변수들이 모두 메모리에 저장됨 -> 웹 서버 껐다 키면 리셋됨
+
+
+

@@ -1,0 +1,10 @@
+package Pkg.Board;
+
+public class Board {
+	
+	private String idx;
+	
+	
+	
+	
+}

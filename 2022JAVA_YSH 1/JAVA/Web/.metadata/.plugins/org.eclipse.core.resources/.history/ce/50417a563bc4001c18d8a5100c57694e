@@ -1,0 +1,24 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<script src="../jquery/jquery-3.6.0.min.js"></script>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	
+</script>
+</head>
+<body>
+	<div id="m1"></div>
+	<div id="m2"></div>
+	<span></span>
+	<a></a>
+	
+	<script>
+		$("#m1, #m2, a, span").html("asdf");
+	</script>
+	
+</body>
+</html>

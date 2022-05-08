@@ -1,0 +1,13 @@
+<%@page import="Pkg.Admin.Board.BoardVO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="Pkg.Admin.Board.BoardList"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<jsp:useBean id="BoardVO" class="Pkg.Admin.Board.BoardVO"></jsp:useBean>
+<jsp:setProperty property="idxs" name="BoardVO"></jsp:setProperty>
+<%
+
+BoardList boardList = new BoardList();
+boardList.deleteBoard(BoardVO.getIdxs());
+
+%>

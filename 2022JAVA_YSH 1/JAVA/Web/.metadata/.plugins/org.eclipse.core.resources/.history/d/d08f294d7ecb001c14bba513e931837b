@@ -1,0 +1,5 @@
+package Pkg.Client.Boards;
+
+public class BoardService {
+
+}

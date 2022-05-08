@@ -1,0 +1,46 @@
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.Connection"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<% 
+
+	out.println("<font color='red'>글 작성 완.</font>");
+	
+	//값 3개 받아서 db에 저장하기
+	//1. 값 받기
+	String strUserID = request.getParameter("userID");
+	String strTitle = request.getParameter("title");
+	String strContent = request.getParameter("content");
+	out.println(strUserID);
+	out.println(strTitle);
+	out.println(strContent);
+	
+	//2. DB연결
+	String id = "scores";
+	String pw = "1";
+	String url = "jdbc:oracle:thin:@localhost:1521:XE";
+	
+	try{
+		
+		Connection dbCon = null;
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+		dbCon = DriverManager.getConnection(url,id,pw);
+		
+		String sql = "INSERT INTO BOARDS(IDX, TITLE, CONTENT, USERID, REGNUM, REGDATE) VALUES(?,?,?,?,?,SYSDATE)";
+		PreparedStatement ps = dbCon.prepareStatement(sql);
+		ps.setString(1, "1");
+		ps.setString(2, strTitle);
+		ps.setString(3, strUserID);
+		ps.setString(4, strContent);
+		ps.setString(5, "1");
+		
+		ps.executeUpdate();
+		
+		ps.close();
+		dbCon.close();
+	
+	}catch(Exception e){
+		e.printStackTrace();
+	}
+%>

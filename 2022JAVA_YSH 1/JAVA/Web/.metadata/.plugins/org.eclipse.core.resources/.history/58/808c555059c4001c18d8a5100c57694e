@@ -1,0 +1,72 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<script src="../jquery/jquery-3.6.0.min.js"></script>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	var student = function(id, name, age){
+		this.id=id;
+		this.name=name;
+		this.age=age;
+	}
+	
+	var stu1 = student("S01","asdf",23);
+	var students = [];
+	students[0] = student("S01","asdf",23);
+	students[1] = student("S02","qwer",26);
+	students[2] = student("S03","zxcv",25);
+	students[3] = student("S04","tyui",24);
+	
+	var showList=function(){
+		var strHTML="";
+		strHTML+="<div>";
+		for(var i=0;i<students.length;i++){
+			strHTML+='<input type="checkbox" name="chk"/>';
+			strHTML+='<span class="b1">'+(students[i].id)+'</span>';
+			strHTML+='<span class="b1">'+students[i].name+'</span>';
+			strHTML+='<span class="b1">'+students[i].age+'</span>';
+		}
+		strHTML+="</div>";
+		document.getElementById("msg").innerHTML = strHTML;
+	}
+	
+	var f1 = function(){
+		$("input[name='chkAll']").click(function(){
+			$("input[name='chk']").prop('checked',true);
+		});
+	}
+</script>
+<style>
+	.b1{
+		width:150px;
+		height:20px;
+		font-size:20px;
+		color:#444;
+		text-align:center;
+		padding:0px 10px 10px 0px;
+		border:1px solid #333;
+		display:block;
+		float:left;
+	}
+</style>
+</head>
+<body onload="f1()">
+	<div>
+		<input type="button" value="목록" onclick="showList()"/>
+	</div>
+	<div>
+		<span class="b1">
+			<label><input type="checkbox" name="chkAll"/></label>
+		</span>
+		<span class="b1">학생ID</span>
+		<span class="b1">이름</span>
+		<span class="b1">나이</span>
+	</div>
+	<div id="msg">
+		<div style="clear:both"></div>
+	</div>
+</body>
+</html>

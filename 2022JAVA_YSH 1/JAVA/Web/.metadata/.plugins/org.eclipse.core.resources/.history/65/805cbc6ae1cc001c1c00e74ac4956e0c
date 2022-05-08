@@ -1,0 +1,21 @@
+<%@page import="Pkg.Client.Boards.BoardVO"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<jsp:useBean id="vo" class="Pkg.Client.Boards.BoardVO"></jsp:useBean>
+<jsp:setProperty name="vo" property="idx"/>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>글내용</title>
+</head>
+<body>
+ㅁㄴㅇㄻㄴㅇㄻㄴㅇㄻㄴㅇㄻㄴㅇㄹ
+<%=vo.getIdx() %>번 글
+대충 글내용
+
+
+<a href="./write.jsp">답글달기</a>
+
+</body>
+</html>

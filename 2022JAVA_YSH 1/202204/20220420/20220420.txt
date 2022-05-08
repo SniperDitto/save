@@ -1,0 +1,24 @@
+
+//폴더, 파일+확장자(aaa.txt), 파일이름만(aaa), 확장자만(.txt)
+		String onlyDir = dir.substring(0,dir.lastIndexOf("\\"));
+		String onlyFile = dir.substring(dir.lastIndexOf("\\"));
+		String onlyFileName = onlyFile.substring(0,onlyFile.lastIndexOf("."));
+		String onlyFileExt = onlyFile.substring(onlyFile.lastIndexOf("."));
+
+
+
+
+Files
+mkdir()
+mkdirs() - 상위폴더 없으면 상위폴더까지 만든다
+
+
+
+
+
+Byte[] bytes = (Byte[]) arrayList.toArray(); //  ArrayList -> Byte[]
+
+arrayList = new ArrayList(Arrays.asList(bytes )); // Byte[] -> ArrayList
+
+만약 프리미티브 byte[]로 전환하고자 하신다면, Bytes[X].byteValue() 를 X값을 루프를 돌면서 복사해주면됩니다.
+
