@@ -1,5 +1,5 @@
 
-drop table boards;
+--drop table boards;
 
 --대메뉴테이블
 CREATE TABLE HMENUS

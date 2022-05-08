@@ -62,7 +62,7 @@ request.getParameter("name")
 
 
 conn, ps, cs, rs null로 try 바깥에 선언 후
-예외처리시 conn.rollback
+예외처리시 conn.rollback (autoCommit false로 처리)
 finally에 conn.commit
 
 여러 게시물 선택해서 삭제하는 부분은 jsp 쪽에서 처리(프로시져x)
