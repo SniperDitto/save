@@ -1,0 +1,66 @@
+
+메인메뉴 - 서브메뉴
+메인메뉴 선택 이후 서브메뉴를 띄우기 위해 선택된 메인메뉴 값을 서버로 보내어 다시 렌더링 과정을 거쳐야 함(페이지를 다시 띄워야 함)
+
+자바스크립트 httpRequest 객체(비동기)
+ - 원래 자바스크립트의 http 통신 위한 객체
+
+
+jsp를 xml로 렌더링
+html로 통신하지 않고 xml 형식으로 데이터를 주고받음
+
+
+<asdf></asdf>
+태그(tag) - html 태그
+object - 객체
+노드(node) - xml 태그
+
+
+
+httpRequest.status == 200
+통신성공
+
+XML객체 = httpRequest.responseXML
+XML객체.getElementsByTagName("name속성값")으로 xml 노드 이름으로 배열 가져오기
+~.childNodes.childNodes...로 한수준씩 내려가서 안의 텍스트 값 가져오기
+
+
+1. http객체 선언
+2. 
+    if(window.XMLHttpRequest){
+			httpRequest = new XMLHttpRequest();
+		}else if(window.ActiveXObject){
+			//IE6.0이하
+			httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+    -> 보통 httpRequest = new XMLHttpRequest();이렇게만 사용
+3.
+    //통신이 완료되면 실행할 메서드
+		httpRequest.onreadystatechange = 메서드명;
+	//get or post, 데이터 파일 경로, 동기인지(비동기인지)
+		httpRequest.open("post","./ajaxPages/getHmenus.jsp",true);
+		httpRequest.send();
+4.
+//통신이 성공했는지 여부
+	if (httpRequestH.readyState==4 && httpRequestH.status == 200){
+		//성공시
+        var objXML = httpRequest.responseXML;
+		var arrHMenu = objXML.getElementsByTagName("hMenu");
+			
+		for(var i=0;i<arrMenu.length;i++){
+			hMenuID = arrMenu[i].childNodes[0].childNodes[0].nodeValue;
+			hMenuName = arrMenu[i].childNodes[1].childNodes[0].nodeValue;
+				
+			strHTML += "<option value='"+hMenuID+"'>";
+			strHTML += hMenuName;
+			strHTML += "</option>";
+		}
+			
+	}else{alert("쉴패~~!~!~");}
+
+
+
+
+
+
+

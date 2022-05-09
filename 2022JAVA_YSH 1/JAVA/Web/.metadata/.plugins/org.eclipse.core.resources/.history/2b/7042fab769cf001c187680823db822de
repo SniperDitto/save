@@ -1,0 +1,30 @@
+<%@page import="Pkg.Client.Boards.BoardService"%>
+<%@page import="Pkg.Client.Boards.BoardVO"%>
+<%@page import="java.util.ArrayList"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
+
+    
+<%
+String strXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
+BoardService bs = new BoardService();
+ArrayList<BoardVO> boardList = bs.getBoardList("");
+
+String idx = "";
+String title = "";
+String content = "";
+String userID = "";
+String regnum = "";
+String lvl = "";
+String combine = "";
+String visited = "";
+String regdate = "";
+String lMenuID = "";
+String ord = "";
+String delnum = "";
+
+String strXML = "";
+
+
+%>
+    

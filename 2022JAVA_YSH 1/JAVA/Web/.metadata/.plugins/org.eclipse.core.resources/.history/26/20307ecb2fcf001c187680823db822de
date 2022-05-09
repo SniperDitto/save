@@ -1,0 +1,15 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+
+	String strXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
+	strXML += "<hMenus>";
+	
+		strXML += "<hMenu>";
+			strXML += "<menuID>MENU01</menuID>";
+			strXML += "<menuName>공지사항</menuName>";
+		strXML += "</hMenu>";
+		
+	strXML += "</hMenus>";
+
+%>

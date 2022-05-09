@@ -1,0 +1,39 @@
+<%@page import="Pkg.Client.Members.HmenuVO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="Pkg.Client.Menus.MenuService"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ajaxMenu</title>
+</head>
+<body>
+<%
+	MenuService ms = new MenuService();
+	ArrayList<HmenuVO> hMenus = ms.getHmenus();
+	
+	
+	
+%>
+<div>
+	주메뉴 : 
+	<select name="hMenus" id="hMenus" onchange="">
+		<%for(HmenuVO hm : hMenus){ %>
+			<option value="<%=hm.getMenuID()%>"><%=hm.getMenuName() %></option>
+		<%} %>
+	</select>
+</div>
+<div>
+	서브메뉴 : 
+	<select name="lMenus" id="lMenus">
+		<option value="MENU01">공지사항</option>
+		<option value="MENU02">숙제</option>
+		<option value="MENU03">수업</option>
+		<option value="MENU04">영상</option>
+		<option value="MENU05">개인</option>
+	</select>
+</div>
+</body>
+</html>

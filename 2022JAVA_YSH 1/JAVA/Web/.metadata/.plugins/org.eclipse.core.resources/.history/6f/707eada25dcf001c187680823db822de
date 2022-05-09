@@ -1,0 +1,90 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>new menu(ajax)</title>
+<script>
+	var httpRequestH;
+	var httpRequestL;
+	var getHttpRequest=function(){
+		httpRequestH = new XMLHttpRequest();
+		httpRequestL = new XMLHttpRequest();
+		/*
+		if(window.XMLHttpRequest){
+			httpRequest = new XMLHttpRequest();
+		}else if(window.ActiveXObject){
+			//IE6.0이하
+			httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		*/
+	}
+	
+	var callHMenuXml = function(){
+		getHttpRequest();
+		
+		//통신이 완료되면 실행할 메서드
+		httpRequest.onreadystatechange = setHMenus;
+		//get or post, 데이터 파일 경로, 동기인지(비동기인지)
+		httpRequest.open("post","./ajaxPages/getHmenus.jsp",true);
+		httpRequest.send();
+	}
+	
+	var callLMenuXml = function(){
+		
+		var selLMenu = document.getElementById("hMenu").value;
+		
+		//통신이 완료되면 실행할 메서드
+		httpRequest.onreadystatechange = setLMenus;
+		//get or post, 데이터 파일 경로, 동기인지(비동기인지)
+		httpRequest.open("get","./ajaxPages/getLmenus.jsp?selLMenu="+selLMenu,true);
+		httpRequest.send();
+	}
+	
+	var setHMenus=function(){
+		var strHTML = "";
+		var hMenuID = "";
+		var hMenuName = "";
+		//통신이 성공했는지 여부
+		if (httpRequest.readyState==4 && httpRequest.status == 200){
+			var objXML = httpRequest.responseXML;
+			var arrHMenu = objXML.getElementsByTagName("hMenu");
+			
+			for(var i=0;i<arrHMenu.length;i++){
+				hMenuID = arrHMenu[i].childNodes[0].childNodes[0].nodeValue;
+				hMenuName = arrHMenu[i].childNodes[0].childNodes[0].nodeValue;
+				
+				strHTML += "<option value='"+hMenuID+"'>";
+				strHTML += hMenuName;
+				strHTML += "</option>";
+			}
+			
+		}
+		//else{alert("쉴패~~!~!~");}
+		
+		document.getElementById("hMenu").innerHTML = strHTML;
+		
+	}
+	
+	var setLMenus = function(obj){
+		
+		if (httpRequest.readyState==4 && httpRequest.status == 200){
+			alert(httpRequest.responseXML);
+		
+		}
+		
+	}
+</script>
+
+</head>
+<body>
+	<div id="msg">
+		<select id="hMenu" onchange="callLMenuXml()">
+		</select>
+		<select id="lMenu" onchange="">
+		</select>
+	</div>
+	<input type="button" value="메뉴나와랏" onclick="callHMenuXml()"/>
+</body>
+</html>
