@@ -1,5 +1,5 @@
 
-drop table boards;
+
 
 --대메뉴테이블
 CREATE TABLE HMENUS
@@ -27,7 +27,9 @@ CREATE TABLE BOARDS
     COMBINE     INT             NOT NULL, --그룹?
     VISITED     INT             NOT NULL,
     REGDATE     DATE            NOT NULL,
-    LMENUID     CHAR(6)         NOT NULL
+    LMENUID     CHAR(6)         NOT NULL,
+    ORD         INT             NOT NULL,
+    DELNUM      INT             NOT NULL
 );
 
 CREATE TABLE REPLY
@@ -81,4 +83,4 @@ INSERT INTO LMENUS(LMENUID, LMENUNAME, LMENUURL, MENUID) VALUES('MENU11','SQL','
 INSERT INTO LMENUS(LMENUID, LMENUNAME, LMENUURL, MENUID) VALUES('MENU12','자유게시판',' ','MENU05');
 INSERT INTO LMENUS(LMENUID, LMENUNAME, LMENUURL, MENUID) VALUES('MENU13','최밥창문',' ','MENU05');
 
-
+--commit;
