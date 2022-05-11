@@ -1,0 +1,23 @@
+create or replace NONEDITIONABLE PACKAGE PKG_REPLY_BOARD AS 
+
+    PROCEDURE PROC_INS_BOARDS
+    (
+        IN_IDX      IN  VARCHAR2,
+        IN_TITLE    IN  VARCHAR2,
+        IN_CONTENT  IN  VARCHAR2,
+        IN_USERID   IN  VARCHAR2,
+        IN_REGNUM   IN  VARCHAR2,
+        IN_LVL      IN  VARCHAR2,
+        IN_COMBINE  IN  VARCHAR2,
+        IN_LMENUID  IN  VARCHAR2,
+        IN_ORD      IN  VARCHAR2
+    );
+    
+    PROCEDURE PROC_SEL_BOARDS
+    (
+        IN_IDX  IN  VARCHAR2,
+        IN_LMENUID  IN  VARCHAR2,
+        O_CUR   OUT SYS_REFCURSOR
+    );
+
+END PKG_REPLY_BOARD;
