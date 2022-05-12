@@ -1,0 +1,36 @@
+<%@page import="Pkg.Client.Menus.MenuService"%>
+<%@page import="Pkg.Client.Members.LmenuVO"%>
+<%@page import="Pkg.Client.Members.HmenuVO"%>
+<%@page import="java.util.ArrayList"%>
+<%@ page language="java" contentType="text/xml; charset=UTF-8"
+	pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
+<%
+
+	String strXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
+	
+	String hMenuID = request.getParameter("selLMenu");
+	MenuService ms = new MenuService();
+	ArrayList<LmenuVO> lMenus = ms.getLmenus(hMenuID);
+	
+	String lMenuID = "";
+	String lMenuName = "";
+	String lMenuUrl = "";
+	
+	strXML += "<lMenus>";
+	for(LmenuVO lvo : lMenus){
+		lMenuID = lvo.getlMenuID();
+		lMenuName = lvo.getlMenuName();
+		lMenuUrl = lvo.getlMenuURL();
+		
+		strXML += "<lMenu>";
+		strXML += "<menuID>"+lMenuID+"</menuID>";
+		strXML += "<menuName>"+lMenuName+"</menuName>";
+		strXML += "<menuUrl>"+lMenuUrl+"</menuUrl>";
+		strXML += "</lMenu>";
+	}
+	strXML += "</lMenus>";
+	
+	response.flushBuffer();
+	response.setContentType("text/xml");
+	out.println(strXML);
+%>

@@ -1,0 +1,13 @@
+<%@page import="Pkg.DB.DBConn"%>
+<%@page import="Pkg.Client.Menus.MenuService"%>
+<%@page import="Pkg.Client.Members.LmenuVO"%>
+<%@page import="Pkg.Client.Members.HmenuVO"%>
+<%@page import="java.util.ArrayList"%>
+<%@ page language="java" contentType="text/xml; charset=UTF-8"
+	pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
+<%
+	String sql = "{call PKG_REPLY_BOARD.PROC_SEL_BOARDS}";
+
+		
+
+%>

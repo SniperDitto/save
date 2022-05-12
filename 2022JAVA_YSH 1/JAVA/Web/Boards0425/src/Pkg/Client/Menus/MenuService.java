@@ -3,8 +3,6 @@ package Pkg.Client.Menus;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-import Pkg.Client.Members.HmenuVO;
-import Pkg.Client.Members.LmenuVO;
 import Pkg.DB.DBConn;
 
 public class MenuService {

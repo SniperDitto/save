@@ -1,0 +1,49 @@
+package pkg.DB;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.util.ArrayList;
+
+public class DBConn {
+	
+	public static String user = "score";
+	public static String password = "1";
+	public static String url= "jdbc:oracle:thin:@localhost:1521:XE";
+	
+	public static Connection getConnection() {
+		Connection conn = null;
+		
+		try {
+			
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			conn = DriverManager.getConnection(url, user, password);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return conn;
+	}
+	
+	public static PreparedStatement getPS(String sql, ArrayList<String> params) {;
+		PreparedStatement ps = null;
+		Connection conn = null;
+		
+		try {
+			conn = getConnection();
+			ps = conn.prepareStatement(sql);
+			
+			for(int i=0;i<params.size();i++) {
+				
+			}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return ps;
+	}
+	
+}

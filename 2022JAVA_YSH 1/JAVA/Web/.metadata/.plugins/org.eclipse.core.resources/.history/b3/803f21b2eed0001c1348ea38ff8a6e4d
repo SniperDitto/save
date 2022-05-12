@@ -1,0 +1,38 @@
+@charset "UTF-8";
+
+body{
+	font-size:18px;
+	
+}
+
+.idx{
+	width:40px;
+	height:60px;
+	display:block;
+	float:left;
+}
+
+.title{
+	width:250px;
+	height:60px;
+	display:block;
+	float:left;
+}
+
+.userID{
+	width:150px;
+	height:60px;
+	display:block;
+	float:left;
+}
+
+.regdate{
+	width:140px;
+	height:60px;
+	display:block;
+	float:left;
+}
+
+.row{
+	clear:both;
+}

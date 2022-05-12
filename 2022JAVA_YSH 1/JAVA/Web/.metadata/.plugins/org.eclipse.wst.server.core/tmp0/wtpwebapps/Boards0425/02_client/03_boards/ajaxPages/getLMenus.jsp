@@ -1,6 +1,6 @@
 <%@page import="Pkg.Client.Menus.MenuService"%>
-<%@page import="Pkg.Client.Members.LmenuVO"%>
-<%@page import="Pkg.Client.Members.HmenuVO"%>
+<%@page import="Pkg.Client.Menus.LmenuVO"%>
+<%@page import="Pkg.Client.Menus.HmenuVO"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/xml; charset=UTF-8"
 	pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>

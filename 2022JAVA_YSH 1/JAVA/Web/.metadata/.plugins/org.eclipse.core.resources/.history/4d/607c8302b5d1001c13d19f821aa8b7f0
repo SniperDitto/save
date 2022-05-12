@@ -1,0 +1,17 @@
+package pkg.DB;
+
+import java.sql.Connection;
+
+public class DBConn {
+	
+	public static String id = "";
+	public static String pw = "";
+	public static String url= "";
+	
+	public static Connection getConnection() {
+		Connection conn = null;
+		
+		return conn;
+	}
+	
+}

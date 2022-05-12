@@ -1,5 +1,5 @@
-<%@page import="Pkg.Client.Members.LmenuVO"%>
-<%@page import="Pkg.Client.Members.HmenuVO"%>
+<%@page import="Pkg.Client.Menus.LmenuVO"%>
+<%@page import="Pkg.Client.Menus.HmenuVO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Pkg.Client.Menus.MenuService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"

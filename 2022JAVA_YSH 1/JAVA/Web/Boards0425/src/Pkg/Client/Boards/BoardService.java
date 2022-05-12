@@ -8,12 +8,13 @@ import Pkg.DB.DBConn;
 
 public class BoardService {
 	
-	public ArrayList<BoardVO> getBoardList(String idx){
+	public ArrayList<BoardVO> getBoardList(String idx, String lMenuID){
 		ArrayList<BoardVO> result = new ArrayList<BoardVO>();
 		
-		String sql = "call PKG_REPLY_BOARD.PROC_SEL_BOARDS(?,?)";
+		String sql = "call PKG_REPLY_BOARD.PROC_SEL_BOARDS(?,?,?)";
 		ArrayList<String> params = new ArrayList<String>();
 		params.add(idx);
+		params.add(lMenuID);
 		try {
 			ResultSet rs = DBConn.select(sql, params, true);
 			
@@ -22,9 +23,14 @@ public class BoardService {
 				
 				b.setIdx(rs.getString("IDX"));
 				b.setTitle(rs.getString("TITLE"));
+				b.setContent(rs.getString("CONTENT"));
+				b.setUserID(rs.getString("USERID"));
 				b.setRegnum(rs.getString("REGNUM"));
 				b.setLvl(rs.getString("LVL"));
 				b.setCombine(rs.getString("COMBINE"));
+				b.setVisited(rs.getString("VISITED"));
+				b.setRegdate(rs.getString("REGDATE"));
+				b.setlMenuID(rs.getString("LMENUID"));
 				b.setOrd(rs.getString("ORD"));
 				b.setDelnum(rs.getString("DELNUM"));
 				
