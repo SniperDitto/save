@@ -60,5 +60,23 @@ public class BoardService {
 		DBConn.insUpDel(sql, params, true);
 	}
 	
+	public void deleteBoard(BoardVO vo) {
+		String sql = "{call PKG_REPLY_BOARD.PROC_DEL_BOARDS(?,?)}";
+		ArrayList<String> params = new ArrayList<String>();
+		params.add(vo.getIdx());
+		params.add(vo.getDelnum());
+		
+		DBConn.insUpDel(sql, params, true);
+	}
+	
+	public void insertReply(ReplyVO vo) {
+		String sql = "{call PKG_REPLY_BOARD.PROC_INS_REPLY(?,?,?)}";
+		ArrayList<String> params = new ArrayList<String>();
+		params.add();
+		params.add();
+		
+		DBConn.insUpDel(sql, params, true);
+	}
+	
 	
 }

@@ -138,3 +138,42 @@
 5월 12, 2022 17:18:10.777 [5624:2904:0512/171810.777:ERROR:util.cc(126)] Can't create base directory: C:\Program Files\Google\GoogleUpdater
 5월 12, 2022 17:28:25.561 [10944:13972:0512/172825.561:ERROR:device_event_log_impl.cc(214)] [17:28:25.560] Bluetooth: bluetooth_adapter_winrt.cc:1075 Getting Default Adapter failed.
 5월 12, 2022 17:29:23.483 [10944:14164:0512/172923.483:ERROR:util.cc(126)] Can't create base directory: C:\Program Files\Google\GoogleUpdater
+
+5월 13, 2022 09:03:05.555 NEW SESSION
+5월 13, 2022 09:03:05.555 [8060:8048:0513/090305.553:ERROR:device_event_log_impl.cc(214)] [09:03:05.554] Bluetooth: bluetooth_adapter_winrt.cc:1075 Getting Default Adapter failed.
+5월 13, 2022 09:04:00.487 [8060:4392:0513/090400.487:ERROR:util.cc(126)] Can't create base directory: C:\Program Files\Google\GoogleUpdater
+5월 13, 2022 09:10:03.194 [1120:6400:0513/091003.193:ERROR:device_event_log_impl.cc(214)] [09:10:03.193] Bluetooth: bluetooth_adapter_winrt.cc:1075 Getting Default Adapter failed.
+5월 13, 2022 09:11:01.151 [1120:4240:0513/091101.151:ERROR:util.cc(126)] Can't create base directory: C:\Program Files\Google\GoogleUpdater
+5월 13, 2022 09:34:08.121 [2284:9820:0513/093408.120:ERROR:device_event_log_impl.cc(214)] [09:34:08.121] Bluetooth: bluetooth_adapter_winrt.cc:1075 Getting Default Adapter failed.
+5월 13, 2022 09:35:03.455 [2284:6540:0513/093503.454:ERROR:util.cc(126)] Can't create base directory: C:\Program Files\Google\GoogleUpdater
+5월 13, 2022 09:42:40.516 [6688:7260:0513/094240.516:ERROR:device_event_log_impl.cc(214)] [09:42:40.515] Bluetooth: bluetooth_adapter_winrt.cc:1075 Getting Default Adapter failed.
+5월 13, 2022 09:43:38.444 [6688:7268:0513/094338.444:ERROR:util.cc(126)] Can't create base directory: C:\Program Files\Google\GoogleUpdater
+5월 13, 2022 09:46:43.268 [8056:5092:0513/094643.267:ERROR:device_event_log_impl.cc(214)] [09:46:43.267] Bluetooth: bluetooth_adapter_winrt.cc:1075 Getting Default Adapter failed.
+5월 13, 2022 09:47:39.644 [8056:8640:0513/094739.644:ERROR:util.cc(126)] Can't create base directory: C:\Program Files\Google\GoogleUpdater
+
+5월 13, 2022 09:53:23.886 NEW SESSION
+5월 13, 2022 09:53:23.886 [9924:8668:0513/095323.884:ERROR:device_event_log_impl.cc(214)] [09:53:23.883] Bluetooth: bluetooth_adapter_winrt.cc:1075 Getting Default Adapter failed.
+5월 13, 2022 09:54:20.349 [9924:5256:0513/095420.349:ERROR:util.cc(126)] Can't create base directory: C:\Program Files\Google\GoogleUpdater
+5월 13, 2022 12:04:17.73 [11000:9336:0513/120417.073:ERROR:device_event_log_impl.cc(214)] [12:04:17.073] Bluetooth: bluetooth_adapter_winrt.cc:1075 Getting Default Adapter failed.
+5월 13, 2022 12:05:13.158 [11000:11108:0513/120513.158:ERROR:util.cc(126)] Can't create base directory: C:\Program Files\Google\GoogleUpdater
+5월 13, 2022 12:05:40.830 [8528:10808:0513/120540.829:ERROR:device_event_log_impl.cc(214)] [12:05:40.829] Bluetooth: bluetooth_adapter_winrt.cc:1075 Getting Default Adapter failed.
+5월 13, 2022 12:06:37.97 [8528:4116:0513/120637.096:ERROR:util.cc(126)] Can't create base directory: C:\Program Files\Google\GoogleUpdater
+5월 13, 2022 12:07:32.926 [2076:10288:0513/120732.926:ERROR:device_event_log_impl.cc(214)] [12:07:32.926] Bluetooth: bluetooth_adapter_winrt.cc:1075 Getting Default Adapter failed.
+5월 13, 2022 12:08:28.687 [2076:9956:0513/120828.687:ERROR:util.cc(126)] Can't create base directory: C:\Program Files\Google\GoogleUpdater
+5월 13, 2022 12:18:00.193 [10828:6132:0513/121800.193:ERROR:device_event_log_impl.cc(214)] [12:18:00.194] Bluetooth: bluetooth_adapter_winrt.cc:1075 Getting Default Adapter failed.
+5월 13, 2022 12:18:58.60 [10828:7964:0513/121858.060:ERROR:util.cc(126)] Can't create base directory: C:\Program Files\Google\GoogleUpdater
+
+5월 13, 2022 14:50:43.70 NEW SESSION
+5월 13, 2022 14:50:43.70 [11232:4056:0513/145043.067:ERROR:device_event_log_impl.cc(214)] [14:50:43.068] Bluetooth: bluetooth_adapter_winrt.cc:1075 Getting Default Adapter failed.
+5월 13, 2022 14:51:41.20 [11232:4496:0513/145141.019:ERROR:util.cc(126)] Can't create base directory: C:\Program Files\Google\GoogleUpdater
+5월 13, 2022 16:03:04.268 [11120:1680:0513/160304.267:ERROR:device_event_log_impl.cc(214)] [16:03:04.266] Bluetooth: bluetooth_adapter_winrt.cc:1075 Getting Default Adapter failed.
+5월 13, 2022 16:04:00.416 [11120:10220:0513/160400.416:ERROR:util.cc(126)] Can't create base directory: C:\Program Files\Google\GoogleUpdater
+5월 13, 2022 16:08:38.871 [2176:5716:0513/160838.871:ERROR:device_event_log_impl.cc(214)] [16:08:38.872] Bluetooth: bluetooth_adapter_winrt.cc:1075 Getting Default Adapter failed.
+5월 13, 2022 16:09:36.810 [2176:12136:0513/160936.809:ERROR:util.cc(126)] Can't create base directory: C:\Program Files\Google\GoogleUpdater
+5월 13, 2022 16:10:00.166 [12252:12264:0513/161000.165:ERROR:device_event_log_impl.cc(214)] [16:10:00.164] Bluetooth: bluetooth_adapter_winrt.cc:1075 Getting Default Adapter failed.
+5월 13, 2022 16:10:56.370 [12252:9308:0513/161056.370:ERROR:util.cc(126)] Can't create base directory: C:\Program Files\Google\GoogleUpdater
+5월 13, 2022 16:19:54.690 [4780:4416:0513/161954.690:ERROR:device_event_log_impl.cc(214)] [16:19:54.689] Bluetooth: bluetooth_adapter_winrt.cc:1075 Getting Default Adapter failed.
+5월 13, 2022 16:20:19.479 [7556:8164:0513/162019.478:ERROR:device_event_log_impl.cc(214)] [16:20:19.478] Bluetooth: bluetooth_adapter_winrt.cc:1075 Getting Default Adapter failed.
+5월 13, 2022 16:21:17.315 [7556:4040:0513/162117.315:ERROR:util.cc(126)] Can't create base directory: C:\Program Files\Google\GoogleUpdater
+5월 13, 2022 16:21:59.295 [9976:12184:0513/162159.294:ERROR:device_event_log_impl.cc(214)] [16:21:59.294] Bluetooth: bluetooth_adapter_winrt.cc:1075 Getting Default Adapter failed.
+5월 13, 2022 16:22:57.246 [9976:9432:0513/162257.246:ERROR:util.cc(126)] Can't create base directory: C:\Program Files\Google\GoogleUpdater

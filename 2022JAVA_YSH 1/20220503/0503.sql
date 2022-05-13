@@ -34,10 +34,11 @@ CREATE TABLE BOARDS
 
 CREATE TABLE REPLY
 (
-    REGNUM      INT             PRIMARY KEY,
-    CONTENT     VARCHAR2(1000)  NOT NULL,
-    IDX         INT             NOT NULL,
-    USERID      VARCHAR2(20)    NOT NULL
+    IDX         INT             PRIMARY KEY,
+    CONTENT     VARCHAR2(4000)  NOT NULL,
+    USERID      VARCHAR2(30)    NOT NULL,
+    REGDATE     DATE            NOT NULL,
+    BIDX        INT             NOT NULL
 );
 
 /*

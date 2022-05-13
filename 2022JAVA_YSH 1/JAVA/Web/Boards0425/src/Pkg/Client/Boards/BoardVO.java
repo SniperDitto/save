@@ -88,4 +88,13 @@ public class BoardVO {
 		this.delnum = delnum;
 	}
 	
+	@Override
+	public String toString() {
+		return "BoardVO [idx=" + idx + ", title=" + title + ", content=" + content + ", userID=" + userID + ", regnum="
+				+ regnum + ", lvl=" + lvl + ", combine=" + combine + ", visited=" + visited + ", regdate=" + regdate
+				+ ", lMenuID=" + lMenuID + ", ord=" + ord + ", delnum=" + delnum + "]";
+	}
+	
+	
+	
 }

@@ -1,0 +1,9 @@
+package Pkg.Client.Boards;
+
+public class ReplyVO {
+	private String idx;
+	private String content;
+	private String userID;
+	private String regdate;
+	private String bidx;
+}

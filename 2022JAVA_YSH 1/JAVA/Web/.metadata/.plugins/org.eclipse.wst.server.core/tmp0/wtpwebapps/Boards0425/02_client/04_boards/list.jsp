@@ -25,6 +25,8 @@
 	}else{
 		//lMenu 선택해서 새로고침됨
 	}
+	
+	
 %>
 <script type="text/javascript">
 
@@ -36,7 +38,27 @@ var init = function(){
 var goWrite = function(){
 	location.href="./write.jsp?hMenuID=<%=hMenuID %>&lMenuID=<%=lMenuID%>";
 }
+var go_content = function(idx,regnum, lvl, combine, ord,delnum){
+	document.getElementById("idx").value = idx;
+	document.getElementById("regnum").value = regnum;
+	document.getElementById("lvl").value = lvl;
+	document.getElementById("combine").value = combine;
+	document.getElementById("ord").value = ord;
+	document.getElementById("delnum").value = delnum;
+	
+	document.getElementById("hiddenForm").submit();
+}
 </script>
+<form name="hiddenForm" action="./content.jsp" method="post" id="hiddenForm">
+	<input type="hidden" name="idx" id="idx"/>
+	<input type="hidden" name="regnum" id="regnum"/>
+	<input type="hidden" name="lvl" id="lvl"/>
+	<input type="hidden" name="combine" id="combine"/>
+	<input type="hidden" name="ord" id="ord"/>
+	<input type="hidden" name="delnum" id="delnum"/>
+	<input type="hidden" name="hMenuID" value="<%=hMenuID %>"/>
+	<input type="hidden" name="lMenuID" value="<%=lMenuID %>"/>
+</form>
 	<div>
 		<span>list</span>
 	</div>
@@ -87,10 +109,10 @@ var goWrite = function(){
 			<!-- 내용시작 -->
 			<%if(loginID!=null){ %>
 			<div id="boards"></div>
-				<%if(lMenuID!=""){ %>
-				<div>
-					<input type="button" value="글쓰기" onclick="goWrite()"/>
-				</div>
+				<%if(lMenuID!="" && lMenuID!=null){ %>
+			<div>
+				<input type="button" value="글쓰기" onclick="goWrite()"/>
+			</div>
 				<%}%>
 				
 			<%}else{%>

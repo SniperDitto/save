@@ -120,7 +120,13 @@ var setBoardList = function(){
 		var strTitle = "";
 		var strUserID = "";
 		var strRegdate = "";
+		
+		var regnum = "";
 		var lvl = "";
+		var combine = "";
+		var ord = "";
+		var delnum = "";
+		
 		var nbsp = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
 		
 		strHTML += "<div class='boardHead'>";
@@ -135,7 +141,11 @@ var setBoardList = function(){
 			strTitle = objBoards[i].childNodes[1].childNodes[0].nodeValue;
 			strUserID = objBoards[i].childNodes[3].childNodes[0].nodeValue;
 			strRegdate = objBoards[i].childNodes[8].childNodes[0].nodeValue;
+			regnum = objBoards[i].childNodes[4].childNodes[0].nodeValue;
 			lvl = objBoards[i].childNodes[5].childNodes[0].nodeValue;
+			combine = objBoards[i].childNodes[6].childNodes[0].nodeValue;
+			ord = objBoards[i].childNodes[10].childNodes[0].nodeValue;
+			delnum = objBoards[i].childNodes[11].childNodes[0].nodeValue;
 			
 			var space = "";
 			for(var j=0;j<lvl-1;j++){
@@ -145,8 +155,14 @@ var setBoardList = function(){
 			
 			strHTML += "<div class='row'>";
 				strHTML += "<span class='idx'>"+strIdx+"</span>";
-				strHTML += "<span class='title'>"+space;
-				strHTML += "<a href=\"\">"+strTitle+"</a></span>";
+				strHTML += "<span class='title'>";
+				if(delnum==1){
+					strHTML += "<span style='color:red'>삭제된 글</span>";
+				}else{
+					strHTML += space;
+					strHTML += "<a href=\"javascript:go_content("+strIdx+","+regnum+","+lvl+","+combine+","+ord+","+delnum+")\">"+strTitle+"</a>";
+				}
+				strHTML += "</span>";
 				strHTML += "<span class='userID'>"+strUserID+"</span>";
 				strHTML += "<span class='regdate'>"+strRegdate+"</span>";
 			strHTML += "</div>";
@@ -214,12 +230,13 @@ var setUserLogin = function(){
 var getHMenuSel = function(hMenuID){
 	requests[5] = new XMLHttpRequest();
 	
-	requests[5].onreadystatechange = setHMenuSel(hMenuID);
-	requests[5].open("post", "/Boards0425/02_client/04_boards/ajaxPages/getHmenus.jsp?hMenuID="+hMenuID, true);
+	requests[5].onreadystatechange = setHMenuSel;
+	requests[5].open("get", "/Boards0425/02_client/04_boards/ajaxPages/getHmenus.jsp", true);
 	requests[5].send();
+	requests[5].selected = hMenuID;
 }
 
-var setHMenuSel = function(hMenuID){
+var setHMenuSel = function(){
 	var strHTML = "";
 	
 	if(requests[5].readyState==4 && requests[5].status == 200){
@@ -229,13 +246,13 @@ var setHMenuSel = function(hMenuID){
 		var strMenuID = "";
 		var strMenuName = "";
 		
-		strHTML += "<select>";
+		strHTML += "<select id='selectHMenu' onchange=\"hMenuSelChg(this)\">";
 		for(var i=0;i<objHMenus.length;i++){
 			strMenuID = objHMenus[i].childNodes[0].childNodes[0].nodeValue;
 			strMenuName = objHMenus[i].childNodes[1].childNodes[0].nodeValue;
 			strHTML += "<option value='"+strMenuID+"' ";
-			if(hMenuID==strMenuID){
-				strHTML += "selected=\"selected\" ";
+			if(requests[5].selected==strMenuID){
+				strHTML += "selected='selected' ";
 			}
 			strHTML += ">";
 			strHTML += strMenuName;
@@ -246,15 +263,16 @@ var setHMenuSel = function(hMenuID){
 	document.getElementById("hMenuSel").innerHTML = strHTML;
 }
 
-var getLMenuSel = function(hMenuID,lMenuID){
+var getLMenuSel = function(hMenuID, lMenuID){
 	requests[6] = new XMLHttpRequest();
 	
-	requests[6].onreadystatechange = setLMenuSel(lMenuID);
-	requests[6].open("post", "/Boards0425/02_client/04_boards/ajaxPages/getLMenus.jsp?hMenuID="+hMenuID, true);
+	requests[6].onreadystatechange = setLMenuSel;
+	requests[6].open("get", "/Boards0425/02_client/04_boards/ajaxPages/getLMenus.jsp?hMenuID="+hMenuID, true);
 	requests[6].send();
+	requests[6].selected=lMenuID;
 }
 
-var setLMenuSel = function(lMenuID){
+var setLMenuSel = function(){
 	var strHTML = "";
 	
 	if(requests[6].readyState==4 && requests[6].status == 200){
@@ -266,15 +284,15 @@ var setLMenuSel = function(lMenuID){
 		var strLMenuUrl = "";
 		var strHMenuID = "";
 		
-		strHTML += "<select>";
-		for(var i=0;i<objHMenus.length;i++){
+		strHTML += "<select id='selectLMenu' onchange=\"lMenuSelChg(this)\">";
+		for(var i=0;i<objLMenus.length;i++){
 			strLMenuID = objLMenus[i].childNodes[0].childNodes[0].nodeValue;
 			strLMenuName = objLMenus[i].childNodes[1].childNodes[0].nodeValue;
 			strLMenuUrl = objLMenus[i].childNodes[2].childNodes[0].nodeValue;
 			strHMenuID = objLMenus[i].childNodes[3].childNodes[0].nodeValue;
 			
 			strHTML += "<option value='"+strLMenuID+"' ";
-			if(lMenuID==strLMenuID){
+			if(requests[6].selected==strLMenuID){
 				strHTML += "selected=\"selected\" ";
 			}
 			strHTML += ">";

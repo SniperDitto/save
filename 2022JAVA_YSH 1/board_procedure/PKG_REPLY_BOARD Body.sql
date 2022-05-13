@@ -22,7 +22,7 @@ create or replace NONEDITIONABLE PACKAGE BODY PKG_REPLY_BOARD AS
 
   BEGIN
     
-    IF IN_IDX='null' THEN
+    IF IN_IDX='null' OR IN_IDX='0' THEN
     --새글쓰기(LVL:1, ORD:1)
         --IDX만들기
         SELECT TO_NUMBER(NVL(MAX(IDX),0))+1
@@ -105,11 +105,65 @@ create or replace NONEDITIONABLE PACKAGE BODY PKG_REPLY_BOARD AS
         ) AS REGDATE
     FROM BOARDS
     WHERE LMENUID LIKE '%'||IN_LMENUID||'%'
+        AND IDX LIKE '%'||IN_IDX||'%'
     ORDER BY COMBINE ASC, ORD ASC
     ;
     
 
     
   END PROC_SEL_BOARDS;
+
+  PROCEDURE PROC_DEL_BOARDS
+    (
+        IN_IDX  IN  VARCHAR2,
+        IN_COMBINE  IN  VARCHAR2
+    ) AS
+        V_CNT   INT;
+        V_DEL_CNT   INT;
+  BEGIN
+
+    UPDATE BOARDS SET DELNUM=1 WHERE IDX=IN_IDX;
+    
+    --글+답글들 묶음이 모두 DELNUM=1이면 묶음 삭제
+    SELECT COUNT(*)
+    INTO V_CNT
+    FROM BOARDS
+    WHERE COMBINE=IN_COMBINE
+    ;
+    
+    SELECT COUNT(*)
+    INTO V_DEL_CNT
+    FROM BOARDS
+    WHERE COMBINE=IN_COMBINE
+        AND DELNUM=1;
+        
+    IF V_CNT=V_DEL_CNT THEN
+        DELETE FROM BOARDS WHERE COMBINE=IN_COMBINE;
+    END IF;
+    
+  END PROC_DEL_BOARDS;
+
+  PROCEDURE PROC_INS_REPLY
+    (
+    IN_CONTENT             IN          VARCHAR2,
+    IN_USERID              IN          VARCHAR2,
+    IN_BIDX                IN          VARCHAR2
+  )
+  AS
+  
+    V_IDX               INT;
+  
+  BEGIN
+  
+    SELECT NVL(MAX(IDX), 0) + 1
+    INTO V_IDX
+    FROM REPLY
+    ;
+    
+    INSERT INTO REPLY(IDX,CONTENT, USERID, REGDATE, BIDX)
+    VALUES(V_IDX, IN_CONTENT, IN_USERID, SYSDATE, IN_BIDX)
+    ;
+
+  END PROC_INS_REPLY;
 
 END PKG_REPLY_BOARD;

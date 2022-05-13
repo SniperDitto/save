@@ -1,0 +1,30 @@
+<%@page import="Pkg.Client.Boards.BoardVO"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<jsp:useBean id="vo" class="Pkg.Client.Boards.BoardVO"></jsp:useBean>
+<jsp:setProperty name="vo" property="*"/>
+<!DOCTYPE html>
+<html>
+<head>
+<%
+	String hMenuID = request.getParameter("hMenuID");
+	out.println(vo.toString() + " hmenuid=" + hMenuID);
+	
+	String loginID = (String)session.getAttribute("userID");
+	out.println(loginID);
+	if(loginID==null){
+		out.println("<script>alert('asdf');</script>");
+		response.sendRedirect("./list.jsp");
+	}
+	
+%>
+<meta charset="UTF-8">
+<title>글내용</title>
+</head>
+<body>
+
+<a href="./write.jsp">새글쓰기</a>
+<a href="./write.jsp">답글달기</a>
+<a href="./list.jsp">목록</a>
+</body>
+</html>
