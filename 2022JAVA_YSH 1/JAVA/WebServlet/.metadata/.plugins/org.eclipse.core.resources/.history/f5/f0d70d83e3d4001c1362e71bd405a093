@@ -1,0 +1,5 @@
+package pkg.stocks;
+
+public interface StockService {
+	
+}

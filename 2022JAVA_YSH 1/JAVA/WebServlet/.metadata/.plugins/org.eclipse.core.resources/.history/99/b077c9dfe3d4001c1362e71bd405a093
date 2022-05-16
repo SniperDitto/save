@@ -1,0 +1,34 @@
+package pkg.stocks;
+
+import java.util.ArrayList;
+
+import pkg.stocks.VO.StockVO;
+
+public class StockServiceImpl implements StockService{
+
+	@Override
+	public ArrayList<StockVO> getList() {
+		ArrayList<StockVO> result = null;
+		
+		
+		
+		
+		return result;
+	}
+
+	@Override
+	public void insertStock() {
+		
+	}
+
+	@Override
+	public void updateStock() {
+		
+	}
+
+	@Override
+	public void deleteStock() {
+		
+	}
+	
+}

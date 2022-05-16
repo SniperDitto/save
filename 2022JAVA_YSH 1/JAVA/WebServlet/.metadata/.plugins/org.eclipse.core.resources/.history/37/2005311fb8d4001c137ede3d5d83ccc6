@@ -1,0 +1,14 @@
+package pkg.names;
+
+import java.util.ArrayList;
+
+public class SportsServiceImpl implements SportsService{
+
+	@Override
+	public ArrayList<String> getSports() {
+		ArrayList<String> sportList = new ArrayList<String>();
+		
+		return sportList;
+	}
+	
+}

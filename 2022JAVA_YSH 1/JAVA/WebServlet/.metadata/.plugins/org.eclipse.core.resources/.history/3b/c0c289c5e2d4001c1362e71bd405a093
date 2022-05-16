@@ -1,0 +1,18 @@
+package pkg.DB;
+
+import java.sql.Connection;
+
+public class DBConn {
+	private static String id = "scores";
+	private static String pw = "1";
+	private static String url = "jdbc:oracle:thin:@localhost:1521:XE";
+	
+	public static Connection getConnection() {
+		try {
+			
+		} catch (Exception e) {
+			
+		}
+	}
+	
+}

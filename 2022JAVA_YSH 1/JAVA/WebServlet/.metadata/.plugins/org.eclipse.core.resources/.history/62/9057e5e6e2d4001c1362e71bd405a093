@@ -1,0 +1,26 @@
+package pkg.DB;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+public class DBConn {
+	private static String id = "scores";
+	private static String pw = "1";
+	private static String url = "jdbc:oracle:thin:@localhost:1521:XE";
+	
+	public static Connection getConnection() {
+		Connection dbConn = null;
+		
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			
+			dbConn = DriverManager.getConnection(url, id, pw);
+			
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		return dbConn;
+	}
+	
+}

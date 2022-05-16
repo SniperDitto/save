@@ -1,0 +1,7 @@
+package pkg.DB;
+
+public class DBConn {
+	private static String id = "scores";
+	private static String pw = "1";
+	private static String url = "jdbc:oracle:thin:@localhost:1521:XE";
+}
