@@ -1,0 +1,9 @@
+
+js 객체를 다루는 방법
+1. new Object();
+2. function();
+3. {}
+4. class 생성
+
+
+

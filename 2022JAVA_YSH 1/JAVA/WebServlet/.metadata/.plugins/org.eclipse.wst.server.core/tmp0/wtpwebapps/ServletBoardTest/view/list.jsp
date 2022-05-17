@@ -14,8 +14,11 @@
 %>
 <div>
 <% for(StockVO vo : stockList){ %>
-	<div><%=vo.getSName() %>(<%=vo.getSID() %>)</div>
+	<div>
+		<a href="stock.do?jspURL=content&sid=<%=vo.getSID() %>"><%=vo.getSName() %></a>
+	</div>
 <% } %>
 </div>
+<a href="stock.do?jspURL=write">주식추가</a>
 </body>
 </html>
