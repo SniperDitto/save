@@ -1,0 +1,5 @@
+package pkg.board.controller;
+
+public class BoardController {
+	
+}

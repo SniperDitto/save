@@ -1,0 +1,13 @@
+package pkg.test;
+
+public class Sorting {
+
+	public static void main(String[] args) {
+		
+		int[] arr = {10, 11, 2, 5, 3, 3, 24, 15, 6, 9};
+		
+		
+		
+	}
+
+}

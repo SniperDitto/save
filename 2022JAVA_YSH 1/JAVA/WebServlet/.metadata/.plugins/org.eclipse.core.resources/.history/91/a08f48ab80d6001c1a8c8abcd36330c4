@@ -1,0 +1,27 @@
+package pkg.board.service;
+
+import java.util.ArrayList;
+
+import pkg.board.VO.BoardVO;
+
+public class BoardServiceImpl implements BoardService {
+
+	@Override
+	public ArrayList<BoardVO> getBoardList(String idx) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void insUpBoard(BoardVO vo) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void deleteBoard(String idx) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

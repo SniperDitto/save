@@ -22,7 +22,7 @@ public class StockServiceImpl implements StockService{
 		try {
 			conn = DBConn.getConnection();
 			
-			String sql = "SELECT * FROM STOCK WHERE SID LIKE '%'||?||'%' ";
+			String sql = "SELECT * FROM STOCK WHERE TRIM(SID) LIKE '%'||TRIM(?)||'%' ";
 			ArrayList<String> params = new ArrayList<String>();
 			params.add(sid);
 			
@@ -64,7 +64,7 @@ public class StockServiceImpl implements StockService{
 		try {
 			conn=DBConn.getConnection();
 			
-			String sql = "INSERT INTO STOCK(SID, SNAME, SINFO) VALUES(?,?,?)";
+			String sql = "INSERT INTO STOCK(SID, SNAME, SINFO) VALUES(TRIM(?),?,?)";
 			ArrayList<String> params = new ArrayList<String>();
 			params.add(vo.getSID());
 			params.add(vo.getSName());
@@ -94,7 +94,7 @@ public class StockServiceImpl implements StockService{
 		try {
 			conn=DBConn.getConnection();
 			
-			String sql = "UPDATE STOCK SET SNAME=?, SINFO=? WHERE SID=?";
+			String sql = "UPDATE STOCK SET SNAME=?, SINFO=? WHERE TRIM(SID)=TRIM(?)";
 			ArrayList<String> params = new ArrayList<String>();
 			params.add(vo.getSName());
 			params.add(vo.getSInfo());
@@ -123,7 +123,7 @@ public class StockServiceImpl implements StockService{
 		try {
 			conn=DBConn.getConnection();
 			
-			String sql = "DELETE FROM STOCK WHERE SID=?";
+			String sql = "DELETE FROM STOCK WHERE TRIM(SID)=TRIM(?)";
 			ArrayList<String> params = new ArrayList<String>();
 			params.add(sid);
 			
@@ -151,7 +151,7 @@ public class StockServiceImpl implements StockService{
 		
 		try {
 			conn = DBConn.getConnection();
-			String sql = "SELECT * FROM STOCK WHERE SID=?";
+			String sql = "SELECT * FROM STOCK WHERE TRIM(SID)=TRIM(?)";
 			ArrayList<String> params = new ArrayList<String>();
 			params.add(sid);
 			
@@ -162,7 +162,6 @@ public class StockServiceImpl implements StockService{
 			
 			
 			while (rs.next()) {
-				System.out.println("true");
 				
 				StockVO vo = new StockVO();
 				vo.setSID(rs.getString("SID"));

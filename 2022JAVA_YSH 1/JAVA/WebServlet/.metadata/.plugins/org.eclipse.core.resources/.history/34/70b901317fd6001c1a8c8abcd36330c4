@@ -1,0 +1,5 @@
+package pkg.board.service;
+
+public interface BoardService {
+
+}

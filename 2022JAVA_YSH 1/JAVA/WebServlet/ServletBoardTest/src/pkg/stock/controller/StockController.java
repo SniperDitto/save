@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,6 +11,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 import pkg.stocks.StockService;
 import pkg.stocks.StockServiceImpl;
@@ -46,8 +48,62 @@ public class StockController extends HttpServlet {
 			updatePage(request, response);
 		}else if(jspURL.equals("updateOK")) {
 			updateList(request, response);
+		}else if(jspURL.equals("ajaxXML")) {
+			sendAjaxXML(request, response);
+		}else if(jspURL.equals("ajaxJSON")) {
+			sendAjaxJSON(request, response);
 		}
 	} 
+
+
+	protected void sendAjaxJSON(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		System.out.println("ajaxJSON");
+		
+		JSONArray jArr = new JSONArray();
+		
+		StockService ss = new StockServiceImpl();
+		ArrayList<StockVO> stockList = ss.getList("");
+		for(StockVO vo : stockList) {
+			JSONObject jso = new JSONObject();
+			jso.put("sid", vo.getSID());
+			jso.put("sname", vo.getSName());
+			jso.put("sinfo", vo.getSInfo());
+			
+			jArr.add(jso);
+		}
+		
+		response.setContentType("text/json");
+		response.setCharacterEncoding("UTF-8");
+		
+		PrintWriter out = response.getWriter();
+		out.println(jArr);
+		
+	}
+
+
+	protected void sendAjaxXML(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		System.out.println("ajaxXML");
+		StockService ss = new StockServiceImpl();
+		ArrayList<StockVO> stockList = ss.getList("");
+		
+		String strXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
+		strXML += "<stocks>";
+		
+		for(StockVO vo : stockList) {
+			strXML += "<stock>";
+			strXML += "<sid>"+vo.getSID()+"</sid>";
+			strXML += "<sname>"+vo.getSName()+"</sname>";
+			strXML += "<sinfo>"+vo.getSInfo()+"</sinfo>";
+			strXML += "</stock>";
+		}
+		
+		strXML += "</stocks>";
+		response.setContentType("text/xml");
+		response.setCharacterEncoding("UTF-8");
+		
+		PrintWriter out = response.getWriter();
+		out.println(strXML);
+	}
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -67,7 +123,7 @@ public class StockController extends HttpServlet {
 	}
 	
 
-	private void addPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+	protected void addPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		System.out.println("write");
 		
 		RequestDispatcher d = request.getRequestDispatcher("/view/write.jsp");
@@ -75,7 +131,7 @@ public class StockController extends HttpServlet {
 		
 	}
 	
-	private void addList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+	protected void addList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		System.out.println("writeOK");
 		
 		String sID = request.getParameter("sid");
@@ -104,6 +160,7 @@ public class StockController extends HttpServlet {
 		
 		if(stocks.size()!=0) {
 			StockVO vo = stocks.get(0);
+			System.out.println("SID:"+vo.getSID());
 			request.setAttribute("stock", vo);
 		}
 		
@@ -111,7 +168,7 @@ public class StockController extends HttpServlet {
 		d.forward(request, response);
 	}
 	
-	private void delList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void delList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("delete");
 		
 		String sID = request.getParameter("sid");
@@ -123,7 +180,7 @@ public class StockController extends HttpServlet {
 	}
 	
 	
-	private void updatePage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+	protected void updatePage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		System.out.println("update");
 		
 		StockService ss = new StockServiceImpl();
@@ -140,7 +197,7 @@ public class StockController extends HttpServlet {
 		
 	}
 	
-	private void updateList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+	protected void updateList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		System.out.println("updateOK");
 		
 		String sID = request.getParameter("sid");
