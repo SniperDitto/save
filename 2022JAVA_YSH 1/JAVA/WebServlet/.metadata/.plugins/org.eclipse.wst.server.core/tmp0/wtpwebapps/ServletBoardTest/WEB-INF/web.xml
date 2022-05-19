@@ -19,6 +19,14 @@
   	<url-pattern>/stock.do</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+  	<servlet-name>test</servlet-name>
+  	<servlet-class>pkg.test.TestController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>test</servlet-name>
+  	<url-pattern>/test.do</url-pattern>
+  </servlet-mapping>
 
 </web-app>
 

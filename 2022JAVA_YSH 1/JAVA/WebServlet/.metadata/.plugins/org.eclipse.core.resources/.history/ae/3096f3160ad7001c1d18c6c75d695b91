@@ -1,0 +1,5 @@
+package pkg.test;
+
+public interface TestService {
+
+}

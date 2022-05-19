@@ -8,7 +8,11 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public ArrayList<BoardVO> getBoardList(String idx) {
-		return null;
+		ArrayList<BoardVO> result = new ArrayList<BoardVO>();
+		
+		
+		
+		return result;
 	}
 
 	@Override

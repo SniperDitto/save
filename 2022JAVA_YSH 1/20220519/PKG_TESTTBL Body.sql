@@ -1,0 +1,30 @@
+CREATE OR REPLACE
+PACKAGE BODY PKG_TESTTBL AS
+
+  PROCEDURE PROC_TESTTBL
+  (
+    IN_GBN1     IN      VARCHAR2,
+    IN_GBN2     IN      VARCHAR2,
+    O_CUR       OUT     SYS_REFCURSOR,
+    O_VAL       OUT     VARCHAR2
+  ) AS
+  BEGIN
+    
+    OPEN O_CUR FOR
+    SELECT * 
+    FROM TESTTBL
+    WHERE GBN1 LIKE '%'||IN_GBN1||'%'
+        AND GBN2 LIKE '%'||IN_GBN2||'%'
+    ORDER BY FID ASC
+    ;
+    
+    SELECT MAX(GBN2)
+    INTO O_VAL
+    FROM TESTTBL
+    WHERE  GBN1 LIKE '%'||IN_GBN1||'%'
+    ;
+    
+    
+  END PROC_TESTTBL;
+
+END PKG_TESTTBL;
