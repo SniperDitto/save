@@ -1,0 +1,37 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>form</title>
+<script>
+	//hidden 값 붙여서 submit하기
+	var objSubmit = function(names, vals){
+		
+		var strHidden = "";
+		for(var i=0;i<names.length;i++){
+			strHidden += "<div>";
+			strHidden += "<input type='hidden' name='"+names[i]+"' value='"+vals[i]+"'/>"
+			strHidden += "</div>";
+		}
+		document.getElementById("myForm").innerHTML = strHidden;
+		
+		document.getElementById("form1").submit();
+		
+	}
+</script>
+</head>
+<body>
+	<form name="form1" action="stock.do" method="post">
+		<div>
+			<input type="text" name="id"/>
+			<input type="text" name="name"/>
+			<input type="text" value="확인"/>
+		</div>
+		<input type="hidden" name="idx" value="1"/>
+	</form>
+	
+	<a href="">새로운 항목 추가</a>
+</body>
+</html>

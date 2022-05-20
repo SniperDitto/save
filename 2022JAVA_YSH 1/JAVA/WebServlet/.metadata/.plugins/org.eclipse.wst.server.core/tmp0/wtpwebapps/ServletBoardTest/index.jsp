@@ -86,5 +86,6 @@
 	<input type="button" value="JSON" id="btnList2"/>
 	<div id="msgJSON"></div>
 </div>
+<div id="msg"></div>
 </body>
 </html>
