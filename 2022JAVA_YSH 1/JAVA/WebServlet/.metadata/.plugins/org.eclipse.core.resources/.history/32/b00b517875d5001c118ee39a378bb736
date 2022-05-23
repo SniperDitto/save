@@ -1,0 +1,25 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>write</title>
+</head>
+<body>
+	<div>
+	<form name="stockForm" id="stockForm" method="post" action="stock.do">
+		<input type="hidden" name="jspURL" value="writeOK"/>
+		아이디 : <input type="text" name="sid" id="sid"/>
+		종목명 : <input type="text" name="sname" id="sname"/>
+		<input type="button" id="submitBtn" value="추가"/>
+	</form>
+	</div>
+	
+	<script>
+		document.getElementById("submitBtn").click=function(){
+			document.getElementById("submitBtn").submit();
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+
+1. 프로젝트 생성
+dynamic web project
+runtime : apache tomcat 9.0
+자바 폴더(build path) : src
+web root directory : WebContent
+
+2. 세팅
+우클릭 - Build path
+    Java Build Path
+        - tomcat 9.0(없으면 add library / server runtime에서 추가)
+        - ojdbc 8(add external jars)
+    Project Facets
+        - Runtimes 탭에 tomcat 버전 알맞게 체크되었는지 확인
+WebContent/WEB-INF/lib 에 ojdbc jar 추가하기
+build 에 jquery 파일 추가
+
+3. 폴더 구조
+WebContent
+    - index.jsp
+    - 01_admin
+        - 01_boards
+            - ajax
+        - css / js
+    - 02_client
+        - 01_boards
+            - ajax
+        - 02_members
+            -ajax
+        - css / js
+
+4. java packages
+src
+    - pkg.DB
+        DB 연결 위한 클래스
+        public static으로 변수 선언
+            url="jdbc:oracle:thin:@localhost:1521:XE"
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+        Connection
+        PreparedStatement / CallablaStatement
+        select(ResultSet) / insert, update, delete
+    - pkg.Admin.Boards
+        관리자 게시판
+        dataGrid 형태
+    - pkg.Client.Boards
+        사용자 게시판
+    - pkg.Client.Members
+        회원가입, 로그인 관련
+    - pkg.Client.Menus
+        메인메뉴-하위메뉴 관련
+    - 그 외 필요한 패키지들
+
+각 패키지 안에 (DB제외)
+    VO : 데이터 전송 위한 객체
+        변수/getter/setter
+    Service : 업무 클래스(행위 등)
+        각 업무 위한 메서드
+
+5. 

@@ -1,0 +1,68 @@
+<%@page import="Pkg.Client.Menus.LmenuVO"%>
+<%@page import="Pkg.Client.Menus.HmenuVO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="Pkg.Client.Menus.MenuService"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>글쓰기</title>
+<script type="text/javascript" src="./js/board.js"></script>
+<style>
+	body{
+		margin:0px;
+		padding:0px;
+	}
+</style>
+<script>
+
+</script>
+</head>
+<body>
+	<!-- 상단메뉴테이블시작 -->
+<div>
+<table width="800px" align="center" border="1" cellpadding="0" cellspacing="0">
+	<tr id="hMenus">
+	</tr>
+</table>
+</div>
+<!-- 상단메뉴테이블끝 -->
+<!-- 하단메뉴테이블시작 -->
+<div>
+<table width="800px" align="center" border="1" cellpadding="0" cellspacing="0">
+	<tr>
+		<td width="200px" height="600px" align="center" valign="top">
+			<!-- 서브메뉴테이블 -->
+			<div id="LMenus"></div>
+		</td>
+		<td width="600px" height="600px" align="center" valign="top">
+			<!-- 로그인시작 -->
+			<div id="login">
+			<%if(loginID==null){ %>
+				<form method="post" action="./login_ok.jsp" name="loginForm">
+					<div id="chkMsg"></div>
+					아이디 : <input type="text" name="userID" id="userID" onblur="checkID()"/>&nbsp;&nbsp;
+					비밀번호 : <input type="password" name="userPass" id="userPass"/>&nbsp;&nbsp;
+					<!-- ajax login -->
+					<!--<input type="button" value="로그인" onclick="userLogin()"/>  -->
+					<!-- ajax login end -->
+					<input type="submit" value="로그인"/>
+				</form>
+			<%}else{%>
+				<div><%=loginID %> 계정으로 로그인됨</div>
+				<input type='button' value='로그아웃' onclick='userLogout()'/>
+			<%} %>
+			</div>
+			<!-- 로그인끝 -->
+			<!-- 내용시작 -->
+			
+			<!-- 내용끝 -->
+		</td>
+	</tr>
+</table>
+</div>
+<!-- 하단메뉴테이블끝 -->
+</body>
+</html>

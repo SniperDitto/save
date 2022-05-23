@@ -1,0 +1,9 @@
+package pkg.names;
+
+import java.util.ArrayList;
+
+public interface BoardService {
+	public ArrayList<String> getBoardList(){
+		
+	}
+}

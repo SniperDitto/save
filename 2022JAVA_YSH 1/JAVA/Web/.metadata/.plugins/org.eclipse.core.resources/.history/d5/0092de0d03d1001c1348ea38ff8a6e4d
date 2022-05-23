@@ -1,0 +1,86 @@
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>글 목록</title>
+<script type="text/javascript" src="./js/board.js"></script>
+<link rel="stylesheet" href="./css/board.css">
+</head>
+<body onload="init()">
+<%
+	request.setCharacterEncoding("UTF-8");
+	String hMenuID = request.getParameter("hMenuID");
+	String lMenuID = request.getParameter("lMenuID");
+	out.println(hMenuID);
+	out.println(lMenuID);
+	if(lMenuID==null){
+		//lMenu 선택 안한 상태
+		hMenuID = "MENU01";
+		lMenuID = "";
+	}else{
+		//lMenu 선택해서 새로고침됨
+	}
+%>
+<script type="text/javascript">
+
+var init = function(){
+	getHMenuList();
+	getLMenuList("<%=hMenuID%>");
+	getBoardList("<%=lMenuID%>");
+}
+</script>
+	<div>
+		<span>list</span>
+	</div>
+	<div>
+		<a href="./list.jsp">홈으로</a>
+	</div>
+	<div>
+		<a href="./02_client/01_boards/write.jsp">글쓰기</a>
+	</div>
+	<div>
+		<a href="./02_client/01_boards/list.jsp">글목록</a>
+	</div>
+<!-- 상단메뉴테이블시작 -->
+<div>
+<table width="800px" align="center" border="1" cellpadding="0" cellspacing="0">
+	<tr id="hMenus">
+	</tr>
+</table>
+</div>
+<!-- 상단메뉴테이블끝 -->
+<!-- 하단메뉴테이블시작 -->
+<div>
+<table width="800px" align="center" border="1" cellpadding="0" cellspacing="0">
+	<tr>
+		<td width="200px" height="600px" align="center" valign="top">
+			<!-- 서브메뉴테이블 -->
+			<div id="LMenus"></div>
+		</td>
+		<td width="600px" height="600px" align="center" valign="top">
+			<!-- 로그인시작 -->
+			<div id="login">
+				<div id="chkMsg"></div>
+				아이디 : <input type="text" name="userID" id="userID" onblur="checkID()"/>&nbsp;&nbsp;
+				비밀번호 : <input type="password" name="userPass" id="userPass"/>&nbsp;&nbsp;
+				<input type="button" value="로그인" onclick="userLogin()"/>
+			</div>
+			<!-- 로그인끝 -->
+			<!-- 내용시작 -->
+			<div id="boards">
+				
+			</div>
+			<div>
+				<input type="button" value="글쓰기"/>
+			</div>
+			<!-- 내용끝 -->
+		</td>
+	</tr>
+</table>
+</div>
+<!-- 하단메뉴테이블끝 -->
+</body>
+</html>

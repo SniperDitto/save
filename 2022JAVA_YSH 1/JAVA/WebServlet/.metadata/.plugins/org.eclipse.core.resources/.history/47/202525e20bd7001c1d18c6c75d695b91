@@ -1,0 +1,40 @@
+package pkg.test;
+
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import oracle.jdbc.OracleTypes;
+import pkg.DB.DBConn;
+
+public class TestServiceImpl implements TestService{
+
+	@Override
+	public ArrayList<testVO> getTestList(String gbn1, String gbn2) {
+		ArrayList<testVO> testList = null;
+		
+		try {
+			testList = new ArrayList<testVO>();
+			Connection conn = DBConn.getConnection();
+			String sql = "{call PKG_TESTTBL.PROC_TESTTBL(?,?,?)}";
+			ArrayList<String> params = new ArrayList<String>();
+			params.add(gbn1);
+			params.add(gbn2);
+			
+			CallableStatement cs = DBConn.getCS(conn, sql, params);
+			cs.registerOutParameter(3, OracleTypes.CURSOR);
+			
+			ResultSet rs = (ResultSet) cs.executeQuery().getObject(3);
+			
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return testList;
+	}
+
+}

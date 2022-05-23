@@ -1,0 +1,9 @@
+package pkg.test;
+
+import java.util.ArrayList;
+import java.util.Hashtable;
+
+public interface TestService {
+	public ArrayList<testVO> getTestList(String gbn1, String gbn2);
+	public Hashtable<String, Object> getHashtable(ArrayList<testVO> testList);
+}

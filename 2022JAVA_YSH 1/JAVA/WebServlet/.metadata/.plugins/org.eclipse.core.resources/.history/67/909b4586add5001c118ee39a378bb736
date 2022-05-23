@@ -1,0 +1,47 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<script>
+	var student = new Object();
+	student.name = "홍길동";
+	student.age = 24;
+	student.gender = "M";
+	student.output = function(){
+		var strOutput = "이름 : "+ this.name + "\n나이 : " + this.age + "\n성별 : " + this.gender;
+		return strOutput;
+	}
+	
+	alert(student.output());
+	
+	var students = [];
+	
+	students[0] = new Object();
+	students[0].name = "a";
+	students[0].age = 22;
+	students[0].gender = "M";
+	students[0].output = function(){
+		var strOutput = "이름 : "+ this.name + "\n나이 : " + this.age + "\n성별 : " + this.gender;
+		return strOutput;
+	}
+	
+	students[1] = new Object();
+	students[1].name = "b";
+	students[1].age = 21;
+	students[1].gender = "F";
+	students[1].output = function(){
+		var strOutput = "이름 : "+ this.name + "\n나이 : " + this.age + "\n성별 : " + this.gender;
+		return strOutput;
+	}
+	
+	
+</script>
+
+</body>
+</html>

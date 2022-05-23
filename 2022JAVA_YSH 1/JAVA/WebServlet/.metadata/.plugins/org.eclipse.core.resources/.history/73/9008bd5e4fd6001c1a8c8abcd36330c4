@@ -1,0 +1,51 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>index</title>
+<script
+  src="https://code.jquery.com/jquery-3.6.0.js"
+  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
+<script>
+	$(document).ready(function(){
+		$("#btnList").click(function(){
+			$.ajax({
+				dataType : "xml",
+				url : "stock.do?jspURL=ajaxXML",
+				success : function(XML){
+					var strHTML = "";
+					var sID, sName, sInfo = "";
+					var XMLs = XML.getElementsByTagName("stock");
+					for(var i=0;i<XMLs.length;i++){
+						sID = XMLs.childNodes[0].chileNodes[0].nodeValue;
+						sName = XMLs.childNodes[1].chileNodes[0].nodeValue;
+						sInfo = XMLs.childNodes[2].chileNodes[0].nodeValue;
+						alert(sID, sName, sInfo);
+						str
+						strHTML += "<div> ID : "+sID+"</div>";
+						strHTML += "<div> 종목명 : "+sName+"</div>";
+						strHTML += "<div> 회사정보 : "+sInfo+"</div>";
+					}
+					$("#msgXML").html(strHTML);
+				},
+				fail : function(){
+					alert("쉴패~~~!!~!");
+				}
+			});
+		});
+	});
+</script>
+</head>
+<body>
+	<a href="stock.do?jspURL=list">주식목록</a>
+	<a href="stock.do?jspURL=write">주식추가</a>
+	<a href="stock.do?jspURL=ajaxXML">XML</a>
+<div>
+	<input type="button" value="XML" id="btnList"/>
+	<div id="msgXML"></div>
+</div>
+</body>
+</html>

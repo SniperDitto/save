@@ -1,0 +1,27 @@
+package pkg.DB;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+public class DBConn {
+	
+	public static String user = "score";
+	public static String password = "1";
+	public static String url= "jdbc:oracle:thin:@localhost:1521:XE";
+	
+	public static Connection getConnection() {
+		Connection conn = null;
+		
+		try {
+			
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			DriverManager.getConnection(url, user, password);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return conn;
+	}
+	
+}

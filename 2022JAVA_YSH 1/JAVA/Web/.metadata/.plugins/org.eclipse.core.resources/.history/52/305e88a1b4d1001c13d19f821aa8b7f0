@@ -1,0 +1,9 @@
+package pkg.DB;
+
+public class DBConn {
+	
+	public static String id = "";
+	public static String pw = "";
+	public static String url="";
+	
+}

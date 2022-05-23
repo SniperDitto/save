@@ -1,0 +1,20 @@
+package pkg.test;
+
+import java.sql.Connection;
+import java.util.ArrayList;
+
+import pkg.DB.DBConn;
+
+public class TestServiceImpl implements TestService{
+
+	@Override
+	public ArrayList<testVO> getTestList(String gbn1, String gbn2) {
+		ArrayList<testVO> testList = null;
+		
+		testList = new ArrayList<testVO>();
+		Connection conn = DBConn.getConnection();
+		
+		return testList;
+	}
+
+}

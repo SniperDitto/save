@@ -1,0 +1,5 @@
+package pkg.stocks;
+
+public class StockServiceImpl implements StockService{
+	
+}

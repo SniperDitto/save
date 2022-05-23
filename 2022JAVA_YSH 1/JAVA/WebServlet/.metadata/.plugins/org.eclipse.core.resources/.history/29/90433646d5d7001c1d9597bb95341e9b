@@ -1,0 +1,85 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script
+  src="https://code.jquery.com/jquery-3.6.0.js"
+  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
+<title>json</title>
+</head>
+<body>
+<script>
+
+var objAjax = function(strURL, jsonVars, jsonParams, isAsync, strType, ajaxResultFunc, ajaxErrorFunc){
+	this.strURL = strURL;
+	this.jsonVars = jsonVars;
+	this.jsonParams = jsonParams;
+	this.isAsync = isAsync;
+	this.strType = strType;
+	this.ajaxResultFunc = ajaxResultFunc;
+	this.ajaxErrorFunc = ajaxErrorFunc;
+	this.sendData = null;
+	this.toJsonObj = function(){
+		//'{"id":"USER03","name":"홍길동","gender":"M","age":25}'
+		var strJson = "";
+		strJson += "{";
+		for(var i=0;vars.length;i++){
+			strJson += '"'+this.jsonVars[i]+'"';
+			strJson += ":";
+			strJson += '"'+this.jsonParams[i]+'"';
+			
+			i!=(vars.length-1) ? strJson+="," : strJson+="" ;
+			
+		}
+		strJson += "}";
+		
+		var objJson = JSON.parse(strJson);
+		this.sendData = objJson;
+	}
+	this.execAjax = function(){
+		$.ajax({
+			url : this.strURL,
+			data : this.toJsonObj(),
+			dataType : "json",
+			async : this.isAsync,
+			type : this.strType,
+			success : this.ajaxResultFunc,
+			error : this.ajaxErrorFunc
+		});
+	}
+}
+
+var vars = [];
+vars[0] = "userID";
+vars[1] = "userName";
+vars[2] = "gender";
+vars[3] = "age";
+
+var params = [];
+params[0] = "USER01";
+params[1] = "홍";
+params[2] = "M";
+params[3] = 25;
+
+var suc = function(result){
+	$(result).each(function(){
+		$("#msg").html("asdf");
+	});
+}
+var fail = function(){
+	alert('x');
+}
+
+var sendData = new objAjax("test.do", vars, params, true, "post", suc, fail);
+sendData.toJsonObj();
+sendData.execAjax();
+	
+	
+	
+</script>
+<div id="msg"></div>
+</body>
+</html>

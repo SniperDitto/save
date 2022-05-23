@@ -1,0 +1,5 @@
+package pkg.stocks.VO;
+
+public class StockVO {
+
+}

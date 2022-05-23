@@ -1,0 +1,16 @@
+package pkg.test;
+
+import java.util.ArrayList;
+
+public class TestServiceImpl implements TestService{
+
+	@Override
+	public ArrayList<testVO> getTestList(String gbn1, String gbn2) {
+		ArrayList<testVO> testList = null;
+		
+		
+		
+		return testList;
+	}
+
+}

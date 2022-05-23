@@ -1,0 +1,46 @@
+<%@page import="Pkg.Client.Boards.BoardVO"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<jsp:useBean id="vo" class="Pkg.Client.Boards.BoardVO"></jsp:useBean>
+<jsp:setProperty name="vo" property="*"/>
+<!DOCTYPE html>
+<html>
+<head>
+<%
+	String hMenuID = request.getParameter("hMenuID");
+	String lMenuID = vo.getlMenuID();
+	out.println(vo.toString() + " hmenuid=" + hMenuID);
+	
+	String loginID = (String)session.getAttribute("userID");
+
+	if(loginID==null){
+		
+		response.sendRedirect("./list.jsp");
+	}
+	
+%>
+<meta charset="UTF-8">
+<title>글내용</title>
+<script>
+var goWrite = function(){
+	document.getElementById("hiddenForm").submit();
+}
+</script>
+</head>
+<body>
+<form name="hiddenForm" action="./write.jsp" method="post" id="hiddenForm">
+	<input type="hidden" name="idx" id="idx"/>
+	<input type="hidden" name="regnum" id="regnum"/>
+	<input type="hidden" name="lvl" id="lvl"/>
+	<input type="hidden" name="combine" id="combine"/>
+	<input type="hidden" name="ord" id="ord"/>
+	<input type="hidden" name="delnum" id="delnum"/>
+	<input type="hidden" name="hMenuID" value="<%=hMenuID %>"/>
+	<input type="hidden" name="lMenuID" value="<%=lMenuID %>"/>
+</form>
+<a href="./write.jsp?idx=0">새글쓰기</a>
+<a href="javascript:goWrite()">답글달기</a>
+<a href="./delete.jsp?idx=<%=vo.getIdx()%>">글 삭제</a>
+<a href="./list.jsp?hMenuID=<%=hMenuID %>">목록</a>
+</body>
+</html>

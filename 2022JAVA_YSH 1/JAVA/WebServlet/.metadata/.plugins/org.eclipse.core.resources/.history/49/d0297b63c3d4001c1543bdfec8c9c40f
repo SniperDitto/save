@@ -1,0 +1,14 @@
+package pkg.names;
+
+import java.util.ArrayList;
+
+public interface BoardService {
+	public ArrayList<String> getBoardList(){
+		ArrayList<String> boards = new ArrayList<String>();
+		boards.add("asdf");
+		boards.add("asdf");
+		boards.add("asdf");
+		boards.add("asdf");
+		return boards;
+	}
+}

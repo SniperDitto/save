@@ -1,0 +1,5 @@
+package pkg.board.VO;
+
+public class BoardVO {
+	
+}

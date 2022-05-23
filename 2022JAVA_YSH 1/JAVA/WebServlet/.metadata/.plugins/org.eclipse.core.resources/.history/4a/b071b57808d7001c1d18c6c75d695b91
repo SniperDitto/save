@@ -1,0 +1,8 @@
+package pkg.test;
+
+public class testVO {
+	private String fID;
+	private String fName;
+	private String gbn1;
+	private String gbn2;
+}

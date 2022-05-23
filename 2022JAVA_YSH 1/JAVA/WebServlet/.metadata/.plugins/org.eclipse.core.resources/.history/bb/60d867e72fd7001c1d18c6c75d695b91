@@ -1,0 +1,81 @@
+package pkg.test;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.json.simple.JSONArray;
+
+
+@WebServlet("/TestController")
+public class TestController extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    public TestController() {
+        super();
+    }
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		
+		String strURL = request.getParameter("strURL");
+		
+		if(strURL==null) {
+			showList(request, response);
+		} else if(strURL.equals("A")) {
+			getAList(request, response);
+		}
+		
+
+		
+		
+	}
+
+	private void showList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("showList");
+		
+		TestService ts = new TestServiceImpl();
+		ArrayList<testVO> arrA = ts.getTestList("A", "1");
+		ArrayList<testVO> arrB = ts.getTestList("B", "1");
+		ArrayList<testVO> arrC = ts.getTestList("C", "1");
+		ArrayList<testVO> arrD = ts.getTestList("D", "1");
+		
+		request.setAttribute("listA", arrA);
+		request.setAttribute("listB", arrB);
+		request.setAttribute("listC", arrC);
+		request.setAttribute("listD", arrD);
+		
+		
+		RequestDispatcher d = request.getRequestDispatcher("/test/test.jsp");
+		d.forward(request, response);
+	}
+
+	protected void getAList(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		System.out.println("AList");
+		
+		String gbn2 = request.getParameter("strURL");
+		
+		TestService ts = new TestServiceImpl();
+		ArrayList<testVO> arrA = ts.getTestList("A", gbn2);
+		JSONArray jArray = ts.getJsonArray(arrA);
+		
+		response.setContentType("text/json");
+		response.setCharacterEncoding("UTF-8");
+		
+		PrintWriter out = response.getWriter();
+		out.println(jArray);
+		
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doGet(request, response);
+	}
+
+}

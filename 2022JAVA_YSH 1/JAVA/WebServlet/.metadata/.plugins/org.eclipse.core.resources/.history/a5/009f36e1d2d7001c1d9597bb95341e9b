@@ -1,0 +1,59 @@
+var toJsonObj = function(vars, params){
+	//'{"id":"USER03","name":"홍길동","gender":"M","age":25}'
+	var strJson = "";
+	strJson += "{";
+	for(var i=0;vars.length;i++){
+		strJson += '"'+vars[i]+'"';
+		strJson += ":";
+		strJson += '"'+params[i]+'"';
+		
+		i!=vars.length ? strJson+="," : strJson+="" ;
+		
+	}
+	strJson += "}";
+	
+	return strJson;
+	
+}
+
+var ajaxFunc = function(strURL, jsonVars, jsonParams, isAsync, strType){
+		$.ajax({
+			url : "test.do",
+			data : toJsonObj(jsonVars, jsonParams),
+			dataType : "json",
+			async : isAsync,
+			type : strType,
+			success : function(result){
+				
+			},
+			error : function(){
+				
+			}
+		});
+	}
+	
+var vars = [];
+	vars[0] = "userID";
+	vars[1] = "userName";
+	vars[2] = "gender";
+	vars[3] = "age";
+	
+var params = [];
+	params[0] = "USER01";
+	params[1] = "홍";
+	params[2] = "M";
+	params[3] = 25;
+	
+	
+var obj = {id : "USER01", name : "완", gender : "M"};
+var obj2 = {};
+	obj2.id = "USER02";
+	obj2.name = "최밥창문";
+	obj2.gender = "F";
+	
+//var strJson = JSON.stringify(obj);
+//var strJson = '{"id":"USER03","name":"홍길동","gender":"M","age":25}';
+
+
+
+

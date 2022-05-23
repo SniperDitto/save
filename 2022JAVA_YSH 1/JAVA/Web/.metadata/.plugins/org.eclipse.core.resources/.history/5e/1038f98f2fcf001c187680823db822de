@@ -1,0 +1,49 @@
+<%@page import="Pkg.Client.Members.HmenuVO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="Pkg.Client.Menus.MenuService"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>old Menu</title>
+<script type="text/javascript">
+	var setLMenus = function(){
+		var selHmenu = document.getElementById("hMenus").value;
+		
+		location.href = "./ajaxMenus.jsp?hMenus="+selHmenu;
+	}
+</script>
+</head>
+<body>
+<%	
+	String hMenuStr = request.getParameter("hMenus");
+
+	MenuService ms = new MenuService();
+	ArrayList<HmenuVO> hMenus = ms.getHmenus();
+	ArrayList<>
+	
+	
+	
+%>
+<div>
+	주메뉴 : 
+	<select name="hMenus" id="hMenus" onchange="setLMenus()">
+		<%for(HmenuVO hm : hMenus){ %>
+			<option value="<%=hm.getMenuID()%>"><%=hm.getMenuName() %></option>
+		<%} %>
+	</select>
+</div>
+<div>
+	서브메뉴 : 
+	<select name="lMenus" id="lMenus">
+		<option value="MENU01">공지사항</option>
+		<option value="MENU02">숙제</option>
+		<option value="MENU03">수업</option>
+		<option value="MENU04">영상</option>
+		<option value="MENU05">개인</option>
+	</select>
+</div>
+</body>
+</html>

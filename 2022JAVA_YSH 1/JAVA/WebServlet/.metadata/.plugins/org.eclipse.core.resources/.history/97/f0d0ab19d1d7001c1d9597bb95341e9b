@@ -1,0 +1,16 @@
+var ajaxFunc = function(strURL, objData){
+		$.ajax({
+			url : "test.do",
+			data : objData
+		});
+	}
+	
+	var obj = {id : "USER01", name : "완", gender : "M"};
+	var obj2 = {};
+	obj2.id = "USER02";
+	obj2.name = "최밥창문";
+	obj2.gender = "F";
+	
+	//var strJson = JSON.stringify(obj);
+	var strJson = '{"id":"USER03","name":"홍길동","gender":"M","age":25}';
+	var objJson = JSON.parse(strJson);

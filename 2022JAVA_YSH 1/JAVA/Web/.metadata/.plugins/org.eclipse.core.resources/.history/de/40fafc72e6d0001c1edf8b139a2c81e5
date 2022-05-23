@@ -1,0 +1,137 @@
+/**
+ * 
+ */
+
+var init = function(){
+	getHMenuList();
+}
+
+var requests = [];
+
+var Hmenu = function(MenuID, MenuName){
+	this.MenuID = MenuID;
+	this.MenuName = MenuName;
+}
+
+var getHMenuList = function(){
+	//request 객체 생성
+	requests[0] = new XMLHttpRequest();
+	
+	requests[0].onreadystatechange = setHMenuList;
+	requests[0].open("post", "./ajaxPages/getHmenus.jsp", true);
+	requests[0].send();
+	
+}
+
+var setHMenuList = function(){
+	var strHTML = "";
+	
+	if(requests[0].readyState==4 && requests[0].status == 200){
+		var objXML = requests[0].responseXML;
+		
+		var objHMenus = objXML.getElementsByTagName("Hmenu");
+		var strMenuID = "";
+		var strMenuName = "";
+		for(var i=0;i<objHMenus.length;i++){
+			strMenuID = objHMenus[i].childNodes[0].childNodes[0].nodeValue;
+			strMenuName = objHMenus[i].childNodes[1].childNodes[0].nodeValue;
+			strHTML += '<td width="120px" align="center" height="50px">';
+			strHTML += '<a href="javascript:getLMenuList(\''+strMenuID+'\')">'+strMenuName+'</a>';
+			strHTML += '</td>';
+			
+		}
+	}
+	document.getElementById("hMenus").innerHTML = strHTML;
+}
+
+var LMenu = function(lMenuID, lMenuName, lMenuURL, menuID){
+	this.lMenuID = lMenuID;
+	this.lMenuName = lMenuName;
+	this.lMenuURL = lMenuURL;
+	this.menuID = menuID;
+}
+
+var getLMenuList = function(hMenuID){
+	requests[1] = new XMLHttpRequest();
+	
+	requests[1].onreadystatechange = setLMenuList;
+	requests[1].open("post", "/Boards0425/02_client/04_boards/ajaxPages/getLMenus.jsp?hMenuID="+hMenuID, true);
+	requests[1].send();
+}
+
+var setLMenuList = function(){
+	var strHTML = "";
+	
+	if(requests[1].readyState==4 && requests[1].status == 200){
+		var objXML = requests[1].responseXML;
+		var objLMenus = objXML.getElementsByTagName("lMenu");
+		var strLMenuID = "";
+		var strLMenuName = "";
+		var strLMenuUrl = "";
+		var strHMenuID = "";
+		for(var i=0;i<objLMenus.length;i++){
+			strLMenuID = objLMenus[i].childNodes[0].childNodes[0].nodeValue;
+			strLMenuName = objLMenus[i].childNodes[1].childNodes[0].nodeValue;
+			strLMenuUrl = objLMenus[i].childNodes[2].childNodes[0].nodeValue;
+			strHMenuID = objLMenus[i].childNodes[3].childNodes[0].nodeValue;
+			strHTML += '<table width="200px" align="center" border="1" cellpadding="0" cellspacing="0" >';
+				strHTML += '<tr>';
+					strHTML += '<td width="200px" align="center" height="30px">';
+						strHTML += '<a href="list.jsp?lMenuID='+strLMenuID+'&hMenuID='+strHMenuID+'">'+strLMenuName+'</a>';
+					strHTML += '</td>';
+				strHTML += '</tr>';
+			strHTML += '</table>';
+		}
+		
+	}
+	document.getElementById("LMenus").innerHTML = strHTML;
+}
+
+var board = function(idx, regnum, ord, combine, lvl, delnum, title, visited, regdate, userID, lMenuID){
+	this.idx = idx;
+	this.regnum = regnum;
+	this.ord = ord;
+	this.combine = combine;
+	this.lvl = lvl;
+	this.delnum = delnum;
+	this.title = title;
+	this.visited = visited;
+	this.regdate = regdate;
+	this.userID = userID;
+	this.lMenuID = lMenuID; 
+}
+
+
+var getBoardList = function(){
+	//request 객체 생성
+	requests[2] = new XMLHttpRequest();
+	
+	requests[2].onreadystatechange = "";
+	requests[2].open("post", "", true);
+	requests[2].send();
+	
+}
+
+var setBoardList = function(){
+	var strHTML = "";
+	
+	if(requests[2].readyState==4 && requests[2].status == 200){
+		var objXML = requests[2].responseXML;
+		var objBoards = objXML.getElementsByTagName("Board");
+		
+		var strIdx = "";
+		var strTitle = "";
+		var strUserID = "";
+		var strRegdate = "";
+		var ord = "";
+		var nbsp = "&nbsp;";
+		
+		for(var i=0;i<objBoards.length;i++){
+			
+			
+			strHTML += "";
+		}
+		
+	}
+	document.getElementById("boards").innerHTML = strHTML;
+}

@@ -1,0 +1,26 @@
+
+글쓰기 idx=0 으로 넘겨주도록
+db에서 idx=0이면 새글 추가하도록 수정하기
+
+<form name="hiddenForm" action="./write.jsp" method="post" id="hiddenForm">
+	<input type="hidden" name="idx" id="idx"/>
+	<input type="hidden" name="regnum" id="regnum"/>
+	<input type="hidden" name="lvl" id="lvl"/>
+	<input type="hidden" name="combine" id="combine"/>
+	<input type="hidden" name="ord" id="ord"/>
+	<input type="hidden" name="delnum" id="delnum"/>
+	<input type="hidden" name="hMenuID" value="<%=hMenuID %>"/>
+	<input type="hidden" name="lMenuID" value="<%=lMenuID %>"/>
+</form>
+데이터 담아서 글쓰기 누르면 데이터 전송
+
+
+삭제 : 자기글만
+관리자는 모든사람 삭제 가능
+
+삭제시 해당 글 delnum=1
+모든 combine delnum=1이 되면 묶음 전체 삭제
+
+
+댓글달기
+

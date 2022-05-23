@@ -7,19 +7,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import oracle.jdbc.OracleType;
 import oracle.jdbc.OracleTypes;
 
 public class DBConn {
 	
-	//1. procedure(callablestatement) / inline query(preparedstatement)
-	
-	//2. select(cursor,resultset) / 그 외
-	
-	public static String id = "scores";
-	public static String pw = "1";
-	public static String url = "jdbc:oracle:thin:@localhost:1521:XE";
-	
-	
+	public static String user = "score";
+	public static String password = "1";
+	public static String url= "jdbc:oracle:thin:@localhost:1521:XE";
 	
 	public static Connection getConnection() {
 		Connection conn = null;
@@ -27,7 +22,7 @@ public class DBConn {
 		try {
 			
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			conn = DriverManager.getConnection(url,id,pw);
+			conn = DriverManager.getConnection(url, user, password);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -36,11 +31,9 @@ public class DBConn {
 		return conn;
 	}
 	
-	
-	
-	public static PreparedStatement getPreparedStatement(String sql, ArrayList<String> params) {
-		Connection conn = null;
+	public static PreparedStatement getPS(String sql, ArrayList<String> params) {;
 		PreparedStatement ps = null;
+		Connection conn = null;
 		
 		try {
 			conn = getConnection();
@@ -58,14 +51,13 @@ public class DBConn {
 	}
 	
 	
-	
-	public static CallableStatement getCallableStatement(String proc, ArrayList<String> params) {
-		Connection conn = null;
+	public static CallableStatement getCS(String sql, ArrayList<String> params) {
 		CallableStatement cs = null;
+		Connection conn = null;
 		
 		try {
 			conn = getConnection();
-			cs = conn.prepareCall(proc);
+			cs = conn.prepareCall(sql);
 			
 			for(int i=0;i<params.size();i++) {
 				cs.setString(i+1, params.get(i));
@@ -74,53 +66,48 @@ public class DBConn {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 		return cs;
 	}
 	
 	
-	
-	public static ResultSet select(String sql, ArrayList<String> params, boolean isProc){
-		ResultSet rs = null;
-		try {
-			
-			if(isProc) {
-				//proc
-				CallableStatement cs = getCallableStatement(sql, params);
-				cs.registerOutParameter(params.size()+1, OracleTypes.CURSOR);
-				cs.executeQuery();
-				rs = (ResultSet) cs.getObject(params.size()+1);
-			}else {
-				//inline
-				PreparedStatement ps = getPreparedStatement(sql, params);
-				rs = ps.executeQuery();
-			}
-			
-			
-		} catch (Exception e) {
-			
-		}
-		
-		return rs;//업무처리 부분에서 받아서 처리
-	}
-	
-	
-	
 	public static void insUpDel(String sql, ArrayList<String> params, boolean isProc) {
+		
 		try {
+			
 			if(isProc) {
-				//proc
-				CallableStatement cs = getCallableStatement(sql, params);
-				cs.executeUpdate();
-			}else {
-				//inline
-				PreparedStatement ps = getPreparedStatement(sql, params);
+				PreparedStatement ps = getPS(sql, params);
 				ps.executeUpdate();
+			}else {
+				CallableStatement cs = getCS(sql, params);
+				cs.executeUpdate();
 			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 	}
+	
+	
+	public static ResultSet select(String sql, ArrayList<String> params, boolean isProc) {
+		ResultSet rs = null;
+		try {
+			
+			if(!isProc) {
+				PreparedStatement ps = getPS(sql, params);
+				rs = ps.executeQuery();
+			}else {
+				CallableStatement cs = getCS(sql, params);
+				cs.registerOutParameter(params.size()+1, OracleTypes.CURSOR);
+				cs.executeQuery();
+				rs = (ResultSet) cs.getObject(params.size()+1);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return rs;
+	}
+	
 	
 }

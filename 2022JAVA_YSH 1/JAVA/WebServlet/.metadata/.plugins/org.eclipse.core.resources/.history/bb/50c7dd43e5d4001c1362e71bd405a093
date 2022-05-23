@@ -1,0 +1,44 @@
+package pkg.stocks;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.util.ArrayList;
+
+import pkg.DB.DBConn;
+import pkg.stocks.VO.StockVO;
+
+public class StockServiceImpl implements StockService{
+
+	@Override
+	public ArrayList<StockVO> getList() {
+		ArrayList<StockVO> result = null;
+		
+		Connection conn = null;
+		PreparedStatement ps = null;
+		
+		conn = DBConn.getConnection();
+		String sql = "SELECT * FROM STOCK WHERE SID LIKE '%'?'%' ";
+		ArrayList<String> params = new ArrayList<String>();
+		params.add("");
+		ps = DBConn.getPS(conn, sql, params);
+		
+		
+		return result;
+	}
+
+	@Override
+	public void insertStock() {
+		
+	}
+
+	@Override
+	public void updateStock() {
+		
+	}
+
+	@Override
+	public void deleteStock() {
+		
+	}
+	
+}

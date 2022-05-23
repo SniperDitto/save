@@ -1,0 +1,81 @@
+1. servlet과 웹 로직
+왜 jsp에서 servlet을 사용하게 되었는가
+
+2. jquery
+
+3. ajax
+xml -> json으로 하는법
+
+
+
+MVC
+- Model
+DB연결, 업무 처리 클래스 등
+- View
+사람들이 보게 되는 페이지 - jsp
+- Controller
+전달되는 데이터를 받기 위한 처리부분
+
+
+
+- jsp 파일에 굳이 클래스 선언을 해야 하는가?
+다른 클래스를 사용하게 되면 모든 클래스명을 변경해야 한다
+디자인 자체가 바뀔 수 있다
+.
+.
+.
+-> HttpServlet
+-> DispatcherServlet
+servlet(controller)를 만들어 거기에 클래스 선언
+기존 jsp 파일에 <% %> 로 썼던 내용을 servlet이 대체
+servlet이 내용을 처리해 jsp로 전달
+ - jsp는 오직 디자인 내용만 남게 됨
+
+
+-----------------------------
+Servlet 이용할 프로젝트 만들기
+Dynamic Web Project
+generate web.xml 체크
+
+
+
+
+MVC를 javascript로 -> react, angular.js 등등...
+
+
+
+
+SportService (인터페이스)
+SportServiceImpl(인터페이스 구현)
+
+SportController (servlet)
+|
+RequestDispatcher dispatcher = request.getRequestDispatcher("jsp상대경로");
+|
+jsp 파일 : 보여줄 부분
+
+-------------------------
+CREATE TABLE STOCK
+(
+    SID     CHAR(6)         NOT NULL,
+    SNAME   VARCHAR2(50)    NOT NULL
+);
+
+
+
+------------------------
+
+  <servlet>
+  	<servlet-name>stock</servlet-name>
+  	<servlet-class>pkg.stock.controller.StockController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>stock</servlet-name>
+  	<url-pattern>/stock.do</url-pattern>
+  </servlet-mapping>
+
+
+--------------------
+
+
+
