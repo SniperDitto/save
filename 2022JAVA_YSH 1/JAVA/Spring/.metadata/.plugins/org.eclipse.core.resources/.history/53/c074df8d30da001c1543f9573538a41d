@@ -1,0 +1,9 @@
+package pkg.books.VO;
+
+public class BookVO {
+	private String bookID;
+	private String bookName;
+	private int bookPrice;
+	
+	
+}

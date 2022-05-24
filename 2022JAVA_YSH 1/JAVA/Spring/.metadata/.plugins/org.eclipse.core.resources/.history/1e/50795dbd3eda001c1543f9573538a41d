@@ -1,0 +1,19 @@
+package pkg.Exec;
+
+import java.util.ArrayList;
+
+import pkg.Service.BookService;
+import pkg.VO.BookVO;
+
+public class Exec {
+
+	public static void main(String[] args) {
+		
+		//1. service
+		BookService bs = new BookService();
+		ArrayList<BookVO> bookList = 
+		
+		
+	}
+
+}

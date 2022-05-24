@@ -1,0 +1,7 @@
+package pkg.board.VO;
+
+public class BoardVO {
+	private String idx;
+	private String title;
+	
+}

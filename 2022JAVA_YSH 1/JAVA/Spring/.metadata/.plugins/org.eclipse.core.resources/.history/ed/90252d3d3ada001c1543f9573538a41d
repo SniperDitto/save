@@ -1,0 +1,33 @@
+package pkg.Exec;
+
+import java.util.ArrayList;
+
+import pkg.books.VO.BookVO;
+import pkg.service.AladinServiceImpl;
+import pkg.service.yes24ServiceImpl;
+
+public class Exec {
+
+	public static void main(String[] args) {
+		
+		AladinServiceImpl aService = new AladinServiceImpl();
+		ArrayList<BookVO> aBookList = aService.getBookList(2000);
+		
+		for(BookVO vo : aBookList) {
+			System.out.println("ID : "+vo.getBookID());
+			System.out.println("제목 : "+vo.getBookName());
+			System.out.println("가격 : "+vo.getBookPrice());
+		}
+		
+		yes24ServiceImpl yService = new yes24ServiceImpl();
+		ArrayList<BookVO> yBookList = yService.getBookList(2000);
+		
+		for(BookVO vo : yBookList) {
+			System.out.println("ID : "+vo.getBookID());
+			System.out.println("제목 : "+vo.getBookName());
+			System.out.println("가격 : "+vo.getBookPrice());
+		}
+		
+	}
+
+}

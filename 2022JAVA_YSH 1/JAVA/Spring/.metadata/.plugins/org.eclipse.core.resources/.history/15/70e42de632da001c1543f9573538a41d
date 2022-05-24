@@ -1,0 +1,7 @@
+package pkg.DB;
+
+public class OracleDBConn {
+	public String getDBCon() {
+		return "Oracle Connection";
+	}
+}

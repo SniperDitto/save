@@ -1,0 +1,6 @@
+package pkg.ditto.DAO;
+
+public interface DittoDAO {
+	
+	
+}

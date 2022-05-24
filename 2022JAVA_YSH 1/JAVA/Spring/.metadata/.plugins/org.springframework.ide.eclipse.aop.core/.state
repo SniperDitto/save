@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop-reference-model>
+<aop-project name="DIProj"/>
+<aop-project name="SpringTest2"/>
+<aop-project name="DITest"/>
+</aop-reference-model>

@@ -1,0 +1,24 @@
+package pkg.Service;
+
+import java.util.ArrayList;
+
+import pkg.DAO.BookDAO;
+import pkg.VO.BookVO;
+
+public class BookService {
+	private BookVO bookVO;
+
+	public void setBookDAO(BookVO bookVO) {
+		this.bookVO = bookVO;
+	}
+	
+	public ArrayList<BookDAO> getBookList(){
+		ArrayList<BookDAO> result = this.bookVO.getBookList();
+		
+		//받아온 데이터에 업무를 추가해 리턴
+		
+		
+		return result;
+	}
+	
+}

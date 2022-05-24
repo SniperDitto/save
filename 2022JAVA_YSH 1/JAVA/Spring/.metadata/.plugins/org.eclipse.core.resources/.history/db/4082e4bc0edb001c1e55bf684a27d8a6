@@ -1,0 +1,5 @@
+package pkg.ditto.Service;
+
+public class DittoServiceImpl implements DittoService{
+
+}

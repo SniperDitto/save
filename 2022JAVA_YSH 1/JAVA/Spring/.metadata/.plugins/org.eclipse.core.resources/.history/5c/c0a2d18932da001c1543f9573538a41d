@@ -1,0 +1,7 @@
+package pkg.DB;
+
+public class MySqlDBConn {
+	public String getDBCon() {
+		return "MsSql Connection";
+	}
+}

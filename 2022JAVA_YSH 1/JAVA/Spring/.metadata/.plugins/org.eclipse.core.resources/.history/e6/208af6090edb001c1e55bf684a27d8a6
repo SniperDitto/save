@@ -1,0 +1,5 @@
+package pkg.ditto.DB;
+
+public class MSSqlDBConn {
+
+}

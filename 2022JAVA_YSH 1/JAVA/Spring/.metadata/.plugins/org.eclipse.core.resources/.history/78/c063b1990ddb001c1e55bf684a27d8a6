@@ -1,0 +1,19 @@
+package pkg.ditto.DAO;
+
+import java.util.ArrayList;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import pkg.ditto.VO.DittoVO;
+
+public class DittoDAOImpl implements DittoDAO{
+	
+	@Autowired
+	private DittoVO dittoVO;
+	
+	@Override
+	public ArrayList<DittoVO> getDittoData() {
+		return null;
+	}
+	
+}

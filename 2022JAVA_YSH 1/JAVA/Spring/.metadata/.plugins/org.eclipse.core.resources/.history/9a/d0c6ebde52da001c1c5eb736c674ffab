@@ -1,0 +1,12 @@
+package pkg.DB;
+
+public class OracleDBConn {
+	
+	private String id = "";
+	private String pw = "";
+	private String url = "";
+	
+	public void getConnection() {
+		
+	}
+}

@@ -1,0 +1,50 @@
+package pkg.VO;
+
+import java.util.ArrayList;
+
+public class BookVO {
+	private String bookID;
+	private String bookName;
+	private int bookPrice;
+	
+	public String getBookID() {
+		return bookID;
+	}
+	public void setBookID(String bookID) {
+		this.bookID = bookID;
+	}
+	public String getBookName() {
+		return bookName;
+	}
+	public void setBookName(String bookName) {
+		this.bookName = bookName;
+	}
+	public int getBookPrice() {
+		return bookPrice;
+	}
+	public void setBookPrice(int bookPrice) {
+		this.bookPrice = bookPrice;
+	}
+	
+	public ArrayList<BookVO> getBookList(){
+		ArrayList<BookVO> result = new ArrayList<BookVO>();
+		
+		BookVO vo = new BookVO();
+		vo.setBookID("B001");
+		vo.setBookName("책1");
+		vo.setBookPrice(5000);
+		result.add(vo);
+		BookVO vo2 = new BookVO();
+		vo.setBookID("B002");
+		vo.setBookName("책2");
+		vo.setBookPrice(5000);
+		result.add(vo2);
+		BookVO vo3 = new BookVO();
+		vo.setBookID("B003");
+		vo.setBookName("책3");
+		vo.setBookPrice(5000);
+		result.add(vo3);
+		
+		return result;
+	}
+}

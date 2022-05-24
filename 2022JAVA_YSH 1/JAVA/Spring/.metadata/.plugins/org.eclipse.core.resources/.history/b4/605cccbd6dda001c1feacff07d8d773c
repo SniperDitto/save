@@ -1,0 +1,21 @@
+package test;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Test {
+	
+	public static ArrayList<Integer> result = new ArrayList<Integer>();
+	
+
+	public static void main(String[] args) {
+		
+		Scanner scanner = new Scanner(System.in);
+		int A = scanner.nextLine();
+		int B = scanner.nextLine();
+		int C = scanner.nextLine();
+		
+		
+	}
+
+}

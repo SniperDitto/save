@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<bean id="oDBConn" class="pkg.DB.OracleDBConn"/>
+	
+	<bean id="stockDAO" class="pkg.DAO.StockDAOImpl">
+		<property name="oDBConn" ref="oDBConn"></property>
+	</bean>
+	
+	<bean id="stockService" class="pkg.Service.StockServiceImpl">
+		<property name="stockDAO" ref="stockDAO"></property>
+	</bean>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</beans>

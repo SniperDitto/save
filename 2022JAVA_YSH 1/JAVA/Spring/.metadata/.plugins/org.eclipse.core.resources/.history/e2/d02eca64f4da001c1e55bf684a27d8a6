@@ -1,0 +1,13 @@
+package pkg.names.exec;
+
+import pkg.names.DAO.DataDAO;
+
+public class Exec {
+
+	public static void main(String[] args) {
+		
+		DataDAO dataDAO = new DataDAO();
+		
+	}
+
+}

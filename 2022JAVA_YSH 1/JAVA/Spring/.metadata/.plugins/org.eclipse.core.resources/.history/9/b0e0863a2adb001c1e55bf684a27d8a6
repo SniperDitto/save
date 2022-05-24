@@ -1,0 +1,10 @@
+package pkg.board.Service;
+
+public class BoardServiceImpl implements BoardService{
+
+	@Override
+	public void printYoonaBabo() {
+		System.out.println("유바나보");
+	}
+
+}

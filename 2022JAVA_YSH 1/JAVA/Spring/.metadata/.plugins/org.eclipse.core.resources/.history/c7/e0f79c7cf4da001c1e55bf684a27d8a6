@@ -1,0 +1,13 @@
+package pkg.names.DAO;
+
+public class DataDAO {
+	//data1
+	public String getName() {
+		return "완짱";
+	}
+	
+	//data2
+	public String getAge() {
+		return "52";
+	}
+}

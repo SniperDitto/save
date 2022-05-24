@@ -1,0 +1,7 @@
+package pkg.ditto.Service;
+
+public interface DittoService {
+	
+	public void printDittoInfo(String dID);
+	
+}

@@ -1,0 +1,5 @@
+package pkg.books.DAO;
+
+public interface BookDAO {
+
+}

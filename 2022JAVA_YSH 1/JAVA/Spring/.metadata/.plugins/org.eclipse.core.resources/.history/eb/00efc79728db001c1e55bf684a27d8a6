@@ -1,0 +1,10 @@
+package pkg.board.DAO;
+
+import java.util.ArrayList;
+
+import pkg.board.VO.BoardVO;
+
+public interface BoardDAO {
+	public ArrayList<BoardVO> getBoardList();
+	
+}

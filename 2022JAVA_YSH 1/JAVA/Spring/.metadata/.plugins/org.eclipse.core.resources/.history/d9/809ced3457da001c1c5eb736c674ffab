@@ -1,0 +1,25 @@
+package pkg.DAO;
+
+import java.util.ArrayList;
+
+import pkg.DB.OracleDBConn;
+import pkg.VO.StockVO;
+
+public class StockDAOImpl implements StockDAO{
+	
+	private OracleDBConn oDBConn;
+	
+	public void setODBConn(OracleDBConn oDBConn) {
+		this.oDBConn = oDBConn;
+	}
+
+	@Override
+	public ArrayList<StockVO> getStockList() {
+		ArrayList<StockVO> result = new ArrayList<StockVO>();
+		
+		
+		
+		return result;
+	}
+
+}

@@ -1,0 +1,11 @@
+package pkg.ditto.DB;
+
+public class MSSqlDBConn implements DBConn{
+
+	@Override
+	public String getConnection() {
+		System.out.println("MS SQL");
+		return "MS SQL";
+	}
+
+}

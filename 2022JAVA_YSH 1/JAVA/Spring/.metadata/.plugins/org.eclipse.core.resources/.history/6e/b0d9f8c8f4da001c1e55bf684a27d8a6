@@ -1,0 +1,19 @@
+package pkg.names.exec;
+
+import pkg.names.DataHandle;
+
+public class Exec {
+
+	public static void main(String[] args) {
+		
+		DataHandle dataDAO = new DataHandle();
+		
+		//몽짱은 3살이다
+		String name = dataDAO.getName();
+		String age = dataDAO.getAge();
+		System.out.printf("%s은 %s살이다.", name, age);
+		
+		
+	}
+
+}

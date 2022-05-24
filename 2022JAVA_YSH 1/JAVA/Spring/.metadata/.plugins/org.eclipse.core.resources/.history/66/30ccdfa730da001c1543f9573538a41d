@@ -1,0 +1,9 @@
+package pkg.books.DAO;
+
+import java.util.ArrayList;
+
+public class AladinBookDAOImpl {
+	public ArrayList<BookVO> getBookList(){
+		
+	}
+}

@@ -1,0 +1,23 @@
+package pkg.Service;
+
+import java.util.ArrayList;
+
+import pkg.DAO.BookDAO;
+import pkg.VO.BookVO;
+
+public class BookService {
+	private BookDAO bookDAO;
+
+	public void setBookDAO(BookDAO bookDAO) {
+		this.bookDAO = bookDAO;
+	}
+	
+	public ArrayList<BookVO> getBookList(){
+		ArrayList<BookVO> result = this.bookDAO.getBookList();
+		
+		
+		
+		return result;
+	}
+	
+}

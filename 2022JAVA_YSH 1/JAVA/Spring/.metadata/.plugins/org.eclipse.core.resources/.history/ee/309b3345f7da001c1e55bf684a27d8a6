@@ -1,0 +1,34 @@
+package pkg.names;
+
+public class DataService {
+	
+	private String name;
+	private int age;
+	private DataHandle dataHandle;
+	
+	public DataService() {
+		this.dataHandle = new DataHandle();
+		this.name = dataHandle.getName();
+		this.age = dataHandle.getAge();
+	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+	public void setAge(int age) {
+		this.age = age;
+	}
+	public void setDataHandle(DataHandle dataHandle) {
+		this.dataHandle = dataHandle;
+	}
+
+	public String getResult() {
+		String result = "";
+		
+		if(this.name.equals("몽짱")) {
+			result = ":)";
+		}
+		
+		return result;
+	}
+}

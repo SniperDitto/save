@@ -1,0 +1,10 @@
+package pkg.ditto.DAO;
+
+import java.util.ArrayList;
+
+import pkg.ditto.VO.DittoVO;
+
+public interface DittoDAO {
+	
+	public ArrayList<DittoVO> getDittoInfo();
+}

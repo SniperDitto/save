@@ -1,0 +1,8 @@
+package pkg.ditto.DB;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public interface DBConn {
+	public String getConnection();
+}

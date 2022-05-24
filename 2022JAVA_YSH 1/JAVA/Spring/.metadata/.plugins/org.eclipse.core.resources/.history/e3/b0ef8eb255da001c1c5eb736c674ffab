@@ -1,0 +1,5 @@
+package pkg.DAO;
+
+public class StockDAOImpl {
+
+}

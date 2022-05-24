@@ -1,0 +1,5 @@
+package pkg.ditto.VO;
+
+public class DittoVO {
+
+}

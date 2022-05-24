@@ -1,0 +1,21 @@
+package pkg.DAO;
+
+import java.util.ArrayList;
+
+import pkg.DB.OracleDBConn;
+
+public class BookDAO {
+	
+	private OracleDBConn odb;
+	
+	public void setOdb(OracleDBConn odb) {
+		this.odb = odb;
+	}
+
+	public ArrayList<BookVO> getBookList(){
+		//1. db연결
+		odb.getDBConn();
+		
+		
+	}
+}

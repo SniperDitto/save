@@ -1,0 +1,17 @@
+package pkg.ditto.Service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import pkg.ditto.DAO.DittoDAO;
+
+public class DittoServiceImpl implements DittoService{
+	
+	@Autowired
+	private DittoDAO dittoDAO;
+	
+	@Override
+	public void printDittoInfo(String dID) {
+		
+	}
+
+}

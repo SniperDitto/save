@@ -1,0 +1,9 @@
+package pkg.board.Service;
+
+import pkg.board.DAO.BoardDAO;
+
+public interface BoardService {
+	private BoardDAO boardDAO;
+	
+	public void printYoonaBabo();
+}

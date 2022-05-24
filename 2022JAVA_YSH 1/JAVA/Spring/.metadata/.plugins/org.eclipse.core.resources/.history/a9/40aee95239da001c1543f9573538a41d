@@ -1,0 +1,12 @@
+package pkg.service;
+
+import pkg.DB.MSSqlDBConn;
+import pkg.DB.MySqlDBConn;
+
+public class yes24ServiceImpl {
+	private MSSqlDBConn msdb;
+	private MySqlDBConn mydb;
+	
+	
+	
+}

@@ -1,0 +1,23 @@
+package pkg.Exec;
+
+import java.util.ArrayList;
+
+import pkg.books.VO.BookVO;
+import pkg.service.AladinServiceImpl;
+
+public class Exec {
+
+	public static void main(String[] args) {
+		
+		AladinServiceImpl aService = new AladinServiceImpl();
+		ArrayList<BookVO> aBookList = aService.getBookList(2000);
+		
+		for(BookVO vo : aBookList) {
+			System.out.println("ID : "+vo.getBookID());
+			System.out.println("제목 : "+vo.getBookName());
+			System.out.println("가격 : "+vo.getBookPrice());
+		}
+		
+	}
+
+}

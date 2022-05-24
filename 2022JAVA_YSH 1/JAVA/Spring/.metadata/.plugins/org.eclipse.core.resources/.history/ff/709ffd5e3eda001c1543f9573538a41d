@@ -1,0 +1,10 @@
+package pkg.Service;
+
+import pkg.DAO.BookDAO;
+
+public class BookService {
+	private BookDAO bookDAO;
+	
+	
+	
+}

@@ -1,0 +1,9 @@
+package pkg.names.exec;
+
+public class Exec {
+
+	public static void main(String[] args) {
+		
+	}
+
+}

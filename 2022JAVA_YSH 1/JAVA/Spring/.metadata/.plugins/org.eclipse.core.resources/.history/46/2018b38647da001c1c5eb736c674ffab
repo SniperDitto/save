@@ -1,0 +1,33 @@
+package pkg.Exec;
+
+import java.util.ArrayList;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import pkg.Service.BookService;
+import pkg.VO.BookVO;
+
+public class Exec {
+
+	public static void main(String[] args) {
+		
+		ApplicationContext context = new ClassPathXmlApplicationContext("setting.xml");
+		
+		//딸린 애들까지 알아서 해결
+		BookService bookService = (BookService) context.getBean("bookService");
+		
+		ArrayList<BookVO> bookList = bookService.getBookList();
+		
+		for(BookVO vo : bookList) {
+			System.out.println("ID : "+vo.getBookID());
+			System.out.println("제목 : "+vo.getBookName());
+			System.out.println("가격 : "+vo.getBookPrice());
+			vo.setBookPrice(5000);
+		}
+		
+		
+		
+	}
+
+}

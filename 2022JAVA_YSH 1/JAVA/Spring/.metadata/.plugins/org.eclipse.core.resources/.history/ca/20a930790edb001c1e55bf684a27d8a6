@@ -1,0 +1,24 @@
+package pkg.ditto.DAO;
+
+import java.util.ArrayList;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import pkg.ditto.DB.DBConn;
+import pkg.ditto.VO.DittoVO;
+
+public class DittoDAOImpl implements DittoDAO{
+	
+	@Autowired
+	private DBConn dbConn;
+	
+	@Override
+	public ArrayList<DittoVO> getDittoData() {
+		ArrayList<DittoVO> result = new ArrayList<DittoVO>();
+		//DB에서 가져왔다고 가정
+		result.add(vo);
+		
+		return null;
+	}
+	
+}

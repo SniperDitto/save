@@ -1,0 +1,15 @@
+package pkg.ditto.DAO;
+
+import java.util.ArrayList;
+
+import pkg.ditto.VO.DittoVO;
+
+public class DittoDAOImpl implements DittoDAO{
+
+	@Override
+	public ArrayList<DittoVO> getDittoData() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+}

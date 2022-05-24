@@ -1,0 +1,16 @@
+package pkg.ditto.DB;
+
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
+
+@Component
+@Qualifier("dbConn")
+public class OracleDBConn implements DBConn{
+
+	@Override
+	public String getConnection() {
+		System.out.println("Oracle");
+		return "Oracle";
+	}
+
+}

@@ -1,0 +1,7 @@
+package pkg.ditto.VO;
+
+public class DittoVO {
+	private String dID;
+	private String dName;
+	private int dAge;
+}

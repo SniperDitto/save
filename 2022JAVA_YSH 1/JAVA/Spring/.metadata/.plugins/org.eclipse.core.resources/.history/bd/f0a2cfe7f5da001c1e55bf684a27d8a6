@@ -1,0 +1,19 @@
+package pkg.names;
+
+public class DataService {
+	
+	private String name;
+	private int age;
+	private DataHandle dataHandle;
+	
+	public DataService() {
+		this.dataHandle = new DataHandle();
+		this.name = dataHandle.getName();
+		this.age = dataHandle.getAge();
+	}
+	
+	public String getResult() {
+		String result = "";
+		return result;
+	}
+}

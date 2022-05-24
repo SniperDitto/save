@@ -1,0 +1,12 @@
+package test;
+
+import java.util.Scanner;
+
+public class Test2 {
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		String inString =  scanner.nextLine();
+		int hourNow = Integer.parseInt(inString.split(" ")[0]);
+		int minNow = Integer.parseInt(inString.split(" ")[1]);
+	}
+}

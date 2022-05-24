@@ -1,0 +1,5 @@
+package pkg.ditto.DAO;
+
+public class DittoDAOImpl {
+
+}

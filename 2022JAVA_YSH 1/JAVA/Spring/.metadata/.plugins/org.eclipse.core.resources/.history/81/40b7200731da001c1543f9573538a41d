@@ -1,0 +1,23 @@
+package pkg.books.DAO;
+
+import java.util.ArrayList;
+
+import pkg.books.VO.BookVO;
+
+public class AladinBookDAOImpl {
+	//oracle, MSSQL
+	public ArrayList<BookVO> getBookList(){
+		ArrayList<BookVO> result = new ArrayList<BookVO>();
+		//oracle
+		OracleDBConn odb = new OracleDBConn();
+		String strOResult = odb.getDBConn();
+		System.out.println(strOResult);
+		
+		//mssql
+		
+		//두 데이터 조합
+		
+		
+		return result;
+	}
+}

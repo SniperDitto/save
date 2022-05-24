@@ -1,0 +1,5 @@
+package pkg.board.DAO;
+
+public class BoardDAOImpl {
+	
+}

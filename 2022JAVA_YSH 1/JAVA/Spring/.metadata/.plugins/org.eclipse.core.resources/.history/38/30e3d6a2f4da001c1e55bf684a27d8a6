@@ -1,0 +1,15 @@
+package pkg.names.DAO;
+
+public class DataDAO {
+	private String name;
+	private String age;
+	//data1
+	public String getName() {
+		return "몽짱";
+	}
+	
+	//data2
+	public String getAge() {
+		return "3";
+	}
+}

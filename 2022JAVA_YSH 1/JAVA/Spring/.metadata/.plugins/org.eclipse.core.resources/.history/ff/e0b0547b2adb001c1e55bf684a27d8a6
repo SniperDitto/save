@@ -1,0 +1,17 @@
+package pkg.board.Service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import pkg.board.DAO.BoardDAO;
+
+public class BoardServiceImpl implements BoardService{
+	
+	@Autowired
+	private BoardDAO boardDAO;
+	
+	@Override
+	public void printYoonaBabo() {
+		System.out.println("유바나보");
+	}
+
+}

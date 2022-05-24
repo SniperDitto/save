@@ -1,0 +1,31 @@
+Spring Bean x
+---------------------------
+BookService bs = new BookService();
+BookDAO bDAO = new BookDAO();
+OracleDBConn odb = new OracleDBConn();
+bDAO.setOdb(odb);
+bs.setBookDAO(bDAO);
+ArrayList<BookVO> bookList = bs.getBookList();
+
+
+Spring Bean(DAO대신VO만씀)
+---------------------------
+<bean id="bookDAO" class="pkg.DAO.BookDAO" />
+
+  	<!-- spring-context -->
+  	<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-context</artifactId>
+    <version>5.2.22.RELEASE</version>
+	</dependency>
+
+
+ApplicationContext context = new ClassPathXmlApplicationContext("setting.xml");
+		
+//딸린 애들까지 알아서 해결
+BookVO bookVO = (BookVO) context.getBean("bookVO");
+bookVO.getBookList();
+
+
+
+

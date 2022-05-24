@@ -1,0 +1,15 @@
+package pkg.DAO;
+
+import java.util.ArrayList;
+
+import pkg.VO.StockVO;
+
+public class StockDAOImpl implements StockDAO{
+
+	@Override
+	public ArrayList<StockVO> getStockList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

@@ -1,0 +1,20 @@
+package pkg.Exec;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import pkg.DAO.BookDAO;
+
+public class Exec {
+
+	public static void main(String[] args) {
+		
+		ApplicationContext context = new ClassPathXmlApplicationContext("setting.xml");
+		
+		//딸린 애들까지 알아서 해결
+		BookVO bookVO = (BookDAO) context.getBean("bookDAO");
+		bookVO.getBookList();
+		
+	}
+
+}

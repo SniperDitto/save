@@ -1,0 +1,5 @@
+package pkg.VO;
+
+public class BookVO {
+
+}

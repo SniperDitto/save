@@ -1,0 +1,6 @@
+package pkg.names;
+
+public interface IDataHandle {
+	public String getName();
+	public int getAge();
+}

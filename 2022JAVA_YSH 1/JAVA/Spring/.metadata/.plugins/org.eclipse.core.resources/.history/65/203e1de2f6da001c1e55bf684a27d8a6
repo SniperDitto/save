@@ -1,0 +1,24 @@
+package pkg.names.exec;
+
+import pkg.names.DataHandle;
+import pkg.names.DataService;
+
+public class Exec {
+
+	public static void main(String[] args) {
+		
+		DataHandle data = new DataHandle("몽짱",3);
+		
+		//몽짱은 3살이다
+		String name = data.getName();
+		int age = data.getAge();
+		System.out.printf("%s은 %i살이다.", name, age);
+		
+		//----------------------------
+		DataService service = new DataService();
+		System.out.println(service.getResult());
+		
+		
+	}
+
+}
