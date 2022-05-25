@@ -1,0 +1,37 @@
+package pkg.boards.service;
+
+import java.util.ArrayList;
+
+import pkg.boards.VO.BoardVO;
+
+public class BoardServiceImpl implements BoardService{
+
+	@Override
+	public ArrayList<BoardVO> getBoardList() {
+		ArrayList<BoardVO> result = new ArrayList<BoardVO>();
+		
+		BoardVO vo1 = new BoardVO();
+		vo1.setIdx("1");
+		vo1.setTitle("유바나보");
+		vo1.setUserID("최밥창문");
+		result.add(vo1);
+		
+		return result;
+	}
+
+	@Override
+	public void deleteBoard(String idx) {
+		
+	}
+
+	@Override
+	public void updateBoard(String idx, BoardVO vo) {
+		
+	}
+
+	@Override
+	public void insertBoard(BoardVO vo) {
+		
+	}
+
+}

@@ -1,0 +1,33 @@
+package pkg.boards.service;
+
+import java.util.ArrayList;
+
+import pkg.boards.VO.BoardVO;
+
+public class BoardServiceImpl implements BoardService{
+
+	@Override
+	public ArrayList<BoardVO> getBoardList() {
+		ArrayList<BoardVO> result = new ArrayList<BoardVO>();
+		
+		
+		
+		return result;
+	}
+
+	@Override
+	public void deleteBoard(String idx) {
+		
+	}
+
+	@Override
+	public void updateBoard(String idx, BoardVO vo) {
+		
+	}
+
+	@Override
+	public void insertBoard(BoardVO vo) {
+		
+	}
+
+}

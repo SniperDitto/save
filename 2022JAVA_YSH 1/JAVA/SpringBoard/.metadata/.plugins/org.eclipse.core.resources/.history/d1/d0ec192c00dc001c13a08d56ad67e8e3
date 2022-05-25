@@ -1,0 +1,29 @@
+package pkg.test;
+
+import java.util.Scanner;
+
+public class Main3 {
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		String inString = scanner.nextLine();
+		String[] numbers = inString.split(" ");
+		int[] diceNums = {1,2,3,4,5,6};
+		
+		int[] sameNumCounts = {0,0,0,0,0,0};
+		for(int i : diceNums) {
+			for(int j=0;j<numbers.length;j++) {
+				if(i==Integer.parseInt(numbers[j])) {
+					sameNumCounts[i-1]++;
+				}
+				
+			}
+			
+		}
+		
+		int result = 0;
+		
+		
+		System.out.println(result);
+		
+	}
+}

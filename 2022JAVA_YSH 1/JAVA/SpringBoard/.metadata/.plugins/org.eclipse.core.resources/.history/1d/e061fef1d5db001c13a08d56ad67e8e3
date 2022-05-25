@@ -1,0 +1,5 @@
+package pkg.boards.service;
+
+public class BoardServiceImpl implements BoardService{
+
+}

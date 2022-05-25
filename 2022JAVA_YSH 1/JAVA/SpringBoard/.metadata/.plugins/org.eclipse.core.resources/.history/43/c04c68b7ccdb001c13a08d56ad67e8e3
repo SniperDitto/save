@@ -1,0 +1,15 @@
+package pkg.boards.controller;
+
+import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+
+@Component
+public class BoardController2{
+	
+	@RequestParam("/helloSpring")
+	public ModelAndView SsiBalYoona() {
+		
+	}
+	
+}
