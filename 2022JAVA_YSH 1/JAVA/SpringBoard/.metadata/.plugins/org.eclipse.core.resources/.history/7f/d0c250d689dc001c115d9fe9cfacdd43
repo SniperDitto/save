@@ -1,0 +1,47 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Boards</title>
+<style type="text/css">
+	.bRow{
+		width:500px;
+		height:30px;
+		border:1px solid #777;
+	}
+</style>
+</head>
+<body><!-- 테스트용!!! -->
+<div>
+	
+</div>
+<div id="board">
+	<div id="boardTitle" class="bRow">
+		<span class="">
+			<input type="checkbox"/>
+		</span>
+		<span class="">글번호</span>
+		<span class="">글제목</span>
+		<span class="">작성자</span>
+	</div>
+	<div id="boardRow" class="bRow">
+		<span class="">
+			<input type="checkbox"/>
+		</span>
+		<span class=""></span>
+		<span class=""></span>
+		<span class="">
+			<select>
+				<option value="USER01">DITTO</option>
+				<option value="USER02">MARSH</option>
+				<option value="USER03">WAN</option>
+				<option value="USER04">METAMON</option>
+				<option value="USER05">OCTO</option>
+			</select>
+		</span>
+	</div>
+</div>
+</body>
+</html>

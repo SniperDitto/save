@@ -1,0 +1,22 @@
+package pkg.boards.DAO;
+
+import java.util.ArrayList;
+
+import pkg.boards.VO.BoardVO;
+import pkg.boards.VO.MemberVO;
+
+public class BoardsDAOImpl implements BoardsDAO{
+
+	@Override
+	public ArrayList<BoardVO> getBoardsList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<MemberVO> getMembers() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

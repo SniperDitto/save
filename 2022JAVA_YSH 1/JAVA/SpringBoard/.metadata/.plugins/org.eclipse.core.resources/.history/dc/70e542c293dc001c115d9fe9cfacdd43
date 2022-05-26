@@ -1,0 +1,17 @@
+package pkg.boards.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class BoardsController {
+	
+	@RequestMapping("boardsList")
+	public String goBoards() {
+		//데이터 가져오기
+		
+		
+		return "/boards/boards";
+	}
+	
+}

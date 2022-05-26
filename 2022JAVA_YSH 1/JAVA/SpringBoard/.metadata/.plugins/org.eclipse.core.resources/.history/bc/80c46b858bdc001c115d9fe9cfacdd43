@@ -1,0 +1,14 @@
+package pkg.boards.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class BoardsController {
+	
+	@RequestMapping("boards")
+	public String goBoards() {
+		return "/boards/boards";
+	}
+	
+}

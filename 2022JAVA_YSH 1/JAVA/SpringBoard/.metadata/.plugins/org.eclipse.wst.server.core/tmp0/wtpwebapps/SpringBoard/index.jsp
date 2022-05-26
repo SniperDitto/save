@@ -9,7 +9,7 @@
 </head>
 <body>
 index<br/>
-<a href="boardList?idx=1&userID=asdf">리스트</a>
+<a href="boardsList">리스트</a>
 
 
 </body>

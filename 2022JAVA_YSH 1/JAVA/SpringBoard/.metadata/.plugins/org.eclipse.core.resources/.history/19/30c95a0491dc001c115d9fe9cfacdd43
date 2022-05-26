@@ -1,0 +1,10 @@
+package pkg.boards.DAO;
+
+import java.util.ArrayList;
+
+import pkg.boards.VO.BoardVO;
+
+public interface BoardsDAO {
+	public ArrayList<BoardVO> getBoardsList();
+	public ArrayList<MemberVO> getMembers();
+}

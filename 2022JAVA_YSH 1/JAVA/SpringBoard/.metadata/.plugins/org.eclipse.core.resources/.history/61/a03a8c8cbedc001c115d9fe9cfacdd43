@@ -1,0 +1,32 @@
+package pkg.boards.controller;
+
+import java.util.ArrayList;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import pkg.boards.VO.BoardVO;
+import pkg.boards.VO.MemberVO;
+import pkg.boards.service.BoardsService;
+
+@Controller
+public class BoardsController {
+	
+	@Autowired
+	private BoardsService boardService;
+	
+	@RequestMapping("boardsList")
+	public String goBoards(Model model) {
+		//데이터 가져오기
+		ArrayList<BoardVO> boardList = boardService.getBoardList("");
+		ArrayList<MemberVO> memberList = boardService.getMemberList("");
+		
+		model.addAttribute("boardList",boardList);
+		model.addAttribute("memberList",memberList);
+		
+		return "/boards/boards";
+	}
+	
+}

@@ -11,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import pkg.boards.VO.BoardVO;
 import pkg.boards.service.BoardService;
 
-@Controller
+//@Controller
 public class BoardController2{
 	
 	@Autowired
@@ -19,6 +19,8 @@ public class BoardController2{
 	
 	@RequestMapping("/helloSpring")
 	public ModelAndView YoonaBabo() {
+		
+		
 		String data = "최밥창문";
 		String data2 = "바보";
 		String jspPage = "index.jsp";

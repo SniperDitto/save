@@ -1,0 +1,5 @@
+package pkg.boards.VO;
+
+public class MemberVO {
+
+}

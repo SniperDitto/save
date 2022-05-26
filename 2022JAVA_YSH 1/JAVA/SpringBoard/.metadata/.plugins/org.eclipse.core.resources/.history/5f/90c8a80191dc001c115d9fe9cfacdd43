@@ -1,0 +1,6 @@
+package pkg.boards.VO;
+
+public class MemberVO {
+	private String userID;
+	private String userName;
+}

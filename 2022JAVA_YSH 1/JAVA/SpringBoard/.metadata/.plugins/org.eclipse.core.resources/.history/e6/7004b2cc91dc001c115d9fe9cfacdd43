@@ -1,0 +1,29 @@
+package pkg.boards.DAO;
+
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.util.ArrayList;
+
+import pkg.boards.VO.BoardVO;
+import pkg.boards.VO.MemberVO;
+import pkg.boards.commons.DB.DBConn;
+
+public class BoardsDAOImpl implements BoardsDAO{
+
+	@Override
+	public ArrayList<BoardVO> getBoardsList() {
+		ArrayList<BoardVO> boardList = new ArrayList<BoardVO>();
+		Connection dbconn = DBConn.getConnection();
+		String sql = "{call PKG_BOARDS.PROC_SEL_BOARDS(?,?)}";
+		
+		CallableStatement cs = DBConn.getCallableStatement(dbconn, strSql, params)
+		
+		return null;
+	}
+
+	@Override
+	public ArrayList<MemberVO> getMembers() {
+		return null;
+	}
+
+}

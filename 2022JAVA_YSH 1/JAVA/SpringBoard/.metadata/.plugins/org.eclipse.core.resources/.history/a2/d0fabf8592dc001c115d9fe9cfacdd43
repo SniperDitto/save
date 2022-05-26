@@ -1,0 +1,50 @@
+package pkg.boards.DAO;
+
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import oracle.jdbc.OracleTypes;
+import pkg.boards.VO.BoardVO;
+import pkg.boards.VO.MemberVO;
+import pkg.boards.commons.DB.DBConn;
+
+public class BoardsDAOImpl implements BoardsDAO{
+
+	@Override
+	public ArrayList<BoardVO> getBoardsList(String idx) {
+		ArrayList<BoardVO> boardList = new ArrayList<BoardVO>();
+		try {
+			Connection dbconn = DBConn.getConnection();
+			String sql = "{call PKG_BOARDS.PROC_SEL_BOARDS(?,?)}";
+			ArrayList<String> params = new ArrayList<String>();
+			params.add(idx);
+			
+			CallableStatement cs = DBConn.getCallableStatement(dbconn, sql, params);
+			cs.registerOutParameter(params.size()+1, OracleTypes.CURSOR);
+			cs.executeQuery();
+			ResultSet rs = (ResultSet) cs.getObject(2);
+			
+			while(rs.next()) {
+				BoardVO vo = new BoardVO();
+				vo.setIdx(rs.getString("IDX"));
+				vo.setTitle(rs.getString("TITLE"));
+				vo.setUserID(rs.getString("USERID"));
+				boardList.add(vo);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+	@Override
+	public ArrayList<MemberVO> getMembers(String userID) {
+		return null;
+	}
+
+}

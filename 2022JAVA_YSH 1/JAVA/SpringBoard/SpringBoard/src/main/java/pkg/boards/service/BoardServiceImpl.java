@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import pkg.boards.VO.BoardVO;
 
-@Service
+//@Service
 public class BoardServiceImpl implements BoardService{
 
 	@Override

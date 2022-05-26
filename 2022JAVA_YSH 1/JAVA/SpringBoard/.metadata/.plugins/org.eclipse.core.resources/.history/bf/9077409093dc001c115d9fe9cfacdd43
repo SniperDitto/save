@@ -1,0 +1,20 @@
+package pkg.boards.service;
+
+import java.util.ArrayList;
+
+import pkg.boards.VO.BoardVO;
+import pkg.boards.VO.MemberVO;
+
+public class BoardsServiceImpl implements BoardsService{
+
+	@Override
+	public ArrayList<BoardVO> getBoardList(String idx) {
+		return null;
+	}
+
+	@Override
+	public ArrayList<MemberVO> getMemberList(String userID) {
+		return null;
+	}
+	
+}

@@ -1,0 +1,26 @@
+package pkg.boards.service;
+
+import java.util.ArrayList;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import pkg.boards.DAO.BoardsDAO;
+import pkg.boards.VO.BoardVO;
+import pkg.boards.VO.MemberVO;
+
+public class BoardsServiceImpl implements BoardsService{
+	
+	@Autowired
+	private BoardsDAO boardsDAO;
+	
+	@Override
+	public ArrayList<BoardVO> getBoardList(String idx) {
+		return boardsDAO.getBoardsList(idx);
+	}
+
+	@Override
+	public ArrayList<MemberVO> getMemberList(String userID) {
+		return boardsDAO.getMembers(userID);
+	}
+	
+}
