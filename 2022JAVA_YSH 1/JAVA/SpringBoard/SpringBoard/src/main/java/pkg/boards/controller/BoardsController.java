@@ -31,6 +31,14 @@ public class BoardsController {
 	
 	@RequestMapping("saveBoard")
 	public String saveBoard(String[] idx2, String[] title2, String[] userID2, String[] status2, Model model) {
+		/*
+		for(String s : title2) {
+			System.out.println(s);
+		}
+		for(String s : userID2) {
+			System.out.println(s);
+		}
+		*/
 		boardService.saveBoard(idx2, title2, userID2, status2);
 		
 		ArrayList<BoardVO> boardList = boardService.getBoardList("");
@@ -39,7 +47,18 @@ public class BoardsController {
 		model.addAttribute("boardList",boardList);
 		model.addAttribute("memberList",memberList);
 		
+		return "/boards/boards";
+	}
+	
+	@RequestMapping("deleteBoard")
+	public String deleteBoard(String[] delIdx, Model model) {
+		boardService.deleteBoard(delIdx);
 		
+		ArrayList<BoardVO> boardList = boardService.getBoardList("");
+		ArrayList<MemberVO> memberList = boardService.getMemberList("");
+		
+		model.addAttribute("boardList",boardList);
+		model.addAttribute("memberList",memberList);
 		
 		return "/boards/boards";
 	}

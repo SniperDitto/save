@@ -9,4 +9,5 @@ public interface BoardsDAO {
 	public ArrayList<BoardVO> getBoardsList(String idx);
 	public ArrayList<MemberVO> getMembers(String userID);
 	public void saveBoard(String[] idx, String[] title, String[] userID, String[] status);
+	public void deleteBoard(String[] idx);
 }

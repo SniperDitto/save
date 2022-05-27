@@ -1,0 +1,232 @@
+<%@page import="pkg.boards.VO.MemberVO"%>
+<%@page import="pkg.boards.VO.BoardVO"%>
+<%@page import="java.util.ArrayList"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<script
+  src="https://code.jquery.com/jquery-3.6.0.js"
+  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
+<meta charset="UTF-8">
+<title>Boards</title>
+<%
+	ArrayList<BoardVO> boardList = (ArrayList<BoardVO>)request.getAttribute("boardList");
+	ArrayList<MemberVO> memberList = (ArrayList<MemberVO>)request.getAttribute("memberList");
+%>
+<style type="text/css">
+	.bRow{
+		width:510px;
+		height:30px;
+		border:0px solid #777;
+		clear:both;
+	}
+	
+	.col1{
+		width:50px;
+		font-size:12px;
+		text-align:center;
+		padding:8px 0px 5px 0px;
+		border:1px solid #999;
+		display:block;
+		float:left;
+	}
+	.col2{
+		width:90px;
+		font-size:12px;
+		text-align:center;
+		padding:8px 0px 5px 0px;
+		border:1px solid #999;
+		display:block;
+		float:left;
+	}
+	.col3{
+		width:200px;
+		font-size:12px;
+		text-align:center;
+		padding:8px 0px 5px 0px;
+		border:1px solid #999;
+		display:block;
+		float:left;
+	}
+	.col4{
+		width:130px;
+		font-size:12px;
+		text-align:center;
+		padding:8px 0px 5px 0px;
+		border:1px solid #999;
+		display:block;
+		float:left;
+	}
+	.col5{
+		width:30px;
+		font-size:12px;
+		text-align:center;
+		padding:8px 0px 5px 0px;
+		border:1px solid #999;
+		display:block;
+		float:left;
+	}
+	input:focus{
+		outline:none;
+	}
+</style>
+<link rel="stylesheet" href="/jscss/css/test.css"/>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("input[name='title2']").change(function(){
+			var chgIdx = $("input[name='title2']").index(this);
+			$("input[name='status2']").eq(chgIdx).val("u");
+			//boardContent 밑의 idx번째 boardRow
+			$("#boardContent2").children().eq(chgIdx).css("background-color","#BBB");
+		});
+		
+		$("#btnAdd2").on("click",function(){
+			var strHTML = "";
+			strHTML += '<div id="boardRow2" class="bRow">';
+			strHTML += '<span class="col1">';
+			strHTML += '<input type="checkbox" name="chk2"/>';
+			strHTML += '</span>';
+			strHTML += '<span class="col2">';
+			strHTML += '<input type="text" name="idx2" style="border:none;width:50px;background-color:transparent" value="" /></span>';
+			strHTML += '<span class="col3">';
+			strHTML += '<input type="text" name="title2" style="border:none;width:auto;background-color:transparent" value=""/></span>';
+			strHTML += '<span class="col4">';
+			strHTML += '<select name="userID">';
+			strHTML += '<% for(MemberVO mem : memberList){ %>';
+				strHTML += '<option value="<%=mem.getUserID()%>">';
+				strHTML += '<%=mem.getUserName()%></option>';
+			strHTML += '<% } %>';
+			strHTML += '</select>';
+			strHTML += '</span>';
+			strHTML += '<span class="col5">';
+			strHTML += '<input type="text" name="status2" style="border:none;width:10px;background-color:transparent" value="i" readonly/>';
+			strHTML += '</span>';
+			strHTML += '</div>';
+			
+			$("#boardContent2").append(strHTML);
+			$("#boardContent2").children().last().css("background-color","#BBB");
+		});
+	});
+	
+	var chkTitle = function(idx){
+		var objStatus = document.getElementsByName("status");
+		objStatus[idx].value = "u";
+	}
+	
+	var addRowFunc = function(){
+		
+	}
+	
+	var saveFunc = function(){
+		
+	}
+</script>
+</head>
+<body>
+
+
+<!-- javascript -->
+<div style="clear:both">---javascript---</div>
+
+<div>
+	<input type="button" value="조회" id="btnSearch" />
+	<input type="button" value="추가" id="btnAdd" />
+	<input type="button" value="저장" id="btnSave" />
+	<input type="button" value="삭제" id="btnDelete" />
+</div>
+<div id="board">
+	<div id="boardTitle" class="bRow">
+		<span class="col1">
+			<input type="checkbox" name="chk"/>
+		</span>
+		<span class="col2">글번호</span>
+		<span class="col3">글제목</span>
+		<span class="col4">작성자</span>
+		<span class="col5">&nbsp;</span>
+	</div>
+	<div id="boardContent">
+	<% for(BoardVO vo : boardList){ %>
+	<div id="boardRow" class="bRow">
+		<span class="col1">
+			<input type="checkbox" name="chk"/>
+		</span>
+		<span class="col2">
+			<input type="text" name="idx" style="border:none;width:50px;background-color:transparent" value="<%=vo.getIdx() %>" /></span>
+		<span class="col3">
+			<input type="text" name="title" style="border:none;width:auto;background-color:transparent" value="<%=vo.getTitle() %>" onchange="chkTitle(<%=vo.getIdx() %>)"/></span>
+		<span class="col4">
+			<select name="userID">
+			<% for(MemberVO mem : memberList){ %>
+				<option value="<%=mem.getUserID()%>"
+					<%if(vo.getUserID().equals(mem.getUserID())){%>
+					 selected="selected"
+					<% } %>	
+				><%=mem.getUserName()%></option>
+			<% } %>	
+			</select>
+		</span>
+		<span class="col5">
+			<input type="text" name="status" style="border:none;width:10px;background-color:transparent" value="" readonly/>
+		</span>
+	</div>
+	<% } %>
+	</div>
+</div>
+
+
+<!-- jquery -->
+<div style="clear:both">---jquery---</div>
+
+<form name="boardForm" action="saveBoard" method="post">
+<div>
+	<input type="button" value="조회" id="btnSearch2" />
+	<input type="button" value="추가" id="btnAdd2" />
+	<input type="button" value="저장" id="btnSave2" />
+	<input type="button" value="삭제" id="btnDelete2" />
+</div>
+<div id="board2">
+	<div id="boardTitle2" class="bRow">
+		<span class="col1">
+			<input type="checkbox" name="chk2"/>
+		</span>
+		<span class="col2">글번호</span>
+		<span class="col3">글제목</span>
+		<span class="col4">작성자</span>
+		<span class="col5">&nbsp;</span>
+	</div>
+	<div id="boardContent2">
+	<% for(BoardVO vo : boardList){ %>
+	<div id="boardRow2" class="bRow">
+		<span class="col1">
+			<input type="checkbox" name="chk2"/>
+		</span>
+		<span class="col2">
+			<input type="text" name="idx2" style="border:none;width:50px;background-color:transparent" value="<%=vo.getIdx() %>" /></span>
+		<span class="col3">
+			<input type="text" name="title2" style="border:none;width:auto;background-color:transparent" value="<%=vo.getTitle() %>"/></span>
+		<span class="col4">
+			<select name="userID">
+			<% for(MemberVO mem : memberList){ %>
+				<option value="<%=mem.getUserID()%>"
+					<%if(vo.getUserID().equals(mem.getUserID())){%>
+					 selected="selected"
+					<% } %>	
+				><%=mem.getUserName()%></option>
+			<% } %>	
+			</select>
+		</span>
+		<span class="col5">
+			<input type="hidden" name="status2" style="border:none;width:0px;background-color:transparent" value="" readonly/>
+		</span>
+	</div>
+	<% } %>
+	</div>
+</div>
+</form>
+
+
+</body>
+</html>

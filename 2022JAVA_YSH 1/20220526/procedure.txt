@@ -1,0 +1,106 @@
+create or replace NONEDITIONABLE PACKAGE PKG_BOARDS AS 
+
+    PROCEDURE PROC_SEL_BOARDS
+    (
+        IN_IDX     IN      INT
+       ,O_CUR   OUT     SYS_REFCURSOR
+    );
+    
+    PROCEDURE PROC_SEL_MEMBERS
+    (
+        IN_USERID      IN      VARCHAR2
+        ,O_CUR      OUT     SYS_REFCURSOR
+    );
+    
+    PROCEDURE PROC_SAVE_BOARDS
+    (
+        IN_IDX      IN      VARCHAR2
+        ,IN_TITLE   IN      VARCHAR2
+        ,IN_USERID  IN      VARCHAR2
+    );
+    
+    PROCEDURE PROC_DEL_BOARDS
+    (
+        IN_IDX      IN      VARCHAR2
+    );
+
+END PKG_BOARDS;
+
+------------------------------
+
+create or replace NONEDITIONABLE PACKAGE BODY PKG_BOARDS AS
+
+  PROCEDURE PROC_SEL_BOARDS
+    (
+        IN_IDX     IN      INT
+       ,O_CUR   OUT     SYS_REFCURSOR
+    ) AS
+  BEGIN
+    
+    OPEN O_CUR FOR
+    SELECT * 
+    FROM BOARDS
+    WHERE IDX LIKE '%'||IN_IDX||'%'
+    ORDER BY IDX ASC
+    ;
+      
+    
+  END PROC_SEL_BOARDS;
+  
+  
+  
+
+  PROCEDURE PROC_SEL_MEMBERS
+    (
+        IN_USERID      IN      VARCHAR2
+        ,O_CUR      OUT     SYS_REFCURSOR
+    ) AS
+  BEGIN
+    
+    OPEN O_CUR FOR
+    SELECT *
+    FROM MEMBERS
+    WHERE USERID LIKE '%'||IN_USERID||'%'
+    ORDER BY USERID ASC
+    ;
+    
+  END PROC_SEL_MEMBERS;
+
+  PROCEDURE PROC_SAVE_BOARDS
+    (
+        IN_IDX      IN      VARCHAR2
+        ,IN_TITLE   IN      VARCHAR2
+        ,IN_USERID  IN      VARCHAR2
+    ) AS
+        V_NEW_IDX   INT;
+  BEGIN
+  
+    SELECT NVL(MAX(IDX),0)+1
+    INTO V_NEW_IDX
+    FROM BOARDS;
+    
+    MERGE INTO BOARDS A
+    USING DUAL
+    ON (A.IDX=IN_IDX)
+    WHEN MATCHED THEN
+        UPDATE SET TITLE=IN_TITLE,
+                    USERID=IN_USERID
+    WHEN NOT MATCHED THEN
+        INSERT(IDX, TITLE, USERID)
+        VALUES(V_NEW_IDX, IN_TITLE, IN_USERID)
+    ;
+    
+  END PROC_SAVE_BOARDS;
+
+  PROCEDURE PROC_DEL_BOARDS
+    (
+        IN_IDX      IN      VARCHAR2
+    ) AS
+  BEGIN
+    
+    DELETE FROM BOARDS
+    WHERE IDX=IN_IDX;
+    
+  END PROC_DEL_BOARDS;
+
+END PKG_BOARDS;

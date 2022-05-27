@@ -73,16 +73,32 @@
 		outline:none;
 	}
 </style>
-<link rel="stylesheet" href="/jscss/css/test.css"/>
+<!-- <link rel="stylesheet" href="jscss/css/test.css"/> -->
+<script src="jscss/js/commons.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
+		
+		chkTitle2();
+		addRowFunc();
+		saveFunc();
+		delFunc();
+	});
+	
+	var chkTitle = function(idx){
+		var objStatus = document.getElementsByName("status");
+		objStatus[idx].value = "u";
+	}
+	
+	var chkTitle2 = function(){
 		$("input[name='title2']").change(function(){
 			var chgIdx = $("input[name='title2']").index(this);
 			$("input[name='status2']").eq(chgIdx).val("u");
 			//boardContent 밑의 idx번째 boardRow
 			$("#boardContent2").children().eq(chgIdx).css("background-color","#BBB");
 		});
-		
+	}
+	
+	var addRowFunc = function(){
 		$("#btnAdd2").on("click",function(){
 			var strHTML = "";
 			strHTML += '<div id="boardRow2" class="bRow">';
@@ -90,13 +106,17 @@
 			strHTML += '<input type="checkbox" name="chk2"/>';
 			strHTML += '</span>';
 			strHTML += '<span class="col2">';
-			strHTML += '<input type="text" name="idx2" style="border:none;width:50px;background-color:transparent" value="" /></span>';
+			strHTML += '<input type="text" name="idx2" style="border:none;width:50px;background-color:transparent" value="" /> </span>';
 			strHTML += '<span class="col3">';
 			strHTML += '<input type="text" name="title2" style="border:none;width:auto;background-color:transparent" value=""/></span>';
 			strHTML += '<span class="col4">';
-			strHTML += '<select name="userID">';
+			strHTML += '<select name="userID2">';
 			strHTML += '<% for(MemberVO mem : memberList){ %>';
-				strHTML += '<option value="<%=mem.getUserID()%>">';
+				strHTML += '<option value="<%=mem.getUserID()%>"';
+				<% if(memberList.indexOf(mem)==0){ %>
+					strHTML += 'selected="selected"';
+				<% } %>
+				strHTML += '>';
 				strHTML += '<%=mem.getUserName()%></option>';
 			strHTML += '<% } %>';
 			strHTML += '</select>';
@@ -109,24 +129,55 @@
 			$("#boardContent2").append(strHTML);
 			$("#boardContent2").children().last().css("background-color","#BBB");
 		});
-	});
-	
-	var chkTitle = function(idx){
-		var objStatus = document.getElementsByName("status");
-		objStatus[idx].value = "u";
-	}
-	
-	var addRowFunc = function(){
-		
 	}
 	
 	var saveFunc = function(){
+		$("#btnSave2").on("click",function(){
+			$("#boardForm").attr("action","saveBoard");
+			$("#boardForm").submit();
+		});
+	}
+	
+	var delChk = function(){
+		var delHTML = '';
+		$("input[name='chk2']").each(function(){
+			if($(this).is(":checked")){
+				delHTML += '<input type="hidden" name="delIdx" value="'+$(this).val()+'"/>';
+			}
+		});
 		
+		$("#delDiv").html(delHTML);
+		$("#delForm").attr("action","deleteBoard");
+		$("#delForm").submit();
+	}
+	
+	var delFunc = function(){
+		$("#btnDelete2").on("click",delChk);
+		/*
+		var formID = "delForm";
+		var formAction = "deleteBoard";
+		var formMethod = "post";
+		var formNames = [];
+		var formVals = [];
+		
+		$("input[name='chk']").each(function(){
+			if($(this).is(":checked")){
+				formVals[i] = $(this).val();
+				formNames[i] = "delChk";
+				i++;
+			}
+		});
+		
+		var submitObj = new objectSubmit(formID,formAction,formMethod,formNames,formVals);
+		submitObj.linkSubmit()
+		*/
 	}
 </script>
 </head>
 <body>
-
+<%
+	
+%>
 
 <!-- javascript -->
 <div style="clear:both">---javascript---</div>
@@ -145,13 +196,13 @@
 		<span class="col2">글번호</span>
 		<span class="col3">글제목</span>
 		<span class="col4">작성자</span>
-		<span class="col5">&nbsp;</span>
+		<span class="col5" style="visibility:hidden">&nbsp;</span>
 	</div>
 	<div id="boardContent">
 	<% for(BoardVO vo : boardList){ %>
 	<div id="boardRow" class="bRow">
 		<span class="col1">
-			<input type="checkbox" name="chk"/>
+			<input type="checkbox" name="chk" value="<%=vo.getIdx() %>"/>
 		</span>
 		<span class="col2">
 			<input type="text" name="idx" style="border:none;width:50px;background-color:transparent" value="<%=vo.getIdx() %>" /></span>
@@ -168,7 +219,7 @@
 			<% } %>	
 			</select>
 		</span>
-		<span class="col5">
+		<span class="col5" style="visibility:hidden">
 			<input type="text" name="status" style="border:none;width:10px;background-color:transparent" value="" readonly/>
 		</span>
 	</div>
@@ -180,7 +231,7 @@
 <!-- jquery -->
 <div style="clear:both">---jquery---</div>
 
-<form name="boardForm" action="saveBoard" method="post">
+<form name="boardForm" id="boardForm" method="post">
 <div>
 	<input type="button" value="조회" id="btnSearch2" />
 	<input type="button" value="추가" id="btnAdd2" />
@@ -195,30 +246,30 @@
 		<span class="col2">글번호</span>
 		<span class="col3">글제목</span>
 		<span class="col4">작성자</span>
-		<span class="col5">&nbsp;</span>
+		<span class="col5" style="visibility:hidden">&nbsp;</span>
 	</div>
 	<div id="boardContent2">
 	<% for(BoardVO vo : boardList){ %>
 	<div id="boardRow2" class="bRow">
 		<span class="col1">
-			<input type="checkbox" name="chk2"/>
+			<input type="checkbox" name="chk2" value="<%=vo.getIdx() %>"/>
 		</span>
 		<span class="col2">
 			<input type="text" name="idx2" style="border:none;width:50px;background-color:transparent" value="<%=vo.getIdx() %>" /></span>
 		<span class="col3">
 			<input type="text" name="title2" style="border:none;width:auto;background-color:transparent" value="<%=vo.getTitle() %>"/></span>
 		<span class="col4">
-			<select name="userID">
+			<select name="userID2">
 			<% for(MemberVO mem : memberList){ %>
 				<option value="<%=mem.getUserID()%>"
 					<%if(vo.getUserID().equals(mem.getUserID())){%>
 					 selected="selected"
 					<% } %>	
-				><%=mem.getUserName()%></option>
+				 ><%=mem.getUserName()%></option>
 			<% } %>	
 			</select>
 		</span>
-		<span class="col5">
+		<span class="col5" style="visibility:hidden">
 			<input type="text" name="status2" style="border:none;width:10px;background-color:transparent" value="" readonly/>
 		</span>
 	</div>
@@ -226,7 +277,8 @@
 	</div>
 </div>
 </form>
-
-
+<form id="delForm" name="delForm" id="" method="post">
+<div id="delDiv"></div>
+</form>
 </body>
 </html>

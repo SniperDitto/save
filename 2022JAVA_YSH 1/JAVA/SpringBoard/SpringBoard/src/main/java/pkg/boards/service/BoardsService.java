@@ -9,4 +9,5 @@ public interface BoardsService {
 	public ArrayList<BoardVO> getBoardList(String idx);
 	public ArrayList<MemberVO> getMemberList(String userID);
 	public void saveBoard(String[] idx, String[] title, String[] userID, String[] status);
+	public void deleteBoard(String[] idx);
 }

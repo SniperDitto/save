@@ -27,7 +27,12 @@ public class BoardsServiceImpl implements BoardsService{
 
 	@Override
 	public void saveBoard(String[] idx, String[] title, String[] userID, String[] status) {
-		
+		boardsDAO.saveBoard(idx, title, userID, status);
+	}
+
+	@Override
+	public void deleteBoard(String[] idx) {
+		boardsDAO.deleteBoard(idx);
 	}
 	
 }
