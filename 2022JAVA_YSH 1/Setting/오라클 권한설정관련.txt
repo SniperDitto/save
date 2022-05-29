@@ -236,3 +236,23 @@ SYSTEM 계정 패스워드 변경하기
 alter user system identified by "암호";
 
 일반 스트링은 관계없지만 특수문자가 있을경우 반드시 "" 따옴표로 감싸준다.
+
+
+
+---------------------------------------------------------
+Oracle Cloud(MAC M1) 계정 만들기
+
+CREATE USER TESTDB IDENTIFIED BY Test12345678;
+SELECT * FROM DBA_USERS WHERE USERNAME = 'TESTDB';
+
+GRANT CREATE TABLE, CREATE VIEW TO TESTDB;
+GRANT CONNECT,DBA TO TESTDB;
+GRANT CONNECT,RESOURCE TO TESTDB;
+--COMMIT;
+
+show user;
+
+GRANT CREATE SESSION TO TESTDB;
+ALTER USER TESTDB DEFAULT TABLESPACE USERS QUOTA UNLIMITED ON TESTDB;
+GRANT CREATE ANY TABLE TO TESTDB;
+
