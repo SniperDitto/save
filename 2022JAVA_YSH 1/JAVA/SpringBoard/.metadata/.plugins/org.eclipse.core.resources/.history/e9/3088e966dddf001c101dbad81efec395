@@ -1,0 +1,7 @@
+package pkg.admin.Service;
+
+import java.util.List;
+
+public interface AuthListService {
+	public List<AuthVO> getAuthList();
+}

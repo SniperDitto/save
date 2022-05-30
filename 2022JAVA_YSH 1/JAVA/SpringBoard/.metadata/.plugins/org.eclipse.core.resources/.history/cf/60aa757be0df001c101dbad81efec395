@@ -1,0 +1,18 @@
+package pkg.admin.Service;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import pkg.admin.DTO.AuthDTO;
+
+@Service
+public class AuthListServiceImpl implements AuthListService{
+
+	@Override
+	public List<AuthDTO> getAuthList() {
+		
+		return null;
+	}
+
+}

@@ -1,0 +1,13 @@
+package pkg.boards.DAO;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import pkg.boards.VO.BoardVO;
+
+public interface ListDAO {
+	public List<BoardVO> getBoardList(String idx);
+	public Map<String, ArrayList<BoardVO>> getProcBoardList(String idx);
+	public void insertBoardList(BoardVO vo);
+}

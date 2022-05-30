@@ -1,0 +1,87 @@
+CREATE OR REPLACE 
+PACKAGE PKG_ADMIN_AUTH AS 
+
+    PROCEDURE PROC_SEL_AUTH
+    (
+        IN_AUTHNAME     IN      VARCHAR2
+        ,O_CUR          OUT     SYS_REFCURSOR
+    );
+    
+    PROCEDURE PROC_SAVE_AUTH
+    (
+        IN_AUTHID       IN  VARCHAR2
+        ,IN_AUTHNAME    IN  VARCHAR2
+        ,O_ECODE    OUT     VARCHAR2
+        ,O_EMSG     OUT     VARCHAR2
+    );
+    
+    PROCEDURE PROC_DEL_AUTH
+    (
+        IN_AUTHID   IN      VARCHAR2
+        ,O_ECODE    OUT     VARCHAR2
+        ,O_EMSG     OUT     VARCHAR2
+    );
+
+END PKG_ADMIN_AUTH;
+
+-------------------------------------------
+
+CREATE OR REPLACE
+PACKAGE BODY PKG_ADMIN_AUTH AS
+
+  PROCEDURE PROC_SEL_AUTH
+    (
+        IN_AUTHNAME     IN      VARCHAR2
+        ,O_CUR          OUT     SYS_REFCURSOR
+    ) AS
+  BEGIN
+    
+    OPEN O_CUR FOR
+    SELECT AUTHID, AUTHNAME
+    FROM AUTHES
+    WHERE AUTHNAME LIKE '%'|| IN_AUTHNAME ||'%'
+    ORDER BY AUTHID ASC
+    ;
+    
+
+  END PROC_SEL_AUTH;
+  
+  
+  
+  
+  
+  PROCEDURE PROC_SAVE_AUTH
+    (
+        IN_AUTHID       IN  VARCHAR2
+        ,IN_AUTHNAME    IN  VARCHAR2
+        ,O_ECODE    OUT     VARCHAR2
+        ,O_EMSG     OUT     VARCHAR2
+    ) AS
+  BEGIN
+    
+    
+    
+    
+    NULL;
+  END PROC_SAVE_AUTH;
+
+
+
+
+
+
+  PROCEDURE PROC_DEL_AUTH
+    (
+        IN_AUTHID   IN      VARCHAR2
+        ,O_ECODE    OUT     VARCHAR2
+        ,O_EMSG     OUT     VARCHAR2
+    ) AS
+  BEGIN
+    
+    
+    
+    
+    NULL;
+  END PROC_DEL_AUTH;
+
+END PKG_ADMIN_AUTH;

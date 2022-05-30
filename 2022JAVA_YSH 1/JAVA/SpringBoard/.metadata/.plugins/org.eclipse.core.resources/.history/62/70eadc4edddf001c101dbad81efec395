@@ -1,0 +1,9 @@
+package pkg.admin.DTO;
+
+public class AuthDTO {
+	
+	public String authID;
+	public String authName;
+	
+	
+}

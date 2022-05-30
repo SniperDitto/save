@@ -1,0 +1,5 @@
+package pkg.boards.controller;
+
+public class ListController {
+
+}
