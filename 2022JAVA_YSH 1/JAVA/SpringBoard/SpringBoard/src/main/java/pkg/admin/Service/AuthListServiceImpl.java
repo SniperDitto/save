@@ -1,6 +1,7 @@
 package pkg.admin.Service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,16 @@ public class AuthListServiceImpl implements AuthListService{
 	public List<AuthDTO> getAuthList(String authName) {
 		
 		return authListDAO.getAuthList(authName);
+	}
+
+	@Override
+	public Map<String, String[]> saveAuthList(Map<String, String[]> paramsMap) {
+		return authListDAO.saveAuthList(paramsMap);
+	}
+
+	@Override
+	public Map<String, String[]> deleteAuthList(String[] authID) {
+		return authListDAO.deleteAuthList(authID);
 	}
 
 }

@@ -1,0 +1,5 @@
+package pkg.admin.ErrorHandler;
+
+public class ErrorHandleController {
+
+}

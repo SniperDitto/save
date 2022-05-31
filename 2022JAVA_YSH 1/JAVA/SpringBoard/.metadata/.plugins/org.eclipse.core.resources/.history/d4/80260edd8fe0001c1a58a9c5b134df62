@@ -1,0 +1,12 @@
+package pkg.admin.ErrorHandler;
+
+import java.util.Map;
+
+public class ErrorHandler {
+	//db에러처리
+	public void goDBErrorPage(Map<String, String[]> map) {
+		
+		
+		
+	}
+}

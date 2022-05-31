@@ -1,6 +1,8 @@
 package pkg.admin.Controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,19 +19,40 @@ public class AuthListController {
 	private AuthListService authListService;
 	
 	@RequestMapping("authList")
-	public String getAuthList(String authName, Model model) {
+	public String getAuthList(String authNameSearch, Model model) {
 		
 		List<AuthDTO> authList = null;
-		if(authName==null) {
+		if(authNameSearch==null) {
 			authList=authListService.getAuthList("");
 		}else {
-			authList=authListService.getAuthList(authName);
+			authList=authListService.getAuthList(authNameSearch);
 		}
 		
-		model.addAttribute("authName",authName);
+		model.addAttribute("authNameSearch",authNameSearch);
 		model.addAttribute("authList",authList);
 		
 		return "/Admin/authList/authList";
+	}
+	
+	@RequestMapping("saveAuthList")
+	public String saveAuthList(String[] authID, String[] authName, String[] gbn) {
+		Map<String, String[]> paramsMap = new HashMap<String, String[]>();
+		
+		paramsMap.put("authID", authID);
+		paramsMap.put("authName", authName);
+		paramsMap.put("gbn", gbn);
+		
+		Map<String, String[]> errMap = authListService.saveAuthList(paramsMap);
+
+		return "redirect:authList?authName=";
+	}
+	
+	@RequestMapping()
+	public String deleteAuthList(String[] authID) {
+		
+		Map<String, String[]> errMap = authListService.deleteAuthList(authID);
+		
+		return "redirect:authList?authName=";
 	}
 	
 }

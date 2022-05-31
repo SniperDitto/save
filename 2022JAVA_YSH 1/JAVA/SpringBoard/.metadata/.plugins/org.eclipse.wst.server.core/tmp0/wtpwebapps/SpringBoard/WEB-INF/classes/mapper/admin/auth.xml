@@ -10,5 +10,24 @@
 			,#{result, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=authMap}
 		)}
 	</select>
-
+	
+	
+	<select id="saveAuthList"  parameterType="pkg.admin.DTO.AuthDTO" statementType="CALLABLE">
+		{call PKG_ADMIN_AUTH.PROC_SAVE_AUTH(
+			#{authID, jdbcType=VARCHAR, mode=IN}
+			,#{authName, jdbcType=VARCHAR, mode=IN}
+			,#{gbn, jdbcType=VARCHAR, mode=IN}
+			,#{errCode, mode=OUT, jdbcType=VARCHAR, javaType=java.lang.String}
+			,#{errMsg, mode=OUT, jdbcType=VARCHAR, javaType=java.lang.String}
+		)}
+	</select>
+	
+	<select id="deleteAuthList"  parameterType="pkg.admin.DTO.AuthDTO" statementType="CALLABLE">
+		{call PKG_ADMIN_AUTH.PROC_DEL_AUTH(
+			#{authID, jdbcType=VARCHAR, mode=IN}
+			,#{errCode, mode=OUT, jdbcType=VARCHAR, javaType=java.lang.String}
+			,#{errMsg, mode=OUT, jdbcType=VARCHAR, javaType=java.lang.String}
+		)}
+	</select>
+	
 </mapper>
