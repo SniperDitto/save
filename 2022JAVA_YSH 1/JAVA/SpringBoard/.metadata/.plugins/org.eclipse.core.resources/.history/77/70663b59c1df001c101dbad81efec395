@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="pkg.boards.BoardMapper">
+
+	<select resultType="Pkg.Boards.VO.BoardVO" id="boardList">
+		SELECT * FROM BOARDS WHERE IDX LIKE '%' || #{idx} || '%'
+	</select>
+	<select resultType="Pkg.Boards.VO.MemberVO" id="memberList">
+		SELECT * FROM MEMBERS WHERE USERID LIKE '%' || #{userID} || '%'
+	</select>
+	
+	<resultMap id="boardMap" type="Pkg.Boards.VO.BoardVO">
+		<result column="USERID" property="userID"/>
+		<result column="USERNAME" property="userName"/>
+	</resultMap>
+	
+	<select id="procBoardList" statementType="CALLABLE" parameterType="Pkg.Boards.VO.BoardVO" resultMap="boardMap">
+		{call PKG_BOARDS.PROC_SEL_BOARD(
+			#{idx, jdbcType = VARCHAR, mode = IN},
+			#{result, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=boardMap}
+		)} 
+	</select>
+
+</mapper>
+<!-- 
+<mapper namespace="Pkg.Boards.BoardMapper">
+<select resultType="Pkg.Boards.VO.BoardVO" id="boardList">
+	SELECT * FROM BOARDS WHERE IDX LIKE '%' || #{idx} || '%'
+</select>
+<select resultType="Pkg.Boards.VO.MemberVO" id="memberList">
+	SELECT * FROM MEMBERS WHERE USERID LIKE '%' || #{userID} || '%'
+</select>
+
+<resultMap id="boardMap" type="Pkg.Boards.VO.BoardVO">
+<result column="USERID" property="userID"/>
+<result column="USERNAME" property="userName"/>
+</resultMap>
+
+<select id="procBoardList" statementType="CALLABLE" parameterType="Pkg.Boards.VO.BoardVO" resultMap="boardMap">
+	{call PKG_BOARDS.PROC_SEL_BOARD(#{idx, jdbcType = VARCHAR, mode = IN},#{result, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=boardMap})} 
+</select>
+
+</mapper> -->

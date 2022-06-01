@@ -1,0 +1,125 @@
+create or replace NONEDITIONABLE PACKAGE PKG_ADMIN_AUTH AS 
+
+    PROCEDURE PROC_SEL_AUTH
+    (
+        IN_AUTHNAME     IN      VARCHAR2
+        ,O_CUR          OUT     SYS_REFCURSOR
+    );
+    
+    PROCEDURE PROC_SAVE_AUTH
+    (
+        IN_AUTHID       IN  VARCHAR2
+        ,IN_AUTHNAME    IN  VARCHAR2
+        ,IN_GBN         IN  VARCHAR2
+        ,O_ECODE    OUT     VARCHAR2
+        ,O_EMSG     OUT     VARCHAR2
+    );
+    
+    PROCEDURE PROC_DEL_AUTH
+    (
+        IN_AUTHID   IN      VARCHAR2
+        ,O_ECODE    OUT     VARCHAR2
+        ,O_EMSG     OUT     VARCHAR2
+    );
+
+END PKG_ADMIN_AUTH;
+
+-------------------------------------------
+
+create or replace NONEDITIONABLE PACKAGE BODY PKG_ADMIN_AUTH AS
+
+  PROCEDURE PROC_SEL_AUTH
+    (
+        IN_AUTHNAME     IN      VARCHAR2
+        ,O_CUR          OUT     SYS_REFCURSOR
+    ) AS
+  BEGIN
+    
+    OPEN O_CUR FOR
+    SELECT AUTHID, AUTHNAME
+    FROM AUTHES
+    WHERE AUTHNAME LIKE '%'|| IN_AUTHNAME ||'%'
+    ORDER BY AUTHID ASC
+    ;
+    
+
+  END PROC_SEL_AUTH;
+  
+  
+
+  PROCEDURE PROC_DEL_AUTH
+    (
+        IN_AUTHID   IN      VARCHAR2
+        ,O_ECODE    OUT     VARCHAR2
+        ,O_EMSG     OUT     VARCHAR2
+    ) AS
+  BEGIN
+    
+    DELETE FROM AUTHES
+    WHERE AUTHID=IN_AUTHID
+    ;
+    
+    EXCEPTION
+        WHEN OTHERS THEN
+            O_ECODE := SQLCODE;
+            O_EMSG := SQLERRM;
+            ROLLBACK;
+    
+  END PROC_DEL_AUTH;
+  
+  
+  
+  
+
+  PROCEDURE PROC_SAVE_AUTH
+    (
+        IN_AUTHID       IN  VARCHAR2
+        ,IN_AUTHNAME    IN  VARCHAR2
+        ,IN_GBN         IN  VARCHAR2
+        ,O_ECODE    OUT     VARCHAR2
+        ,O_EMSG     OUT     VARCHAR2
+    ) AS
+        V_NEW_AUTHID    CHAR(7);
+        V_NEW_AMID          CHAR(7);
+  BEGIN
+    O_ECODE := 'SUC';
+    
+    SELECT 'AUTH'||TO_CHAR(NVL(MAX(SUBSTR(AUTHID,5,3)),0)+1,'FM000')
+    INTO V_NEW_AUTHID
+    FROM AUTHES
+    ;
+    
+    MERGE INTO AUTHES A
+    USING DUAL
+    ON (A.AUTHID=IN_AUTHID)
+    WHEN MATCHED THEN
+        UPDATE SET AUTHNAME=IN_AUTHNAME
+    WHEN NOT MATCHED THEN
+        INSERT(AUTHID, AUTHNAME)
+        VALUES(V_NEW_AUTHID, IN_AUTHNAME)
+    ;
+    
+    IF IN_GBN = 'I' THEN
+    
+        SELECT 'AM'||TO_CHAR(NVL(MAX(SUBSTR(AMID,3,5)),0)+1,'FM00000')
+        INTO V_NEW_AMID
+        FROM AUTH_MENUS
+        ;
+        
+        INSERT INTO AUTH_MENUS(AMID, AUTHID, MENUID)
+        SELECT 'AM'||TO_CHAR(ROWNUM,'FM00000'), T2.AUTHID, T1.MENUID
+        FROM MENUS T1, AUTHES T2
+        WHERE T2.AUTHID=V_NEW_AUTHID
+        ;
+    END IF;
+    
+    EXCEPTION
+        WHEN OTHERS THEN
+            O_ECODE := SQLCODE;
+            O_EMSG := SQLERRM;
+            ROLLBACK;
+        
+        
+  END PROC_SAVE_AUTH;
+
+END PKG_ADMIN_AUTH;

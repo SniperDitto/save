@@ -2,6 +2,7 @@ package pkg.boards.DAO;
 
 import java.util.ArrayList;
 
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import pkg.boards.VO.BoardVO;
@@ -10,7 +11,7 @@ import pkg.boards.VO.MemberVO;
 public class MybatisDAOImpl implements BoardsDAO{
 	
 	@Autowired
-	private sqlSession sqlSessionFactory;
+	private SqlSessionTemplate sqlSession;
 	
 	@Override
 	public ArrayList<BoardVO> getBoardsList(String idx) {

@@ -12,7 +12,7 @@
 	<!-- /:주소아님 인스턴스화한 클래스이름임 -->
 	<!-- <bean id="/helloSpring" class="pkg.boards.controller.BoardController"></bean> -->
 	
-	<context:component-scan base-package="pkg.boards.*"></context:component-scan>
+	<context:component-scan base-package="pkg.admin.*"></context:component-scan>
 	<mvc:annotation-driven></mvc:annotation-driven>
 	<mvc:resources location="/WEB-INF/resources" mapping="/jscss/**"></mvc:resources>
 	
@@ -31,12 +31,14 @@
 	
 	<bean class="org.mybatis.spring.SqlSessionFactoryBean" id="SqlSessionFactory">
 	    <property name="dataSource" ref="dataSource" />
-	    <property value="classpath:mybatis-config.xml" name="configLocation" />
-	    <property value="classpath:/mapper/*Mapper.xml" name="mapperLocations" />
+	    <!-- <property value="classpath:mybatis-config.xml" name="configLocation" /> -->
+	    <property value="classpath:/mapper/**/*.xml" name="mapperLocations" />
 	</bean>
 	
+	
+	
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
-        <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>    
+        <constructor-arg name="sqlSessionFactory" ref="SqlSessionFactory"></constructor-arg>    
     </bean>
     
     

@@ -1,0 +1,8 @@
+package pkg.admin.Controller;
+
+import org.springframework.stereotype.Controller;
+
+@Controller
+public class AuthManageController {
+	
+}

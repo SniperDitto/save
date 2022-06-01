@@ -1,0 +1,32 @@
+package pkg.admin.Controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+
+import pkg.admin.DTO.AuthDTO;
+import pkg.admin.Service.AuthListService;
+
+@Controller
+public class AuthListController {
+	
+	@Autowired
+	private AuthListService authListService;
+	
+	public String getAuthList(String authName, Model model) {
+		
+		List<AuthDTO> authList = null;
+		if(authName==null) {
+			authList=authListService.getAuthList("");
+		}else {
+			authList=authListService.getAuthList(authName);
+		}
+		
+		model.addAttribute("authList",authList);
+		
+		return "/admin/auth_manage";
+	}
+	
+}

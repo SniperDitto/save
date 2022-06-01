@@ -1,0 +1,18 @@
+package pkg.admin.DAO;
+
+import java.util.List;
+
+import org.springframework.stereotype.Component;
+
+import pkg.admin.DTO.AuthDTO;
+
+@Component
+public class AuthListDAOImpl implements AuthListDAO{
+
+	@Override
+	public List<AuthDTO> getAuthList() {
+		
+		return null;
+	}
+	
+}

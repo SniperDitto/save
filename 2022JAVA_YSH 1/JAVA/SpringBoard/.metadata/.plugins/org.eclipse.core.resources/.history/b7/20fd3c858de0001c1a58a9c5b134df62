@@ -1,0 +1,17 @@
+package pkg.admin.ErrorHandler;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class ErrorHandleController {
+	
+	@RequestMapping("errorHandle")
+	public String goErrorPage(String errorCode, String errorMsg, Model model) {
+		model.addAttribute("errorCode",errorCode);
+		model.addAttribute("errorMsg",errorMsg);
+		
+		return "/Admin/adminError/err";
+	}
+}

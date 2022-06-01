@@ -1,0 +1,14 @@
+package pkg.admin.Service;
+
+import java.util.List;
+
+import pkg.admin.DTO.AuthDTO;
+
+public class AuthListServiceImpl implements AuthListService{
+
+	@Override
+	public List<AuthDTO> getAuthList() {
+		return null;
+	}
+
+}

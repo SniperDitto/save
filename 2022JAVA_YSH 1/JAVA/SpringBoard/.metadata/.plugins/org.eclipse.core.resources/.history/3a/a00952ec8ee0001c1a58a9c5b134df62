@@ -1,0 +1,9 @@
+package pkg.admin.ErrorHandler;
+
+import java.util.Map;
+
+public class ErrorHandler {
+	public void goErrorPage(Map<String, String[]> map) {
+		
+	}
+}

@@ -1,0 +1,13 @@
+package pkg.boards.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestParam;
+
+@Controller
+public class ListController {
+	
+	@RequestParam("list")
+	public void boardList() {
+		
+	}
+}

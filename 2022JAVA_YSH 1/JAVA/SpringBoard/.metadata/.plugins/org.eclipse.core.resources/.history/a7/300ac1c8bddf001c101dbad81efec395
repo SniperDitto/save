@@ -1,0 +1,39 @@
+package pkg.boards.DAO;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import pkg.boards.VO.BoardVO;
+
+@Repository
+public class ListDAOImpl implements ListDAO{
+	
+	@Autowired
+	private SqlSessionTemplate sqlSession;
+
+	@Override
+	public List<BoardVO> getBoardList(String idx) {
+		List<BoardVO> boardList = sqlSession.selectList("pkg.boards.list.selectBoard",idx);
+		return boardList;
+	}
+
+	@Override
+	public Map<String, ArrayList<BoardVO>> getProcBoardList(String idx) {
+		//Map 타입으로 매개변수 주고 결과 받음
+		
+		return null;
+	}
+
+	@Override
+	public void insertBoardList(BoardVO vo) {
+		
+	}
+	
+	
+	
+}

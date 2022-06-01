@@ -1,0 +1,23 @@
+package pkg.boards.DAO;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import pkg.boards.VO.BoardVO;
+
+public class ListDAOImpl implements ListDAO{
+
+	@Override
+	public List<BoardVO> getBoardList(String idx) {
+		
+		return null;
+	}
+
+	@Override
+	public Map<String, ArrayList<BoardVO>> getProcBoardList(String idx) {
+		
+		return null;
+	}
+	
+}

@@ -1,0 +1,12 @@
+package pkg.admin.ErrorHandler;
+
+import org.springframework.stereotype.Controller;
+
+@Controller
+public class ErrorHandleController {
+	
+	
+	public String goErrorPage(String errorCode, String errorMsg) {
+		
+	}
+}

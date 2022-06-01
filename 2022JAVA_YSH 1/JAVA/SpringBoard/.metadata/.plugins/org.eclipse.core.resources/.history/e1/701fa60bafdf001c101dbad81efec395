@@ -1,0 +1,29 @@
+package pkg.boards.DAO;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.stereotype.Repository;
+
+import pkg.boards.VO.BoardVO;
+
+@Repository
+public class ListDAOImpl implements ListDAO{
+	
+	private SqlSessionTemplate sqlSession;
+
+	@Override
+	public List<BoardVO> getBoardList(String idx) {
+		
+		return null;
+	}
+
+	@Override
+	public Map<String, ArrayList<BoardVO>> getProcBoardList(String idx) {
+		
+		return null;
+	}
+	
+}

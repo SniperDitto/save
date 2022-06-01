@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="pkg.boards.list">
+
+	<select id="selectBoard" resultType="pkg.boards.VO.BoardVO">
+		SELECT * FROM BOARDS WHERE IDX LIKE '%'||#{IDX}||'%'
+	</select>
+	
+	
+	
+	<resultMap id="boardMap" type="pkg.boards.VO.BoardVO">
+		<result property="userID" column="USERID"></result>
+		<result property="userName" column="USERNAME"></result>
+	</resultMap>
+	
+	<select id="procSelectBoard" resultMap="" parameterType="" statementType="CALLABLE">
+		
+	</select>
+
+</mapper>
