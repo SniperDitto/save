@@ -1,4 +1,4 @@
-package pkg.Exec;
+package pkg.Class1;
 
 import java.util.Scanner;
 

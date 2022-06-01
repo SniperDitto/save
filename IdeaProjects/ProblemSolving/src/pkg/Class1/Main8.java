@@ -1,16 +1,16 @@
-package pkg.Exec;
+package pkg.Class1;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Main7 {
+public class Main8 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         ArrayList<Integer> answers = new ArrayList<Integer>();
 
         while(scanner.hasNext()){
             String inputStr = scanner.nextLine();
-            if(!inputStr.equals("")) {
+            if(!inputStr.equals("0 0")) {
                 String[] nextNums = inputStr.split(" ");
                 System.out.print("");
                 int A = Integer.parseInt(nextNums[0]);
@@ -24,6 +24,5 @@ public class Main7 {
         for(int i : answers){
             System.out.println(i);
         }
-
     }
 }

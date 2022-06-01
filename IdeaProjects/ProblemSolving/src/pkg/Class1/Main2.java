@@ -1,16 +1,12 @@
-package pkg.Exec;
+package pkg.Class1;
 
 import java.util.Scanner;
 
-public class Main3 {
+public class Main2 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         String[] inputStr = scanner.nextLine().split(" ");
-        int result = 0;
-        for(String s : inputStr){
-            result += Integer.parseInt(s)*Integer.parseInt(s);
-        }
-        result = result%10;
+        int result = Integer.parseInt(inputStr[0]) * Integer.parseInt(inputStr[1]);
         System.out.println(result);
     }
 }
