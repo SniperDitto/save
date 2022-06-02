@@ -1,0 +1,66 @@
+package pkg.admin.Controller;
+
+import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+
+import pkg.admin.DTO.AuthDTO;
+import pkg.admin.DTO.AuthMemberDTO;
+import pkg.admin.Service.AuthListService;
+import pkg.admin.Service.AuthMemberService;
+
+@Controller
+public class AdminMemberController {
+	
+	@Autowired
+	private AuthMemberService authMemberService;
+	@Autowired
+	private AuthListService authListService;
+	
+	@RequestMapping("memberList")
+	public String goMemberList() {
+		
+		
+		return "/Admin/authList/memberList";
+	}
+	
+	@RequestMapping("jsonMemberList")
+	public void MemberList(String searchText) {
+		/*
+		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+		Enumeration eHeader = request.getHeaderNames();
+		while (eHeader.hasMoreElements()) {
+		    String hName = (String)eHeader.nextElement();
+		    String hValue = request.getHeader(hName);
+		    System.out.println(hName + " : " + hValue + "");
+		}
+		*/
+		List<AuthMemberDTO> memberList = authMemberService.getAuthMemberList(searchText);
+		List<AuthDTO> authList = authListService.getAuthList("");
+		
+		JSONArray jsonArray = new JSONArray();
+		for(AuthMemberDTO member : memberList) {
+			//json 양식으로 만들기
+			JSONObject jsonObject = new JSONObject();
+			jsonObject.put("mID", member.getmID());
+			jsonObject.put("mName", member.getmName());
+			jsonObject.put("authID", member.getAuthID());
+			jsonObject.put("authName", member.getAuthName());
+			
+			jsonArray.add(jsonObject);
+		}
+		
+	}
+	
+	
+}

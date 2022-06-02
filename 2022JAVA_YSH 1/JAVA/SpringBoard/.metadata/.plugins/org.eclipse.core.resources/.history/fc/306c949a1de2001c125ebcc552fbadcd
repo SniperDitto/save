@@ -1,0 +1,9 @@
+package pkg.admin.Service;
+
+import java.util.ArrayList;
+
+import pkg.admin.DTO.AuthMemberDTO;
+
+public interface AuthMemberService {
+	public ArrayList<AuthMemberDTO> getAuthMemberList();
+}

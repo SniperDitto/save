@@ -1,0 +1,9 @@
+package pkg.admin.DAO;
+
+import java.util.ArrayList;
+
+import pkg.admin.DTO.AuthMemberDTO;
+
+public class AuthMemberDAO {
+	public ArrayList<AuthMemberDTO> getAuthMember(String searchText);
+}

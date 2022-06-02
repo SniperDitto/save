@@ -1,0 +1,10 @@
+package pkg.admin.DTO;
+
+public class AuthMemberDTO {
+	
+	private String mID;
+	private String mName;
+	private String authID;
+	private String authName;
+	
+}

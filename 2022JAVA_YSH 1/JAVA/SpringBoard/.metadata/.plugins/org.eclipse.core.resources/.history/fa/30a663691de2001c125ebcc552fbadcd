@@ -1,0 +1,18 @@
+package pkg.admin.DAO;
+
+import java.util.ArrayList;
+
+import org.springframework.stereotype.Repository;
+
+import pkg.admin.DTO.AuthMemberDTO;
+
+@Repository
+public class AuthMemberDAOImpl implements AuthMemberDAO{
+
+	@Override
+	public ArrayList<AuthMemberDTO> getAuthMemberList(String searchText) {
+		
+		return null;
+	}
+	
+}

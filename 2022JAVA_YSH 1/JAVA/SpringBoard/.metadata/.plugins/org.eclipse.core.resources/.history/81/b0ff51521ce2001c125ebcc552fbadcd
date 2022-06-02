@@ -1,0 +1,8 @@
+package pkg.admin.DAO;
+
+import org.springframework.stereotype.Repository;
+
+@Repository
+public class AuthMemberDAOImpl implements AuthMemberDAO{
+	
+}

@@ -1,0 +1,17 @@
+package pkg.admin.Controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class AdminMemberController {
+	
+	@RequestMapping("MemberList")
+	public String goMemberList() {
+		
+		
+		return "/Admin/authList/MemberList";
+	}
+	
+	
+}

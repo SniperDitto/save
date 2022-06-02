@@ -8,5 +8,11 @@
 	<result property="authName" column="AUTHNAME"></result>
 </resultMap>
 
+<resultMap id="authMemberMap" type="pkg.admin.DTO.AuthMemberDTO">
+	<result property="mID" column="MID"></result>
+	<result property="mName" column="MNAME"></result>
+	<result property="authID" column="AUTHID"></result>
+	<result property="authName" column="AUTHNAME"></result>
+</resultMap>
 
 </mapper>

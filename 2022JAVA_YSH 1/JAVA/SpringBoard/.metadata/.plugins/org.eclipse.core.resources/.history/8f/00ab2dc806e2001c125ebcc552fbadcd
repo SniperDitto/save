@@ -1,0 +1,5 @@
+package pkg.admin.Controller;
+
+public class AdminMemberController {
+
+}

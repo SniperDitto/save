@@ -1,0 +1,28 @@
+package pkg.admin.Controller;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+
+@Controller
+public class AdminMemberController {
+	
+	@RequestMapping("memberList")
+	public String goMemberList() {
+		
+		
+		return "/Admin/authList/memberList";
+	}
+	
+	@RequestMapping("jsonMemberList")
+	public void MemberList(String searchTest) {
+		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+		
+		
+	}
+	
+	
+}

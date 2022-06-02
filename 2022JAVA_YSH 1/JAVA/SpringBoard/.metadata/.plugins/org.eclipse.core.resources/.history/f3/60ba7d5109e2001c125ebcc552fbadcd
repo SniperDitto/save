@@ -1,0 +1,77 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>members list</title>
+<script
+  src="https://code.jquery.com/jquery-3.6.0.js"
+  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
+<script type="text/javascript" src="/jscss/js/common.js"></script>
+<style>
+	body{
+		margin:0px;
+		font-size:12px;
+	}
+	#wrap{
+		
+	}
+	.search{
+		width:700px;
+		border:1px solid red;
+		padding:4px 0px 4px 0px;
+		clear:both;
+	}
+	.row{
+		width:700px;
+		border:1px solid red;
+		padding:4px 0px 4px 0px;
+		clear:both;
+	}
+</style>
+</head>
+<body>
+<div id="wrap">
+	<div class="search">
+		<input type="text" id="search" />&nbsp;&nbsp;&nbsp;
+		<input type="button" value="조회" id="btnSearch"/>
+		<input type="button" value="추가" id="btnAdd"/>
+		<input type="button" value="저장" id="btnSave"/>
+		<input type="button" value="삭제" id="btnDelete"/>
+	</div>
+	<div class="title">
+		
+	</div>
+	<div class="row">
+		<span>
+			<input type="checkbox" name="chkT" value="" class="col1"/>
+		</span>
+		<span class="col2">회원ID</span>
+		<span class="col3">회원이름</span>
+		<span class="col4">회원권한</span>
+		<span class="col5"></span>
+	</div>
+	<div class="row">
+		<span>
+			<input type="checkbox" name="chk" value=""/>
+		</span>
+		<span>
+			<input type="text" name=mID value=""/>
+		</span>
+		<span>
+			<input type="text" name="mName" value=""/>
+		</span>
+		<span>
+			<select name="authID">
+				<option value=""></option>
+			</select>
+		</span>
+		<span>
+			<input type="text" name="" value=""/>
+		</span>
+	</div>
+</div>
+</body>
+</html>

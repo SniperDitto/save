@@ -1,0 +1,38 @@
+package pkg.admin.Controller;
+
+import java.util.Enumeration;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+
+@Controller
+public class AdminMemberController {
+	
+	@RequestMapping("memberList")
+	public String goMemberList() {
+		
+		
+		return "/Admin/authList/memberList";
+	}
+	
+	@RequestMapping("jsonMemberList")
+	public void MemberList(String searchText) {
+		/*
+		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+		Enumeration eHeader = request.getHeaderNames();
+		while (eHeader.hasMoreElements()) {
+		    String hName = (String)eHeader.nextElement();
+		    String hValue = request.getHeader(hName);
+		    System.out.println(hName + " : " + hValue + "");
+		}
+		*/
+		
+		
+	}
+	
+	
+}

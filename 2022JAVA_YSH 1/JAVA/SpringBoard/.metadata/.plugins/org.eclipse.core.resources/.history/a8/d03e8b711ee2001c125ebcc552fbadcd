@@ -1,0 +1,23 @@
+package pkg.admin.Service;
+
+import java.util.ArrayList;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import pkg.admin.DAO.AuthMemberDAO;
+import pkg.admin.DTO.AuthMemberDTO;
+
+@Service
+public class AuthMemberServiceImpl implements AuthMemberService{
+	
+	@Autowired
+	AuthMemberDAO authMemberDAO;
+	
+	@Override
+	public ArrayList<AuthMemberDTO> getAuthMemberList(String searchText) {
+		ArrayList<AuthMemberDTO> authMemberList = authMemberDAO.getAuthMemberList(searchText);
+		return null;
+	}
+	
+}

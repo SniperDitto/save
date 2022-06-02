@@ -1,0 +1,31 @@
+package pkg.admin.DAO;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import pkg.admin.DTO.AuthMemberDTO;
+
+@Repository
+public class AuthMemberDAOImpl implements AuthMemberDAO{
+
+	@Autowired
+	private SqlSessionTemplate sqlSession;
+	
+	@Override
+	public ArrayList<AuthMemberDTO> getAuthMemberList(String searchText) {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("searchText", searchText);
+		
+		sqlSession.selectList("selectAuthMemberList",map);
+		ArrayList<AuthMemberDTO> authMemberList = (ArrayList<AuthMemberDTO>) map.get("result");
+		
+		return null;
+	}
+	
+}
