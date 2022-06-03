@@ -28,5 +28,34 @@ public class AuthMemberDAOImpl implements AuthMemberDAO{
 		
 		return authMemberList;
 	}
+
+	@Override
+	public void saveMemberList(Map<String, String[]> map) {
+		Map<String, Object> params=null;
+		String[] mID = map.get("mID");
+		String[] mName = map.get("mName");
+		String[] authID = map.get("authID");
+		String[] mthID = map.get("mthID");
+		String[] hval = map.get("hval");
+		
+		String errCode = "";
+		String errMsg = "";
+		
+		for(int i=0;i<mID.length;i++) {
+			if(hval[i]!=null) {
+				params = new HashMap<String, Object>();
+				params.put("mID", mID);
+				params.put("mName", mName);
+				params.put("authID", authID);
+				params.put("mthID", mthID);
+			}
+		}
+		
+		sqlSession.selectList("saveMemberList",params);
+		errCode = (String) params.get("errCode");
+		errMsg = (String) params.get("errMsg");
+		
+		
+	}
 	
 }

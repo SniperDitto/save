@@ -20,75 +20,98 @@ $(document).ready(function(){
     });
     
     $("#btnAdd").click(function(){
-    	var strHTML = "";
-    	strHTML += '<tr style="background-color:#BBB">';
-    	strHTML += '<td width="100px" height="30px" align="center">';
-    		strHTML += '<input type="checkbox" name="chk" value="0"/>';
-    	strHTML += '</td>';
-    	strHTML += '<td width="200px" height="30px" align="center"><input type="text" name="authID" id="" value="" readonly/></td>';
-    	strHTML += '<td width="400px" height="30px" align="center"><input type="text" name="authName" id="" value=""/></td>';
-    	strHTML += '<td width="30px" height="30px" align="center">';
-    		strHTML += '<input type="text" style="width:10px" name="gbn" value="i"/>';
-    	strHTML += '</td>';
-		strHTML += '</tr>';
-		
-		$("#authTbl").append(strHTML);
+    	addFunc();
     });
     
     $("input[name='authName']").change(function(){
-    	var chgIdx = $("input[name='authName']").index(this);
-    	alert(chgIdx);
-		$("input[name='gbn']").eq(chgIdx).val("u");
-		//boardContent 밑의 idx번째 boardRow
-		$("#authTbl tr").eq(chgIdx+2).children().css("background-color","#BBB");
+    	authNameChg();
     });
     
     $("#btnSave").click(function(){
-    	//빈 값 처리
-    	var isOK = true;
-    	$("input[name='authName']").each(function(){
-    		if($(this).val=="" || $(this).val==null){
-    			isOK = false;
-    		}
-    	});
-    	if(!isOK){
-    		alert("입력되지 않은 값이 있습니다");
-    		return;
-    	}
-    	$("#authListForm").attr("action","saveAuthList");
-    	$("#authListForm").submit();
+    	saveFunc();
     });
     
     $("#chkT").on("click",function(){
-    	$("input[name='chk']").each(function(){
-    		if($("#chkT").prop("checked")){
-    			$(this).prop("checked",true);
-        	}else{
-        		$(this).prop("checked",false);
-        	}
-    	});
+    	chkAll();
     });
     
     
     $("#btnDelete").click(function(){
-    	var delHTML = '';
     	
-    	delHTML += '<form name="delForm" id="delForm" method="post">';
-		$("input[name='chk']").each(function(){
-			if($(this).is(":checked")){
-				delHTML += '<input type="hidden" name="authID" value="'+"delIdx ->authID"+'"/>';
-			}
-		});
-		delHTML += '</form>';
-		
-		
-		$("#delFormDiv").html(delHTML);
-		$("#delForm").attr("action","deleteBoard");
-		$("#delForm").submit();
     });
     
     
-});
+});//document.ready
+
+var addFunc = function(){
+	var strHTML = "";
+	strHTML += '<tr style="background-color:#BBB">';
+	strHTML += '<td width="100px" height="30px" align="center">';
+		strHTML += '<input type="checkbox" name="chk" value="0"/>';
+	strHTML += '</td>';
+	strHTML += '<td width="200px" height="30px" align="center"><input type="text" name="authID" id="" value="" readonly/></td>';
+	strHTML += '<td width="400px" height="30px" align="center"><input type="text" name="authName" id="" value=""/></td>';
+	strHTML += '<td width="30px" height="30px" align="center">';
+		strHTML += '<input type="text" style="width:10px" name="gbn" value="i"/>';
+	strHTML += '</td>';
+	strHTML += '</tr>';
+	
+	$("#authTbl").append(strHTML);
+}
+
+var authNameChg = function(){
+	var chgIdx = $("input[name='authName']").index(this);
+	//alert(chgIdx);
+	$("input[name='gbn']").eq(chgIdx).val("u");
+	//boardContent 밑의 idx번째 boardRow
+	$("#authTbl tr").eq(chgIdx+2).children().css("background-color","#BBB");
+}
+
+var saveFunc = function(){
+	//빈 값 처리
+	var isOK = true;
+	$("input[name='authName']").each(function(){
+		if($(this).val=="" || $(this).val==null){
+			isOK = false;
+		}
+	});
+	if(!isOK){
+		alert("입력되지 않은 값이 있습니다");
+		return;
+	}
+	$("#authListForm").attr("action","saveAuthList");
+	$("#authListForm").submit();
+}
+
+var chkAll = function(){
+	$("input[name='chk']").each(function(){
+		if($("#chkT").prop("checked")){
+			$(this).prop("checked",true);
+    	}else{
+    		$(this).prop("checked",false);
+    	}
+	});
+}
+
+var delFunc = function(){
+	var delHTML = '';
+	
+	delHTML += '<form name="delForm" id="delForm" method="post">';
+	$("input[name='chk']").each(function(){
+		if($(this).is(":checked")){
+			delHTML += '<input type="hidden" name="authID" value="'+"delIdx ->authID"+'"/>';
+		}
+	});
+	delHTML += '</form>';
+	
+	
+	$("#delFormDiv").html(delHTML);
+	$("#delForm").attr("action","deleteBoard");
+	$("#delForm").submit();
+}
+
+
+
 </script>
 </head>
 <body>

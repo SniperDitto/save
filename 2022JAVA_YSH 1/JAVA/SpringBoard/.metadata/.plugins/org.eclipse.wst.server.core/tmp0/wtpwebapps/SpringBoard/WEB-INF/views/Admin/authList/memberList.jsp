@@ -79,8 +79,58 @@ var ajaxObj = function(url, type, vars, params, async, dataType, sucFunc, errFun
 		obj.ajaxExec();
 	}
 	
+	var selectAuthList = function(){
+		var url = "jsonAuthList";
+		var type = "post";
+		var async = true;
+		var vars = ["authName"];
+		var params = [""];
+		var dataType = "json";
+		var sucFunc = function(data){
+			$.each(data,function(index, item){
+				alert(index+item.authID);
+				//html 만들기
+			});	
+			
+		}
+		var failFunc = function(err){
+			alert("쉴패~~!~!!~!~! : "+err);
+		}
+		
+		var obj = new ajaxObj(url, type, vars, params, async, dataType);
+		obj.toJson();
+		obj.ajaxExec();
+	}
+	
 	$(document).ready(function(){
 		selectMemberList();
+		
+		$("#btnSearch").click(function(){
+			selectMemberList();
+		});
+		
+		$("#btnAdd").click(function(){
+			selectAuthList();
+		});
+		
+		$("#btnSave").click(function(){
+			$("#memberForm").attr("action","memberSave");
+			$("#memberForm").submit();
+		});
+		
+		$("input[name='mName'],select[name='authID']").on("change",function(){
+			var chgIndex = $(this).attr(data);
+			$("input[name='hval']").eq();
+		});
+		
+		
+		//회원목록에는 있지만 권한은 할당되지 않은 경우 mthid는 null이라는 점 체크하기
+		//일반적인 경우(update)와 다르게 mauth테이블에는 insert로 처리?
+		//프로시져에 회원목록, mauth 테이블 따로 merge
+		
+		//AUTH 미선택시 있던거 DELETE하기
+		
+		
 	});
 </script>
 <style>
@@ -180,10 +230,16 @@ var ajaxObj = function(url, type, vars, params, async, dataType, sucFunc, errFun
 				<option value=""></option>
 			</select>
 		</span>
-		<span>
-			<input type="text" name="" value="" class="col5"/>
+		<span><!-- i, u -->
+			<input type="text" name="hval" value="" class="col5"/>
+		</span>
+		<span><!-- mthid -->
+			<input type="hidden" name="mthID" value="" class=""/>
 		</span>
 	</div>
+	<form name="memberForm" id="memberForm" method="post">
+		<div id="memberRow"></div>
+	</form>
 </div>
 </body>
 </html>

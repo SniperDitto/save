@@ -1,0 +1,11 @@
+package pkg.ui;
+
+public class Work {
+	public String getWork() {
+		String strResult = "";
+		
+		
+		
+		return strResult;
+	}
+}

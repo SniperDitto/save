@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <aop-reference-model>
+<aop-project name="SpringDI"/>
 <aop-project name="TestBoard0525"/>
 <aop-project name="SpringBoard"/>
 </aop-reference-model>

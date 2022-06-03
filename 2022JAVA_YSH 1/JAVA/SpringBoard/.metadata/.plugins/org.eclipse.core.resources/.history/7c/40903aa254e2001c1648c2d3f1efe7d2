@@ -1,0 +1,13 @@
+package pkg.test;
+
+public class Car {
+	private String carName;
+	public Car() {
+		
+	}
+	public Car(String carName) {
+		//생성자 오버로딩을 이용해서~
+		this.carName = carName;
+	}
+	
+}

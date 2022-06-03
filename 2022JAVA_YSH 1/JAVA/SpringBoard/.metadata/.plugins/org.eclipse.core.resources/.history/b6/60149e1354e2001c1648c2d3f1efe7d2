@@ -1,0 +1,14 @@
+package pkg.test;
+
+public class Man extends Char{
+	
+	public Man(String name) {
+		super(name);
+	}
+
+	@Override
+	public void showGender() {
+		System.out.println("Man");
+	}
+	
+}

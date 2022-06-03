@@ -1,0 +1,21 @@
+package pkg.test;
+
+public class Exec {
+	public static void main(String[] args) {
+		Car car = new Car("완's Car");
+		
+		String carName = car.getCarName();
+		System.out.println(carName);
+		
+		car.setCarName("똥차");
+		
+		Man man = new Man("완");
+		Woman woman = new Woman("최밥창문");
+		
+		car.setOwner(man);
+		car.setOwner(woman);
+		
+		
+		
+	}
+}

@@ -11,7 +11,16 @@
 		)}
 	</select>
 	
-	
+	<select id="saveMemberList"  parameterType="pkg.admin.DTO.AuthDTO" statementType="CALLABLE">
+		{call PKG_ADMIN_AUTH.PROC_SAVE_AUTH(
+			#{mID, jdbcType=VARCHAR, mode=IN}
+			,#{mName, jdbcType=VARCHAR, mode=IN}
+			,#{authID, jdbcType=VARCHAR, mode=IN}
+			,#{mthID, jdbcType=VARCHAR, mode=IN}
+			,#{errCode, mode=OUT, jdbcType=VARCHAR, javaType=java.lang.String}
+			,#{errMsg, mode=OUT, jdbcType=VARCHAR, javaType=java.lang.String}
+		)}
+	</select>
 
 	
 </mapper>

@@ -6,6 +6,7 @@ public class AuthMemberDTO {
 	private String mName;
 	private String authID;
 	private String authName;
+	private String mthID;
 	public String getmID() {
 		return mID;
 	}
@@ -29,6 +30,12 @@ public class AuthMemberDTO {
 	}
 	public void setAuthName(String authName) {
 		this.authName = authName;
+	}
+	public String getMthID() {
+		return mthID;
+	}
+	public void setMthID(String mthID) {
+		this.mthID = mthID;
 	}
 	
 }

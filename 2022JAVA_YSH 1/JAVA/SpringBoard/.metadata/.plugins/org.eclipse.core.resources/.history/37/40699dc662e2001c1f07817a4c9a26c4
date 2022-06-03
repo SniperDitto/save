@@ -1,0 +1,11 @@
+package pkg.test;
+
+public abstract class Char {
+	private String name;
+	public Char() {
+	}
+	public Char(String name) {
+		this.name = name;
+	}
+	public abstract void showGender();
+}

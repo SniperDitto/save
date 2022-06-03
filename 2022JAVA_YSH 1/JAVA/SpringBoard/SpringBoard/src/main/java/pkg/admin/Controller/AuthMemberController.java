@@ -2,7 +2,9 @@ package pkg.admin.Controller;
 
 import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -70,6 +72,9 @@ public class AuthMemberController {
 			jsonObject.put("mName", member.getmName());
 			jsonObject.put("authID", member.getAuthID());
 			jsonObject.put("authName", member.getAuthName());
+			jsonObject.put("mthID", member.getMthID());
+			//mthid hidden으로 처리하기
+			
 			//배열에 담기
 			jsonArray.add(jsonObject);
 		}
@@ -81,12 +86,48 @@ public class AuthMemberController {
 			jsonObject.put("authID", auth.getAuthID());
 			jsonObject.put("authName", auth.getAuthName());
 			//배열에 담기
-			jsonArray.add(jsonObject);
+			jsonArray2.add(jsonObject);
 		}
 		
 		
+	}
+
+	@ResponseBody //json 사용
+	@RequestMapping("jsonAuthList")
+	public String JsonAuthList(String authName) {
+		
+		List<AuthDTO> authList = authListService.getAuthList(authName);
+		
+		JSONArray jsonArray = new JSONArray();
+		for(AuthDTO auth : authList) {
+			//json 양식으로 만들기
+			JSONObject jsonObject = new JSONObject();
+			jsonObject.put("authID", auth.getAuthID());
+			jsonObject.put("authName", auth.getAuthName());
+			//배열에 담기
+			jsonArray.add(jsonObject);
+		}
+		
+		return jsonArray.toString();
 		
 	}
+	
+	@RequestMapping("memberSave")
+	public String MemberSave(String[] mID, String[] mName, String[] authID, String[] hval, String[] mthID) {
+		
+		Map<String, String[]> map = new HashMap<String, String[]>();
+		map.put("mID", mID);
+		map.put("mName", mName);
+		map.put("authID", authID);
+		map.put("hval", hval);
+		map.put("mthID", mthID);
+		
+		authMemberService.saveMemberList(map);
+		
+		return "/Admin/authList/memberList";
+	}
+	
+	
 	
 	
 }
