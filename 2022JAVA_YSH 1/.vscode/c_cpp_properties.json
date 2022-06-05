@@ -10,7 +10,11 @@
                 "UNICODE",
                 "_UNICODE"
             ],
+<<<<<<< Updated upstream
             "compilerPath": "C:/mingw6/bin/gcc.exe",
+=======
+            "compilerPath": "C:\\MinGW\\bin\\gcc.exe",
+>>>>>>> Stashed changes
             "cStandard": "gnu11",
             "cppStandard": "gnu++14",
             "intelliSenseMode": "windows-gcc-x64"
