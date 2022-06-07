@@ -21,6 +21,6 @@ public class Exec {
 		zealot1.attack(zergling1);
 		zealot1.attack(zergling1);
 		
-		Connection con = null;
+		
 	}
 }

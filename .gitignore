@@ -4,11 +4,11 @@
 2022JAVA_YSH 1/유승화_프론트앤드 숙제.zip
 
 
-*.exe
+
 !jcpicker.exe
 2022JAVA_YSH 1/DBproject/프로젝트_CRUD_취합.zip
 2022JAVA_YSH 1/.DS_Store
-.DS_Store
+*.DS_Store
 
 # Created by https://www.toptal.com/developers/gitignore/api/java,windows
 # Edit at https://www.toptal.com/developers/gitignore?templates=java,windows
@@ -64,5 +64,40 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+### C++ ###
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
 
 # End of https://www.toptal.com/developers/gitignore/api/java,windows
