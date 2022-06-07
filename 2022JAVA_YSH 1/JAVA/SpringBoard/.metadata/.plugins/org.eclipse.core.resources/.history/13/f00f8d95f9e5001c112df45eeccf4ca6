@@ -1,0 +1,20 @@
+package pkg.admin.test;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class TestController {
+	
+	@RequestMapping("test")
+	public String testFunc(TestVO[] arrVO) {
+		//arrVO의 길이가 1인 경우에는 가능
+		for(int i=0;i<arrVO.length;i++) {
+			System.out.println(arrVO[i].getName());
+			System.out.println(arrVO[i].getId());
+		}
+		
+		return "123";
+	}
+	
+}

@@ -1,0 +1,19 @@
+package pkg.admin.test;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class TestController {
+	
+	@RequestMapping("test")
+	public String testFunc(TestVO[] arrVO) {
+		
+		for(int i=0;i<arrVO.length;i++) {
+			
+		}
+		
+		return "123";
+	}
+	
+}

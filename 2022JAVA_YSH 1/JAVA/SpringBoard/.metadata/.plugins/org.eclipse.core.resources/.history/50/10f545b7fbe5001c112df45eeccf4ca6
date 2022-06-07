@@ -1,0 +1,20 @@
+package pkg.admin.test;
+
+import java.util.ArrayList;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class TestController {
+	
+	@RequestMapping("test")
+	public String testFunc(TestVO vo) {
+		//하나의 vo만 이 방법으로 받아진다(입력창 여러개 : 배열로는 안됨) 
+		System.out.println(vo.getName());
+		System.out.println(vo.getId());
+		
+		return "123";
+	}
+	
+}
