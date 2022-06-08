@@ -1,0 +1,32 @@
+package pkg.admin.Controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import pkg.admin.DTO.MenuDTO;
+import pkg.admin.DTO.ProgramDTO;
+import pkg.admin.Service.MenuService;
+import pkg.admin.Service.ProgramService;
+
+@Controller
+public class ProgramListController {
+	
+	@Autowired
+	private ProgramService programService; 
+	@Autowired
+	private MenuService menuService; 
+	
+	@RequestMapping("programList")
+	public String getProgramList(String pName, Model model) {
+		
+		List<ProgramDTO> programList = programService.getProgramList(pName);
+		List<MenuDTO> menuList = programService.getProgramList(pName);
+		model.addAttribute("programList",list);
+		
+		return "/Admin/programList/programList";
+	}
+}

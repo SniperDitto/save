@@ -1,0 +1,17 @@
+package pkg.admin.Service;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+import pkg.admin.DTO.ProgramDTO;
+
+@Service
+public class ProgramServiceImpl implements ProgramService{
+
+	@Override
+	public List<ProgramDTO> getProgramList(String pName) {
+		
+		return null;
+	}
+
+}

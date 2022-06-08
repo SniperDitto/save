@@ -1,0 +1,48 @@
+<%@page import="pkg.admin.DTO.MenuDTO"%>
+<%@page import="pkg.admin.DTO.ProgramDTO"%>
+<%@page import="java.util.List"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script
+  src="https://code.jquery.com/jquery-3.6.0.js"
+  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
+<script type="text/javascript" src="/jscss/js/common.js"></script>
+</head>
+<body>
+<%
+	List<ProgramDTO> programList = (List<ProgramDTO>)request.getAttribute("programList");
+	List<MenuDTO> menuList = (List<MenuDTO>)request.getAttribute("menuList");
+%>
+<div class="row">
+	<span class="col1">
+		<input type="checkbox" name="chkT" id="chkT" />
+	</span>
+	<span class="col2">아이디</span>
+	<span class="col4">프로그램명</span>
+	<span class="col2">연결메뉴</span>
+	<span class="col2">JSP</span>
+	<span class="col2">URL</span>
+	<span></span>
+</div>
+<div class="row">
+	<span class="col1">
+		<input type="checkbox" name="chkT" id="chkT" />
+	</span>
+	<span class="col2">
+		<input type="text" name="id" id="id" />
+	</span>
+	<span class="col4">프로그램명</span>
+	<span class="col2">연결메뉴</span>
+	<span class="col2">JSP</span>
+	<span class="col2">URL</span>
+	<span></span>
+</div>
+
+</body>
+</html>

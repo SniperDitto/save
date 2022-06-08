@@ -15,7 +15,7 @@
 					<td width="120px" height="40px" align="center"><a href="authList" target="bodyFrame">권한관리</a></td>
 					<td width="120px" height="40px" align="center"><a href="memberList" target="bodyFrame">회원관리</a></td>
 					<td width="120px" height="40px" align="center">메뉴관리</td>
-					<td width="120px" height="40px" align="center">프로그램관리</td>
+					<td width="120px" height="40px" align="center"><a href="programList" target="bodyFrame">프로그램관리</td>
 					<td width="120px" height="40px" align="center">권한별상세관리</td>
 				</tr>
 			</table>

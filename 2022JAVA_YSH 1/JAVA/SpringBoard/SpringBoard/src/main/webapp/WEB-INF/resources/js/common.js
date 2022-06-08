@@ -9,7 +9,7 @@
 
     /*
 		최초개발일 : 20220520
-		최초개발자 : PL이름
+		최초개발자 : 최유나 과장
 		객체설명 : 
 		수정내역
 		-------------------------------------------------------------------
@@ -17,10 +17,10 @@
 		20220525	   변수명 수정			     최유나
 		-------------------------------------------------------------------
 	*/
-	var ajaxObj = function(url, type, vars, params, async, dataType, sucFunc, errFunc){
+	var ajaxObj = function(url, type, vars, params, async, dataType, sucFunc, errFunc, data){
 		this.url = url;
 		this.type = type;
-		this.data = null;
+		this.data = data;
 		this.vars = vars;
 		this.params = params;
 		this.async = async;
@@ -44,6 +44,11 @@
 			
 			this.data = JSON.parse(strJson);			
 		};
+		
+		this.toJsonStringify = function(){
+			this.data = JSON.stringify(this.data);
+		}
+		
 		
 		this.ajaxExec = function(){
 			$.ajax(

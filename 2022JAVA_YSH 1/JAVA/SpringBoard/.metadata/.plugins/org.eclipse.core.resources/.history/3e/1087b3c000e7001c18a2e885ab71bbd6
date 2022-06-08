@@ -1,0 +1,23 @@
+package pkg.admin.Service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import pkg.admin.DAO.ProgramDAO;
+import pkg.admin.DTO.ProgramDTO;
+
+@Service
+public class ProgramServiceImpl implements ProgramService{
+	
+	@Autowired
+	private ProgramDAO programDAO;
+	
+	@Override
+	public List<ProgramDTO> getProgramList(String pName) {
+		
+		return programDAO.getProgramList(pName);
+	}
+
+}

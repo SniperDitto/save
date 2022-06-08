@@ -1,0 +1,15 @@
+package pkg.admin.Service;
+
+import java.util.List;
+
+import pkg.admin.DTO.MenuDTO;
+
+public class MenuServiceImpl implements MenuService{
+
+	@Override
+	public List<MenuDTO> getMenuList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+}

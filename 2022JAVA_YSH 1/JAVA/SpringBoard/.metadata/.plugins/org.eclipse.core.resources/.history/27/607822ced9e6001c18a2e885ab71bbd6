@@ -1,0 +1,5 @@
+package pkg.admin.Service;
+
+public interface MenuService {
+
+}

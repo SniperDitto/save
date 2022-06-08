@@ -1,0 +1,24 @@
+package pkg.admin.Controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import pkg.admin.Service.ProgramService;
+
+@Controller
+public class ProgramListController {
+	
+	@Autowired
+	private ProgramService programService; 
+	
+	@RequestMapping("programList")
+	public String getProgramList(String pId, Model model) {
+		
+		
+		
+		
+		return "/Admin/programList/programList";
+	}
+}

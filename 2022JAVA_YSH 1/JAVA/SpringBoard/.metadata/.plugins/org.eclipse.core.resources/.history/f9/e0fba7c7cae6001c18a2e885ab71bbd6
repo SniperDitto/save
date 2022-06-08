@@ -1,0 +1,21 @@
+package pkg.admin.DAO;
+
+import java.util.List;
+
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import pkg.admin.DTO.ProgramDTO;
+
+@Repository
+public class ProgramDAOImpl implements ProgramDAO {
+	@Autowired
+	SqlSessionTemplate sqlSession;
+	
+	public List<ProgramDTO> getProgramList(){
+		return null;
+		
+	};
+	
+}

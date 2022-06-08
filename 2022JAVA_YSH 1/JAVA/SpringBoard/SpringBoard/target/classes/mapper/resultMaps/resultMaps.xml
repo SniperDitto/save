@@ -15,4 +15,20 @@
 	<result property="authName" column="AUTHNAME"></result>
 </resultMap>
 
+<resultMap id="programMap" type="pkg.admin.DTO.ProgramDTO">
+	<result property="pID" column="PID"></result>
+	<result property="pName" column="PNAME"></result>
+	<result property="menuID" column="MENUID"></result>
+	<result property="pFileName" column="PFILENAME"></result>
+	<result property="fileUrl" column="FILEURL"></result>
+</resultMap>
+
+<resultMap id="SMenuMap" type="pkg.admin.DTO.MenuDTO">
+	<result property="menuID" column="MENUID"></result>
+	<result property="menuName" column="MENUNAME"></result>
+	<result property="menuSeq" column="MENUSEQ"></result>
+	<result property="menuLvl" column="MENULVL"></result>
+	<result property="parentID" column="PARENTID"></result>
+</resultMap>
+
 </mapper>

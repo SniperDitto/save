@@ -1,0 +1,15 @@
+package pkg.admin.Controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class ProgramListController {
+	
+	@RequestMapping("programList")
+	public String getProgramList() {
+		
+		
+		return "/Admin/programList/programList";
+	}
+}
