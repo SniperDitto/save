@@ -1,0 +1,6 @@
+127.0.0.1 - - [09/Jun/2022:10:35:35 +0900] "GET / HTTP/1.1" 404 807
+0:0:0:0:0:0:0:1 - - [09/Jun/2022:10:35:36 +0900] "GET /SpringBoards/index.jsp HTTP/1.1" 200 1058
+0:0:0:0:0:0:0:1 - - [09/Jun/2022:10:35:36 +0900] "GET /favicon.ico HTTP/1.1" 404 818
+0:0:0:0:0:0:0:1 - - [09/Jun/2022:10:35:41 +0900] "GET /SpringBoards/authManager HTTP/1.1" 200 1097
+0:0:0:0:0:0:0:1 - - [09/Jun/2022:10:35:45 +0900] "GET /SpringBoards/programList HTTP/1.1" 200 28699
+0:0:0:0:0:0:0:1 - - [09/Jun/2022:10:35:45 +0900] "GET /jscss/js/common.js HTTP/1.1" 404 833

@@ -1,5 +1,6 @@
 package pkg.admin.DAO;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,5 +25,18 @@ public class ProgramDAOImpl implements ProgramDAO {
 		
 		return programList;
 	};
+	
+	public void saveProgramList(ArrayList<ProgramDTO> params) {
+		for(ProgramDTO dto : params) {
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("pId", dto.getpID());
+			map.put("pName", dto.getpName());
+			map.put("menuID", dto.getMenuID());
+			map.put("pFileName", dto.getpFileName());
+			map.put("fileUrl", dto.getFileUrl());
+			
+			sqlSession.selectList("saveProgramList",map);
+		}
+	}
 	
 }

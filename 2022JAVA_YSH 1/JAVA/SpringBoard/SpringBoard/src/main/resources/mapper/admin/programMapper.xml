@@ -17,4 +17,14 @@
 		)}
 	</select>
 	
+	<select id="saveProgramList" parameterType="pkg.admin.DTO.ProgramDTO" statementType="CALLABLE">
+		{call PKG_ADMIN_PROGRAMS.PROC_SAVE_MENUS(
+			#{pId, jdbcType=VARCHAR, mode=IN}
+			,#{pName, jdbcType=VARCHAR, mode=IN}
+			,#{menuID, jdbcType=VARCHAR, mode=IN}
+			,#{pFileName, jdbcType=VARCHAR, mode=IN}
+			,#{fileUrl, jdbcType=VARCHAR, mode=IN}
+		)}
+	</select>
+	
 </mapper>

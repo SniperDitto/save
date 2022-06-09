@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="pkg.admin.programList">
+	
+	<!-- Map 타입으로 매개변수 주고 받음 -->
+	<select id="selectProgramList" resultMap="pkg.admin.maps.programMap" parameterType="pkg.admin.DTO.ProgramDTO" statementType="CALLABLE">
+		{call PKG_ADMIN_PROGRAMS.PROC_SEL_PROGRAMS(
+			#{pName, jdbcType=VARCHAR, mode=IN}
+			,#{result, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=pkg.admin.maps.programMap}
+		)}
+	</select>
+	
+	<select id="selectSMenuList" resultMap="pkg.admin.maps.SMenuMap" parameterType="pkg.admin.DTO.MenuDTO" statementType="CALLABLE">
+		{call PKG_ADMIN_PROGRAMS.PROC_SEL_MENUS(
+			#{result, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=pkg.admin.maps.SMenuMap}
+		)}
+	</select>
+	
+	<select id="saveMenuList" parameterType="pkg.admin.DTO.ProgramDTO" statementType="CALLABLE">
+		{call PKG_ADMIN_PROGRAMS.PROC_SAVE_MENUS(
+			#{pId, jdbcType=VARCHAR, mode=IN}
+			,#{pName, jdbcType=VARCHAR, mode=IN}
+			,#{menuID, jdbcType=VARCHAR, mode=IN}
+			,#{pFileName, jdbcType=VARCHAR, mode=IN}
+			,#{fileUrl, jdbcType=VARCHAR, mode=IN}
+		)}
+	</select>
+	
+</mapper>
