@@ -39,4 +39,17 @@ public class ProgramDAOImpl implements ProgramDAO {
 		}
 	}
 	
+	public void delMenuList(ArrayList<ProgramDTO> params) {
+		
+		for(ProgramDTO dto : params) {
+			String pid = dto.getpID();
+			
+			Map<String, String> map = new HashMap<String, String>();
+			map.put("delPid", pid);
+			
+			sqlSession.selectList("delMenuList",map);
+		}
+		
+	}
+	
 }

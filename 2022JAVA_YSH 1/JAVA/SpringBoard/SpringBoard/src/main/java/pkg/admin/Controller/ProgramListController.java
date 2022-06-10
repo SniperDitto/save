@@ -43,7 +43,7 @@ public class ProgramListController {
 	
 	@ResponseBody
 	@RequestMapping("saveProgramList")
-	public String saveProgramList(@RequestBody Map<String, ArrayList<ProgramDTO>> menuDatas, Model model) {
+	public String saveProgramList(@RequestBody Map<String, ArrayList<ProgramDTO>> menuDatas) {
 		
 		ArrayList<ProgramDTO> params = menuDatas.get("datas");
 		/////////////////////////
@@ -75,6 +75,17 @@ public class ProgramListController {
 		}
 		return jsonArray.toString();
 	}
+	
+	@ResponseBody
+	@RequestMapping("delMenu")
+	public String delMenuList(@RequestBody Map<String, ArrayList<ProgramDTO>> map ) {
+		
+		ArrayList<ProgramDTO> delList = map.get("delPid");
+		
+		
+		return "success";
+	}
+	
 	
 	
 	

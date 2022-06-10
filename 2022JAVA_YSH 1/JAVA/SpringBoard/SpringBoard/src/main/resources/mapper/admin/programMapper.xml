@@ -27,4 +27,10 @@
 		)}
 	</select>
 	
+	<select id="delMenuList" parameterType="pkg.admin.DTO.MenuDTO" statementType="CALLABLE">
+		{call PKG_ADMIN_PROGRAMS.PROC_SEL_MENUS(
+			#{pId, jdbcType=VARCHAR, mode=IN}
+		)}
+	</select>
+	
 </mapper>
