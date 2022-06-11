@@ -6,7 +6,6 @@ public class SelfNumber3 {
 	//https://www.acmicpc.net/problem/4673
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 		
 		String input = br.readLine();
 		int resultNum = Integer.parseInt(input);
