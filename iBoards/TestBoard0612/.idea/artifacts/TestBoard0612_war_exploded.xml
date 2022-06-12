@@ -1,0 +1,40 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="TestBoard0612:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/TestBoard0612_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="TestBoard0612/web/웹" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="TestBoard0612" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Spring-5.2.3.RELEASE" />
+          <element id="library" level="project" name="Spring MVC-5.2.3.RELEASE" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-api:9.0.62" />
+          <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-servlet-api:9.0.62" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-webmvc:5.3.20" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-aop:5.3.20" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-beans:5.3.20" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-context:5.3.20" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-core:5.3.20" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-jcl:5.3.20" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-expression:5.3.20" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-web:5.3.20" />
+          <element id="library" level="project" name="Maven: com.oracle.database.jdbc:ojdbc8:21.5.0.0" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-jdbc:5.3.20" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-tx:5.3.20" />
+          <element id="library" level="project" name="Maven: commons-dbcp:commons-dbcp:1.4" />
+          <element id="library" level="project" name="Maven: commons-pool:commons-pool:1.5.4" />
+          <element id="library" level="project" name="Maven: org.mybatis:mybatis-spring:2.0.7" />
+          <element id="library" level="project" name="Maven: org.mybatis:mybatis:3.5.10" />
+          <element id="library" level="project" name="Maven: com.googlecode.json-simple:json-simple:1.1.1" />
+          <element id="library" level="project" name="Maven: junit:junit:4.10" />
+          <element id="library" level="project" name="Maven: org.hamcrest:hamcrest-core:1.1" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.13.3" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.13.3" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.13.3" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
