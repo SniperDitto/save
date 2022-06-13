@@ -7,6 +7,12 @@
 <title>auth_manage</title>
 </head>
 <body>
+
+<%
+	String loginID = (String)request.getAttribute("adminID");
+	out.println(loginID+" 계정으로 로그인");
+%>
+
 <table cellpadding="0" cellspacing="0" width="1250px" height="800px" align="center" border="1px">
 	<tr>
 		<td width="1250px" height="40px" align="center" valign="middle">

@@ -42,6 +42,16 @@
     </bean>
     
     
+    <mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**"/>
+			<bean id="CInterceptor" class="pkg.admin.interceptor.LogInterceptor"/>
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/**"/>
+			<bean id="loginInterceptor" class="pkg.admin.interceptor.LoginInterceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors> 
     
     
 	

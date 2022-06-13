@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>ProgramList</title>
 <script
   src="https://code.jquery.com/jquery-3.6.0.js"
   integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
@@ -128,7 +128,63 @@
 		});
 		
 		
-	});
+		$("#chkT").click(function(){
+			if( $(this).prop("checked")){
+				$("input[name='chk']").prop("checked", true);
+			}else{
+				$("input[name='chk']").prop("checked", false);
+			}
+		});
+		
+		
+		$("#btnDelete").click(function(){
+			
+			if(!$("input[name='chk']").prop("checked")){
+				$("#dialog").html("삭제할 데이터가 없어요");
+				$("#dialog").dialog();
+				return;
+			}else{
+				//삭제
+				var sendData = {};
+				var arrData = [];
+				$("input[name='chk']").each(function(){
+					//체크된것들 데이터를 json으로
+					if($(this).prop("checked")){
+						var rowData = {};
+						rowData.pid = $(this).val();
+						arrData.push(rowData);
+					}
+				});
+				
+				sendData.delPid = arrData;
+				
+				$.ajax({
+					url : "delMenu",
+					data : JSON.stringify(sendData),
+					type : "post",
+					async : true,//true 하면 row에 추가되기 전에 데이터를 받아버리기 때문
+					dataType : "json",
+					contentType : "application/json",
+					success : function(data){
+						
+					},
+					fail:function(){
+						alert("쉴패.");
+					},
+					complete : function(){
+						
+					}
+				});
+				
+				
+			}
+			
+			
+		});
+		
+		
+		
+	});//document
 	
 	
 	var getMenuList = function(){
@@ -160,6 +216,9 @@
 				strHTML += '<span class="col2"><input type="text" name="fileUrl"  class="col2"/></span>';
 				strHTML += '<span><input type="text" name="hiddenVal" value="i"/></span>';
 				strHTML += '</div>';
+				
+				//붙이기
+				$("#row").append(strHTML);
 			},
 			fail:function(){
 				alert("쉴패.");
@@ -209,7 +268,9 @@
 				<select name="menuID" idx="<%=i %>">
 					<option value="">---선택---</option>
 				<% for(MenuDTO mdto : menuList){ %>
-					<option value="<%=mdto.getMenuID() %>"><%=mdto.getMenuName() %></option>
+					<option value="<%=mdto.getMenuID() %>" <% if(mdto.getMenuID().equals(pdto.getMenuID())){%>selected<%}%> >
+						<%=mdto.getMenuName() %>
+					</option>
 				<%} %>
 				</select>
 			</span>
@@ -219,5 +280,8 @@
 		</div>
 	<% i++; %>
 	<%} %>
+	
+	<div id="dialog" title=""></div>
+	<div id=""></div>
 </body>
 </html>

@@ -24,12 +24,16 @@ index<br/>
 			<form>
 				<table cellpadding="0" cellspacing="0" width="400px" align="center" border="1px">
 					<tr>
-						<td width="100px" height="30px" align="center"></td>
-						<td width="300px" height="30px" align="center"></td>
+						<td width="100px" height="30px" align="center">ID</td>
+						<td width="300px" height="30px" align="center">
+							<input type="text" name="adminLoginID"/>
+						</td>
 					</tr>
 					<tr>
-						<td width="100px" height="30px" align="center"></td>
-						<td width="300px" height="30px" align="center"></td>
+						<td width="100px" height="30px" align="center">PW</td>
+						<td width="300px" height="30px" align="center">
+							<input type="password" name="adminLoginPW"/>
+						</td>
 					</tr>
 					<tr>
 						<td width="400px" height="30px" align="center" colspan="2">

@@ -1,0 +1,5 @@
+package pkg.admin.interceptor;
+
+public class LogInterceptor {
+
+}
