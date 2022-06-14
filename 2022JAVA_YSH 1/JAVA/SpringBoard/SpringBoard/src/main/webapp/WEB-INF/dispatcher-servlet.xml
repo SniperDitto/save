@@ -49,6 +49,8 @@
 		</mvc:interceptor>
 		<mvc:interceptor>
 			<mvc:mapping path="/**"/>
+			<mvc:exclude-mapping path="/login/"/>
+			<mvc:exclude-mapping path="/loginPage/"/>
 			<bean id="loginInterceptor" class="pkg.admin.interceptor.LoginInterceptor"/>
 		</mvc:interceptor>
 	</mvc:interceptors> 

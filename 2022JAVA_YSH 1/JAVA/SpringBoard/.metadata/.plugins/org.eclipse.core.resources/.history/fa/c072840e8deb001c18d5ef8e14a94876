@@ -1,0 +1,17 @@
+package pkg.admin.DAO;
+
+import java.util.List;
+
+import pkg.admin.DTO.MenuDTO;
+
+public class AuthMenuListDAOImpl implements AuthMenuListDAO{
+
+	@Override
+	public List<MenuDTO> getMenusList(String menuName) {
+		
+		
+		
+		return null;
+	}
+	
+}

@@ -1,0 +1,17 @@
+package pkg.admin.Service;
+
+import java.util.List;
+
+import pkg.admin.DTO.MenuDTO;
+
+public class AuthMenuListServiceImpl implements AuthMenuListService{
+
+	@Override
+	public List<MenuDTO> getMenusList() {
+		
+		
+		
+		return null;
+	}
+	
+}

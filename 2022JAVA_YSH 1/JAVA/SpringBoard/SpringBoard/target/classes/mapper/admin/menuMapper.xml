@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="pkg.admin.menuList">
+	
+	<!-- Map 타입으로 매개변수 주고 받음 -->
+	<select id="selectMenusList" resultMap="pkg.admin.maps.MenuMap" parameterType="pkg.admin.DTO.MenuDTO" statementType="CALLABLE">
+		{call PKG_ADMIN_MENUS.PROC_SEL_MENUS(
+			#{menuName, jdbcType=VARCHAR, mode=IN}
+			,#{result, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=pkg.admin.maps.SMenuMap}
+		)}
+	</select>
+	
+	
+
+	
+</mapper>

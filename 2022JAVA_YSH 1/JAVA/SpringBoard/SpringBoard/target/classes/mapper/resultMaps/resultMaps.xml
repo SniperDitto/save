@@ -26,6 +26,11 @@
 <resultMap id="SMenuMap" type="pkg.admin.DTO.MenuDTO">
 	<result property="menuID" column="MENUID"></result>
 	<result property="menuName" column="MENUNAME"></result>
+</resultMap>
+
+<resultMap id="MenuMap" type="pkg.admin.DTO.MenuDTO">
+	<result property="menuID" column="MENUID"></result>
+	<result property="menuName" column="MENUNAME"></result>
 	<result property="menuSeq" column="MENUSEQ"></result>
 	<result property="menuLvl" column="MENULVL"></result>
 	<result property="parentID" column="PARENTID"></result>

@@ -1,0 +1,33 @@
+package pkg.admin.Controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import pkg.admin.Service.AuthMenuListService;
+
+@Controller
+public class AuthMenuListController {
+	
+	private AuthMenuListService authMenuListService;
+	
+	@Autowired
+	public AuthMenuListController(AuthMenuListService authMenuListService) {
+		this.authMenuListService = authMenuListService;
+	}
+	
+	@RequestMapping("")
+	public String getMenusList(String menuName) {
+		
+		
+		
+		return "/Admin/menusList";
+	}
+	
+	@RequestMapping("")
+	public String getSubMenusList() {
+		
+		return "/Admin/menusList";
+	}
+	
+}

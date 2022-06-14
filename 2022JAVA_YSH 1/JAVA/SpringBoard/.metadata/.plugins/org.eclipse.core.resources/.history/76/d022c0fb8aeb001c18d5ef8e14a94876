@@ -1,0 +1,17 @@
+package pkg.admin.Controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class AuthMenuListController {
+	
+	@RequestMapping("")
+	public String getMenusList() {
+		
+		
+		
+		return "/Admin/menusList";
+	}
+	
+}
