@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="Oracle [Cloud]" uuid="6219c908-3832-49c5-aff3-6baf0b2e88a8">
+      <driver-ref>896d429a-656f-4f6b-a4bf-12d85f2ed77f</driver-ref>
+      <synchronize>true</synchronize>
+      <auto-commit>false</auto-commit>
+      <jdbc-driver>oracle.jdbc.OracleDriver</jdbc-driver>
+      <jdbc-url>jdbc:oracle:thin:@DB202202181749_high?TNS_ADMIN=$PROJECT_DIR$/../../../../Wallet_DB202202181749</jdbc-url>
+      <jdbc-additional-properties>
+        <property name="TNSADMIN_DIR" value="$PROJECT_DIR$/../../../../Wallet_DB202202181749" />
+      </jdbc-additional-properties>
+      <working-dir>$ProjectFileDir$</working-dir>
+      <vm-env>
+        <property name="ORACLE_HOME" value="$USER_HOME$/Downloads/dbConnection" />
+      </vm-env>
+    </data-source>
+  </component>
+</project>

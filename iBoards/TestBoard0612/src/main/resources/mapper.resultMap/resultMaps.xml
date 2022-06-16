@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="">
-
+<mapper namespace="pkg.test.resultMap">
+    <resultMap id="boardMap" type="pkg.test.board.DTO.BoardDTO">
+        <result property="idx" column="IDX"></result>
+        <result property="title" column="TITLE"></result>
+        <result property="userID" column="USERID"></result>
+    </resultMap>
 
 
 

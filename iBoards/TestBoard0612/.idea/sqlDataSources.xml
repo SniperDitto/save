@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DdlMappings">
+    <mapping uuid="b366b779-adb6-47f1-abd2-e816482a05af" name="관리자만들기 Mapping">
+      <data-sources db="1692bec3-2e05-46e7-bd10-57d4e2f405b1" ddl="c8cd573d-7be7-4659-a520-c169dc2fd55c" />
+      <scope>
+        <node kind="database" negative="1">
+          <node kind="schema" negative="1" />
+        </node>
+      </scope>
+    </mapping>
+  </component>
+</project>

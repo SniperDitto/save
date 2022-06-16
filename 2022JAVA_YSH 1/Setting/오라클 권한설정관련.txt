@@ -256,3 +256,10 @@ GRANT CREATE SESSION TO TESTDB;
 ALTER USER TESTDB DEFAULT TABLESPACE USERS QUOTA UNLIMITED ON TESTDB;
 GRANT CREATE ANY TABLE TO TESTDB;
 
+------------------------------------------
+String url = "jdbc:oracle:thin:@DB202202181749_high?TNS_ADMIN=/Users/sniperditto/Documents/Wallet_DB202202181749";
+String userid = "admin";
+String pwd = "El1dydhd!1234";
+
+윈도우 : url = "jdbc:oracle:thin:@localhost:1521:XE";
+Class.forName("oracle.jdbc.driver.OracleDriver");
