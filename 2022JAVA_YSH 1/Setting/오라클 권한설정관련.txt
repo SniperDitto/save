@@ -263,3 +263,31 @@ String pwd = "El1dydhd!1234";
 
 윈도우 : url = "jdbc:oracle:thin:@localhost:1521:XE";
 Class.forName("oracle.jdbc.driver.OracleDriver");
+
+
+---------------------
+intelliJ Oracle Cloud
+TNSADMIN : /Users/sniperditto/Documents/Wallet_DB202202181749
+TNSNAME : DB202202181749_high
+Driver : Thin
+
+FINALPROJECT / Test12345678
+
+
+
+<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+      <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+      <property name="url" value="jdbc:oracle:thin:@DB202202181749_high?TNS_ADMIN=/Users/sniperditto/Documents/Wallet_DB202202181749"/>
+      <property name="username" value="FINALPROJECT"/>
+      <property name="password" value="Test12345678"/>
+</bean>
+
+Wallet_DB20220621092517
+/Users/sniperditto/Documents/Project/Wallet_DB20220621092517.zip
+--finalproject
+<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+      <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+      <property name="url" value="jdbc:oracle:thin:@DB20220621092517_high?TNS_ADMIN=/Users/sniperditto/Documents/Project/Wallet_DB20220621092517"/>
+      <property name="username" value="FINALPROJECT"/>
+      <property name="password" value="Project123123"/>
+ </bean>

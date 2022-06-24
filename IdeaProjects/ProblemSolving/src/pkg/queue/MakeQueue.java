@@ -2,7 +2,7 @@ package pkg.queue;
 
 import java.io.*;
 import java.util.StringTokenizer;
-
+//https://www.acmicpc.net/problem/10845
 public class MakeQueue {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
