@@ -1,4 +1,4 @@
-package pkg.skt;
+package pkg.skttest;
 
 public class Solution1 {
 	public static void main(String[] args) {

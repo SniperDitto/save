@@ -1,17 +1,21 @@
 package pkg.MathAndNumbers;
 
 import java.io.*;
+import java.math.BigInteger;
+
 //https://www.acmicpc.net/problem/5615
-public class ApartmentArea {
+//bigInteger
+public class ApartmentArea2 {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 		int caseNum = Integer.parseInt(br.readLine());
-		int[] aArr = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 61};
+		//int[] aArr = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 61};
 		int cnt = 0;
 		
 		for(int i=0;i<caseNum;i++){
-			long X = Integer.parseInt(br.readLine());
+			BigInteger X = new BigInteger(br.readLine());
+			/*
 			boolean isPrime=true;
 			for(int j=0;j<aArr.length;j++) {
 				if(X==aArr[j]) break;
@@ -19,6 +23,11 @@ public class ApartmentArea {
 				if(isPrime==false) break;
 			}
 			
+			 */
+			BigInteger checkVal = X.multiply(BigInteger.valueOf(2)).add(BigInteger.valueOf(1));
+			boolean isPrime = checkVal.isProbablePrime(10);
+			//System.out.print(X+" "+checkVal);
+			//System.out.println(" "+isPrime);
 			if(isPrime==true){
 				cnt++;
 			}
@@ -30,6 +39,7 @@ public class ApartmentArea {
 		br.close();
 	}
 	
+	/*
 	public static long getPower(long a, long n, long mod){
 		a %= mod;
 		if(n==0){
@@ -45,7 +55,7 @@ public class ApartmentArea {
 	
 	public static boolean MillerRabin(long X, long a){
 		//Miller-Rabin Test
-		//a{2,7,61}에 대해 a의 X-1제곱을 X로 나눈 나머지 1인지 확인
+		//a{2,7,61->(데이터추가)}에 대해 a의 X-1제곱을 X로 나눈 나머지 1인지 확인
 		//1이면 좌변에 루트씌우고 X로 나눈 나머지가 1, -1->X-1인지 확인
 		//	1이면 X-1이 홀수인지 확인(소수)
 		//	X-1이면 소수
@@ -68,6 +78,7 @@ public class ApartmentArea {
 			xminus1/=2;
 		}
 		
-	}
+	}*/
+	
 	
 }
