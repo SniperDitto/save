@@ -1,7 +1,7 @@
 package pkg.Class2;
 
 import java.io.*;
-
+//https://www.acmicpc.net/problem/2941
 public class CroatianAlphabet {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -11,59 +11,111 @@ public class CroatianAlphabet {
 		int count = 0;
 		for(int i=0;i<length;i++){
 			String chkStr = inStr.substring(i,i+1);
-			if((chkStr.equals("c")&&(i!=length-1))  || (chkStr.equals("s")&&(i!=length-1))){
-				//c=, c-, s=, z=
-				if(inStr.substring(i+1,i+2).equals("=") || inStr.substring(i+1,i+2).equals("-")){
-					count++;
-					if(i!=length-2){
+			
+			if(chkStr.equals("c")){
+				if(i<length-1){
+					String chkStr2 = inStr.substring(i+1,i+2);
+					if(chkStr2.equals("=")||chkStr2.equals("-")){
+						//c=, c-
+						count++;
 						i++;
-					}
-				}else{
-					count++;
-				}
-			}else if((chkStr.equals("l")&&(i!=length-1)) || (chkStr.equals("n")&&(i!=length-1))){
-				//lj, nj
-				if(inStr.substring(i+1,i+2).equals("j")){
-					count++;
-					if(i!=length-2){
-						i++;
-					}
-				}else{
-					count++;
-				}
-			}
-			else if(chkStr.equals("d") && (i!=length-1)){
-				if (inStr.substring(i+1,i+2).equals("z") && (i!=length-2)){
-					//dz=
-					count++;
-					if(i<length-2 && inStr.substring(i+2,i+3).equals("=")) {
-						i += 2;
 					}else{
-						i++;
-					}
-				}else if(inStr.substring(i+1,i+2).equals("-")){
-					//d-
-					count++;
-					if(i!=length-2){
-						i++;
-					}
-					
-				}else{
-					count++;
-				}
-			}else if(chkStr.equals("z") && (i!=length-1)){
-				if(inStr.substring(i+1,i+2).equals("=")){
-					count++;
-					if(i!=length-2){
-						i++;
+						count++;
 					}
 				}else{
+					//c
 					count++;
 				}
-			}
-			else{
+			}else if(chkStr.equals("d")){
+				if(i<length-1){
+					String chkStr2 = inStr.substring(i+1,i+2);
+					if(chkStr2.equals("z") && i<length-2){
+						if(inStr.substring(i+2,i+3).equals("=")){
+							//dz=
+							count++;
+							i+=2;
+						}else{
+							//d
+							count++;
+						}
+					}else if(chkStr2.equals("-")){
+						//d-
+						count++;
+						i++;
+					}
+					else{
+						//d
+						count++;
+					}
+				}else{
+					//d
+					count++;
+				}
+			}else if(chkStr.equals("l")){
+				if(i<length-1){
+					String chkStr2 = inStr.substring(i+1,i+2);
+					if(chkStr2.equals("j")){
+						//lj
+						count++;
+						i++;
+					}else{
+						//l
+						count++;
+					}
+				}else{
+					//l
+					count++;
+				}
+			}else if(chkStr.equals("n")){
+				if(i<length-1){
+					String chkStr2 = inStr.substring(i+1,i+2);
+					if(chkStr2.equals("j")){
+						//nj
+						count++;
+						i++;
+					}else{
+						//n
+						count++;
+					}
+				}else{
+					//n
+					count++;
+				}
+			}else if(chkStr.equals("s")){
+				if(i<length-1){
+					String chkStr2 = inStr.substring(i+1,i+2);
+					if(chkStr2.equals("=")){
+						//s=
+						count++;
+						i++;
+					}else{
+						//s
+						count++;
+					}
+				}else{
+					//s
+					count++;
+				}
+			}else if(chkStr.equals("z")){
+				if(i<length-1){
+					String chkStr2 = inStr.substring(i+1,i+2);
+					if(chkStr2.equals("=")){
+						//z=
+						count++;
+						i++;
+					}else{
+						//z
+						count++;
+					}
+				}else{
+					//z
+					count++;
+				}
+			}else{
 				count++;
 			}
+			
+			
 		}
 		
 		
