@@ -5,6 +5,7 @@ import java.util.Deque;
 import java.util.LinkedList;
 import java.util.StringTokenizer;
 
+//https://www.acmicpc.net/problem/2812
 public class MakeBigNum {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -20,19 +21,39 @@ public class MakeBigNum {
 			if(d.isEmpty()){
 				d.add(next);
 			} else{
-				while (!d.isEmpty() && delCount>0){
-					if(d.peekLast()<next){
-						d.pollLast();
-						delCount--;
-					}else if(d.peekLast()>=next){
-						break;}
-//					}else{
-//						d.pollLast();
-//						delCount--;
-//						break;
-//					}
+				int size = d.size();
+				for(int j=0;j<size;j++){
+					int num = d.pollLast();
+					if(num>=next){
+						d.addFirst(num);
+					}else{
+						if(delCount>0) {
+							delCount--;
+						}else{
+							d.addFirst(num);
+						}
+					}
 				}
 				d.add(next);
+			}
+			
+		}
+		
+		while(delCount>0){
+			int min = d.peek();
+			for(int i : d){
+				if(min>i) min = i;
+			}
+			
+			int size = d.size();
+			for(int j=0;j<size;j++){
+				int num = d.pollLast();
+				if(num!=min){
+					d.addFirst(num);
+				}else{
+					delCount--;
+					if (delCount<=0) break;
+				}
 			}
 		}
 		
